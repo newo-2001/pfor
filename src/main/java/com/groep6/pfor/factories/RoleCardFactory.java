@@ -1,9 +1,7 @@
 package com.groep6.pfor.factories;
 
 import com.groep6.pfor.models.cards.RoleCard;
-import com.groep6.pfor.models.cards.actions.ConsulAction;
-import com.groep6.pfor.models.cards.actions.MagisterMilitumAction;
-import com.groep6.pfor.models.cards.actions.ReginaFoederataAction;
+import com.groep6.pfor.models.cards.actions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +20,19 @@ public class RoleCardFactory {
         RoleCard MAGISTER_MILITUM = new RoleCard("Magister Militum", new MagisterMilitumAction());
         RoleCard CONSUL = new RoleCard("Consul", new ConsulAction());
         RoleCard REGINA_FOEDERATA = new RoleCard("ReginaFoederata", new ReginaFoederataAction());
+        RoleCard MERCATOR = new RoleCard("Mercator", new MercatorAction());
+        RoleCard PRAEFECTUS_CLASSIS = new RoleCard("Praefectus Classis", new PraefectusClassisAction());
+        RoleCard PRAEFECTUS_FABRUM = new RoleCard("Praefectus Fabrum", new PraefectusFabrumAction());
+        RoleCard VESTALIN = new RoleCard("Vestalin", new VestalinAction());
+
 
         roleCards.add(MAGISTER_MILITUM);
         roleCards.add(CONSUL);
         roleCards.add(REGINA_FOEDERATA);
+        roleCards.add(MERCATOR);
+        roleCards.add(PRAEFECTUS_CLASSIS);
+        roleCards.add(PRAEFECTUS_FABRUM);
+        roleCards.add(VESTALIN);
 
     }
 
