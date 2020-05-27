@@ -1,5 +1,6 @@
 package com.groep6.pfor;
 
+import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.util.Renderer;
 import com.groep6.pfor.util.Vector2f;
@@ -31,13 +32,10 @@ public class Main extends Application {
 
         renderer = new Renderer(primaryStage, new Vector2f(1280, 720));
 
-        ViewController viewController = new ViewController(primaryStage);
+        ViewController.setPrimaryStage(primaryStage);
 
-        View menuView = new MenuView(primaryStage);
-
-        primaryStage.setScene(menuView.getScene());
-        primaryStage.show();
-
+        // Set default view
+        ViewController.showView(new MenuView(ViewController.getPrimaryStage()));
 
     }
 }
