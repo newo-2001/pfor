@@ -30,7 +30,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         System.out.println("Hello World!");
 
-        renderer = new Renderer(primaryStage, new Vector2f(1280, 720));
+//        renderer = new Renderer(primaryStage, new Vector2f(1280, 720));
 
         ViewController.setPrimaryStage(primaryStage);
 

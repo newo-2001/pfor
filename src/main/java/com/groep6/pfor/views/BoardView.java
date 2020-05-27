@@ -4,6 +4,7 @@ import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.Controller;
 import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.Observable;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,9 +25,13 @@ public class BoardView extends View implements IObserver {
     private BoardController boardController;
     private Scene scene;
 
-    public BoardView(Stage primaryStage) {
-        super(primaryStage);
+    private Text text;
+
+    public BoardView(Stage stage) {
+        super(stage);
         this.boardController = BoardController.getInstance();
+
+        boardController.registerObserver(this);
 
         createView();
     }
@@ -34,14 +39,14 @@ public class BoardView extends View implements IObserver {
     public void createView() {
         BorderPane root = new BorderPane();
 
-        Text text = new Text("Board");
+        text = new Text("Decay: " + boardController.getDecayLevel());
 
         text.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 150));
+                FontPosture.REGULAR, 30));
         text.setFill(Color.BLACK);
         root.setCenter(text);
 
-        Button button = new Button("Click me!");
+        Button button = new Button("Click me to increase decay level");
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, buttonClicked);
         root.setBottom(button);
 
@@ -51,7 +56,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> buttonClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            boardController.goToMenu();
+            boardController.increaseDecayLevel();
         }
     };
 
@@ -62,6 +67,6 @@ public class BoardView extends View implements IObserver {
 
     @Override
     public void update() {
-
+        text.setText("Decay: " + boardController.getDecayLevel());
     }
 }

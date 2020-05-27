@@ -22,8 +22,8 @@ public class MenuView extends View {
     private MenuController menuController;
     private Scene scene;
 
-    public MenuView(Stage primaryStage) {
-        super(primaryStage);
+    public MenuView(Stage stage) {
+        super(stage);
         this.menuController = MenuController.getInstance();
 
         createView();

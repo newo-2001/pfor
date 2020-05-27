@@ -1,17 +1,19 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.util.Observable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Bastiaan Jansen
  */
-public class Game {
+public class Game extends Observable {
 
     private static Game SINGLE_INSTANCE = new Game();
 
     private Board board;
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
     private int decayLevel = 0;
     private final int MAX_DECAY_LEVEL = 8;
     private int invasionLevel = 0;
@@ -37,6 +39,7 @@ public class Game {
      */
     public void addPlayers(LobbyPlayer... lobbyPlayers) {
         for (LobbyPlayer player: lobbyPlayers) players.add(new Player(player));
+        notifyObservers();
     }
 
     /**
@@ -85,6 +88,7 @@ public class Game {
         if (decayLevel >= MAX_DECAY_LEVEL) return;
 
         decayLevel++;
+        notifyObservers();
     }
 
     /**
@@ -94,6 +98,7 @@ public class Game {
         if (invasionLevel >= MAX_INVASION_LEVEL) return;
 
         invasionLevel++;
+        notifyObservers();
     }
 
     public Deck getCityDeck() {
