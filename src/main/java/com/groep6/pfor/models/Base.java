@@ -1,7 +1,6 @@
 package com.groep6.pfor.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Base<T extends Piece> extends Tile {

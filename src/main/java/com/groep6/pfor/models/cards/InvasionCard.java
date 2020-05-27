@@ -13,7 +13,7 @@ import java.util.List;
 public class InvasionCard extends Card {
 
     private String name;
-    private List<City> route = new ArrayList<>();
+    private List<City> route;
     private Faction faction;
 
     /**

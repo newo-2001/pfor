@@ -27,6 +27,12 @@ public class RevoltCard extends Card {
      * @return City
      */
     public City revolt() {
+        // I. Increase
+
+        // II. Revolt
+
+        // III. Intensify
+
         return null;
     }
 
