@@ -4,6 +4,7 @@ import com.groep6.pfor.models.cards.RoleCard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Bastiaan
@@ -26,6 +27,16 @@ public class RoleCardFactory {
 
     public List<RoleCard> getAllRoleCards() {
         return roleCards;
+    }
+
+    public RoleCard pickRandomRoleCard() {
+        Random randomizer = new Random();
+        RoleCard card = roleCards.get(randomizer.nextInt(roleCards.size()));
+        return card;
+    }
+
+    public int getRoleCardCount() {
+        return roleCards.size();
     }
 
 }

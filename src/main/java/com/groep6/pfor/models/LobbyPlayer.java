@@ -15,12 +15,18 @@ public class LobbyPlayer {
 
     /**
      * @param username
-     * @param roleCard
      * @param isHost
      */
     public LobbyPlayer(String username, RoleCard roleCard, boolean isHost) {
         this.username = username;
         this.roleCard = roleCard;
         this.isHost = isHost;
+    }
+
+    /**
+     * @return RoleCard
+     */
+    public RoleCard getRoleCard() {
+        return roleCard;
     }
 }

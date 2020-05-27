@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.cards.RoleCard;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ public class Lobby {
     private String code;
     private String passwordHash;
     private List<LobbyPlayer> players = new ArrayList<>();
-    private List<RoleCard> roles = new ArrayList<>();
 
 
     public Lobby(String passwordHash) {
@@ -28,13 +28,26 @@ public class Lobby {
     /**
      * Creates a new lobbyPlayer instance with a random available roleCard
      * @param username
-     * @param roleCard
      * @return new instance of LobbyPlayer
      */
-    public LobbyPlayer join(String username, RoleCard roleCard) {
-        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, roleCard);
+    public LobbyPlayer join(String username, boolean isHost) {
+        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost);
         players.add(lobbyPlayer);
         return lobbyPlayer;
+    }
+
+    /**
+     * Makes sure a role card can only be picked once
+     * @return RoleCard
+     */
+    public RoleCard pickRandomRoleCard() {
+        RoleCard card = RoleCardFactory.getInstance().pickRandomRoleCard();
+
+        for (LobbyPlayer player: players) {
+            if (player.getRoleCard() == card) return pickRandomRoleCard();
+        }
+
+        return card;
     }
 
     /**
