@@ -1,20 +1,23 @@
 package com.groep6.pfor.models.cards.actions;
 
 /**
- * Battle ability of the Magister Militum role.
+ * Battle ability of the Mercator role.
  * @author Mitchell van Rijswijk
  *
  */
-public class MagisterMilitumAction implements IAction {
+public class MercatorAction implements IAction {
 
 	/**
-	 * Reduces the amount of barbarians in the current city by 2.
+	 * Deletes 1 barbarian from the current city.
+	 * Deletes 1 legion from the current city.
 	 * 
 	 */
 	public void execute() {
-		/* 
-		 * currentCity.removeBarbarians(2); 
+		/*
+		 * currentCity.removeBarbarians(1);
+		 * currentCity.removeLegions(1);
 		 */
+		
 	}
 
 	/**
@@ -23,7 +26,7 @@ public class MagisterMilitumAction implements IAction {
 	 * 
 	 */
 	public String getName() {
-		return "Magister Militum";
+		return "Mercator";
 	}
 
 	/**
@@ -32,8 +35,7 @@ public class MagisterMilitumAction implements IAction {
 	 * 
 	 */
 	public String getDescription() {
-		String description = "Verwijder 2 barbaren uit jouw stad.";
-		return description;
+		return "Verwijder 1 barbaar en 1 legioen uit jouw stad.";
 	}
 
 }

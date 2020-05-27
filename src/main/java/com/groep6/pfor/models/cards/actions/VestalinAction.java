@@ -1,19 +1,19 @@
 package com.groep6.pfor.models.cards.actions;
 
 /**
- * Battle ability of the Magister Militum role.
+ * Battle ability of the Vestalin role.
  * @author Mitchell van Rijswijk
  *
  */
-public class MagisterMilitumAction implements IAction {
+public class VestalinAction implements IAction {
 
 	/**
-	 * Reduces the amount of barbarians in the current city by 2.
+	 * Decreases the amount of legions in the current city by 1.
 	 * 
 	 */
 	public void execute() {
 		/* 
-		 * currentCity.removeBarbarians(2); 
+		 * currentCity.removeLegions(1); 
 		 */
 	}
 
@@ -23,7 +23,7 @@ public class MagisterMilitumAction implements IAction {
 	 * 
 	 */
 	public String getName() {
-		return "Magister Militum";
+		return "Vestalin";
 	}
 
 	/**
@@ -32,8 +32,7 @@ public class MagisterMilitumAction implements IAction {
 	 * 
 	 */
 	public String getDescription() {
-		String description = "Verwijder 2 barbaren uit jouw stad.";
-		return description;
+		return "Verwijder 1 legioen uit jouw stad.";
 	}
 
 }

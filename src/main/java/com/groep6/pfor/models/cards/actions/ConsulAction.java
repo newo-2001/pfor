@@ -12,8 +12,9 @@ public class ConsulAction implements IAction {
 	 * 
 	 */
 	public void execute() {
-		/* currentCity.setLegions(currentCity.getLegions() + 1); 
-		 * */
+		/* 
+		 * currentCity.addLegions(1); 
+		 */
 	}
 
 	/**
