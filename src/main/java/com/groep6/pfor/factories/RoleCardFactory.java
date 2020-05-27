@@ -15,6 +15,9 @@ public class RoleCardFactory {
     private static final RoleCardFactory SINGLE_INSTANCE = new RoleCardFactory();
     private List<RoleCard> roleCards = new ArrayList<>();
 
+    /**
+     * Constructs a RoleCardFactory with all role cards
+     */
     private RoleCardFactory() {
 
         RoleCard MAGISTER_MILITUM = new RoleCard("Magister Militum", new MagisterMilitumAction());
