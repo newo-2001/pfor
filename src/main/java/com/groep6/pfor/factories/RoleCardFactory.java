@@ -1,7 +1,7 @@
 package com.groep6.pfor.factories;
 
 import com.groep6.pfor.models.cards.RoleCard;
-import com.groep6.pfor.models.cards.actions.*;
+import com.groep6.pfor.models.cards.actions.roleActions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,6 @@ public class RoleCardFactory {
         RoleCard PRAEFECTUS_CLASSIS = new RoleCard("Praefectus Classis", new PraefectusClassisAction());
         RoleCard PRAEFECTUS_FABRUM = new RoleCard("Praefectus Fabrum", new PraefectusFabrumAction());
         RoleCard VESTALIN = new RoleCard("Vestalin", new VestalinAction());
-
 
         roleCards.add(MAGISTER_MILITUM);
         roleCards.add(CONSUL);
