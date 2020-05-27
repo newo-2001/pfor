@@ -25,35 +25,46 @@ public class BoardView extends View implements IObserver {
     private BoardController boardController;
     private Scene scene;
 
-    private Text text;
+    private Text decayText;
 
     public BoardView(Stage stage) {
         super(stage);
-        this.boardController = BoardController.getInstance();
+        boardController = BoardController.getInstance();
 
         boardController.registerObserver(this);
 
         createView();
+        update();
     }
 
     public void createView() {
         BorderPane root = new BorderPane();
 
-        text = new Text("Decay: " + boardController.getDecayLevel());
+        decayText = new Text();
 
-        text.setFont(Font.font("verdana", FontWeight.BOLD,
+        decayText.setFont(Font.font("verdana", FontWeight.BOLD,
                 FontPosture.REGULAR, 30));
-        text.setFill(Color.BLACK);
-        root.setCenter(text);
+        decayText.setFill(Color.BLACK);
+        root.setCenter(decayText);
+
+        Button backButton = new Button("Go to menu");
+        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, menuButtonClicked);
+        root.setTop(backButton);
 
         Button button = new Button("Click me to increase decay level");
-        button.addEventFilter(MouseEvent.MOUSE_CLICKED, buttonClicked);
+        button.addEventFilter(MouseEvent.MOUSE_CLICKED, increaseDecayButtonClicked);
         root.setBottom(button);
 
         scene = new Scene(root);
     }
 
-    EventHandler<MouseEvent> buttonClicked = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            boardController.goToMenu();
+        }
+    };
+    EventHandler<MouseEvent> increaseDecayButtonClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             boardController.increaseDecayLevel();
@@ -65,8 +76,12 @@ public class BoardView extends View implements IObserver {
         return scene;
     }
 
+    public void setDecayText() {
+        decayText.setText("Decay: " + boardController.getDecayLevel());
+    }
+
     @Override
     public void update() {
-        text.setText("Decay: " + boardController.getDecayLevel());
+        setDecayText();
     }
 }

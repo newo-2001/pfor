@@ -41,7 +41,7 @@ public class MenuView extends View {
 
         Button button = new Button("Click me!");
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, buttonClicked);
-        root.setBottom(button);
+        root.setTop(button);
 
         scene = new Scene(root);
     }
