@@ -3,11 +3,11 @@ package com.groep6.pfor.models.cards.actions.eventActions;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
- * Implements (the first) action on Hic Manebimus Optime event card
+ * Implements (the first) action on Si Vis Pacem, Para Bellum event card
  * @author Mitchell van Rijswijk
  *
  */
-public class HicManebimusOptimeAction implements IAction {
+public class ParaBellumAction implements IAction {
 
 	/**
 	 * Lets the player pick 3 cities with forts to reinforce. Adds 2 legions
@@ -16,11 +16,8 @@ public class HicManebimusOptimeAction implements IAction {
 	public void execute() {
 		/*
 		 * ViewController.switchView(pickCityView);
-		 * ViewController.getCurrentView().viewFortCities();
-		 * City city1 = <<player selection of a city>>;
-		 * City city2 = <<player selection of a city>>;
-		 * City city3 = <<player selection of a city>>;
-		 * city1.addLegions(2); city2.addLegions(2); city3.addLegions(2);
+		 * City city = <<player selection of a city>>;
+		 * city.buildFort();
 		 * card.discard();
 		 */
 	}
@@ -31,7 +28,7 @@ public class HicManebimusOptimeAction implements IAction {
 	 * 
 	 */
 	public String getName() {
-		return "Hic Manebimus Optime";
+		return "Si Vis Pacem, Para Bellum";
 	}
 
 	/**
@@ -40,7 +37,7 @@ public class HicManebimusOptimeAction implements IAction {
 	 * 
 	 */
 	public String getDescription() {
-		return "Kies maximaal 3 steden met een fort. Leg op elk van deze steden maximaal 2 legioenen.";
+		return "Plaats een fort in een willekeurige stad.";
 	}
 
 }
