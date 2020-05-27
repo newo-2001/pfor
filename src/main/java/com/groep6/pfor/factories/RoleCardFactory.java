@@ -20,21 +20,13 @@ public class RoleCardFactory {
      */
     private RoleCardFactory() {
 
-        RoleCard MAGISTER_MILITUM = new RoleCard("Magister Militum", new MagisterMilitumAction());
-        RoleCard CONSUL = new RoleCard("Consul", new ConsulAction());
-        RoleCard REGINA_FOEDERATA = new RoleCard("ReginaFoederata", new ReginaFoederataAction());
-        RoleCard MERCATOR = new RoleCard("Mercator", new MercatorAction());
-        RoleCard PRAEFECTUS_CLASSIS = new RoleCard("Praefectus Classis", new PraefectusClassisAction());
-        RoleCard PRAEFECTUS_FABRUM = new RoleCard("Praefectus Fabrum", new PraefectusFabrumAction());
-        RoleCard VESTALIN = new RoleCard("Vestalin", new VestalinAction());
-
-        roleCards.add(MAGISTER_MILITUM);
-        roleCards.add(CONSUL);
-        roleCards.add(REGINA_FOEDERATA);
-        roleCards.add(MERCATOR);
-        roleCards.add(PRAEFECTUS_CLASSIS);
-        roleCards.add(PRAEFECTUS_FABRUM);
-        roleCards.add(VESTALIN);
+        roleCards.add(new RoleCard("Magister Militum", new MagisterMilitumAction()));
+        roleCards.add(new RoleCard("Consul", new ConsulAction()));
+        roleCards.add(new RoleCard("ReginaFoederata", new ReginaFoederataAction());
+        roleCards.add(new RoleCard("Mercator", new MercatorAction()));
+        roleCards.add(new RoleCard("Praefectus Classis", new PraefectusClassisAction()));
+        roleCards.add(new RoleCard("Praefectus Fabrum", new PraefectusFabrumAction()));
+        roleCards.add(new RoleCard("Vestalin", new VestalinAction()));
 
     }
 
