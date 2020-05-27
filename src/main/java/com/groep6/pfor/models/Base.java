@@ -1,6 +1,7 @@
 package com.groep6.pfor.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Base<T extends Piece> extends Tile {
@@ -20,7 +21,7 @@ public class Base<T extends Piece> extends Tile {
 	}
 	
 	public void addPieces(T... pieces) {
-		for (T piece : pieces) this.pieces.add(piece);
+		this.pieces.addAll(Arrays.asList(pieces));
 	}
 	
 	public T removePiece() {
