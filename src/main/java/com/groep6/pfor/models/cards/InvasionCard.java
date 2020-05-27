@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Represents an invasion card
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class InvasionCard extends Card {
 

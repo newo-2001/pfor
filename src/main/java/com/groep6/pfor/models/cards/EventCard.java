@@ -4,7 +4,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
  * Represents an event card
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class EventCard extends Card {
 

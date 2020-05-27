@@ -3,7 +3,7 @@ package com.groep6.pfor.models.cards;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class RoleCard extends Card {
 

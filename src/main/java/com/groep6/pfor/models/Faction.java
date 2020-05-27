@@ -1,7 +1,7 @@
 package com.groep6.pfor.models;
 
 /**
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public enum Faction {
     ANGLO_SAXSONS_FRANKS,

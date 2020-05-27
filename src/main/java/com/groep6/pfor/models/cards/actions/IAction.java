@@ -2,7 +2,7 @@ package com.groep6.pfor.models.cards.actions;
 
 /**
  * Represents an action some cards can perform
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public interface IAction {
 

@@ -5,7 +5,7 @@ import com.groep6.pfor.models.Faction;
 
 /**
  * Represents a city card
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class CityCard extends Card {
 

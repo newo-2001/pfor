@@ -5,7 +5,7 @@ import com.groep6.pfor.models.Faction;
 
 /**
  * Represents a revolt card
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class RevoltCard extends Card {
     private String name;

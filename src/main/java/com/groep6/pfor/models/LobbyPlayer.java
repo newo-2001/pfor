@@ -4,7 +4,7 @@ import com.groep6.pfor.models.cards.RoleCard;
 
 /**
  * Represents a lobby player
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class LobbyPlayer {
 

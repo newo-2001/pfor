@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Represents a lobby
  *
- * @author Bastiaan
+ * @author Bastiaan Jansen
  */
 public class Lobby {
 
