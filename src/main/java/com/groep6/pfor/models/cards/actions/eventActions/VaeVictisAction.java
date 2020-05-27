@@ -19,6 +19,7 @@ public class VaeVictisAction implements IAction {
 		 * int amount = battleResult.getFallenBarbarianCount;
 		 * City city = selectCity();
 		 * city.removeBarbarians(amount);
+		 * card.discard();
 		 */
 	}
 
