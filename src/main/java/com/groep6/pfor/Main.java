@@ -5,21 +5,15 @@ import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
-import com.groep6.pfor.exceptions.IncorrentPasswordException;
-import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.models.LobbyPlayer;
-import com.groep6.pfor.exceptions.IncorrentPasswordException;
-import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.models.LobbyPlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static Renderer renderer;
+
     public static void main(String[] args) {
         launch();
     }
-
-    private static Renderer renderer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -38,6 +32,5 @@ public class Main extends Application {
         }
 
         System.out.println(lobby.getCode());
-
     }
 }

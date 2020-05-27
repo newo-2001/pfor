@@ -4,39 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Base<T extends Piece> extends Tile {
+	private List<T> pieces = new ArrayList<T>();
 	
-	private List<T> pieces;
-	
-	public Base(ArrayList<T> pieces) {
-		this.pieces = pieces;
+	public Base(T... pieces) {
+		addPieces(pieces);
 	}
 	
 	public Faction getFaction() {
-		Faction faction = factions.get(0);
-		return faction;
+		return factions.get(0);
 	}
 	
 	public int getPieceCount() {
 		return pieces.size();
 	}
 	
-	public void addPieces(ArrayList<T> pieces) {				//Dit klopt niet maar ik weet het even niet
-		this.pieces.addAll(pieces);	
+	public void addPieces(T... pieces) {
+		for (T piece : pieces) this.pieces.add(piece);
 	}
 	
 	public T removePiece() {
-		T piece = pieces.get(0);
-		pieces.remove(0);
-		return piece;
+		if (pieces.size() <= 0) return null;
+		return pieces.remove(0);
 	}
 	
-	public List<T> removePieces(int pieces) {
-		while(this.pieces.size() > 0) {
-			for(int x = 0; x < pieces; x += 1) {
-				this.pieces.remove(0);
-		}
-			return this.pieces;
-		} 
-		return this.pieces;
+	public List<T> removePieces(int piecesCount) {
+		List<T> removed = new ArrayList<T>();
+		for(int i = 0; i < Math.min(piecesCount, pieces.size()); i++) removed.add(this.pieces.remove(0));
+		return removed;
 	}
 }
