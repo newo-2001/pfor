@@ -25,7 +25,7 @@ public class AudentesFortunaAction implements IAction {
 	 * 
 	 */
 	public String getName() {
-		return "Audentes Fortuna Iuvaat";
+		return "Audentes Fortuna Iuvat";
 	}
 
 	/**
