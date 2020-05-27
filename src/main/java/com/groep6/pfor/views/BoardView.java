@@ -47,7 +47,7 @@ public class BoardView extends View implements IObserver {
         decayText.setFill(Color.BLACK);
         root.setCenter(decayText);
 
-        Button backButton = new Button("Go to menu");
+        Button backButton = new Button("Go back");
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, menuButtonClicked);
         root.setTop(backButton);
 
