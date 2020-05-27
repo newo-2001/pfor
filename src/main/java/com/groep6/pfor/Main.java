@@ -1,8 +1,25 @@
 package com.groep6.pfor;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+import com.groep6.pfor.util.Renderer;
+import com.groep6.pfor.util.Vector2f;
+=======
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
+>>>>>>> 513951a6156f8a63b7ad90cc4f74d9188a7efaed
+=======
+import com.groep6.pfor.exceptions.IncorrentPasswordException;
+import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
+>>>>>>> 513951a6156f8a63b7ad90cc4f74d9188a7efaed
+=======
+import com.groep6.pfor.exceptions.IncorrentPasswordException;
+import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
+>>>>>>> 513951a6156f8a63b7ad90cc4f74d9188a7efaed
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -11,10 +28,17 @@ public class Main extends Application {
         launch();
     }
 
+    private static Renderer renderer;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println("Hello World!");
 
+<<<<<<< HEAD
+        renderer = new Renderer(primaryStage, new Vector2f(1280, 720));
+
+=======
+>>>>>>> 513951a6156f8a63b7ad90cc4f74d9188a7efaed
         Lobby lobby = new Lobby("password");
 
         try {
@@ -26,6 +50,9 @@ public class Main extends Application {
         }
 
         System.out.println(lobby.getCode());
+<<<<<<< HEAD
+=======
 
+>>>>>>> 513951a6156f8a63b7ad90cc4f74d9188a7efaed
     }
 }

@@ -18,9 +18,6 @@ public class Renderer {
     /** The scene that will be rendered. */
     private Scene scene;
 
-    /** The root object of the scenegraph. */
-    private Parent root;
-
     /**
      * Constructs a renderer that will render on the given stage.
      * @param stage The stage to render on.
@@ -28,8 +25,11 @@ public class Renderer {
      * @return A new renderer instance.
      */
     public Renderer(Stage stage, Vector2f dimensions) {
-        this.stage = stage;
+        stage.setTitle("Pandemic - Fall of Rome");
         scene = new Scene(new Group(), dimensions.x, dimensions.y);
+        stage.setScene(scene);
+
+        stage.show();
     }
 
     /**
@@ -37,15 +37,15 @@ public class Renderer {
      * everything that is there and starting a scene from scratch.
      * @param root The node to act as the root of the scenegraph.
      */
-    public void setSceneGraph(Parent root) {
-        this.root = root;
+    public void setRoot(Parent root) {
+        scene.setRoot(root);
     }
 
     /**
-     * Render the current scenegraph, doing so will update the screen
-     * and show the new changes to the user.
+     * Get the root node of the scenegraph.
+     * @return The root node of the scenegraph.
      */
-    public void render() {
-
+    public Parent getRoot() {
+        return scene.getRoot();
     }
 }
