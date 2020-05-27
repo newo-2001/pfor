@@ -8,7 +8,7 @@ public class Base<T extends Piece> extends Tile {
 	private List<T> pieces = new ArrayList<T>();
 	
 	public Base(T... pieces) {
-		this.pieces = Arrays.asList(pieces);
+		addPieces(pieces);
 	}
 	
 	public Faction getFaction() {
@@ -20,7 +20,7 @@ public class Base<T extends Piece> extends Tile {
 	}
 	
 	public void addPieces(T... pieces) {
-		this.pieces.addAll(Arrays.asList(pieces));
+		for (T piece : pieces) this.pieces.add(piece);
 	}
 	
 	public T removePiece() {
@@ -28,10 +28,9 @@ public class Base<T extends Piece> extends Tile {
 		return pieces.remove(0);
 	}
 	
-	public T[] removePieces(int piecesCount) {
-		piecesCount = Math.min(piecesCount, pieces.size());
+	public List<T> removePieces(int piecesCount) {
 		List<T> removed = new ArrayList<T>();
-		for(int i = 0; i < piecesCount; i++) removed.add(this.pieces.remove(0));
-		return (T[]) removed.toArray();
+		for(int i = 0; i < Math.min(piecesCount, pieces.size()); i++) removed.add(this.pieces.remove(0));
+		return removed;
 	}
 }
