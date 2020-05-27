@@ -12,11 +12,12 @@ public class ReginaFoederataAction implements IAction {
 	 * 1 extra barbarian gets deleted. The legion count in the city is incremented. 
 	 */
 	public void execute() {
-		/* get battle result
+		/* 
+		 * get battle result
 		 * if (currentCity.getBarbarians() - fallenBarbarians > 0)
 		 * 		fallenBarbarians--;
-		 * currentCity.setLegions(currentCity.getLegions() + 1);
-		 * */ 
+		 * currentCity.addLegions(1);
+		 */ 
 	}
 
 	/**

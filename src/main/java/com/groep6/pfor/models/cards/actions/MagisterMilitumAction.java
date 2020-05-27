@@ -12,8 +12,9 @@ public class MagisterMilitumAction implements IAction {
 	 * 
 	 */
 	public void execute() {
-		/* currentCity.setBarbarians(currentCity.getBarbarians() - 2); 
-		 * */
+		/* 
+		 * currentCity.removeBarbarians(2); 
+		 */
 	}
 
 	/**

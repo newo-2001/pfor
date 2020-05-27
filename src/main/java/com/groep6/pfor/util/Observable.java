@@ -29,9 +29,7 @@ public abstract class Observable {
         observers.remove(observer);
     }
 
-    /**
-     * Notify all registered observer that this object's state has changed.
-     */
+    /** Notify all registered observer that this object's state has changed. */
     protected void notifyObservers() {
         for (IObserver observer : observers) observer.update();
     }
