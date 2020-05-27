@@ -10,7 +10,8 @@ import com.groep6.pfor.models.cards.actions.IAction;
 public class HicManebimusOptimeAction implements IAction {
 
 	/**
-	 * 
+	 * Lets the player pick 3 cities with forts to reinforce. Adds 2 legions
+	 * to each of the cities.
 	 */
 	public void execute() {
 		/*
