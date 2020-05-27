@@ -6,7 +6,8 @@ import java.util.List;
 public class Base<T extends Piece> extends Tile {
 	private List<T> pieces = new ArrayList<T>();
 	
-	public Base(T... pieces) {
+	public Base(Vector2f position, List<Faction> factions, List<City> neighbouringCities, T... pieces) {
+		super(position, factions, neighbouringCities);
 		addPieces(pieces);
 	}
 	

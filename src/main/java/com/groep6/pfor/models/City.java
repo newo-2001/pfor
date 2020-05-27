@@ -7,28 +7,29 @@ package com.groep6.pfor.models;
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class City extends Tile {
 	
-	private ArrayList<Barbarian> barbarians = new ArrayList<Barbarian>();
-	private ArrayList<Legion> legions = new ArrayList<Legion>();
-	private boolean fort;
+	private List<Barbarian> barbarians = new ArrayList<Barbarian>();
+	private List<Legion> legions = new ArrayList<Legion>();
+	private boolean fort = false;
 	private boolean harbour;
 	private String name;
 	
-	public City(String name, boolean fort, boolean harbour, ArrayList<Barbarian> barbarians, ArrayList<Legion> legions) {
+	
+	
+	public City(String name, boolean harbour, Vector2f position, List<Faction> factions, List<City> neighbouringCities) {
+		super(position, factions, neighbouringCities);
 		this.name = name;
-		this.fort = fort;
 		this.harbour = harbour;
-		this.barbarians = barbarians;
-		this.legions = legions;
 	}
 	
     /**
      * @returns a arrayList with factions that can access the city 
      */
 	
-	public ArrayList<Faction> getFaction() {
+	public List<Faction> getFaction() {
 		return factions;
 	}
 	
@@ -61,7 +62,7 @@ public class City extends Tile {
      * @returns a arrayList with barbarians in a specific city
      */
 	
-	public ArrayList<Barbarian> getBarbarians() {
+	public List<Barbarian> getBarbarians() {
 		return barbarians;
 	}
 	
