@@ -1,10 +1,11 @@
 package com.groep6.pfor.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Base<T extends Piece> extends Tile{
+public class Base<T extends Piece> extends Tile {
 	
-	private ArrayList<T> pieces = new ArrayList<T>();
+	private List<T> pieces = new ArrayList<T>();
 	
 	public Base(ArrayList<T> pieces) {
 		this.pieces = pieces;
@@ -29,7 +30,7 @@ public class Base<T extends Piece> extends Tile{
 		return piece;
 	}
 	
-	public ArrayList<T> removePieces(int pieces) {
+	public List<T> removePieces(int pieces) {
 		while(this.pieces.size() > 0) {
 			for(int x = 0; x < pieces; x += 1) {
 				this.pieces.remove(0);
