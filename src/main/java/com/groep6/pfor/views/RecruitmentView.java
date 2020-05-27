@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.RecruitmentController;
 import com.groep6.pfor.util.IObserver;
 
 /**
@@ -8,7 +9,7 @@ import com.groep6.pfor.util.IObserver;
  */
 public class RecruitmentView implements IObserver {
     /** The recruitmentController */
-    private RecruitementController recruitementController;
+    private RecruitmentController recruitmentController;
 
     /**
      * The constructor

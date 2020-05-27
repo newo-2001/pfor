@@ -1,5 +1,7 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.InstructionController;
+
 /**
  * The view where the game's instructions are shown
  * @author Mathijs

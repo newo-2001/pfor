@@ -1,5 +1,7 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.WinController;
+
 /**
  * The view that shows that you won the game :D
  * @author Mathijs

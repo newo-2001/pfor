@@ -1,5 +1,7 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.RoleCardInfoController;
+
 /**
  * The view that shows a card's information
  * @author Mathijs

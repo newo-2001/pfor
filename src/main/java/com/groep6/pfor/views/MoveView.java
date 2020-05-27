@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.MoveController;
 import com.groep6.pfor.util.IObserver;
 
 /**

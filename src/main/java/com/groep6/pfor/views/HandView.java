@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.util.IObserver;
 
 import java.util.ArrayList;
