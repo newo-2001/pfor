@@ -7,22 +7,40 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents a Deck with cards
+ * @author Bastiaan
+ */
 public class Deck {
 
     private List<Card> cards = new ArrayList<>();
 
+    /**
+     * @param cards
+     */
     public Deck(Card... cards) {
         this.addCards(cards);
     }
 
+    /**
+     * Add one or multiple cards to deck
+     * @param cards
+     */
     public void addCards(Card... cards) {
         this.cards.addAll(Arrays.asList(cards));
     }
 
+    /**
+     * Shuffles deck
+     */
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
+    /**
+     * Draw a card from the top of the deck
+     * @return Card
+     */
     public Card draw() {
         int index = cards.size() - 1;
         Card card = cards.get(index);
@@ -30,12 +48,20 @@ public class Deck {
         return card;
     }
 
+    /**
+     * Draw a card from a specific index from the deck
+     * @param index
+     * @return Card
+     */
     public Card draw(int index) {
         Card card = cards.get(index);
         cards.remove(0);
         return card;
     }
 
+    /**
+     * @return int
+     */
     public int getCardCount() {
         return cards.size();
     }

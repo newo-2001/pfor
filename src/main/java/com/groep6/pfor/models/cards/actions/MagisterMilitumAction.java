@@ -1,24 +1,25 @@
 package com.groep6.pfor.models.cards.actions;
 
 /**
- * Special ability of the Magister Militum role
+ * Battle ability of the Magister Militum role.
  * @author Mitchell van Rijswijk
  *
  */
-public class ActionMagisterMilitum implements IAction {
+public class MagisterMilitumAction implements IAction {
 
 	/**
-	 * Gets the battle result. If any legion has fallen, one legion gets replenished.
+	 * Reduces the amount of barbarians in the current city by 2.
+	 * 
 	 */
 	public void execute() {
-		// get battle result
-		// if (fallenLegions > 0)
-		// 		fallenLegions--;
+		/* currentCity.setBarbarians(currentCity.getBarbarians() - 2); 
+		 * */
 	}
 
 	/**
 	 * Gets the name of the role.
 	 * @return The name of the role.
+	 * 
 	 */
 	public String getName() {
 		return "Magister Militum";
@@ -27,9 +28,10 @@ public class ActionMagisterMilitum implements IAction {
 	/**
 	 * Gets the action description.
 	 * @return The action description.
+	 * 
 	 */
 	public String getDescription() {
-		String description = "Verminder tijdens een gevecht het aantal verloren legioenen met 1.";
+		String description = "Verwijder 2 barbaren uit jouw stad.";
 		return description;
 	}
 

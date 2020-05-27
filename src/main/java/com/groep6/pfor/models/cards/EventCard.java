@@ -2,6 +2,10 @@ package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.cards.actions.IAction;
 
+/**
+ * Represents an event card
+ * @author Bastiaan Jansen
+ */
 public class EventCard extends Card {
 
     private String name;
@@ -17,6 +21,9 @@ public class EventCard extends Card {
         return name;
     }
 
+    /**
+     * Executes an IAction event
+     */
     public void executeEvent() {
         event.execute();
     }
