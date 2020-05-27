@@ -7,7 +7,7 @@ package com.groep6.pfor.util;
  * @author Owen Elderbroek
  */
 public class Vector2f {
-    /** THe x-component of the vector */
+    /** The x-component of the vector */
     public float x;
 
     /** The y-component of the vector */
@@ -166,9 +166,7 @@ public class Vector2f {
      * @return Itself for chaining.
      */
     public Vector2f normalize() {
-        this.x /= length();
-        this.y /= length();
-        return this;
+        return div(length());
     }
 
     /**

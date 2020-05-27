@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 /**
  * Represents a renderer that is able to render JavaFX nodes.
  * Used as an abstraction layer over some otherwise obnoxious JavaFX code.
+ *
+ * @author Owen Elderbroek
  */
 public class Renderer {
     /** The stage that this renderer will render on. */
