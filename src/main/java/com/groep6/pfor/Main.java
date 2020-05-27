@@ -19,7 +19,7 @@ public class Main extends Application {
 
         try {
             LobbyPlayer person1 = lobby.join("Person1", "password");
-            LobbyPlayer person2 = lobby.join("Person2", "sd");
+            LobbyPlayer person2 = lobby.join("Person2", "wrongpassword");
             LobbyPlayer person3 = lobby.join("Person3", "password");
         } catch (IncorrentPasswordException exception) {
             System.out.println(exception.getMessage());

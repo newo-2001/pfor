@@ -29,6 +29,13 @@ public class Lobby {
     }
 
     /**
+     * Constructs a lobby without a password
+     */
+    public Lobby() {
+        this.code = generateCode();
+    }
+
+    /**
      * Creates a new lobbyPlayer instance with a random available roleCard, the first player is the host of the lobby
      * @param username
      * @return new instance of LobbyPlayer
@@ -45,7 +52,14 @@ public class Lobby {
         return lobbyPlayer;
     }
 
+    /**
+     * Checks if the password is the same as the lobby password, if the lobby has no password, the method always returns true
+     * @param password
+     * @return Whether password is the same as the lobby password
+     */
     private boolean validatePassword(String password) {
+        if (passwordHash != null) return true;
+
         if (password == passwordHash) return true;
 
         return false;
