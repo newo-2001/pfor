@@ -13,7 +13,7 @@ import java.util.Random;
 public class RoleCardFactory {
 
     private static final RoleCardFactory SINGLE_INSTANCE = new RoleCardFactory();
-    private List<RoleCard> roleCards = new ArrayList<>();
+    private List<RoleCard> roleCards;
 
     /**
      * Constructs a RoleCardFactory with all role cards

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Base<T extends Piece> extends Tile {
 	
-	private List<T> pieces = new ArrayList<T>();
+	private List<T> pieces;
 	
 	public Base(ArrayList<T> pieces) {
 		this.pieces = pieces;
