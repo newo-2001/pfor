@@ -1,11 +1,21 @@
 package com.groep6.pfor;
 
+import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.util.Renderer;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.views.MenuView;
+import com.groep6.pfor.views.View;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -21,16 +31,13 @@ public class Main extends Application {
 
         renderer = new Renderer(primaryStage, new Vector2f(1280, 720));
 
-        Lobby lobby = new Lobby("password");
+        ViewController viewController = new ViewController(primaryStage);
 
-        try {
-            LobbyPlayer person1 = lobby.join("Person1", "password");
-            LobbyPlayer person2 = lobby.join("Person2", "wrongpassword");
-            LobbyPlayer person3 = lobby.join("Person3", "password");
-        } catch (IncorrentPasswordException exception) {
-            System.out.println(exception.getMessage());
-        }
+        View menuView = new MenuView(primaryStage);
 
-        System.out.println(lobby.getCode());
+        primaryStage.setScene(menuView.getScene());
+        primaryStage.show();
+
+
     }
 }
