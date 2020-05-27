@@ -25,16 +25,26 @@ public class RoleCardFactory {
         return SINGLE_INSTANCE;
     }
 
+    /**
+     * @return List<RoleCard>
+     */
     public List<RoleCard> getAllRoleCards() {
         return roleCards;
     }
 
+    /**
+     * Pick a random role card
+     * @return RoleCard
+     */
     public RoleCard pickRandomRoleCard() {
         Random randomizer = new Random();
         RoleCard card = roleCards.get(randomizer.nextInt(roleCards.size()));
         return card;
     }
 
+    /**
+     * @return int
+     */
     public int getRoleCardCount() {
         return roleCards.size();
     }
