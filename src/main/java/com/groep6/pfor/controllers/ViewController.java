@@ -5,31 +5,53 @@ import com.groep6.pfor.views.View;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * With the ViewController it is easy to switch to different Views
+ * @author Bastiaan Jansen
+ */
 public class ViewController {
 
     private static final ViewController INSTANCE = new ViewController();
+    public static ViewController getInstance() { return INSTANCE; }
 
-    private Stage primaryStage;
+    private List<View> visitedViews = new ArrayList<>();
+    private Stage stage;
 
     private ViewController() {}
 
-    public static ViewController getInstance() { return INSTANCE; }
-
-    public static void setPrimaryStage(Stage primaryStage) {
-        ViewController viewController = ViewController.getInstance();
-        viewController.primaryStage = primaryStage;
+    /**
+     * @param stage
+     */
+    public void setPrimaryStage(Stage stage) {
+        this.stage = stage;
     }
 
-    public static void showView(View view) {
-        ViewController viewController = ViewController.getInstance();
-        Stage primaryStage = viewController.getPrimaryStage();
+    /**
+     * Show a specific view
+     * @param view
+     */
+    public void showView(View view) {
+        visitedViews.add(view);
         Scene scene = view.getScene();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public static Stage getPrimaryStage() {
-        ViewController viewController = ViewController.getInstance();
-        return viewController.primaryStage;
+    /**
+     * @return primaryStage
+     */
+    public Stage getPrimaryStage() {
+        return stage;
+    }
+
+    /**
+     * Show previous view
+     */
+    public void showPreviousView() {
+        if (visitedViews.size() < 2) return;
+        showView(visitedViews.get(visitedViews.size() - 2));
     }
 }

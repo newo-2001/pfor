@@ -61,7 +61,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            boardController.goToMenu();
+            boardController.goBack();
         }
     };
     EventHandler<MouseEvent> increaseDecayButtonClicked = new EventHandler<MouseEvent>() {

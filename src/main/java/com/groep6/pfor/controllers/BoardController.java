@@ -9,19 +9,22 @@ import com.groep6.pfor.views.View;
 
 import java.util.List;
 
+/**
+ * @author Bastiaan Jansen
+ */
 public class BoardController extends Controller {
 
     private static final BoardController INSTANCE = new BoardController();
     private Game game;
 
     private BoardController() {
-        this.game = Game.getInstance();
+        game = Game.getInstance();
     };
 
     public static BoardController getInstance() { return INSTANCE; }
 
     public void goToMenu() {
-        ViewController.showView(new MenuView(ViewController.getPrimaryStage()));
+        viewController.showView(new MenuView(viewController.getPrimaryStage()));
     }
 
     public void increaseDecayLevel() {
