@@ -29,4 +29,18 @@ public class LobbyPlayer {
     public RoleCard getRoleCard() {
         return roleCard;
     }
+
+    /**
+     * @return Whether lobbyPlayer is a host of a lobby or not
+     */
+    public boolean isHost() {
+        return isHost;
+    }
+
+    /**
+     * @return Username of lobbyPlayer
+     */
+    public String getUsername() {
+        return username;
+    }
 }
