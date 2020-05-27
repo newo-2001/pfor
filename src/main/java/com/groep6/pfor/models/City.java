@@ -17,7 +17,14 @@ public class City extends Tile {
 	private boolean harbour;
 	private String name;
 	
-	
+    /**
+     * Initializes a new City with the given components.
+     * @param name The name of a specific city
+     * @param harbour Whether or not a city has a harbour
+     * @param position The Vector2f (position) of a specific city
+     * @param factions What factions are allowed in a specific city
+     * @param neighbouringCities Which city's have a direct connection to this city
+     */
 	
 	public City(String name, boolean harbour, Vector2f position, List<Faction> factions, List<City> neighbouringCities) {
 		super(position, factions, neighbouringCities);
