@@ -7,7 +7,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  * @author Mitchell van Rijswijk
  *
  */
-public class FestinaLente implements IAction {
+public class FestinaLenteAction implements IAction {
 
 	/**
 	 * Allows the player to move another player to a city of choice, with his 
