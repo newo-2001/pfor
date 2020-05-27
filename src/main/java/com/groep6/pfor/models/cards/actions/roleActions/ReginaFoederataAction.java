@@ -1,4 +1,6 @@
-package com.groep6.pfor.models.cards.actions;
+package com.groep6.pfor.models.cards.actions.roleActions;
+
+import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
  * Battle ability of the Regina Foederata role.

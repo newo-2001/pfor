@@ -1,9 +1,9 @@
 package com.groep6.pfor.factories;
 
 import com.groep6.pfor.models.cards.RoleCard;
-import com.groep6.pfor.models.cards.actions.ConsulAction;
-import com.groep6.pfor.models.cards.actions.MagisterMilitumAction;
-import com.groep6.pfor.models.cards.actions.ReginaFoederataAction;
+import com.groep6.pfor.models.cards.actions.roleActions.ConsulAction;
+import com.groep6.pfor.models.cards.actions.roleActions.MagisterMilitumAction;
+import com.groep6.pfor.models.cards.actions.roleActions.ReginaFoederataAction;
 
 import java.util.ArrayList;
 import java.util.List;
