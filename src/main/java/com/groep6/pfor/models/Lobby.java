@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.cards.RoleCard;
 
@@ -19,21 +20,35 @@ public class Lobby {
     private List<LobbyPlayer> players = new ArrayList<>();
 
 
-    public Lobby(String passwordHash) {
+    /**
+     * @param password
+     */
+    public Lobby(String password) {
         this.code = generateCode();
-        this.passwordHash = passwordHash;
+        this.passwordHash = password;
     }
 
-
     /**
-     * Creates a new lobbyPlayer instance with a random available roleCard
+     * Creates a new lobbyPlayer instance with a random available roleCard, the first player is the host of the lobby
      * @param username
      * @return new instance of LobbyPlayer
      */
-    public LobbyPlayer join(String username, boolean isHost) {
+    public LobbyPlayer join(String username, String password) throws IncorrentPasswordException {
+        if (!validatePassword(password)) throw new IncorrentPasswordException();
+
+        boolean isHost = false;
+
+        if (players.size() == 0) isHost = true;
+
         LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost);
         players.add(lobbyPlayer);
         return lobbyPlayer;
+    }
+
+    private boolean validatePassword(String password) {
+        if (password == passwordHash) return true;
+
+        return false;
     }
 
     /**
@@ -80,5 +95,39 @@ public class Lobby {
      */
     public List<LobbyPlayer> getPlayers() {
         return players;
+    }
+
+    /**
+     * Check if a certain lobbyPlayer is the host of this lobby
+     * @param lobbyPlayer
+     * @return boolean
+     */
+    public boolean isHost(LobbyPlayer lobbyPlayer) {
+        for (LobbyPlayer player : players) {
+            if (player == lobbyPlayer) {
+                if (player.isHost()) return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param lobbyPlayer
+     * @return returns whether a lobbyPlayer is in this lobby
+     */
+    public boolean isInLobby(LobbyPlayer lobbyPlayer) {
+        return players.contains(lobbyPlayer);
+    }
+
+    /**
+     * @return The host of the lobby
+     */
+    public LobbyPlayer getHost() {
+        for (LobbyPlayer player: players) {
+            if (player.isHost()) return player;
+        }
+
+        return null;
     }
 }
