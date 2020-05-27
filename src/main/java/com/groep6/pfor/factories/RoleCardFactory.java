@@ -22,7 +22,7 @@ public class RoleCardFactory {
 
         roleCards.add(new RoleCard("Magister Militum", new MagisterMilitumAction()));
         roleCards.add(new RoleCard("Consul", new ConsulAction()));
-        roleCards.add(new RoleCard("ReginaFoederata", new ReginaFoederataAction());
+        roleCards.add(new RoleCard("ReginaFoederata", new ReginaFoederataAction()));
         roleCards.add(new RoleCard("Mercator", new MercatorAction()));
         roleCards.add(new RoleCard("Praefectus Classis", new PraefectusClassisAction()));
         roleCards.add(new RoleCard("Praefectus Fabrum", new PraefectusFabrumAction()));
