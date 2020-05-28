@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -16,20 +17,21 @@ import javafx.scene.text.FontWeight;
 /**
  * @author Bastiaan Jansen
  */
-public class DefaultButton extends Button {
+public class UIButton extends Button {
 
-    public DefaultButton(String text) {
+    public UIButton(String text) {
         setText(text);
         setStyles();
     }
 
-    public DefaultButton() {
+    public UIButton() {
         setStyles();
     }
 
     private void setStyles() {
         setBackground(new Background(new BackgroundFill(Color.web("#db8937"), CornerRadii.EMPTY, Insets.EMPTY)));
         setPadding(new Insets(10, 10, 10, 10));
+        setBorder(Border.EMPTY);
         setStyle("-fx-text-fill: white");
         setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
 

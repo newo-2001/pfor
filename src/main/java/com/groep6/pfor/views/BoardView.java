@@ -1,12 +1,8 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
-import com.groep6.pfor.controllers.Controller;
-import com.groep6.pfor.controllers.MenuController;
-import com.groep6.pfor.models.Board;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.Observable;
-import com.groep6.pfor.views.components.DefaultButton;
+import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -48,11 +44,11 @@ public class BoardView extends View implements IObserver {
         decayText.setFill(Color.BLACK);
         root.setCenter(decayText);
 
-        Button backButton = new DefaultButton("Go back");
+        Button backButton = new UIButton("Go back");
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, menuButtonClicked);
         root.setTop(backButton);
 
-        Button button = new DefaultButton("Click me to increase decay level");
+        Button button = new UIButton("Click me to increase decay level");
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, increaseDecayButtonClicked);
         root.setBottom(button);
 

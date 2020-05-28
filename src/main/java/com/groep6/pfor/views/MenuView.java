@@ -1,7 +1,7 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.MenuController;
-import com.groep6.pfor.views.components.DefaultButton;
+import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,7 +39,7 @@ public class MenuView extends View {
         text.setFill(Color.BLACK);
         root.setCenter(text);
 
-        Button button = new DefaultButton("Click me!");
+        Button button = new UIButton("Click me!");
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, buttonClicked);
         root.setTop(button);
 
