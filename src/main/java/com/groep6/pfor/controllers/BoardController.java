@@ -14,14 +14,11 @@ import java.util.List;
  */
 public class BoardController extends Controller {
 
-    private static final BoardController INSTANCE = new BoardController();
     private Game game;
 
-    private BoardController() {
+    public BoardController() {
         game = Game.getInstance();
     };
-
-    public static BoardController getInstance() { return INSTANCE; }
 
     public void goToMenu() {
         viewController.showView(new MenuView(viewController.getPrimaryStage()));

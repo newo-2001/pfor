@@ -11,14 +11,6 @@ import com.groep6.pfor.views.View;
  */
 public class MenuController extends Controller {
 
-    private static MenuController INSTANCE = new MenuController();
-
-    private MenuController() {}
-
-    public static MenuController getInstance() {
-        return INSTANCE;
-    }
-
     public void buttonClicked() {
         viewController.showView(new BoardView(viewController.getPrimaryStage()));
     }
