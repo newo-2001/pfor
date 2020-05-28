@@ -3,6 +3,7 @@ package com.groep6.pfor.views;
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.Controller;
 import com.groep6.pfor.controllers.MenuController;
+import com.groep6.pfor.models.Board;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.views.components.DefaultButton;
@@ -23,14 +24,13 @@ import javafx.stage.Stage;
  * @author Bastiaan Jansen
  */
 public class BoardView extends View implements IObserver {
-    private BoardController boardController;
+    private BoardController boardController = new BoardController();
     private Scene scene;
 
     private Text decayText;
 
     public BoardView(Stage stage) {
         super(stage);
-        boardController = BoardController.getInstance();
 
         boardController.registerObserver(this);
 

@@ -20,12 +20,11 @@ import javafx.stage.Stage;
  */
 public class MenuView extends View {
 
-    private MenuController menuController;
+    private MenuController menuController = new MenuController();
     private Scene scene;
 
     public MenuView(Stage stage) {
         super(stage);
-        this.menuController = MenuController.getInstance();
 
         createView();
     }
