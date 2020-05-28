@@ -1,5 +1,12 @@
 package com.groep6.pfor.util;
 
+/**
+ * Represents a vector in 3d space. Has mathematical applications
+ * mostly used for colors.
+ *
+ * @author Nils van der Velden
+ */
+
 public class Vector3f {
 	
 	 /** The x-component of the vector */
