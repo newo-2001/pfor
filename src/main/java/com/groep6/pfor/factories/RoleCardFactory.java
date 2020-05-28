@@ -21,13 +21,13 @@ public class RoleCardFactory {
      */
     private RoleCardFactory() {
 
-        roleCards.add(new RoleCard("Magister Militum", new Color(), new MagisterMilitumAction()));
-        roleCards.add(new RoleCard("Consul", new Color(), new ConsulAction()));
-        roleCards.add(new RoleCard("ReginaFoederata", new Color(), new ReginaFoederataAction()));
-        roleCards.add(new RoleCard("Mercator", new Color(), new MercatorAction()));
-        roleCards.add(new RoleCard("Praefectus Classis", new Color(), new PraefectusClassisAction()));
-        roleCards.add(new RoleCard("Praefectus Fabrum", new Color(), new PraefectusFabrumAction()));
-        roleCards.add(new RoleCard("Vestalin", new Color(), new VestalinAction()));
+        roleCards.add(new RoleCard("Magister Militum", new Color(null, null), new MagisterMilitumAction()));
+        roleCards.add(new RoleCard("Consul", new Color(null, null), new ConsulAction()));
+        roleCards.add(new RoleCard("ReginaFoederata", new Color(null, null), new ReginaFoederataAction()));
+        roleCards.add(new RoleCard("Mercator", new Color(null, null), new MercatorAction()));
+        roleCards.add(new RoleCard("Praefectus Classis", new Color(null, null), new PraefectusClassisAction()));
+        roleCards.add(new RoleCard("Praefectus Fabrum", new Color(null, null), new PraefectusFabrumAction()));
+        roleCards.add(new RoleCard("Vestalin", new Color(null, null), new VestalinAction()));
 
     }
 
