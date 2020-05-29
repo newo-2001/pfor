@@ -2,7 +2,6 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.views.components.ActionButton;
 
 import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
