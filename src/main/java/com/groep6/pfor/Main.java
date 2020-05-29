@@ -3,6 +3,7 @@ package com.groep6.pfor;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.Renderer;
+import com.groep6.pfor.views.BoardView;
 import com.groep6.pfor.views.HandView;
 import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.MoveView;
@@ -30,7 +31,7 @@ public class Main extends Application {
         viewController.setHeight(HEIGHT);
 
         // Set default vie
-        viewController.showView(new MenuView());
+        viewController.showView(new BoardView());
 
     }
 }
