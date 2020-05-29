@@ -15,8 +15,7 @@ public class HostView extends View implements IObserver {
     private HostController hostController;
     private Scene scene;
 
-    public HostView(Stage primaryStage) {
-        super(primaryStage);
+    public HostView() {
         hostController = new HostController();
 
         BorderPane root = new BorderPane();

@@ -25,9 +25,7 @@ public class BoardView extends View implements IObserver {
 
     private Text decayText;
 
-    public BoardView(Stage stage) {
-        super(stage);
-
+    public BoardView() {
         boardController.registerObserver(this);
 
         createView();

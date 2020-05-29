@@ -29,8 +29,7 @@ public class MenuView extends View {
     private MenuController menuController = new MenuController();
     private Scene scene;
 
-    public MenuView(Stage stage) {
-        super(stage);
+    public MenuView() {
 
         createView();
     }

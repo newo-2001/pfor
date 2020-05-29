@@ -54,4 +54,16 @@ public class ViewController {
         if (visitedViews.size() < 2) return;
         showView(visitedViews.get(visitedViews.size() - 2));
     }
+
+    public void setWidth(int width) {
+        stage.setWidth(width);
+    }
+
+    public void setHeight(int height) {
+        stage.setHeight(height);
+    }
+
+    public void setTitle(String title) {
+        stage.setTitle(title);
+    }
 }

@@ -10,15 +10,15 @@ import com.groep6.pfor.views.*;
 public class MenuController extends Controller {
 
     public void buttonClicked() {
-        viewController.showView(new BoardView(viewController.getPrimaryStage()));
+        viewController.showView(new BoardView());
     }
 
     public void goToHostView() {
-        viewController.showView(new HostView(viewController.getPrimaryStage()));
+        viewController.showView(new HostView());
     }
 
     public void goToJoinView() {
-        viewController.showView(new JoinView(viewController.getPrimaryStage()));
+        viewController.showView(new JoinView());
     }
 
     @Override

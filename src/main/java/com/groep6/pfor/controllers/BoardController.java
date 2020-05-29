@@ -21,7 +21,7 @@ public class BoardController extends Controller {
     };
 
     public void goToMenu() {
-        viewController.showView(new MenuView(viewController.getPrimaryStage()));
+        viewController.showView(new MenuView());
     }
 
     public void increaseDecayLevel() {

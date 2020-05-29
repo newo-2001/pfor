@@ -7,6 +7,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    private static final int WIDTH = 1080;
+    private static final int HEIGHT = 720;
+
     private static Renderer renderer;
 
     public static void main(String[] args) {
@@ -18,9 +22,11 @@ public class Main extends Application {
         // Get ViewController instance and set primaryStage
         ViewController viewController = ViewController.getInstance();
         viewController.setPrimaryStage(primaryStage);
+        viewController.setWidth(WIDTH);
+        viewController.setHeight(HEIGHT);
 
         // Set default view
-        viewController.showView(new MenuView(viewController.getPrimaryStage()));
+        viewController.showView(new MenuView());
 
     }
 }

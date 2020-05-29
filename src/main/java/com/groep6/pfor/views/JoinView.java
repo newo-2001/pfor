@@ -15,8 +15,7 @@ public class JoinView extends View implements IObserver {
     private JoinController joinController;
     private Scene scene;
 
-    public JoinView(Stage primaryStage) {
-        super(primaryStage);
+    public JoinView() {
         joinController = new JoinController();
 
         BorderPane root = new BorderPane();
