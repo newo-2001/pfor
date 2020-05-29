@@ -2,8 +2,8 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIButton;
+import com.groep6.pfor.views.components.UIPlayerInfo;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -165,6 +166,26 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         return actionButtonLayout;
+    }
+
+    /**
+     * Creates the list of players, shown on the top of the game screen.
+     * @return HBox layout of the players.
+     * 
+     */
+    private HBox createPlayerList() {
+    	HBox playerList = new HBox();
+
+    	UIPlayerInfo player1 = new UIPlayerInfo(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
+    	UIPlayerInfo player2 = new UIPlayerInfo(Color.GREEN, 2, "bastiaan350", "Consul");
+    	UIPlayerInfo player3 = new UIPlayerInfo(Color.BLUE, 3, "nils2020", "Magister Militum");
+    	
+    	playerList.getChildren().addAll(player1, player2, player3);   
+    	playerList.setAlignment(Pos.CENTER);
+    	playerList.setPadding(new Insets(20, 20, 20, 20));
+    	playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+        
+    	return playerList;
     }
 
     @Override

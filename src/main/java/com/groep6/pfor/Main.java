@@ -31,5 +31,7 @@ public class Main extends Application {
         // Set default view
         viewController.showView(new BoardView());
 
+		//viewController.showView(new RecruitmentView(viewController.getPrimaryStage()));
+
     }
 }
