@@ -153,7 +153,7 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(helpButton, 1, 7);
         
         Button nextTurnButton = new UIButton("VOLGENDE BEURT");
-        nextTurnButton.setPrefSize(150, 60);
+        nextTurnButton.setPrefHeight(60);
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setPrefWidth(312);
         actionButtonLayout.add(nextTurnButton, 0, 8, 2, 1);

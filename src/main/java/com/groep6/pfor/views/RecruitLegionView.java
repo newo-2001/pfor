@@ -1,6 +1,11 @@
 package com.groep6.pfor.views;
 
-import com.groep6.pfor.controllers.RecruitmentController;
+/**
+ * The view where you can choose the amout of legions you want to recruit
+ * @author Nils van der Velden
+ */
+
+import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
@@ -17,21 +22,17 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-/**
- * The view where you can choose to recruit legions or barbarians
- * @author Nils van der Velden
- */
-public class RecruitmentView extends View implements IObserver {
-    /** The recruitmentController */
-    private RecruitmentController recruitmentController = new RecruitmentController();
+public class RecruitLegionView extends View implements IObserver {
+    /** The recruitLegionController */
+    private RecruitLegionController recruitLegionController = new RecruitLegionController();
 
     /**
      * The constructor
      * @param stage
      */
     
-    public RecruitmentView() {    	
-    	recruitmentController.registerObserver(this);
+    public RecruitLegionView() {    	
+    	recruitLegionController.registerObserver(this);
     	
         createView();
         update();
@@ -73,28 +74,28 @@ public class RecruitmentView extends View implements IObserver {
         EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                recruitmentController.goBack();
+                recruitLegionController.goBack();
             }
         };
         
         EventHandler<MouseEvent> recruitOneClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-            	recruitmentController.oneClicked();
+            	recruitLegionController.oneClicked();
             }
         };
         
         EventHandler<MouseEvent> recruitTwoClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-            	recruitmentController.twoClicked();
+            	recruitLegionController.twoClicked();
             }
         };
         
         EventHandler<MouseEvent> recruitThreeClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-            	recruitmentController.threeClicked();
+            	recruitLegionController.threeClicked();
             }
         };
 
