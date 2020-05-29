@@ -34,6 +34,7 @@ public class UIButton extends Button {
         setBorder(Border.EMPTY);
         setStyle("-fx-text-fill: white");
         setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
+        setWrapText(true);
 
         addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
