@@ -3,6 +3,7 @@ package com.groep6.pfor.views;
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
+import com.groep6.pfor.views.components.PlayerInfoDisplay;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,7 +16,11 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
@@ -30,7 +35,6 @@ public class BoardView extends View implements IObserver {
 
     public BoardView() {
         boardController.registerObserver(this);
-
         createView();
         update();
     }
@@ -44,6 +48,8 @@ public class BoardView extends View implements IObserver {
         BorderPane root = new BorderPane();
 
         // Top - players
+        HBox playerList = createPlayerList();
+        root.setTop(playerList);
         
         // Center - board
         
@@ -115,10 +121,13 @@ public class BoardView extends View implements IObserver {
      * @return GridPane layout of ActionButtons.
      * 
      */
-    public GridPane createActionButtons() {
+    private GridPane createActionButtons() {
     	GridPane actionButtonLayout = new GridPane();
     	
     	Text actionCount = new Text("<X> Actions left");
+    	actionCount.setFont(Font.font("verdana", FontWeight.BOLD,
+                FontPosture.REGULAR, 30));
+        actionCount.setFill(Color.WHITE);
     	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
         Button conspireButton = new ActionButton("SAMENSPANNEN");
@@ -168,6 +177,26 @@ public class BoardView extends View implements IObserver {
         return actionButtonLayout;
     }
 
+    /**
+     * Creates the list of players, shown on the top of the game screen.
+     * @return HBox layout of the players.
+     * 
+     */
+    private HBox createPlayerList() {
+    	HBox playerList = new HBox();
+
+    	PlayerInfoDisplay player1 = new PlayerInfoDisplay(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
+    	PlayerInfoDisplay player2 = new PlayerInfoDisplay(Color.GREEN, 2, "bastiaan350", "Consul");
+    	PlayerInfoDisplay player3 = new PlayerInfoDisplay(Color.BLUE, 3, "nils2020", "Magister Militum");
+    	
+    	playerList.getChildren().addAll(player1, player2, player3);   
+    	playerList.setAlignment(Pos.CENTER);
+    	playerList.setPadding(new Insets(20, 20, 20, 20));
+    	playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+        
+    	return playerList;
+    }
+    
     @Override
     public void update() {
     	
