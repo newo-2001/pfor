@@ -2,27 +2,26 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.views.components.UIButton;
+import com.groep6.pfor.views.components.ActionButton;
+
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
 
 /**
  * The view that shows the board
  * @author Bastiaan Jansen
+ * @author Mitchell van Rijswijk
+ * 
  */
 public class BoardView extends View implements IObserver {
-    private BoardController boardController = new BoardController();
-
-    private Text decayText;
+    
+	private BoardController boardController = new BoardController();
 
     public BoardView() {
         boardController.registerObserver(this);
@@ -31,46 +30,131 @@ public class BoardView extends View implements IObserver {
         update();
     }
 
+    /**
+     * Creates JavaFX Scene for the board. This is in the state where the game has
+     * started. Buttons navigate to different actions a player can perform.
+     * 
+     */
     public void createView() {
         BorderPane root = new BorderPane();
 
-        decayText = new Text();
-
-        decayText.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 30));
-        decayText.setFill(Color.BLACK);
-        root.setCenter(decayText);
-
-        Button backButton = new UIButton("Go back");
-        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, menuButtonClicked);
-        root.setTop(backButton);
-
-        Button button = new UIButton("Click me to increase decay level");
-        button.addEventFilter(MouseEvent.MOUSE_CLICKED, increaseDecayButtonClicked);
-        root.setBottom(button);
+        // Top - players
+        
+        // Center - board
+        
+        // Right - action buttons
+        GridPane actionButtonLayout = createActionButtons();
+        root.setRight(actionButtonLayout);
+        BorderPane.setMargin(actionButtonLayout, new Insets(40, 40, 40, 40));
 
         scene = new Scene(root);
     }
 
-    EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> goToTradeView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            boardController.goBack();
+            
         }
     };
-    EventHandler<MouseEvent> increaseDecayButtonClicked = new EventHandler<MouseEvent>() {
+    
+    EventHandler<MouseEvent> goToBattleView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            boardController.increaseDecayLevel();
+            
         }
     };
+    
+    EventHandler<MouseEvent> goToAllianceView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    EventHandler<MouseEvent> goToRecruitmentView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    EventHandler<MouseEvent> goToFortBuildView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    EventHandler<MouseEvent> goToHandView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    EventHandler<MouseEvent> goToInstructionView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    EventHandler<MouseEvent> nextTurn = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    public GridPane createActionButtons() {
+    	GridPane actionButtonLayout = new GridPane();
+        
+        Button conspireButton = new ActionButton("SAMENSPANNEN");
+        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
+        actionButtonLayout.add(conspireButton, 0, 0);
+        
+        Button battleButton = new ActionButton("VECHTEN");
+        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);  
+        actionButtonLayout.add(battleButton, 1, 0);
+        
+        Button allianceButton = new ActionButton("ALLIANTIE SLUITEN");
+        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView); 
+        actionButtonLayout.add(allianceButton, 0, 1);
+        
+        Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
+        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        actionButtonLayout.add(recruitBarbarianButton, 1, 1);
+        
+        Button buildButton = new ActionButton("FORT BOUWEN");
+        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
+        actionButtonLayout.add(buildButton, 0, 2);
+        
+        Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
+        recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        actionButtonLayout.add(recruitButton, 1, 2);
+        
+        Button showHandButton = new ActionButton("BEKIJK HAND");
+        showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
+        actionButtonLayout.add(showHandButton, 0, 3);
+        
+        Button helpButton = new ActionButton("HELP");
+        helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
+        actionButtonLayout.add(helpButton, 1, 3);
+        
+        Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
+        nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
+        nextTurnButton.setPrefWidth(312);
+        actionButtonLayout.add(nextTurnButton, 0, 4, 2, 1);
 
-    public void setDecayText() {
-        decayText.setText("Decay: " + boardController.getDecayLevel());
+        actionButtonLayout.setHgap(12);
+        actionButtonLayout.setVgap(12);
+        actionButtonLayout.setAlignment(Pos.CENTER);
+        
+        return actionButtonLayout;
     }
 
     @Override
     public void update() {
-        setDecayText();
+    	
     }
 }
