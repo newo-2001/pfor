@@ -1,7 +1,9 @@
 package com.groep6.pfor;
 
 import com.groep6.pfor.controllers.ViewController;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.Renderer;
+import com.groep6.pfor.views.HandView;
 import com.groep6.pfor.views.MenuView;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -26,7 +28,9 @@ public class Main extends Application {
         viewController.setHeight(HEIGHT);
 
         // Set default view
-        viewController.showView(new MenuView());
+//        viewController.showView(new MenuView());
+
+        viewController.showView(new HandView());
 
     }
 }

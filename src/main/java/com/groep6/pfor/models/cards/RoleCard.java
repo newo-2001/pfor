@@ -18,6 +18,7 @@ public class RoleCard extends Card {
      */
     public RoleCard(String name, Color color, IAction ability) {
         this.name = name;
+        this.color = color;
         this.ability = ability;
     }
 

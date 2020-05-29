@@ -31,7 +31,7 @@ public class City extends Tile {
 		this.name = name;
 		this.harbour = harbour;
 	}
-	
+
     /**
      * @returns a arrayList with factions that can access the city 
      */
