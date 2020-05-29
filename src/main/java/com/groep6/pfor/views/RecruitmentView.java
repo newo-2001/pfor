@@ -25,12 +25,12 @@ import javafx.stage.Stage;
 public class RecruitmentView extends View implements IObserver {
     /** The recruitmentController */
     private RecruitmentController recruitmentController = new RecruitmentController();
-    private Scene scene;
 
     /**
      * The constructor
      * @param stage
      */
+    
     public RecruitmentView() {    	
     	recruitmentController.registerObserver(this);
     	
