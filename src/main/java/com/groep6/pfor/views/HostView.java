@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 public class HostView extends View implements IObserver {
     /** The hostController */
     private HostController hostController;
-    private Scene scene;
 
     public HostView() {
         hostController = new HostController();
@@ -21,11 +20,6 @@ public class HostView extends View implements IObserver {
         BorderPane root = new BorderPane();
 
         scene = new Scene(root);
-    }
-
-    @Override
-    public Scene getScene() {
-        return scene;
     }
 
     @Override

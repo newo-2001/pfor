@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 public class JoinView extends View implements IObserver {
     /** The joinController */
     private JoinController joinController;
-    private Scene scene;
 
     public JoinView() {
         joinController = new JoinController();
@@ -21,11 +20,6 @@ public class JoinView extends View implements IObserver {
         BorderPane root = new BorderPane();
 
         scene = new Scene(root);
-    }
-
-    @Override
-    public Scene getScene() {
-        return scene;
     }
 
     @Override

@@ -27,7 +27,6 @@ import java.net.URL;
 public class MenuView extends View {
 
     private MenuController menuController = new MenuController();
-    private Scene scene;
 
     public MenuView() {
 
@@ -43,13 +42,6 @@ public class MenuView extends View {
                 FontPosture.REGULAR, 150));
         text.setFill(Color.BLACK);
         root.setCenter(text);
-//
-//        Button button = new UIButton("Click me!");
-//        button.addEventFilter(MouseEvent.MOUSE_CLICKED, buttonClicked);
-//        root.setTop(button);
-
-//        URL imageURL = MenuView.class.getResource("images/background-1.jpg");
-//        BackgroundImage backgroundImage = new BackgroundImage(new Image(imageURL.toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
         HBox buttonBox = new HBox(30);
         buttonBox.setAlignment(Pos.CENTER);
@@ -90,9 +82,4 @@ public class MenuView extends View {
             System.exit(0);
         }
     };
-
-    @Override
-    public Scene getScene() {
-        return scene;
-    }
 }

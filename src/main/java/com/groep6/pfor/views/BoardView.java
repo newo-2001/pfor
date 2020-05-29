@@ -21,7 +21,6 @@ import javafx.stage.Stage;
  */
 public class BoardView extends View implements IObserver {
     private BoardController boardController = new BoardController();
-    private Scene scene;
 
     private Text decayText;
 
@@ -65,11 +64,6 @@ public class BoardView extends View implements IObserver {
             boardController.increaseDecayLevel();
         }
     };
-
-    @Override
-    public Scene getScene() {
-        return scene;
-    }
 
     public void setDecayText() {
         decayText.setText("Decay: " + boardController.getDecayLevel());
