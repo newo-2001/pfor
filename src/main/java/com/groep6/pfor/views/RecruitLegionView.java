@@ -1,6 +1,6 @@
 package com.groep6.pfor.views;
 
-import com.groep6.pfor.controllers.RecruitmentController;
+import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
@@ -21,16 +21,16 @@ import javafx.scene.text.Text;
  * The view where you can choose to recruit legions or barbarians
  * @author Nils van der Velden
  */
-public class RecruitmentView extends View implements IObserver {
+public class RecruitLegionView extends View implements IObserver {
     /** The recruitmentController */
-    private RecruitmentController recruitmentController = new RecruitmentController();
+    private RecruitLegionController recruitmentController = new RecruitLegionController();
 
     /**
      * The constructor
      * @param stage
      */
     
-    public RecruitmentView() {    	
+    public RecruitLegionView() {    	
     	recruitmentController.registerObserver(this);
     	
         createView();
