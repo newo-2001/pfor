@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 /**
  * The view that shows the board
@@ -116,49 +117,52 @@ public class BoardView extends View implements IObserver {
      */
     public GridPane createActionButtons() {
     	GridPane actionButtonLayout = new GridPane();
+    	
+    	Text actionCount = new Text("<X> Actions left");
+    	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
         Button conspireButton = new ActionButton("SAMENSPANNEN");
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
-        actionButtonLayout.add(conspireButton, 0, 0);
+        actionButtonLayout.add(conspireButton, 0, 1);
         
         Button battleButton = new ActionButton("VECHTEN");
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);  
-        actionButtonLayout.add(battleButton, 1, 0);
+        actionButtonLayout.add(battleButton, 1, 1);
         
         Button allianceButton = new ActionButton("ALLIANTIE SLUITEN");
         allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView); 
-        actionButtonLayout.add(allianceButton, 0, 1);
+        actionButtonLayout.add(allianceButton, 0, 2);
         
         Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
-        actionButtonLayout.add(recruitBarbarianButton, 1, 1);
+        actionButtonLayout.add(recruitBarbarianButton, 1, 2);
         
         Button buildButton = new ActionButton("FORT BOUWEN");
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
-        actionButtonLayout.add(buildButton, 0, 2);
+        actionButtonLayout.add(buildButton, 0, 3);
         
         Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
-        actionButtonLayout.add(recruitButton, 1, 2);
+        actionButtonLayout.add(recruitButton, 1, 3);
         
         Button showHandButton = new ActionButton("BEKIJK HAND");
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
-        actionButtonLayout.add(showHandButton, 0, 7);
+        actionButtonLayout.add(showHandButton, 0, 8);
         
         Button helpButton = new ActionButton("HELP");
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
-        actionButtonLayout.add(helpButton, 1, 7);
+        actionButtonLayout.add(helpButton, 1, 8);
         
         Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setPrefWidth(312);
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
-        actionButtonLayout.add(nextTurnButton, 0, 8, 2, 1);
+        actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
 
         actionButtonLayout.setHgap(12);
         actionButtonLayout.setVgap(12);
         actionButtonLayout.setAlignment(Pos.CENTER);
-        actionButtonLayout.setPadding(new Insets(50, 50, 50, 50));
+        actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         return actionButtonLayout;
