@@ -3,7 +3,7 @@ package com.groep6.pfor.views;
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
-import com.groep6.pfor.views.components.PlayerInfoDisplay;
+import com.groep6.pfor.views.components.UIButton;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,12 +16,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 /**
  * The view that shows the board
@@ -35,6 +30,7 @@ public class BoardView extends View implements IObserver {
 
     public BoardView() {
         boardController.registerObserver(this);
+
         createView();
         update();
     }
@@ -48,8 +44,6 @@ public class BoardView extends View implements IObserver {
         BorderPane root = new BorderPane();
 
         // Top - players
-        HBox playerList = createPlayerList();
-        root.setTop(playerList);
         
         // Center - board
         
@@ -116,87 +110,63 @@ public class BoardView extends View implements IObserver {
         }
     };
     
-    /**
-     * Creates a GridPane with the ActionButtons of the game.
-     * @return GridPane layout of ActionButtons.
-     * 
-     */
-    private GridPane createActionButtons() {
+    public GridPane createActionButtons() {
     	GridPane actionButtonLayout = new GridPane();
-    	
-    	Text actionCount = new Text("<X> Actions left");
-    	actionCount.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 30));
-        actionCount.setFill(Color.WHITE);
-    	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
-        Button conspireButton = new ActionButton("SAMENSPANNEN");
+        Button conspireButton = new UIButton("SAMENSPANNEN");
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
-        actionButtonLayout.add(conspireButton, 0, 1);
+        conspireButton.setPrefSize(150, 60);
+        actionButtonLayout.add(conspireButton, 0, 0);
         
-        Button battleButton = new ActionButton("VECHTEN");
-        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);  
-        actionButtonLayout.add(battleButton, 1, 1);
+        Button battleButton = new UIButton("VECHTEN");
+        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView); 
+        battleButton.setPrefSize(150, 60);
+        actionButtonLayout.add(battleButton, 1, 0);
         
-        Button allianceButton = new ActionButton("ALLIANTIE SLUITEN");
+        Button allianceButton = new UIButton("ALLIANTIE SLUITEN");
         allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView); 
-        actionButtonLayout.add(allianceButton, 0, 2);
+        allianceButton.setPrefSize(150, 60);
+        actionButtonLayout.add(allianceButton, 0, 1);
         
-        Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
-        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
-        actionButtonLayout.add(recruitBarbarianButton, 1, 2);
+        Button recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
+        recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        recruitBarbarianButton.setPrefSize(150, 60);
+        actionButtonLayout.add(recruitBarbarianButton, 1, 1);
         
-        Button buildButton = new ActionButton("FORT BOUWEN");
+        Button buildButton = new UIButton("FORT BOUWEN");
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
-        actionButtonLayout.add(buildButton, 0, 3);
+        battleButton.setPrefSize(150, 60);
+        actionButtonLayout.add(buildButton, 0, 2);
         
-        Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
+        Button recruitButton = new UIButton("LEGIOEN REKRUTEREN");
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
-        actionButtonLayout.add(recruitButton, 1, 3);
+        recruitButton.setPrefSize(150, 60);
+        actionButtonLayout.add(recruitButton, 1, 2);
         
-        Button showHandButton = new ActionButton("BEKIJK HAND");
+        Button showHandButton = new UIButton("BEKIJK HAND");
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
-        actionButtonLayout.add(showHandButton, 0, 8);
+        showHandButton.setPrefSize(150, 60);
+        actionButtonLayout.add(showHandButton, 0, 7);
         
-        Button helpButton = new ActionButton("HELP");
+        Button helpButton = new UIButton("HELP");
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
-        actionButtonLayout.add(helpButton, 1, 8);
+        helpButton.setPrefSize(150, 60);
+        actionButtonLayout.add(helpButton, 1, 7);
         
-        Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
+        Button nextTurnButton = new UIButton("VOLGENDE BEURT");
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
-        nextTurnButton.setPrefWidth(312);
-        nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
-        actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
+        nextTurnButton.setPrefSize(312, 60);
+        actionButtonLayout.add(nextTurnButton, 0, 8, 2, 1);
 
         actionButtonLayout.setHgap(12);
         actionButtonLayout.setVgap(12);
         actionButtonLayout.setAlignment(Pos.CENTER);
-        actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
+        actionButtonLayout.setPadding(new Insets(50, 50, 50, 50));
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         return actionButtonLayout;
     }
 
-    /**
-     * Creates the list of players, shown on the top of the game screen.
-     * @return HBox layout of the players.
-     * 
-     */
-    private HBox createPlayerList() {
-    	HBox playerList = new HBox();
-
-    	PlayerInfoDisplay player1 = new PlayerInfoDisplay(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
-    	PlayerInfoDisplay player2 = new PlayerInfoDisplay(Color.GREEN, 2, "bastiaan350", "Consul");
-    	PlayerInfoDisplay player3 = new PlayerInfoDisplay(Color.BLUE, 3, "nils2020", "Magister Militum");
-    	
-    	playerList.getChildren().addAll(player1, player2, player3);   
-    	playerList.setAlignment(Pos.CENTER);
-    	playerList.setPadding(new Insets(20, 20, 20, 20));
-    	playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        
-    	return playerList;
-    }
-    
     @Override
     public void update() {
     	

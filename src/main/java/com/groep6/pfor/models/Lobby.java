@@ -144,4 +144,8 @@ public class Lobby {
 
         return null;
     }
+
+    public Game start() {
+        return Game.getInstance();
+    }
 }

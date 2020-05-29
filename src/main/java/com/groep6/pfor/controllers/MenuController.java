@@ -1,6 +1,5 @@
 package com.groep6.pfor.controllers;
 
-import com.groep6.pfor.models.Board;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.*;
 

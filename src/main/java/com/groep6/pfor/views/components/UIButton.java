@@ -5,10 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -20,18 +17,14 @@ import javafx.scene.text.FontWeight;
 public class UIButton extends Button {
 
     public UIButton(String text) {
-        setText(text);
-        setStyles();
-    }
-
-    public UIButton() {
+        setText(text.toUpperCase());
         setStyles();
     }
 
     private void setStyles() {
-        setBackground(new Background(new BackgroundFill(Color.web("#db8937"), CornerRadii.EMPTY, Insets.EMPTY)));
-        setPadding(new Insets(10, 10, 10, 10));
-        setBorder(Border.EMPTY);
+        setBackground(new Background(new BackgroundFill(Color.web("#ef4140"), CornerRadii.EMPTY, Insets.EMPTY)));
+        setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        setPadding(new Insets(20, 20, 20, 20));
         setStyle("-fx-text-fill: white");
         setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
         setWrapText(true);

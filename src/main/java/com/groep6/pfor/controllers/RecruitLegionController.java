@@ -7,11 +7,11 @@ import com.groep6.pfor.util.IObserver;
  * @author Nils van der Velden
  */
 
-public class RecruitmentController extends Controller{
+public class RecruitLegionController extends Controller{
 	
 	private Game game;
 	
-    public RecruitmentController() {
+    public RecruitLegionController() {
     	game = Game.getInstance();
     };
     

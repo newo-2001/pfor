@@ -24,6 +24,7 @@ public class Game extends Observable {
     private Deck cityDiscardPile;
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions;
+    private Player localPlayer;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
@@ -122,4 +123,11 @@ public class Game extends Observable {
         return false;
     }
 
+    public Player getLocalPlayer() {
+        return localPlayer;
+    }
+
+    public void setLocalPlayer(Player localPlayer) {
+        this.localPlayer = localPlayer;
+    }
 }
