@@ -1,4 +1,36 @@
 package com.groep6.pfor.controllers;
 
-public class RecruitmentController {
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.util.IObserver;
+
+/**
+ * @author Nils van der Velden
+ */
+
+public class RecruitmentController extends Controller{
+	
+	private Game game;
+	
+    public RecruitmentController() {
+    	game = Game.getInstance();
+    };
+    
+    public int oneClicked() {
+    	return 1;
+    }
+    
+    public int twoClicked() {
+    	return 2;
+    }
+    
+    public int threeClicked() {
+    	return 3;
+    }
+
+	@Override
+	public void registerObserver(IObserver view) {
+		game.registerObserver(view);
+		
+	}
+
 }

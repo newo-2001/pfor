@@ -30,7 +30,7 @@ public class UIButton extends Button {
 
     private void setStyles() {
         setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        setPadding(new Insets(10, 10, 10, 10));
+        setPadding(new Insets(20, 20, 20, 20));
         setBorder(Border.EMPTY);
         setStyle("-fx-text-fill: white");
         setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
