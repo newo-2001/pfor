@@ -10,9 +10,9 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class PlayerInfoDisplay extends HBox {
+public class UIPlayerInfo extends HBox {
 	
-	public PlayerInfoDisplay(Color playerColor, int playerNumber, String userName, String playerRole) {
+	public UIPlayerInfo(Color playerColor, int playerNumber, String userName, String playerRole) {
 		createDisplay(playerColor, playerNumber, userName, playerRole);
 		setPadding(new Insets(0, 20, 0, 20));
 		for (Node child: this.getChildren()) {

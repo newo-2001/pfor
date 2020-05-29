@@ -3,7 +3,7 @@ package com.groep6.pfor.views;
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
-import com.groep6.pfor.views.components.PlayerInfoDisplay;
+import com.groep6.pfor.views.components.UIPlayerInfo;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -185,9 +185,9 @@ public class BoardView extends View implements IObserver {
     private HBox createPlayerList() {
     	HBox playerList = new HBox();
 
-    	PlayerInfoDisplay player1 = new PlayerInfoDisplay(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
-    	PlayerInfoDisplay player2 = new PlayerInfoDisplay(Color.GREEN, 2, "bastiaan350", "Consul");
-    	PlayerInfoDisplay player3 = new PlayerInfoDisplay(Color.BLUE, 3, "nils2020", "Magister Militum");
+    	UIPlayerInfo player1 = new UIPlayerInfo(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
+    	UIPlayerInfo player2 = new UIPlayerInfo(Color.GREEN, 2, "bastiaan350", "Consul");
+    	UIPlayerInfo player3 = new UIPlayerInfo(Color.BLUE, 3, "nils2020", "Magister Militum");
     	
     	playerList.getChildren().addAll(player1, player2, player3);   
     	playerList.setAlignment(Pos.CENTER);
