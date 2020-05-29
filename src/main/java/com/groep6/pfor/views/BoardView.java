@@ -109,6 +109,11 @@ public class BoardView extends View implements IObserver {
         }
     };
     
+    /**
+     * Creates a GridPane with the ActionButtons of the game.
+     * @return GridPane layout of ActionButtons.
+     * 
+     */
     public GridPane createActionButtons() {
     	GridPane actionButtonLayout = new GridPane();
         
@@ -147,6 +152,7 @@ public class BoardView extends View implements IObserver {
         Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setPrefWidth(312);
+        nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         actionButtonLayout.add(nextTurnButton, 0, 8, 2, 1);
 
         actionButtonLayout.setHgap(12);
