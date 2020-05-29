@@ -4,6 +4,7 @@ import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.BoardView;
+import com.groep6.pfor.views.HandView;
 import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.View;
 
@@ -22,6 +23,10 @@ public class BoardController extends Controller {
 
     public void goToMenu() {
         viewController.showView(new MenuView());
+    }
+
+    public void goToHand() {
+        viewController.showView(new HandView());
     }
 
     public void increaseDecayLevel() {

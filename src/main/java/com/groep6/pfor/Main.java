@@ -29,7 +29,7 @@ public class Main extends Application {
         viewController.setHeight(HEIGHT);
 
         // Set default view
-        viewController.showView(new MenuView());
+        viewController.showView(new BoardView());
 
     }
 }

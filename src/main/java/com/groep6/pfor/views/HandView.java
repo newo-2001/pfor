@@ -56,19 +56,22 @@ public class HandView extends View {
 
         VBox buttonsPane = new VBox(20);
         buttonsPane.setAlignment(Pos.CENTER);
-        buttonsPane.setPadding(new Insets(10, 10, 10, 10));
+        buttonsPane.setPadding(new Insets(50, 50, 50, 50));
 
         Button discardCardButton = new UIButton("Kaart afleggen");
         discardCardButton.setPrefWidth(150);
+
         Button playCardButton = new UIButton("Speel kaart");
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
+
         Button goBackButton = new UIButton("Ga terug");
         goBackButton.setPrefWidth(150);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
         buttonsPane.getChildren().addAll(discardCardButton, playCardButton, goBackButton);
+        buttonsPane.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         root.setCenter(scrollPane);
         root.setRight(buttonsPane);

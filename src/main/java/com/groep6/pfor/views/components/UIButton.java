@@ -17,7 +17,7 @@ import javafx.scene.text.FontWeight;
 public class UIButton extends Button {
 
     public UIButton(String text) {
-        setText(text);
+        setText(text.toUpperCase());
         setStyles();
     }
 
