@@ -10,8 +10,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 /**
  * The view that shows the board
@@ -45,8 +49,7 @@ public class BoardView extends View implements IObserver {
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();
         root.setRight(actionButtonLayout);
-        BorderPane.setMargin(actionButtonLayout, new Insets(40, 40, 40, 40));
-
+        
         scene = new Scene(root);
     }
 
@@ -135,20 +138,22 @@ public class BoardView extends View implements IObserver {
         
         Button showHandButton = new ActionButton("BEKIJK HAND");
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
-        actionButtonLayout.add(showHandButton, 0, 3);
+        actionButtonLayout.add(showHandButton, 0, 7);
         
         Button helpButton = new ActionButton("HELP");
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
-        actionButtonLayout.add(helpButton, 1, 3);
+        actionButtonLayout.add(helpButton, 1, 7);
         
         Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setPrefWidth(312);
-        actionButtonLayout.add(nextTurnButton, 0, 4, 2, 1);
+        actionButtonLayout.add(nextTurnButton, 0, 8, 2, 1);
 
         actionButtonLayout.setHgap(12);
         actionButtonLayout.setVgap(12);
         actionButtonLayout.setAlignment(Pos.CENTER);
+        actionButtonLayout.setPadding(new Insets(50, 50, 50, 50));
+        actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         return actionButtonLayout;
     }
