@@ -8,6 +8,10 @@ import com.groep6.pfor.views.*;
  */
 public class MenuController extends Controller {
 
+    public MenuController() {
+        viewController.showView(new MenuView(this));
+    }
+
     public void buttonClicked() {
         viewController.showView(new BoardView());
     }

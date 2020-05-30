@@ -19,12 +19,11 @@ public class HostController extends Controller {
 
         try {
             lobby.join(username, password);
-            game.setLobby(lobby);
 
             // Send to lobby service
 
             // Send user to lobby
-            viewController.showView(new LobbyView());
+            new LobbyController(lobby);
 
 
 

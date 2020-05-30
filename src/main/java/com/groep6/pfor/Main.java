@@ -1,5 +1,6 @@
 package com.groep6.pfor;
 
+import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.util.Renderer;
 import com.groep6.pfor.views.BoardView;
@@ -9,6 +10,8 @@ import com.groep6.pfor.views.MenuView;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -28,7 +31,7 @@ public class Main extends Application {
         viewController.setHeight(HEIGHT);
 
         // Set default view
-        viewController.showView(new HostView());
+        new MenuController();
 
     }
 }

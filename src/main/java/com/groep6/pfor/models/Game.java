@@ -25,7 +25,6 @@ public class Game extends Observable {
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions;
     private Player localPlayer;
-    private Lobby lobby;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
@@ -138,13 +137,5 @@ public class Game extends Observable {
 
     public void setLocalPlayer(Player localPlayer) {
         this.localPlayer = localPlayer;
-    }
-
-    public Lobby getLobby() {
-        return lobby;
-    }
-
-    public void setLobby(Lobby lobby) {
-        this.lobby = lobby;
     }
 }

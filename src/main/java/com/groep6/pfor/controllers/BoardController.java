@@ -22,7 +22,7 @@ public class BoardController extends Controller {
     };
 
     public void goToMenu() {
-        viewController.showView(new MenuView());
+        new MenuController();
     }
 
     public void goToHand() {

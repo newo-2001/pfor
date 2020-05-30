@@ -6,7 +6,7 @@ import com.groep6.pfor.views.MenuView;
 public class WinController extends Controller {
 
     public void goToMenuView() {
-        viewController.showView(new MenuView());
+        new MenuController();
     }
 
     @Override

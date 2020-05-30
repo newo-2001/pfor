@@ -22,10 +22,10 @@ import javafx.scene.text.Text;
  */
 public class MenuView extends View {
 
-    private MenuController menuController = new MenuController();
+    private MenuController menuController;
 
-    public MenuView() {
-
+    public MenuView(MenuController controller) {
+        menuController = controller;
         createView();
     }
 
