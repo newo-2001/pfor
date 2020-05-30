@@ -25,8 +25,8 @@ public class UIButton extends Button {
         setBackground(new Background(new BackgroundFill(Color.web("#ef4140"), CornerRadii.EMPTY, Insets.EMPTY)));
         setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         setPadding(new Insets(20, 20, 20, 20));
-        setStyle("-fx-text-fill: white");
-        setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
+        setTextFill(Color.WHITE);
+        setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
         setWrapText(true);
 
         addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {

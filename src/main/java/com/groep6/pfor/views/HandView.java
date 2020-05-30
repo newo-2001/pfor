@@ -24,7 +24,6 @@ import java.util.List;
  * @author Bastiaan Jansen
  */
 public class HandView extends View {
-    /** The handController */
     private HandController handController;
 
     /** The list of cards that the player has, as CardView's */

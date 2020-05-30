@@ -4,6 +4,7 @@ import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.util.Renderer;
 import com.groep6.pfor.views.BoardView;
 import com.groep6.pfor.views.HandView;
+import com.groep6.pfor.views.HostView;
 import com.groep6.pfor.views.MenuView;
 
 import javafx.application.Application;
@@ -13,8 +14,6 @@ public class Main extends Application {
 
     private static final int WIDTH = 1080;
     private static final int HEIGHT = 720;
-
-    private static Renderer renderer;
 
     public static void main(String[] args) {
         launch();
@@ -29,7 +28,7 @@ public class Main extends Application {
         viewController.setHeight(HEIGHT);
 
         // Set default view
-        viewController.showView(new BoardView());
+        viewController.showView(new HostView());
 
     }
 }
