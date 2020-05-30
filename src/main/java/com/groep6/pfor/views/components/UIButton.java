@@ -1,8 +1,8 @@
 package com.groep6.pfor.views.components;
 
-import com.sun.glass.ui.Cursor;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -31,7 +31,15 @@ public class UIButton extends Button {
 
         addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                setCursor(javafx.scene.Cursor.HAND);
+                setCursor(Cursor.HAND);
+                setBorder(new Border(new BorderStroke(Color.YELLOW, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+            }
+        });
+
+        addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                setCursor(Cursor.DEFAULT);
+                setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
             }
         });
     }
