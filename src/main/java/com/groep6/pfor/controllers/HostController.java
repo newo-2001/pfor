@@ -5,11 +5,16 @@ import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.views.HostView;
 import com.groep6.pfor.views.LobbyView;
 
 public class HostController extends Controller {
 
     private Game game = Game.getInstance();
+
+    public HostController() {
+        viewController.showView(new HostView(this));
+    }
 
     public void createLobby(String username, String password) throws EmptyFieldException {
         if (username.isEmpty()) throw new EmptyFieldException("Username cannot be empty");

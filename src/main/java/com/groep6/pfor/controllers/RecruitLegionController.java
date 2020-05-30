@@ -2,6 +2,7 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.views.RecruitLegionView;
 
 /**
  * @author Nils van der Velden
@@ -9,10 +10,10 @@ import com.groep6.pfor.util.IObserver;
 
 public class RecruitLegionController extends Controller{
 	
-	private Game game;
+	private Game game = Game.getInstance();
 	
     public RecruitLegionController() {
-    	game = Game.getInstance();
+    	viewController.showView(new RecruitLegionView(this));
     };
     
     public int oneClicked() {

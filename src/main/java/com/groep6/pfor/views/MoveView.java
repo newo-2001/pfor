@@ -23,14 +23,15 @@ import javafx.scene.text.Text;
  * @author Nils van der Velden
  */
 public class MoveView extends View implements IObserver {
-    private MoveController moveController = new MoveController();
+    private MoveController moveController;
     
     /**
      * The constructor
      * @param moveController The moveController
      */
     
-    public MoveView() {
+    public MoveView(MoveController moveController) {
+        this.moveController = moveController;
     	moveController.registerObserver(this);
     	
         createView();

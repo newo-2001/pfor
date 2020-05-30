@@ -14,8 +14,8 @@ public class JoinView extends View implements IObserver {
     /** The joinController */
     private JoinController joinController;
 
-    public JoinView() {
-        joinController = new JoinController();
+    public JoinView(JoinController joinController) {
+        this.joinController = joinController;
 
         BorderPane root = new BorderPane();
 

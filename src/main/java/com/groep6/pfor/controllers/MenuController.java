@@ -12,16 +12,12 @@ public class MenuController extends Controller {
         viewController.showView(new MenuView(this));
     }
 
-    public void buttonClicked() {
-        viewController.showView(new BoardView());
-    }
-
     public void goToHostView() {
-        viewController.showView(new HostView());
+        new HostController();
     }
 
     public void goToJoinView() {
-        viewController.showView(new JoinView());
+        new JoinController();
     }
 
     @Override

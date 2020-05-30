@@ -25,9 +25,10 @@ import javafx.scene.paint.Color;
  */
 public class BoardView extends View implements IObserver {
     
-	private BoardController boardController = new BoardController();
+	private BoardController boardController;
 
-    public BoardView() {
+    public BoardView(BoardController controller) {
+        boardController = controller;
         boardController.registerObserver(this);
 
         createView();

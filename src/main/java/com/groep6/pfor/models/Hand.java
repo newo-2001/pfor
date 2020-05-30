@@ -13,8 +13,8 @@ public class Hand {
 
     private List<Card> cards = new ArrayList<>();
 
-    public Hand() {
-
+    public Hand(Card... cards) {
+        addCards(cards);
     }
 
     public boolean hasCard(Card card) {

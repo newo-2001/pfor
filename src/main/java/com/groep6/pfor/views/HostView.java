@@ -28,8 +28,8 @@ public class HostView extends View implements IObserver {
     private UITextField usernameTextField;
     private UITextField passwordTextField;
 
-    public HostView() {
-        hostController = new HostController();
+    public HostView(HostController hostController) {
+        this.hostController = hostController;
 
         Pane root = new Pane();
 
