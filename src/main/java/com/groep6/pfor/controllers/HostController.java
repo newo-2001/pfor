@@ -19,14 +19,18 @@ public class HostController extends Controller {
 
         try {
             lobby.join(username, password);
+            game.setLobby(lobby);
+
+            // Send to lobby service
+
+            // Send user to lobby
+            viewController.showView(new LobbyView());
+
+
+
         } catch (IncorrentPasswordException error) {
             System.out.println("Error: " + error.getMessage());
         }
-
-        // Send to lobby service
-
-        // Send user to lobby
-        viewController.showView(new LobbyView());
 
     }
 
