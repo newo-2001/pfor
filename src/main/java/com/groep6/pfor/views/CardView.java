@@ -6,7 +6,7 @@ import com.groep6.pfor.controllers.CardController;
  * A view that represents a card
  * @author Mathijs
  */
-public class CardView {
+public class CardView extends View {
     /** The cardController */
     private CardController cardController;
 

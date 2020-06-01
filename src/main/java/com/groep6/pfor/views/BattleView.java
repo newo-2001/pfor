@@ -7,7 +7,7 @@ import com.groep6.pfor.util.IObserver;
  * The battleView
  * @author Mathijs
  */
-public class BattleView implements IObserver {
+public class BattleView extends View implements IObserver {
     /** The battleController */
     private BattleController battleController;
 

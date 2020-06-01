@@ -6,7 +6,7 @@ import com.groep6.pfor.controllers.RoleCardInfoController;
  * The view that shows a card's information
  * @author Mathijs
  */
-public class RoleCardInfoView {
+public class RoleCardInfoView extends View {
     /** The roleCardInfoController */
     private RoleCardInfoController roleCardInfoController;
 

@@ -6,7 +6,7 @@ import com.groep6.pfor.controllers.LoseController;
  * The view that shows that you lost the game :(
  * @author Mathijs
  */
-public class LoseView {
+public class LoseView extends View {
     /** The loseController */
     private LoseController loseController;
 

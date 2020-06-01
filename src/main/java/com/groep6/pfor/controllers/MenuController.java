@@ -1,5 +1,25 @@
 package com.groep6.pfor.controllers;
 
-public class MenuController {
+import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.views.*;
 
+/**
+ * @author Bastiaan Jansen
+ */
+public class MenuController extends Controller {
+
+    public MenuController() {
+        viewController.showView(new MenuView(this));
+    }
+
+    public void goToHostView() {
+        new HostController();
+    }
+
+    public void goToJoinView() {
+        new JoinController();
+    }
+
+    @Override
+    public void registerObserver(IObserver view) {}
 }

@@ -9,44 +9,59 @@ package com.groep6.pfor.models;
 import com.groep6.pfor.util.Vector2f;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class City extends Tile {
-	
-	private ArrayList<Barbarian> barbarians = new ArrayList<Barbarian>();
-	private ArrayList<Legion> legions = new ArrayList<Legion>();
+	private List<Barbarian> barbarians = new ArrayList<Barbarian>();
+	private List<Legion> legions = new ArrayList<Legion>();
 	private boolean fort = false;
 	private boolean harbour;
 	private String name;
-	
+
+	/**
+	 * Initializes a new City with the given components.
+	 * @param name The name of a specific city
+	 * @param harbour Whether or not a city has a harbour
+	 * @param position The Vector2f (position) of a specific city
+	 * @param factions What factions are allowed in a specific city
+	 */
 	public City(String name, boolean harbour, Vector2f position, Faction[] factions) {
 		super(position, factions);
 		this.name = name;
 		this.harbour = harbour;
 	}
-	
+
     /**
      * @returns An array with factions that can access the city
      */
-	
 	public Faction[] getFactions() {
 		return factions;
 	}
-	
-    /**
+
+	/**
      * @returns the name of a specific city
      */
-	
 	public String getName() {
 		return name;
 	}
 	
     /**
-     * @param faction
-     * @returns the amount of barbarians in a specific city
+     * @param faction The faction to count the barbarians of
+     * @returns the amount of barbarians in this city of the specified faction
      */
-	
-	public int getBarbarianCount(Faction faction) {			//moet ik hier wel een faction mee geven? De barbarian lijst is toch al van een specifieke faction? 
-		return barbarians.size();
+    public int getBarbarianCount(Faction faction) {
+		int count = 0;
+		for (Faction f : factions) {
+			if (f == faction) count++;
+		}
+		return count;
+	}
+
+	/**
+	 * @return The total amount of barbarians in this city of all factions combined
+	 */
+	public int getTotalBarbarianCount() {
+    	return barbarians.size();
 	}
 	
     /**
@@ -61,7 +76,7 @@ public class City extends Tile {
      * @returns a arrayList with barbarians in a specific city
      */
 	
-	public ArrayList<Barbarian> getBarbarians() {
+	public List<Barbarian> getBarbarians() {
 		return barbarians;
 	}
 	
@@ -108,8 +123,7 @@ public class City extends Tile {
 			Barbarian barbarian = barbarians.get(x);
 			
 			if (barbarian.getFaction() == faction) {
-				barbarians.remove(x);
-				return barbarian;
+				return barbarians.remove(x);
 			} 
 		}
 		return null;
@@ -120,15 +134,12 @@ public class City extends Tile {
      */
 	
 	public Legion removeLegion() {
-		Legion legion = legions.get(0);
-		legions.remove(0);
-		return legion;
+		return legions.remove(0);
 	}
 	
     /**
      * places a fort in a specific city
      */
-	
 	public void placeFort() {
 		this.fort = true;
 	}
@@ -136,7 +147,6 @@ public class City extends Tile {
     /**
      * removes a fort from a specific city
      */
-	
 	public void removeFort() {
 		this.fort = false;
 	}
@@ -147,12 +157,12 @@ public class City extends Tile {
 		for (Faction f : factions) {
 			s += f.name() + ", ";
 		}
-		if (factions.length > 1) s = s.substring(0, s.length()-2);
+		if (factions.length > 0) s = s.substring(0, s.length()-2);
 		s += "], neighbours: [";
 		for (City neighbour : neighbouringCities) {
 			s += neighbour.getName() + ", ";
 		}
-		if (neighbouringCities.size() > 1) s = s.substring(0, s.length()-2);
+		if (neighbouringCities.size() > 0) s = s.substring(0, s.length()-2);
 		return s + "]";
 	}
 	

@@ -1,5 +1,6 @@
 package com.groep6.pfor.factories;
 
+import com.groep6.pfor.models.Color;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.*;
 
@@ -13,20 +14,20 @@ import java.util.Random;
 public class RoleCardFactory {
 
     private static final RoleCardFactory SINGLE_INSTANCE = new RoleCardFactory();
-    private List<RoleCard> roleCards;
+    private List<RoleCard> roleCards = new ArrayList<>();
 
     /**
      * Constructs a RoleCardFactory with all role cards
      */
     private RoleCardFactory() {
 
-        roleCards.add(new RoleCard("Magister Militum", new MagisterMilitumAction()));
-        roleCards.add(new RoleCard("Consul", new ConsulAction()));
-        roleCards.add(new RoleCard("ReginaFoederata", new ReginaFoederataAction()));
-        roleCards.add(new RoleCard("Mercator", new MercatorAction()));
-        roleCards.add(new RoleCard("Praefectus Classis", new PraefectusClassisAction()));
-        roleCards.add(new RoleCard("Praefectus Fabrum", new PraefectusFabrumAction()));
-        roleCards.add(new RoleCard("Vestalin", new VestalinAction()));
+        roleCards.add(new RoleCard("Magister Militum", new Color(null, null), new MagisterMilitumAction()));
+        roleCards.add(new RoleCard("Consul", new Color(null, null), new ConsulAction()));
+        roleCards.add(new RoleCard("ReginaFoederata", new Color(null, null), new ReginaFoederataAction()));
+        roleCards.add(new RoleCard("Mercator", new Color(null, null), new MercatorAction()));
+        roleCards.add(new RoleCard("Praefectus Classis", new Color(null, null), new PraefectusClassisAction()));
+        roleCards.add(new RoleCard("Praefectus Fabrum", new Color(null, null), new PraefectusFabrumAction()));
+        roleCards.add(new RoleCard("Vestalin", new Color(null, null), new VestalinAction()));
 
     }
 

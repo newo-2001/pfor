@@ -1,15 +1,15 @@
 package com.groep6.pfor;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.groep6.pfor.models.City;
-import com.groep6.pfor.util.FileReader;
 import com.groep6.pfor.util.parsers.CityParser;
-import com.groep6.pfor.util.parsers.templates.CityDTO;
+import com.groep6.pfor.controllers.MenuController;
+import com.groep6.pfor.controllers.ViewController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static final int WIDTH = 1080;
+    private static final int HEIGHT = 720;
 
     public static void main(String[] args) {
         launch();
@@ -17,19 +17,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("Hello World!");
+        // Get ViewController instance and set primaryStage
+        ViewController viewController = ViewController.getInstance();
+        viewController.setPrimaryStage(primaryStage);
+        viewController.setWidth(WIDTH);
+        viewController.setHeight(HEIGHT);
 
-        /*Lobby lobby = new Lobby("password");
+        // Set default view
+        new MenuController();
 
-        try {
-            LobbyPlayer person1 = lobby.join("Person1", "password");
-            LobbyPlayer person2 = lobby.join("Person2", "wrongpassword");
-            LobbyPlayer person3 = lobby.join("Person3", "password");
-        } catch (IncorrentPasswordException exception) {
-            System.out.println(exception.getMessage());
-        }
-
-        System.out.println(lobby.getCode());*/
         City[] cities = new CityParser().parseFile("test.json");
         for (City city : cities) {
             System.out.println(city);
