@@ -95,7 +95,7 @@ public class BoardView extends View implements IObserver {
         }
     };
     
-    EventHandler<MouseEvent> goToRecruitmentView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> goToRecruitBarbarianView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             
@@ -103,6 +103,13 @@ public class BoardView extends View implements IObserver {
     };
     
     EventHandler<MouseEvent> goToFortBuildView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            
+        }
+    };
+    
+    EventHandler<MouseEvent> goToRecruitLegionView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             
@@ -157,7 +164,7 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(allianceButton, 0, 2);
         
         Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
-        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
         
         Button buildButton = new ActionButton("FORT BOUWEN");
@@ -165,7 +172,7 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(buildButton, 0, 3);
         
         Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
-        recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
         actionButtonLayout.add(recruitButton, 1, 3);
         
         Button showHandButton = new ActionButton("BEKIJK HAND");
