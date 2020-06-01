@@ -18,6 +18,7 @@ public class Game extends Observable {
     private final int MAX_DECAY_LEVEL = 8;
     private int invasionLevel = 0;
     private final int MAX_INVASION_LEVEL = 7;
+    private Deck tradeDeck = new Deck();
     private Deck invasionDeck;
     private Deck cityDeck;
     private Deck invasionDiscardPile;
@@ -81,6 +82,10 @@ public class Game extends Observable {
      */
     public Deck getInvasionDeck() {
         return invasionDeck;
+    }
+    
+    public Deck getTradeDeck() {
+    	return tradeDeck;
     }
 
     /**

@@ -3,6 +3,7 @@ package com.groep6.pfor;
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.HostController;
 import com.groep6.pfor.controllers.MenuController;
+import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.services.PlayerService;
@@ -30,7 +31,7 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
 
         // Set default view
-        new HostController();
+        new MenuController();
 
         new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
     }
