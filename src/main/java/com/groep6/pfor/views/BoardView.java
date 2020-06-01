@@ -1,6 +1,7 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
+import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
@@ -112,7 +113,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToRecruitLegionView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+        	new RecruitLegionController();
         }
     };
     
