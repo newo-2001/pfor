@@ -101,11 +101,6 @@ public class RecruitLegionView extends View implements IObserver {
 
     }
 
-	@Override
-	public Scene getScene() {
-		return scene;
-	}
-
     @Override
     public Pane getRoot() {
         return root;
