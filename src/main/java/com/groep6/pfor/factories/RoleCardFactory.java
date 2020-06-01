@@ -1,9 +1,11 @@
 package com.groep6.pfor.factories;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.models.Color;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.*;
 
+import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -61,6 +63,17 @@ public class RoleCardFactory {
      */
     public int getRoleCardCount() {
         return roleCards.size();
+    }
+
+    /**
+     * @return The rolecard with the specified name
+     */
+    public RoleCard getCardByName(String name) {
+        for (RoleCard card : roleCards) {
+            if (card.getName().toUpperCase().equals(name.toUpperCase())) return card;
+        }
+        if (Config.DEBUG) System.out.printf("[WARNING] No rolecard was found with the name '%s'\n", name);
+        return null;
     }
 
 }

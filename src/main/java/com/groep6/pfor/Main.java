@@ -5,6 +5,7 @@ import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.exceptions.NoDocumentException;
+import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.Board;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.services.LobbyService;
@@ -46,17 +47,14 @@ public class Main extends Application {
         new MenuController();
 
         // Setup service
-        LobbyService lobbyService = new LobbyService();
+        /*LobbyService lobbyService = new LobbyService();
 
         try {
             lobbyService.get("wIx400aFf61zIcl1cN6x");
         } catch (NoDocumentException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
-        City[] cities = new CityParser().parseFile("test.json");
-        for (City city : cities) {
-            System.out.println(city);
-        }
+        new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
     }
 }

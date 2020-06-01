@@ -6,6 +6,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.Player;
+import com.groep6.pfor.util.parsers.templates.PlayerDTO;
 
 import java.util.concurrent.ExecutionException;
 
@@ -22,10 +23,9 @@ public class PlayerService extends Service {
 
             DocumentSnapshot document = future.get();
             if (document.exists()) {
-                System.out.println("Document data: " + document.getData());
-                Player player = document.toObject(Player.class);
+                Player player = document.toObject(PlayerDTO.class).toModel();
 
-                System.out.println(player.getUsername());
+                System.out.println(player);
             } else {
                 throw new NoDocumentException();
             }
