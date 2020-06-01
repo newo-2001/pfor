@@ -1,19 +1,19 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.WinController;
+import com.groep6.pfor.views.components.UIBorderedText;
 import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-import javax.swing.*;
 
 /**
  * The view that shows that you won the game :D
@@ -37,15 +37,17 @@ public class WinView extends View {
     /**
      * Create and fill the view with text and a background image
      */
-    public void createView() {
+    private void createView() {
         BorderPane root = new BorderPane();
 
-        Text winText = new Text("GEWONNEN");
+        Text winText = new UIBorderedText("GEWONNEN", "#ffce00", 1, "red");
         winText.setFont(Font.font("Verdana", 60));
-        winText.setStyle("-fx-fill: red; -fx-stroke: #ffce00; -fx-stroke-width: 1px; -fx-font-weight: bold");
         root.setCenter(winText);
 
-        // TODO inladen achtergrond
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/win_background.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                backgroundSize);
 
         Button backToMenuButton = new UIButton("Hoofd Menu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -56,6 +58,7 @@ public class WinView extends View {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
+        root.setBackground(new Background(backgroundImage));
 
         scene = new Scene(root);
     }
