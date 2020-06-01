@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -34,6 +35,7 @@ public class LobbyView extends View implements IObserver {
         root = new BorderPane();
 
         Text codeText = new Text("Lobby code: " + lobbyController.getLobbyCode());
+        codeText.setFill(Color.WHITE);
         codeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
         codeText.setX(10);
         codeText.setY(30);
@@ -77,6 +79,8 @@ public class LobbyView extends View implements IObserver {
             playerContainer.getChildren().add(uiLobbyPlayerInfo);
         }
 
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/lobby_background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
+        root.setBackground(new Background(backgroundImage));
         root.setCenter(playerContainer);
     }
 
