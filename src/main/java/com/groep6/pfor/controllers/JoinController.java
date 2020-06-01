@@ -27,7 +27,7 @@ public class JoinController extends Controller {
         Lobby lobby = new Lobby(password);
         
         try {
-        	lobby.join(code, username, password);
+        	lobby.join(code, username, password, true);
         	
         	new LobbyController(lobby);
         	

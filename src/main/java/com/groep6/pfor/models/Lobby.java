@@ -47,13 +47,12 @@ public class Lobby extends Observable implements IObserver {
      * @param username
      * @return new instance of LobbyPlayer
      */
-    public LobbyPlayer join(String code, String username, String password) throws IncorrentPasswordException {
+    public LobbyPlayer join(String code, String username, String password, boolean isLocal) throws IncorrentPasswordException {
         if (!validatePassword(password)) throw new IncorrentPasswordException();
 
         boolean isHost = false;
-        boolean isLocal = false;
 
-        if (players.size() == 0) isHost = true; isLocal = true;
+        if (players.size() == 0) isHost = true;
 
         LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost, isLocal);
         lobbyPlayer.registerObserver(this);
