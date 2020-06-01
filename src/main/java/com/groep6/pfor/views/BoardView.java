@@ -170,7 +170,7 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
         
         Button buildButton = new ActionButton("FORT BOUWEN");
-        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
+        buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
         actionButtonLayout.add(buildButton, 0, 3);
         
         Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
