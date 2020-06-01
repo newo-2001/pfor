@@ -208,6 +208,7 @@ public class BoardView extends View implements IObserver {
     private HBox createPlayerList() {
     	HBox playerList = new HBox();
 
+    	// TODO implement player data recovery system to show instead of temp solution below.
     	UIPlayerInfo player1 = new UIPlayerInfo(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
     	UIPlayerInfo player2 = new UIPlayerInfo(Color.GREEN, 2, "bastiaan350", "Consul");
     	UIPlayerInfo player3 = new UIPlayerInfo(Color.BLUE, 3, "nils2020", "Magister Militum");
