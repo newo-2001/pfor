@@ -1,6 +1,9 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
+import com.groep6.pfor.controllers.HandController;
+import com.groep6.pfor.controllers.RecruitBarbarianController;
+import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
@@ -94,10 +97,10 @@ public class BoardView extends View implements IObserver {
         }
     };
     
-    EventHandler<MouseEvent> goToRecruitmentView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> goToRecruitBarbarianView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+            new RecruitBarbarianController();
         }
     };
     
@@ -108,10 +111,17 @@ public class BoardView extends View implements IObserver {
         }
     };
     
+    EventHandler<MouseEvent> goToRecruitLegionView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+        	new RecruitLegionController();
+        }
+    };
+    
     EventHandler<MouseEvent> goToHandView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+            new HandController();
         }
     };
     
@@ -137,6 +147,12 @@ public class BoardView extends View implements IObserver {
     private GridPane createActionButtons() {
     	GridPane actionButtonLayout = new GridPane();
     	
+    	actionButtonLayout.setHgap(12);
+        actionButtonLayout.setVgap(12);
+        actionButtonLayout.setAlignment(Pos.CENTER);
+        actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
+        actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+    	
     	Text actionCount = new Text("<X> Actions left");
     	actionCount.setFont(Font.font("verdana", FontWeight.BOLD,
                 FontPosture.REGULAR, 30));
@@ -156,15 +172,15 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(allianceButton, 0, 2);
         
         Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
-        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
         
         Button buildButton = new ActionButton("FORT BOUWEN");
-        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
+        buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
         actionButtonLayout.add(buildButton, 0, 3);
         
         Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
-        recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitmentView);
+        recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
         actionButtonLayout.add(recruitButton, 1, 3);
         
         Button showHandButton = new ActionButton("BEKIJK HAND");
@@ -177,15 +193,9 @@ public class BoardView extends View implements IObserver {
         
         Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
-        nextTurnButton.setPrefWidth(312);
+        nextTurnButton.setPrefWidth((2 * nextTurnButton.getPrefWidth()) + actionButtonLayout.getHgap());
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
-
-        actionButtonLayout.setHgap(12);
-        actionButtonLayout.setVgap(12);
-        actionButtonLayout.setAlignment(Pos.CENTER);
-        actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
-        actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         return actionButtonLayout;
     }
@@ -198,6 +208,7 @@ public class BoardView extends View implements IObserver {
     private HBox createPlayerList() {
     	HBox playerList = new HBox();
 
+    	// TODO implement player data recovery system to show instead of temp solution below.
     	UIPlayerInfo player1 = new UIPlayerInfo(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
     	UIPlayerInfo player2 = new UIPlayerInfo(Color.GREEN, 2, "bastiaan350", "Consul");
     	UIPlayerInfo player3 = new UIPlayerInfo(Color.BLUE, 3, "nils2020", "Magister Militum");
