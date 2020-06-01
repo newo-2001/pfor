@@ -5,12 +5,17 @@ import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UILobbyPlayerInfo;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
@@ -26,11 +31,19 @@ public class LobbyView extends View implements IObserver {
 
         BorderPane root = new BorderPane();
 
+        Text codeText = new Text("Lobby code: " + lobbyController.getLobbyCode());
+        codeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        codeText.setX(10);
+        codeText.setY(30);
 
-//        Text codeText = new Text(lobbyController.getLobbyCode());
+        HBox topBox = new HBox();
+        BorderPane.setMargin(topBox, new Insets(100,12,12,12));
+        topBox.setAlignment(Pos.CENTER);
 
+        Button showCharacterInfoButton = new UIButton("Karakter informatie");
+        showCharacterInfoButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHostView);
 
-//        root.setCenter(codeText);
+        topBox.getChildren().add(showCharacterInfoButton);
 
         FlowPane playerContainer = new FlowPane();
         playerContainer.setHgap(50);
@@ -53,11 +66,20 @@ public class LobbyView extends View implements IObserver {
 
 
         bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
+        root.setTop(topBox);
         root.setCenter(playerContainer);
         root.setBottom(bottomButtomBox);
+        root.getChildren().add(codeText);
 
         scene = new Scene(root);
     }
+
+    EventHandler<MouseEvent> goToHostView = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            lobbyController.goToRoleCardInfoView();
+        }
+    };
 
     @Override
     public void update() {
