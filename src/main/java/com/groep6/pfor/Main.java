@@ -2,6 +2,7 @@ package com.groep6.pfor;
 
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.MenuController;
+import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.services.PlayerService;
@@ -38,7 +39,8 @@ public class Main extends Application {
         lobby.join(lobby.getCode(), "Bastiaan", "");
         lobby.join(lobby.getCode(), "Jan", "");
 
-        new MenuController();
+        //new MenuController();
+        new TradeController();
 
         // Setup service
         /*LobbyService lobbyService = new LobbyService();
