@@ -1,6 +1,7 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.MenuController;
+import com.groep6.pfor.views.components.UIBorderedText;
 import com.groep6.pfor.views.components.UIButton;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -8,13 +9,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 
 /**
  * The view that show's the menu where you can control the game settings
@@ -32,11 +31,11 @@ public class MenuView extends View {
     public void createView() {
         BorderPane root = new BorderPane();
 
-        Text text = new Text("Menu");
+        Text text = new UIBorderedText("Pandemic\nFall of Rome", "#ffce00", 1, "red");
 
+        text.setTextAlignment(TextAlignment.CENTER);
         text.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 150));
-        text.setFill(Color.BLACK);
+                FontPosture.REGULAR, 60));
         root.setCenter(text);
 
         HBox buttonBox = new HBox(30);
@@ -49,9 +48,15 @@ public class MenuView extends View {
         Button exitGameButton = new UIButton("Exit Game");
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
-        buttonBox.getChildren().addAll(hostGameButton, joinGameButton, exitGameButton);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/win_background.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                backgroundSize);
 
+        buttonBox.getChildren().addAll(hostGameButton, joinGameButton, exitGameButton);
         BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
+
+        root.setBackground(new Background(backgroundImage));
         root.setBottom(buttonBox);
 
         scene = new Scene(root);
