@@ -46,6 +46,6 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }*/
 
-        new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
+        System.out.println(new PlayerService().get("CxDNFdDaJJNTEJkOmkQo"));
     }
 }

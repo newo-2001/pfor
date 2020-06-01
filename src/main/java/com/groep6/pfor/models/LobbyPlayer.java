@@ -12,9 +12,6 @@ public class LobbyPlayer {
     private RoleCard roleCard;
     private boolean isHost;
 
-    public LobbyPlayer() {}
-
-
     /**
      * @param username
      * @param isHost

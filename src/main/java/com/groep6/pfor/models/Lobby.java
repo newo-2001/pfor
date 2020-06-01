@@ -5,6 +5,7 @@ import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.cards.RoleCard;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -34,10 +35,10 @@ public class Lobby {
         this.code = generateCode();
     }
 
-    public Lobby(String code, String passwordHash, List<LobbyPlayer> players) {
+    public Lobby(String code, String passwordHash, LobbyPlayer[] players) {
         this.code = code;
         this.passwordHash = passwordHash;
-        this.players = players;
+        this.players = Arrays.asList(players);
     }
 
     /**
@@ -82,6 +83,14 @@ public class Lobby {
         }
 
         return card;
+    }
+
+    /**
+     * Get the password of the lobby (hashed of course)
+     * @return The hashed password of the lobby
+     */
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
     /**
