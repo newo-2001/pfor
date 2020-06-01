@@ -45,7 +45,7 @@ public class LobbyView extends View implements IObserver {
         BorderPane.setMargin(topBox, new Insets(100,12,12,12));
         topBox.setAlignment(Pos.CENTER);
 
-        Button showCharacterInfoButton = new UIButton("Karakter informatie");
+        Button showCharacterInfoButton = new UIButton("Kiezen karakter");
         showCharacterInfoButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHostView);
 
         topBox.getChildren().add(showCharacterInfoButton);
