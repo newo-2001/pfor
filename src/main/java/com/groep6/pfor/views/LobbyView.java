@@ -26,10 +26,12 @@ public class LobbyView extends View implements IObserver {
 
     private LobbyController lobbyController;
 
+    private BorderPane root;
+
     public LobbyView(LobbyController controller) {
         lobbyController = controller;
 
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         Text codeText = new Text("Lobby code: " + lobbyController.getLobbyCode());
         codeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
@@ -45,6 +47,27 @@ public class LobbyView extends View implements IObserver {
 
         topBox.getChildren().add(showCharacterInfoButton);
 
+        HBox bottomButtomBox = new HBox(20);
+        bottomButtomBox.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(bottomButtomBox, new Insets(12,12,100,12));
+
+        Button startGameButton = new UIButton("Start Spel");
+
+        Button goBackButton = new UIButton("Terug");
+        goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        createPlayers();
+
+
+        bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
+        root.setTop(topBox);
+        root.setBottom(bottomButtomBox);
+        root.getChildren().add(codeText);
+
+        scene = new Scene(root);
+    }
+
+    public void createPlayers() {
         FlowPane playerContainer = new FlowPane();
         playerContainer.setHgap(50);
         playerContainer.setVgap(50);
@@ -55,23 +78,7 @@ public class LobbyView extends View implements IObserver {
             playerContainer.getChildren().add(uiLobbyPlayerInfo);
         }
 
-        HBox bottomButtomBox = new HBox(20);
-        bottomButtomBox.setAlignment(Pos.CENTER);
-        BorderPane.setMargin(bottomButtomBox, new Insets(12,12,100,12));
-
-        Button startGameButton = new UIButton("Start Spel");
-
-        Button goBackButton = new UIButton("Terug");
-        goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
-
-
-        bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
-        root.setTop(topBox);
         root.setCenter(playerContainer);
-        root.setBottom(bottomButtomBox);
-        root.getChildren().add(codeText);
-
-        scene = new Scene(root);
     }
 
     EventHandler<MouseEvent> goToHostView = new EventHandler<MouseEvent>() {
@@ -83,6 +90,6 @@ public class LobbyView extends View implements IObserver {
 
     @Override
     public void update() {
-
+        createPlayers();
     }
 }
