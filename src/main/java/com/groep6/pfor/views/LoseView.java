@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -40,7 +41,10 @@ public class LoseView extends View {
         loseText.setFont(Font.font("Verdana", 60));
         root.setCenter(loseText);
 
-        // TODO inladen achtergrond
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/lose_background.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                backgroundSize);
 
         Button backToMenuButton = new UIButton("Hoofd Menu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -51,6 +55,7 @@ public class LoseView extends View {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
+        root.setBackground(new Background(backgroundImage));
 
         scene = new Scene(root);
     }
