@@ -33,11 +33,10 @@ public class MenuView extends View {
     public void createView() {
         root = new BorderPane();
 
-        Text text = new UIBorderedText("Pandemic\nFall of Rome", "#ffce00", 1, "red");
+        Text text = new UIBorderedText("Pandemic:\nFall of Rome", "#ffce00", 1, "red");
 
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 60));
+        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 90));
         root.setCenter(text);
 
         HBox buttonBox = new HBox(30);
