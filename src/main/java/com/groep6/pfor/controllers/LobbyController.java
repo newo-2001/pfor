@@ -31,6 +31,10 @@ public class LobbyController extends Controller {
         new RoleCardInfoController();
     }
 
+    public void goToMenu() {
+        new MenuController();
+    }
+
     @Override
     public void registerObserver(IObserver view) {
 

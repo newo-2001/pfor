@@ -55,7 +55,7 @@ public class LobbyView extends View implements IObserver {
 
         Button goBackButton = new UIButton("Terug");
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
-        goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
 
         createPlayers();
 
@@ -87,10 +87,10 @@ public class LobbyView extends View implements IObserver {
         }
     };
     
-    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<javafx.scene.input.MouseEvent> goToMenu = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-            lobbyController.goBack();
+            lobbyController.goToMenu();
         }
     };
 
