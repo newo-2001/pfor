@@ -8,13 +8,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-import javax.swing.*;
 
 /**
  * The view that shows that you won the game :D
@@ -45,7 +44,10 @@ public class WinView extends View {
         winText.setFont(Font.font("Verdana", 60));
         root.setCenter(winText);
 
-        // TODO inladen achtergrond
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/win_background.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                backgroundSize);
 
         Button backToMenuButton = new UIButton("Hoofd Menu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -56,6 +58,7 @@ public class WinView extends View {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
+        root.setBackground(new Background(backgroundImage));
 
         scene = new Scene(root);
     }
