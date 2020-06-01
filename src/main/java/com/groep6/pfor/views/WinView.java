@@ -22,8 +22,6 @@ import javafx.scene.text.Text;
 public class WinView extends View {
     /** The winController */
     private WinController winController;
-    /** The scene */
-    private Scene scene;
 
     /**
      * The constructor
@@ -69,9 +67,4 @@ public class WinView extends View {
             winController.goToMenuView();
         }
     };
-
-    @Override
-    public Scene getScene() {
-        return scene;
-    }
 }
