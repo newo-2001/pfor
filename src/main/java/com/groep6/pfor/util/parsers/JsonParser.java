@@ -1,7 +1,8 @@
-package com.groep6.pfor.util;
+package com.groep6.pfor.util.parsers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.groep6.pfor.util.FileReader;
 
 import java.text.ParseException;
 

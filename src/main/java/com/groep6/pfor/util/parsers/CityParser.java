@@ -1,4 +1,4 @@
-package com.groep6.pfor.util;
+package com.groep6.pfor.util.parsers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -6,6 +6,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Faction;
+import com.groep6.pfor.util.FileReader;
+import com.groep6.pfor.util.Vector2f;
+import com.groep6.pfor.util.parsers.templates.CityDTO;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -24,15 +27,7 @@ public class CityParser extends JsonParser {
         List<City> cities = new ArrayList<>();
         for (Iterator<JsonElement> it = json.iterator(); it.hasNext();) {
             JsonObject cityField = (JsonObject) it.next();
-            Vector2f position = gson.fromJson(cityField.get("position"), Vector2f.class);
-
-            List<Faction> listFactions = new ArrayList<>();
-            for (Iterator<JsonElement> fact = ((JsonArray) cityField.get("factions")).iterator(); it.hasNext()) {
-                listFactions.add(gson.fromJson(fact.next(), Faction.class));
-            }
-            Faction[] factions = listFactions.toArray(new Faction[listFactions.size()]);
-
-            City city = gson.fromJson(cityField, new City());
+            cities.add(new Gson().fromJson(cityField, CityDTO.class).toModel());
         }
         return cities.toArray(new City[cities.size()]);
     }

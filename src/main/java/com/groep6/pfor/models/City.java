@@ -6,29 +6,29 @@ package com.groep6.pfor.models;
  * @author Nils van der Velden
  */
 
+import com.groep6.pfor.util.Vector2f;
+
 import java.util.ArrayList;
 
 public class City extends Tile {
 	
 	private ArrayList<Barbarian> barbarians = new ArrayList<Barbarian>();
 	private ArrayList<Legion> legions = new ArrayList<Legion>();
-	private boolean fort;
+	private boolean fort = false;
 	private boolean harbour;
 	private String name;
 	
-	public City(String name, boolean fort, boolean harbour, ArrayList<Barbarian> barbarians, ArrayList<Legion> legions) {
+	public City(String name, boolean harbour, Vector2f position, Faction[] factions) {
+		super(position, factions);
 		this.name = name;
-		this.fort = fort;
 		this.harbour = harbour;
-		this.barbarians = barbarians;
-		this.legions = legions;
 	}
 	
     /**
-     * @returns a arrayList with factions that can access the city 
+     * @returns An array with factions that can access the city
      */
 	
-	public ArrayList<Faction> getFaction() {
+	public Faction[] getFactions() {
 		return factions;
 	}
 	
@@ -139,6 +139,21 @@ public class City extends Tile {
 	
 	public void removeFort() {
 		this.fort = false;
+	}
+
+	@Override
+	public String toString() {
+		String s = String.format("City: %s, harbour: %b, position: %s, factions: [", name, harbour, position);
+		for (Faction f : factions) {
+			s += f.name() + ", ";
+		}
+		if (factions.length > 1) s = s.substring(0, s.length()-2);
+		s += "], neighbours: [";
+		for (City neighbour : neighbouringCities) {
+			s += neighbour.getName() + ", ";
+		}
+		if (neighbouringCities.size() > 1) s = s.substring(0, s.length()-2);
+		return s + "]";
 	}
 	
 }

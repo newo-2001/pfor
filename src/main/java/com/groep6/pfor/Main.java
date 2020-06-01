@@ -1,15 +1,15 @@
 package com.groep6.pfor;
 
-import com.groep6.pfor.util.Renderer;
-import com.groep6.pfor.util.Vector2f;
-import com.groep6.pfor.exceptions.IncorrentPasswordException;
-import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.models.LobbyPlayer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.util.FileReader;
+import com.groep6.pfor.util.parsers.CityParser;
+import com.groep6.pfor.util.parsers.templates.CityDTO;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private static Renderer renderer;
 
     public static void main(String[] args) {
         launch();
@@ -19,9 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         System.out.println("Hello World!");
 
-        renderer = new Renderer(primaryStage, new Vector2f(1280, 720));
-
-        Lobby lobby = new Lobby("password");
+        /*Lobby lobby = new Lobby("password");
 
         try {
             LobbyPlayer person1 = lobby.join("Person1", "password");
@@ -31,6 +29,10 @@ public class Main extends Application {
             System.out.println(exception.getMessage());
         }
 
-        System.out.println(lobby.getCode());
+        System.out.println(lobby.getCode());*/
+        City[] cities = new CityParser().parseFile("test.json");
+        for (City city : cities) {
+            System.out.println(city);
+        }
     }
 }

@@ -1,17 +1,20 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.util.Vector2f;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Base<T extends Piece> extends Tile {
 	private List<T> pieces = new ArrayList<T>();
 	
-	public Base(T... pieces) {
+	public Base(Vector2f position, Faction faction, T... pieces) {
+		super(position, new Faction[]{faction});
 		addPieces(pieces);
 	}
 	
 	public Faction getFaction() {
-		return factions.get(0);
+		return factions[0];
 	}
 	
 	public int getPieceCount() {
