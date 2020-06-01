@@ -20,9 +20,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.util.parsers.CityParser;
 
 public class Main extends Application {
-
     private static final int WIDTH = 1080;
     private static final int HEIGHT = 720;
 
@@ -53,5 +54,9 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
 
+        City[] cities = new CityParser().parseFile("test.json");
+        for (City city : cities) {
+            System.out.println(city);
+        }
     }
 }

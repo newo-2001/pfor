@@ -1,36 +1,35 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.util.Vector2f;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 /**
  * Represents a barbarian base
  *
  * @author Nils van der Velden
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Base<T extends Piece> extends Tile {
 	private List<T> pieces = new ArrayList<T>();
-	
-    /**
-     * Initializes a new City with the given components.
-     * @param position The Vector2f (position) of a specific base
-     * @param factions What factions are allowed in a specific base
-     * @param neighbouringCities Which city's have a direct connection to this base
-     */
-	
-	public Base(Vector2f position, List<Faction> factions, List<City> neighbouringCities, T... pieces) {
-		super(position, factions, neighbouringCities);
-		addPieces(pieces);
+
+	/**
+	 * Initializes a new City with the given components.
+	 * @param position The Vector2f (position) of a specific base
+	 * @param faction What faction is allowed in a specific base
+	 */
+	public Base(Vector2f position, Faction faction, T... pieces) {
+		super(position, new Faction[]{faction});
 	}
 	
     /**
-     * @returns what faction has acces to a specific base
+     * @returns what faction has access to a specific base
      */
 	
 	public Faction getFaction() {
-		return factions.get(0);
+		return factions[0];
 	}
 	
     /**
@@ -42,7 +41,7 @@ public class Base<T extends Piece> extends Tile {
 	}
 	
     /**
-     * @param T... pieces Ads a variable amount of pieces to base
+     * @param pieces Adds a variable amount of pieces to base
      */
 	
 	public void addPieces(T... pieces) {
@@ -63,9 +62,9 @@ public class Base<T extends Piece> extends Tile {
      * @returns a list with the pieces that where removed
      */
 	
-	public List<T> removePieces(int piecesCount) {
+	public List<T> removePieces(int pieceCount) {
 		List<T> removed = new ArrayList<T>();
-		for(int i = 0; i < Math.min(piecesCount, pieces.size()); i++) removed.add(this.pieces.remove(0));
+		for(int i = 0; i < Math.min(pieceCount, pieces.size()); i++) removed.add(this.pieces.remove(0));
 		return removed;
 	}
 }

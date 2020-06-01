@@ -67,7 +67,7 @@ public class HostView extends View implements IObserver {
             String password = passwordTextField.getValue();
 
             try {
-                hostController.createLobby(username, password);
+                hostController.createLobby(password, username, password); //even plaatsvervangend dubbel password i.p.v. unieke code
             } catch (EmptyFieldException error) {
                 System.out.println(error.getMessage());
             }
