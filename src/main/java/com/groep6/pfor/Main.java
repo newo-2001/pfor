@@ -1,11 +1,7 @@
 package com.groep6.pfor;
 
-import com.groep6.pfor.controllers.BoardController;
-import com.groep6.pfor.controllers.HostController;
-import com.groep6.pfor.controllers.MenuController;
-import com.groep6.pfor.controllers.TradeController;
+import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.services.PlayerService;
 
 import javafx.application.Application;

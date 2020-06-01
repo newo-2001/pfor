@@ -3,6 +3,7 @@ package com.groep6.pfor.views.components;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.RoleCard;
 import javafx.beans.binding.Bindings;
+import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class UIRoleCard extends UICard {
@@ -20,7 +21,7 @@ public class UIRoleCard extends UICard {
 
     public void createView() {
         UIText nameText = new UIText(card.getName());
-        nameText.setWeight(FontWeight.BOLD).setSize(18);
+        nameText.setWeight(FontWeight.BOLD).setSize(18).setColor(Color.web("#D5544F"));;
 
         UIText descriptionText = new UIText(card.getAbility().getDescription());
         descriptionText.setAlignment(TextAlignment.CENTER);
