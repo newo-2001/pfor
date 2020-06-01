@@ -9,8 +9,10 @@ public class LoseController extends Controller {
         viewController.showView(new LoseView(this));
     }
 
-    @Override
-    public void registerObserver(IObserver view) {
-
+    public void goToMenuView() {
+        new MenuController();
     }
+
+    @Override
+    public void registerObserver(IObserver view) {}
 }

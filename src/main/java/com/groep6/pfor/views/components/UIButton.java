@@ -17,12 +17,16 @@ import javafx.scene.text.FontWeight;
 public class UIButton extends Button {
 
     public UIButton(String text) {
-        setText(text.toUpperCase());
+        setText(text);
+        setStyles();
+    }
+
+    public UIButton() {
         setStyles();
     }
 
     private void setStyles() {
-        setBackground(new Background(new BackgroundFill(Color.web("#ef4140"), CornerRadii.EMPTY, Insets.EMPTY)));
+		setBackground(new Background(new BackgroundFill(Color.web("#ef4140"), CornerRadii.EMPTY, Insets.EMPTY)));
         setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         setPadding(new Insets(20, 20, 20, 20));
         setTextFill(Color.WHITE);
