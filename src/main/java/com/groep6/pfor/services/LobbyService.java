@@ -9,9 +9,9 @@ import com.groep6.pfor.models.Player;
 
 import java.util.concurrent.ExecutionException;
 
-public class PlayerService extends Service {
+public class LobbyService extends Service {
 
-    private static final String COLLECTION = "players";
+    private static final String COLLECTION = "lobbies";
 
     public DocumentSnapshot get(String documentID) throws NoDocumentException {
         DocumentSnapshot snapshot = null;
@@ -23,9 +23,9 @@ public class PlayerService extends Service {
             DocumentSnapshot document = future.get();
             if (document.exists()) {
                 System.out.println("Document data: " + document.getData());
-                Player player = document.toObject(Player.class);
-
-                System.out.println(player.getUsername());
+                Lobby lobby = document.toObject(Lobby.class);
+//
+//                System.out.println(lobby.getCode());
             } else {
                 throw new NoDocumentException();
             }

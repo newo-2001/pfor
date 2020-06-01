@@ -19,7 +19,6 @@ public class Lobby {
     private String passwordHash;
     private List<LobbyPlayer> players = new ArrayList<>();
 
-
     /**
      * @param password
      */
@@ -33,6 +32,12 @@ public class Lobby {
      */
     public Lobby() {
         this.code = generateCode();
+    }
+
+    public Lobby(String code, String passwordHash, List<LobbyPlayer> players) {
+        this.code = code;
+        this.passwordHash = passwordHash;
+        this.players = players;
     }
 
     /**

@@ -7,6 +7,7 @@ import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Board;
 import com.groep6.pfor.services.GameService;
+import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.services.PlayerService;
 import com.groep6.pfor.services.Service;
 import com.groep6.pfor.util.Renderer;
@@ -44,10 +45,10 @@ public class Main extends Application {
         new MenuController();
 
         // Setup service
-        PlayerService playerService = new PlayerService();
+        LobbyService lobbyService = new LobbyService();
 
         try {
-            DocumentSnapshot snapshot = playerService.get("9QMmKsUaVEPoSfGUFuZf");
+            lobbyService.get("wIx400aFf61zIcl1cN6x");
         } catch (NoDocumentException e) {
             System.out.println(e.getMessage());
         }

@@ -12,6 +12,8 @@ public class LobbyPlayer {
     private RoleCard roleCard;
     private boolean isHost;
 
+    public LobbyPlayer() {}
+
 
     /**
      * @param username
@@ -20,6 +22,11 @@ public class LobbyPlayer {
     public LobbyPlayer(String username, RoleCard roleCard, boolean isHost) {
         this.username = username;
         this.roleCard = roleCard;
+        this.isHost = isHost;
+    }
+
+    public LobbyPlayer(String username, boolean isHost) {
+        this.username = username;
         this.isHost = isHost;
     }
 
