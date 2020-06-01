@@ -56,10 +56,14 @@ public class JoinView extends View implements IObserver {
         
         Button joinGameButton = new UIButton("Host Game");
         joinGameButton.setPadding(new Insets(10));
+        joinGameButton.setMinWidth(100);
+        joinGameButton.setMaxWidth(100);
         joinGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, joinGame);
         
         Button goBackButton = new UIButton("Ga terug");
-        goBackButton.setPrefWidth(150);
+        goBackButton.setPadding(new Insets(10));
+        goBackButton.setMinWidth(100);
+        goBackButton.setMaxWidth(100);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
      
