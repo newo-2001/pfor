@@ -26,20 +26,20 @@ import javafx.scene.text.Text;
  */
 public class JoinView extends View implements IObserver {
 
-    /** The joincontroller  */
+    /** The join controller  */
     private JoinController joinController;
     
-    /** The textfield used that allows the user to enter a unique code  */
+    /** The text field used that allows the user to enter a unique code  */
     private UITextField codeTextField;
     
-    /** The textfield used that allows the pick a username  */
+    /** The text field used that allows the pick a username  */
     private UITextField usernameTextField;
     
-    /** The textfield that allows the user to put in a password if required  */
+    /** The text field that allows the user to put in a password if required  */
     private UITextField passwordTextField;
     
     /**
-     * Initialises the  JoinView
+     * Initializes the JoinView
      * @param the joinController
      */
 
