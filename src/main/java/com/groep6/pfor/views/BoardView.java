@@ -10,13 +10,19 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -53,6 +59,13 @@ public class BoardView extends View implements IObserver {
         root.setTop(playerList);
         
         // Center - board
+        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundImage board = new BackgroundImage(new Image("images/board.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                boardSize);
+        Pane boardPane = new Pane();
+        boardPane.setBackground(new Background(board));
+        root.setCenter(boardPane);
         
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();

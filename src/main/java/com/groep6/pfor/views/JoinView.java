@@ -43,7 +43,7 @@ public class JoinView extends View implements IObserver {
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
         text.setFill(Color.WHITE);
         
-        codeTextField = new UITextField("Unique code");
+        codeTextField = new UITextField("Lobby code");
         codeTextField.getLabel().setTextFill(Color.WHITE);
         usernameTextField = new UITextField("Username");
         usernameTextField.getLabel().setTextFill(Color.WHITE);
