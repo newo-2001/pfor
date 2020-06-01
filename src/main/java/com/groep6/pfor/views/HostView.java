@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-import javafx.stage.Stage;
 
 /**
  * The view that show's the screen to create a lobby as a host
@@ -31,7 +30,7 @@ public class HostView extends View implements IObserver {
     public HostView(HostController hostController) {
         this.hostController = hostController;
 
-        Pane root = new Pane();
+        StackPane root = new StackPane();
 
         VBox form = new VBox();
 
@@ -51,7 +50,8 @@ public class HostView extends View implements IObserver {
         form.getChildren().addAll(text, usernameTextField, passwordTextField, hostGameButton);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        form.setPadding(new Insets(50));
+        form.setPadding(new Insets(400));
+        form.setAlignment(Pos.CENTER);
 
         root.getChildren().add(form);
         scene = new Scene(root);
