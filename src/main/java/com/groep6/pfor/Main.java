@@ -1,6 +1,8 @@
 package com.groep6.pfor;
 
+import com.groep6.pfor.controllers.LobbyController;
 import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.util.parsers.CityParser;
 import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.ViewController;
@@ -24,7 +26,11 @@ public class Main extends Application {
         viewController.setHeight(HEIGHT);
 
         // Set default view
-        new MenuController();
+        Lobby lobby = new Lobby("");
+        lobby.join(lobby.getCode(), "Bastiaan", "");
+        lobby.join(lobby.getCode(), "Jan", "");
+
+        new LobbyController(lobby);
 
         City[] cities = new CityParser().parseFile("test.json");
         for (City city : cities) {

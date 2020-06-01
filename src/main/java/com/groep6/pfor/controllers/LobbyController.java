@@ -2,8 +2,11 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
+
+import java.util.List;
 
 public class LobbyController extends Controller {
 
@@ -17,6 +20,10 @@ public class LobbyController extends Controller {
 
     public String getLobbyCode() {
         return lobby.getCode();
+    }
+
+    public List<LobbyPlayer> getLobbyPlayers() {
+        return lobby.getPlayers();
     }
 
     @Override
