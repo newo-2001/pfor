@@ -32,10 +32,9 @@ public class MenuView extends View {
     public void createView() {
         BorderPane root = new BorderPane();
 
-        Text text = new Text("Menu");
-
+        Text text = new Text("Pandemic: Fall of Rome");
         text.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 150));
+                FontPosture.REGULAR, 50));
         text.setFill(Color.BLACK);
         root.setCenter(text);
 
