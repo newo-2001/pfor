@@ -22,8 +22,6 @@ import javafx.scene.text.Text;
 public class LoseView extends View {
     /** The loseController */
     private LoseController loseController;
-    /** The scene */
-    private Scene scene;
 
     /**
      * The constructor
@@ -66,9 +64,4 @@ public class LoseView extends View {
             loseController.goToMenuView();
         }
     };
-
-    @Override
-    public Scene getScene() {
-        return scene;
-    }
 }
