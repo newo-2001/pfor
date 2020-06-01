@@ -28,7 +28,7 @@ public class LobbyController extends Controller {
     }
 
     public void goToRoleCardInfoView() {
-        new RoleCardInfoController();
+        new RoleCardInfoController(lobby);
     }
 
     public void goToMenu() {
@@ -37,6 +37,6 @@ public class LobbyController extends Controller {
 
     @Override
     public void registerObserver(IObserver view) {
-
+        lobby.registerObserver(view);
     }
 }

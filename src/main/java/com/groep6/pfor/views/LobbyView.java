@@ -31,6 +31,7 @@ public class LobbyView extends View implements IObserver {
 
     public LobbyView(LobbyController controller) {
         lobbyController = controller;
+        lobbyController.registerObserver(this);
 
         root = new BorderPane();
 
@@ -100,6 +101,7 @@ public class LobbyView extends View implements IObserver {
 
     @Override
     public void update() {
+        System.out.println("2");
         createPlayers();
     }
 
