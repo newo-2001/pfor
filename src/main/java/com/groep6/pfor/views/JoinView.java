@@ -42,7 +42,7 @@ public class JoinView extends View implements IObserver {
         StackPane root = new StackPane();
         
         VBox form = new VBox();
-        
+     
         Text text = new Text("Join game");
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
         text.setFill(Color.WHITE);
@@ -58,13 +58,18 @@ public class JoinView extends View implements IObserver {
         joinGameButton.setPadding(new Insets(10));
         joinGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, joinGame);
         
-        form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, joinGameButton);
+        Button goBackButton = new UIButton("Ga terug");
+        goBackButton.setPrefWidth(150);
+        goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
+        goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+     
+        form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, joinGameButton, goBackButton);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         form.setPadding(new Insets(400));
         form.setAlignment(Pos.CENTER);
         
-        root.getChildren().add(form);
+        root.getChildren().addAll(form);
         scene = new Scene(root);
     }
     
@@ -81,6 +86,13 @@ public class JoinView extends View implements IObserver {
                 System.out.println(error.getMessage());
             }
 
+        }
+    };
+    
+    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            joinController.goBack();
         }
     };
 
