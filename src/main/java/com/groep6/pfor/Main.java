@@ -39,8 +39,8 @@ public class Main extends Application {
         lobby.join(lobby.getCode(), "Bastiaan", "");
         lobby.join(lobby.getCode(), "Jan", "");
 
-        //new MenuController();
-        new TradeController();
+        new MenuController();
+        //new TradeController();
 
         // Setup service
         /*LobbyService lobbyService = new LobbyService();
