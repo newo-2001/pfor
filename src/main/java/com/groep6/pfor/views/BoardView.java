@@ -147,6 +147,12 @@ public class BoardView extends View implements IObserver {
     private GridPane createActionButtons() {
     	GridPane actionButtonLayout = new GridPane();
     	
+    	actionButtonLayout.setHgap(12);
+        actionButtonLayout.setVgap(12);
+        actionButtonLayout.setAlignment(Pos.CENTER);
+        actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
+        actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+    	
     	Text actionCount = new Text("<X> Actions left");
     	actionCount.setFont(Font.font("verdana", FontWeight.BOLD,
                 FontPosture.REGULAR, 30));
@@ -187,15 +193,9 @@ public class BoardView extends View implements IObserver {
         
         Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
-        nextTurnButton.setPrefWidth(312);
+        nextTurnButton.setPrefWidth((2 * nextTurnButton.getPrefWidth()) + actionButtonLayout.getHgap());
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
-
-        actionButtonLayout.setHgap(12);
-        actionButtonLayout.setVgap(12);
-        actionButtonLayout.setAlignment(Pos.CENTER);
-        actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
-        actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         return actionButtonLayout;
     }
