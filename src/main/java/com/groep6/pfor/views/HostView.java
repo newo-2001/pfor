@@ -46,8 +46,13 @@ public class HostView extends View implements IObserver {
         Button hostGameButton = new UIButton("Host Game");
         hostGameButton.setPadding(new Insets(10));
         hostGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, hostGame);
+        
+        Button goBackButton = new UIButton("Ga terug");
+        goBackButton.setPrefWidth(150);
+        goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
+        goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
-        form.getChildren().addAll(text, usernameTextField, passwordTextField, hostGameButton);
+        form.getChildren().addAll(text, usernameTextField, passwordTextField, hostGameButton, goBackButton);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         form.setPadding(new Insets(400));
@@ -72,6 +77,13 @@ public class HostView extends View implements IObserver {
                 System.out.println(error.getMessage());
             }
 
+        }
+    };
+    
+    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            hostController.goBack();
         }
     };
 
