@@ -168,7 +168,6 @@ public class Lobby extends Observable implements IObserver {
 
     @Override
     public void update() {
-        System.out.println("1");
         notifyObservers();
     }
 }

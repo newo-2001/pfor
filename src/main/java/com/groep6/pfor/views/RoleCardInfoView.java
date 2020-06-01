@@ -6,6 +6,7 @@ import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
 
+import com.groep6.pfor.views.components.UIRoleCard;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -64,7 +65,7 @@ public class RoleCardInfoView extends View {
 
         /** For loop to get the different role cards and put there information in the flowPane*/
         for (RoleCard card: roleCardInfoController.getRoleCards()) {
-            UICard uicard = new UICard(card);
+            UICard uicard = new UIRoleCard(card);
 
             if (roleCardInfoController.getCurrentlySelectedRoleCard() == card) uicard.select();
 

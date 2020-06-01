@@ -37,4 +37,8 @@ public class RoleCard extends Card {
     public Color getColor() {
         return color;
     }
+
+    public IAction getAbility() {
+        return ability;
+    }
 }

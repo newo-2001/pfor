@@ -46,7 +46,7 @@ public class LoseView extends View {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 backgroundSize);
 
-        Button backToMenuButton = new UIButton("Hoofd Menu");
+        Button backToMenuButton = new UIButton("Hoofdmenu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
         backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenuView);
 

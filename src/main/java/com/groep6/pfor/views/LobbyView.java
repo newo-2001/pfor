@@ -5,6 +5,7 @@ import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UILobbyPlayerInfo;
+import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,11 +36,10 @@ public class LobbyView extends View implements IObserver {
 
         root = new BorderPane();
 
-        Text codeText = new Text("Lobby code: " + lobbyController.getLobbyCode());
-        codeText.setFill(Color.WHITE);
-        codeText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        codeText.setX(10);
-        codeText.setY(30);
+        UIText codeText = new UIText("Lobby code: " + lobbyController.getLobbyCode());
+        codeText.setColor(Color.WHITE).setWeight(FontWeight.BOLD).setSize(20);
+        codeText.setX(30);
+        codeText.setY(50);
 
         HBox topBox = new HBox();
         BorderPane.setMargin(topBox, new Insets(100,12,12,12));
@@ -101,7 +101,6 @@ public class LobbyView extends View implements IObserver {
 
     @Override
     public void update() {
-        System.out.println("2");
         createPlayers();
     }
 

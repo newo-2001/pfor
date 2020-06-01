@@ -25,29 +25,29 @@ public class UILobbyPlayerInfo extends VBox {
 
         setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         setPadding(new Insets(30));
+        setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
 
-        Text playerNumberText = new Text("Player " + playerNumber);
-        playerNumberText.setTextAlignment(TextAlignment.CENTER);
-        playerNumberText.setFill(Color.WHITE);
+        UIText playerNumberText = new UIText("Speler " + playerNumber);
+        playerNumberText.setWeight(FontWeight.BOLD).setSize(15).setAlignment(TextAlignment.CENTER).setFill(Color.WHITE);
 
         GridPane gridPane = new GridPane();
         gridPane.setVgap(20);
         gridPane.setHgap(30);
         gridPane.setPadding(new Insets(20, 10, 10, 10));
 
-        Text playerLabelText = new Text("Spelernaam:");
+        UIText playerLabelText = new UIText("Gebruikersnaam:");
         playerLabelText.setFill(Color.WHITE);
 
-        Text playerValueText = new Text(username);
+        UIText playerValueText = new UIText(username);
         playerValueText.setFill(Color.WHITE);
 
-        Text roleLabelText = new Text("Karakter:");
+        UIText roleLabelText = new UIText("Karakter:");
         roleLabelText.setFill(Color.WHITE);
 
-        Text roleValueText = new Text(roleCard.getName());
+        UIText roleValueText = new UIText(roleCard.getName());
         roleValueText.setFill(Color.WHITE);
 
-        Text colorLabelText = new Text("Kleur:");
+        UIText colorLabelText = new UIText("Kleur:");
         colorLabelText.setFill(Color.WHITE);
 
         gridPane.add(playerLabelText, 0, 0);

@@ -49,8 +49,8 @@ public class HandView extends View {
         cardsPane.setHgap(50);
 
         for (Card card: cards) {
-            UICard uiCard = new UICard(card);
-            cardsPane.getChildren().add(uiCard);
+//            UICard uiCard = new UICard(card);
+//            cardsPane.getChildren().add(uiCard);
         }
 
         scrollPane.setContent(cardsPane);
