@@ -45,10 +45,14 @@ public class HostView extends View implements IObserver {
 
         Button hostGameButton = new UIButton("Host Game");
         hostGameButton.setPadding(new Insets(10));
+        hostGameButton.setMinWidth(100);
+        hostGameButton.setMaxWidth(100);
         hostGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, hostGame);
         
         Button goBackButton = new UIButton("Ga terug");
-        goBackButton.setPrefWidth(150);
+        goBackButton.setPadding(new Insets(10));
+        goBackButton.setMinWidth(100);
+        goBackButton.setMaxWidth(100);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
