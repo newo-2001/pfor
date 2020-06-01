@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
 
 public class UILobbyPlayerInfo extends VBox {
@@ -50,11 +51,16 @@ public class UILobbyPlayerInfo extends VBox {
         UIText colorLabelText = new UIText("Kleur:");
         colorLabelText.setFill(Color.WHITE);
 
+        Circle colorValueDot = new Circle();
+        colorValueDot.setFill(roleCard.getColor());
+        colorValueDot.setRadius(12);
+
         gridPane.add(playerLabelText, 0, 0);
         gridPane.add(playerValueText, 1, 0);
         gridPane.add(roleLabelText, 0, 1);
         gridPane.add(roleValueText, 1, 1);
         gridPane.add(colorLabelText, 0, 2);
+        gridPane.add(colorValueDot, 1, 2);
 
         getChildren().addAll(playerNumberText, gridPane);
         setAlignment(Pos.CENTER);

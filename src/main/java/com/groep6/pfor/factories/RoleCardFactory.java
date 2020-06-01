@@ -1,9 +1,9 @@
 package com.groep6.pfor.factories;
 
 import com.groep6.pfor.Config;
-import com.groep6.pfor.models.Color;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.*;
+import javafx.scene.paint.Color;
 
 import javax.management.relation.Role;
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ public class RoleCardFactory {
      */
     private RoleCardFactory() {
 
-        roleCards.add(new RoleCard("Magister Militum", new Color(null, null), new MagisterMilitumAction()));
-        roleCards.add(new RoleCard("Consul", new Color(null, null), new ConsulAction()));
-        roleCards.add(new RoleCard("ReginaFoederata", new Color(null, null), new ReginaFoederataAction()));
-        roleCards.add(new RoleCard("Mercator", new Color(null, null), new MercatorAction()));
-        roleCards.add(new RoleCard("Praefectus Classis", new Color(null, null), new PraefectusClassisAction()));
-        roleCards.add(new RoleCard("Praefectus Fabrum", new Color(null, null), new PraefectusFabrumAction()));
-        roleCards.add(new RoleCard("Vestalin", new Color(null, null), new VestalinAction()));
+        roleCards.add(new RoleCard("Magister Militum", Color.YELLOW, new MagisterMilitumAction()));
+        roleCards.add(new RoleCard("Consul", Color.BLUE, new ConsulAction()));
+        roleCards.add(new RoleCard("Regina Foederata", Color.GREEN, new ReginaFoederataAction()));
+        roleCards.add(new RoleCard("Mercator", Color.TEAL, new MercatorAction()));
+        roleCards.add(new RoleCard("Praefectus Classis", Color.LIME, new PraefectusClassisAction()));
+        roleCards.add(new RoleCard("Praefectus Fabrum", Color.DARKORANGE, new PraefectusFabrumAction()));
+        roleCards.add(new RoleCard("Vestalin", Color.BLUEVIOLET, new VestalinAction()));
 
     }
 

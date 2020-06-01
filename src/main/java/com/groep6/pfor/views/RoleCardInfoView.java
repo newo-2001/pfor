@@ -52,6 +52,7 @@ public class RoleCardInfoView extends View {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
+        scrollPane.setPadding(new Insets(-1));
         
         /** FlowPane that represents the individual cards */
         FlowPane cardsPane = new FlowPane();
@@ -74,6 +75,7 @@ public class RoleCardInfoView extends View {
             uiCards.add(uicard);
             cardsPane.getChildren().add(uicard);
         }
+
         /** Put the different cards in the scrollPane */
         scrollPane.setContent(cardsPane);
         
