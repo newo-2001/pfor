@@ -64,8 +64,6 @@ public class LobbyView extends View implements IObserver {
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
         root.getChildren().add(codeText);
-
-        scene = new Scene(root);
     }
 
     public void createPlayers() {
@@ -99,5 +97,10 @@ public class LobbyView extends View implements IObserver {
     @Override
     public void update() {
         createPlayers();
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

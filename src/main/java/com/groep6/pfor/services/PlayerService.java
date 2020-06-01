@@ -14,8 +14,8 @@ public class PlayerService extends Service {
 
     private static final String COLLECTION = "players";
 
-    public DocumentSnapshot get(String documentID) throws NoDocumentException {
-        DocumentSnapshot snapshot = null;
+    public Player get(String documentID) throws NoDocumentException {
+        Player playerObject = null;
 
         try {
             DocumentReference docRef = db.collection(COLLECTION).document(documentID);
@@ -23,9 +23,7 @@ public class PlayerService extends Service {
 
             DocumentSnapshot document = future.get();
             if (document.exists()) {
-                Player player = document.toObject(PlayerDTO.class).toModel();
-
-                System.out.println(player);
+                playerObject = document.toObject(PlayerDTO.class).toModel();
             } else {
                 throw new NoDocumentException();
             }
@@ -33,7 +31,7 @@ public class PlayerService extends Service {
             e.printStackTrace();
         }
 
-        return snapshot;
+        return playerObject;
     }
 
     public void create() {

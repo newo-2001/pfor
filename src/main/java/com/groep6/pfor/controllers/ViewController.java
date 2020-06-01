@@ -2,9 +2,13 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.View;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.border.Border;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +40,30 @@ public class ViewController {
      * @param view
      */
     public void showView(View view) {
+
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+        boolean isFullScreen = stage.isFullScreen();
+
         visitedViews.add(view);
-        Scene scene = view.getScene();
-        stage.setScene(scene);
+        Pane root = view.getRoot();
+
+        Scene scene = stage.getScene();
+
+        if (scene != null) {
+            scene.setRoot(root);
+        } else {
+            Scene newScene = new Scene(root);
+            stage.setScene(newScene);
+        }
+
+        if (isFullScreen) {
+            stage.setFullScreen(true);
+        } else {
+            stage.setWidth(width);
+            stage.setHeight(height);
+        }
+
         stage.show();
     }
 

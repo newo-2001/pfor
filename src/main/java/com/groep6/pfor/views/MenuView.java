@@ -23,13 +23,15 @@ public class MenuView extends View {
 
     private MenuController menuController;
 
+    private BorderPane root;
+
     public MenuView(MenuController controller) {
         menuController = controller;
         createView();
     }
 
     public void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         Text text = new UIBorderedText("Pandemic\nFall of Rome", "#ffce00", 1, "red");
 
@@ -58,8 +60,6 @@ public class MenuView extends View {
 
         root.setBackground(new Background(backgroundImage));
         root.setBottom(buttonBox);
-
-        scene = new Scene(root);
     }
 
     EventHandler<MouseEvent> goToHostView = new EventHandler<MouseEvent>() {
@@ -83,4 +83,9 @@ public class MenuView extends View {
             System.exit(0);
         }
     };
+
+    @Override
+    public Pane getRoot() {
+        return root;
+    }
 }

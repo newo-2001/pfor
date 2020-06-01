@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -24,6 +25,8 @@ import javafx.scene.text.Text;
  */
 public class MoveView extends View implements IObserver {
     private MoveController moveController;
+
+    private BorderPane root;
     
     /**
      * The constructor
@@ -40,7 +43,7 @@ public class MoveView extends View implements IObserver {
     
     public void createView() {
     	
-    	BorderPane root = new BorderPane();
+        root = new BorderPane();
     	
     	Text text = new Text("Hoeveel legioenen wil je meenemen?");
     	
@@ -71,9 +74,6 @@ public class MoveView extends View implements IObserver {
         
         BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
         root.setBottom(buttonBox);
-        
-        scene = new Scene(root);
-    	
 }
     
     EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {
@@ -116,5 +116,10 @@ public class MoveView extends View implements IObserver {
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

@@ -29,6 +29,8 @@ public class HandView extends View {
     /** The list of cards that the player has, as CardView's */
     private List<Card> cards = new ArrayList<>();
 
+    private BorderPane root;
+
     public HandView(HandController handController) {
         this.handController = handController;
         cards = handController.getCards();
@@ -37,7 +39,7 @@ public class HandView extends View {
     }
 
     private void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
@@ -74,7 +76,6 @@ public class HandView extends View {
 
         root.setCenter(scrollPane);
         root.setRight(buttonsPane);
-        scene = new Scene(root);
     }
 
     EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
@@ -83,4 +84,9 @@ public class HandView extends View {
             handController.goBack();
         }
     };
+
+    @Override
+    public Pane getRoot() {
+        return root;
+    }
 }

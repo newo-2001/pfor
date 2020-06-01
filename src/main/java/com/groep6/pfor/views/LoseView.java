@@ -23,6 +23,8 @@ public class LoseView extends View {
     /** The loseController */
     private LoseController loseController;
 
+    private BorderPane root;
+
     /**
      * The constructor
      * @param loseController The loseController
@@ -33,7 +35,7 @@ public class LoseView extends View {
     }
 
     private void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         Text loseText = new UIBorderedText("VERLOREN", "#ffce00", 1, "red");
         loseText.setFont(Font.font("Verdana", 60));
@@ -54,8 +56,6 @@ public class LoseView extends View {
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
         root.setBackground(new Background(backgroundImage));
-
-        scene = new Scene(root);
     }
 
     EventHandler<MouseEvent> goToMenuView = new EventHandler<MouseEvent>() {
@@ -64,4 +64,9 @@ public class LoseView extends View {
             loseController.goToMenuView();
         }
     };
+
+    @Override
+    public Pane getRoot() {
+        return root;
+    }
 }

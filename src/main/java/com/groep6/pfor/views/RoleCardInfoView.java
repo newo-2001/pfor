@@ -12,12 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 /**
@@ -28,6 +23,8 @@ public class RoleCardInfoView extends View {
 
     private RoleCardInfoController roleCardInfoController;
 
+    private BorderPane root;
+
     public RoleCardInfoView(RoleCardInfoController roleCardInfoController) {
         this.roleCardInfoController = roleCardInfoController;
         
@@ -35,7 +32,7 @@ public class RoleCardInfoView extends View {
     }
 
     public void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
@@ -65,7 +62,6 @@ public class RoleCardInfoView extends View {
 
         root.setCenter(scrollPane);
         root.setRight(buttonsPane);
-        scene = new Scene(root);
     }
 
         EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
@@ -74,5 +70,10 @@ public class RoleCardInfoView extends View {
                 roleCardInfoController.goBack();
             }
         };
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
+}
 

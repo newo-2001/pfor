@@ -7,13 +7,15 @@ import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.services.PlayerService;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Main extends Application {
-    private static final int WIDTH = 1080;
-    private static final int HEIGHT = 720;
+    private static final int MIN_WIDTH = 1080;
+    private static final int MIN_HEIGHT = 720;
 
     public static void main(String[] args) {
         launch();
@@ -27,8 +29,9 @@ public class Main extends Application {
         // Get ViewController instance and set primaryStage
         ViewController viewController = ViewController.getInstance();
         viewController.setPrimaryStage(primaryStage);
-        viewController.setWidth(WIDTH);
-        viewController.setHeight(HEIGHT);
+        primaryStage.setMinWidth(MIN_WIDTH);
+        primaryStage.setMinHeight(MIN_HEIGHT);
+        primaryStage.setFullScreen(true);
 
         // Set default view
         Lobby lobby = new Lobby("");

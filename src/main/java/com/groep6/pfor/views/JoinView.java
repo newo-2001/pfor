@@ -27,7 +27,8 @@ import javafx.scene.text.Text;
 public class JoinView extends View implements IObserver {
 
     private JoinController joinController;
-    
+
+    private StackPane root;
     private UITextField codeTextField;
     private UITextField usernameTextField;
     private UITextField passwordTextField;
@@ -35,7 +36,7 @@ public class JoinView extends View implements IObserver {
     public JoinView(JoinController joinController) {
         this.joinController = joinController;
         
-        StackPane root = new StackPane();
+        root = new StackPane();
         
         VBox form = new VBox();
      
@@ -76,7 +77,6 @@ public class JoinView extends View implements IObserver {
         form.setAlignment(Pos.CENTER);
         
         root.getChildren().addAll(form);
-        scene = new Scene(root);
     }
     
     EventHandler<MouseEvent> joinGame = new EventHandler<javafx.scene.input.MouseEvent>() {
@@ -105,5 +105,10 @@ public class JoinView extends View implements IObserver {
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

@@ -38,6 +38,7 @@ import javafx.scene.text.Text;
 public class BoardView extends View implements IObserver {
     
 	private BoardController boardController;
+	private BorderPane root;
 
     public BoardView(BoardController controller) {
         boardController = controller;
@@ -52,7 +53,7 @@ public class BoardView extends View implements IObserver {
      * 
      */
     public void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         // Top - players
         HBox playerList = createPlayerList();
@@ -70,8 +71,6 @@ public class BoardView extends View implements IObserver {
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();
         root.setRight(actionButtonLayout);
-        
-        scene = new Scene(root);
     }
 
     EventHandler<MouseEvent> goToTradeView = new EventHandler<MouseEvent>() {
@@ -214,5 +213,10 @@ public class BoardView extends View implements IObserver {
     @Override
     public void update() {
     	
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

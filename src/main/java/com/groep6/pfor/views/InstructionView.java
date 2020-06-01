@@ -1,6 +1,8 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.InstructionController;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 /**
  * The view where the game's instructions are shown
@@ -9,6 +11,7 @@ import com.groep6.pfor.controllers.InstructionController;
 public class InstructionView extends View {
     /** The instructionController */
     private InstructionController instructionController;
+    private BorderPane root;
 
     /**
      * The constructor
@@ -16,5 +19,12 @@ public class InstructionView extends View {
      */
     public InstructionView(InstructionController instructionController) {
         this.instructionController = instructionController;
+
+        root = new BorderPane();
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

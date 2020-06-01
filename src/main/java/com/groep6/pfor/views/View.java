@@ -2,6 +2,9 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.util.IObserver;
 import javafx.scene.Scene;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -14,4 +17,6 @@ public abstract class View {
     public Scene getScene() {
         return scene;
     }
+
+    public abstract Pane getRoot();
 }

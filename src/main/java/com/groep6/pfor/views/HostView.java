@@ -24,13 +24,14 @@ public class HostView extends View implements IObserver {
 
     private HostController hostController;
 
+    private StackPane root;
     private UITextField usernameTextField;
     private UITextField passwordTextField;
 
     public HostView(HostController hostController) {
         this.hostController = hostController;
 
-        StackPane root = new StackPane();
+        root = new StackPane();
 
         VBox form = new VBox();
 
@@ -69,7 +70,6 @@ public class HostView extends View implements IObserver {
         form.setAlignment(Pos.CENTER);
 
         root.getChildren().add(form);
-        scene = new Scene(root);
     }
 
     /**
@@ -100,5 +100,10 @@ public class HostView extends View implements IObserver {
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }
