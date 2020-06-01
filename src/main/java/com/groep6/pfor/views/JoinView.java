@@ -9,6 +9,7 @@ import com.groep6.pfor.views.components.UITextField;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +17,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -38,7 +40,7 @@ public class JoinView extends View implements IObserver {
     public JoinView(JoinController joinController) {
         this.joinController = joinController;
         
-        Pane root = new Pane();
+        StackPane root = new StackPane();
         
         VBox form = new VBox();
         
@@ -60,7 +62,8 @@ public class JoinView extends View implements IObserver {
         form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, joinGameButton);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        form.setPadding(new Insets(50));
+        form.setPadding(new Insets(400));
+        form.setAlignment(Pos.CENTER);
         
         root.getChildren().add(form);
         scene = new Scene(root);
