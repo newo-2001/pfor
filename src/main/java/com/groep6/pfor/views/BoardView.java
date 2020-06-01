@@ -1,6 +1,7 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
+import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.controllers.RecruitBarbarianController;
 import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
@@ -121,7 +122,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToHandView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+            new HandController();
         }
     };
     
