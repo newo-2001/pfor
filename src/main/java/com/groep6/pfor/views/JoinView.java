@@ -13,11 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -53,8 +49,12 @@ public class JoinView extends View implements IObserver {
         usernameTextField.getLabel().setTextFill(Color.WHITE);
         passwordTextField = new UIPasswordField("Password");
         passwordTextField.getLabel().setTextFill(Color.WHITE);
+
+        HBox buttonBox = new HBox();
+        buttonBox.setPadding(new Insets(5, 0, 0, 0));
+        buttonBox.setSpacing(10);
         
-        Button joinGameButton = new UIButton("Host Game");
+        Button joinGameButton = new UIButton("Join Game");
         joinGameButton.setPadding(new Insets(10));
         joinGameButton.setMinWidth(100);
         joinGameButton.setMaxWidth(100);
@@ -66,8 +66,10 @@ public class JoinView extends View implements IObserver {
         goBackButton.setMaxWidth(100);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+
+        buttonBox.getChildren().addAll(joinGameButton, goBackButton);
      
-        form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, joinGameButton, goBackButton);
+        form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, buttonBox);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         form.setPadding(new Insets(400));

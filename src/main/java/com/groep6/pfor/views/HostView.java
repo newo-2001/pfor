@@ -43,6 +43,10 @@ public class HostView extends View implements IObserver {
         passwordTextField = new UIPasswordField("Password");
         passwordTextField.getLabel().setTextFill(Color.WHITE);
 
+        HBox buttonBox = new HBox();
+        buttonBox.setPadding(new Insets(5, 0, 0, 0));
+        buttonBox.setSpacing(20);
+
         Button hostGameButton = new UIButton("Host Game");
         hostGameButton.setPadding(new Insets(10));
         hostGameButton.setMinWidth(100);
@@ -56,7 +60,9 @@ public class HostView extends View implements IObserver {
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
-        form.getChildren().addAll(text, usernameTextField, passwordTextField, hostGameButton, goBackButton);
+        buttonBox.getChildren().addAll(hostGameButton, goBackButton);
+
+        form.getChildren().addAll(text, usernameTextField, passwordTextField, buttonBox);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         form.setPadding(new Insets(400));
