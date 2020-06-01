@@ -8,16 +8,16 @@ import com.groep6.pfor.views.*;
  */
 public class MenuController extends Controller {
 
-    public void buttonClicked() {
-        viewController.showView(new BoardView());
+    public MenuController() {
+        viewController.showView(new MenuView(this));
     }
 
     public void goToHostView() {
-        viewController.showView(new HostView());
+        new HostController();
     }
 
     public void goToJoinView() {
-        viewController.showView(new JoinView());
+        new JoinController();
     }
 
     @Override

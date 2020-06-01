@@ -2,6 +2,7 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.views.MoveView;
 
 /**
  * @author Nils van der Velden
@@ -9,10 +10,10 @@ import com.groep6.pfor.util.IObserver;
 
 public class MoveController extends Controller {
 	
-	private Game game;
+	private Game game = Game.getInstance();
 	
     public MoveController() {
-    	game = Game.getInstance();
+    	viewController.showView(new MoveView(this));
     };
     
     public int takeZero() {

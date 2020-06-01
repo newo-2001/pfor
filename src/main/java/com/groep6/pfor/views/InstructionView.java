@@ -6,7 +6,7 @@ import com.groep6.pfor.controllers.InstructionController;
  * The view where the game's instructions are shown
  * @author Mathijs
  */
-public class InstructionView {
+public class InstructionView extends View {
     /** The instructionController */
     private InstructionController instructionController;
 

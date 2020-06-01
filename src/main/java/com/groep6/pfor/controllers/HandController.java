@@ -5,6 +5,7 @@ import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.views.HandView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class HandController extends Controller {
         localPlayer.getHand().addCards(new CityCard("Card 5", new City("City 1", false, new Vector2f(), factions, neighboringCigies), Faction.ANGLO_SAXSONS_FRANKS));
         localPlayer.getHand().addCards(new CityCard("Card 6", new City("City 1", false, new Vector2f(), factions, neighboringCigies), Faction.ANGLO_SAXSONS_FRANKS));
         localPlayer.getHand().addCards(new CityCard("Card 7", new City("City 1", false, new Vector2f(), factions, neighboringCigies), Faction.ANGLO_SAXSONS_FRANKS));
+
+        viewController.showView(new HandView(this));
     }
 
     public List<Card> getCards() {

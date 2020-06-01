@@ -26,9 +26,10 @@ import javafx.scene.text.Text;
 
 public class RecruitBarbarianView extends View implements IObserver {
     /** The recruitLegionController */
-    private RecruitBarbarianController recruitBarbarianController = new RecruitBarbarianController();
+    private RecruitBarbarianController recruitBarbarianController;
     
-    public RecruitBarbarianView() {
+    public RecruitBarbarianView(RecruitBarbarianController recruitBarbarianController) {
+        this.recruitBarbarianController = recruitBarbarianController;
 	    recruitBarbarianController.registerObserver(this);
 	    
 	    createView();

@@ -24,14 +24,13 @@ import java.util.List;
  * @author Bastiaan Jansen
  */
 public class HandView extends View {
-    /** The handController */
     private HandController handController;
 
     /** The list of cards that the player has, as CardView's */
     private List<Card> cards = new ArrayList<>();
 
-    public HandView() {
-        handController = new HandController();
+    public HandView(HandController handController) {
+        this.handController = handController;
         cards = handController.getCards();
 
         createView();

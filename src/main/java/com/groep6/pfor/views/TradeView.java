@@ -7,7 +7,7 @@ import com.groep6.pfor.util.IObserver;
  * The view where you can trade cards with the trade deck
  * @author Mathijs
  */
-public class TradeView implements IObserver {
+public class TradeView extends View implements IObserver {
     /** The tradeController */
     private TradeController tradeController;
 

@@ -24,14 +24,10 @@ import javafx.scene.text.Text;
 
 public class RecruitLegionView extends View implements IObserver {
     /** The recruitLegionController */
-    private RecruitLegionController recruitLegionController = new RecruitLegionController();
-
-    /**
-     * The constructor
-     * @param stage
-     */
+    private RecruitLegionController recruitLegionController;
     
-    public RecruitLegionView() {    	
+    public RecruitLegionView(RecruitLegionController recruitLegionController) {
+        this.recruitLegionController = recruitLegionController;
     	recruitLegionController.registerObserver(this);
     	
         createView();

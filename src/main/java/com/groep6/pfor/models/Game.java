@@ -57,6 +57,14 @@ public class Game extends Observable {
         return players;
     }
 
+    public Player getPlayerTurn() {
+        for (Player player: players) {
+            if (player.isTurn()) return player;
+        }
+
+        return null;
+    }
+
     /**
      * @return player with current turn
      */

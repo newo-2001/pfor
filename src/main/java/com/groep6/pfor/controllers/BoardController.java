@@ -15,18 +15,14 @@ import java.util.List;
  */
 public class BoardController extends Controller {
 
-    private Game game;
+    private Game game = Game.getInstance();
 
     public BoardController() {
-        game = Game.getInstance();
+        viewController.showView(new BoardView(this));
     };
 
-    public void goToMenu() {
-        viewController.showView(new MenuView());
-    }
-
     public void goToHand() {
-        viewController.showView(new HandView());
+        new HandController();
     }
 
     public void increaseDecayLevel() {

@@ -21,14 +21,15 @@ import javax.swing.*;
  */
 public class WinView extends View {
     /** The winController */
-    private WinController winController = new WinController();
+    private WinController winController;
     /** The scene */
     private Scene scene;
 
     /**
      * The constructor
      */
-    public WinView() {
+    public WinView(WinController winController) {
+        this.winController = winController;
         createView();
     }
 

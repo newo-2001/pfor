@@ -40,7 +40,7 @@ public class Lobby {
      * @param username
      * @return new instance of LobbyPlayer
      */
-    public LobbyPlayer join(String username, String password) throws IncorrentPasswordException {
+    public LobbyPlayer join(String code, String username, String password) throws IncorrentPasswordException {
         if (!validatePassword(password)) throw new IncorrentPasswordException();
 
         boolean isHost = false;

@@ -2,13 +2,14 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.views.RecruitBarbarianView;
 
 public class RecruitBarbarianController extends Controller {
 	
-	private Game game;
+	private Game game = Game.getInstance();
 	
     public RecruitBarbarianController() {
-    	game = Game.getInstance();
+    	viewController.showView(new RecruitBarbarianView(this));
     };
     
     public int oneClicked() {

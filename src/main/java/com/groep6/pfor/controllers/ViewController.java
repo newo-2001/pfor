@@ -20,7 +20,9 @@ public class ViewController {
     private List<View> visitedViews = new ArrayList<>();
     private Stage stage;
 
-    private ViewController() {}
+    private ViewController() {
+        
+    }
 
     /**
      * @param stage

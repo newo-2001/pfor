@@ -31,9 +31,10 @@ import javafx.scene.text.Text;
  */
 public class BoardView extends View implements IObserver {
     
-	private BoardController boardController = new BoardController();
+	private BoardController boardController;
 
-    public BoardView() {
+    public BoardView(BoardController controller) {
+        boardController = controller;
         boardController.registerObserver(this);
         createView();
         update();
