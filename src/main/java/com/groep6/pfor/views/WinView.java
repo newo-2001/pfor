@@ -1,7 +1,6 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.WinController;
-import com.groep6.pfor.views.components.UIBorderedText;
 import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -28,7 +27,6 @@ public class WinView extends View {
 
     /**
      * The constructor
-     * @param winController The controller of the view
      */
     public WinView() {
         createView();
@@ -38,11 +36,12 @@ public class WinView extends View {
     /**
      * Create and fill the view with text and a background image
      */
-    private void createView() {
+    public void createView() {
         BorderPane root = new BorderPane();
 
-        Text winText = new UIBorderedText("GEWONNEN", "#ffce00", 1, "red");
+        Text winText = new Text("GEWONNEN");
         winText.setFont(Font.font("Verdana", 60));
+        winText.setStyle("-fx-fill: red; -fx-stroke: #ffce00; -fx-stroke-width: 1px; -fx-font-weight: bold");
         root.setCenter(winText);
 
         // TODO inladen achtergrond
