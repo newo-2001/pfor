@@ -1,6 +1,7 @@
 package com.groep6.pfor;
 
 import com.groep6.pfor.controllers.BoardController;
+import com.groep6.pfor.controllers.JoinController;
 import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.Board;
