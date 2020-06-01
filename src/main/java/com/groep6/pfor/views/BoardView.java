@@ -1,6 +1,7 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BoardController;
+import com.groep6.pfor.controllers.RecruitBarbarianController;
 import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
@@ -99,7 +100,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToRecruitBarbarianView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+            new RecruitBarbarianController();
         }
     };
     
@@ -165,7 +166,7 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(allianceButton, 0, 2);
         
         Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
-        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
+        recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
         
         Button buildButton = new ActionButton("FORT BOUWEN");
