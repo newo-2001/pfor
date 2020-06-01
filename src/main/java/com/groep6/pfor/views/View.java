@@ -14,9 +14,5 @@ public abstract class View {
 
     protected Scene scene;
 
-    public Scene getScene() {
-        return scene;
-    }
-
     public abstract Pane getRoot();
 }
