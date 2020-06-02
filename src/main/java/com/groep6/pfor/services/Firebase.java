@@ -24,6 +24,9 @@ import java.util.concurrent.ExecutionException;
 public class Firebase {
     private static Firestore db;
 
+    /**
+     * Initialize the Firebase link and create a connection to the server
+     */
     public static void initialize() {
         try {
             InputStream serviceAccount = new FileInputStream("src/main/java/ServiceAccountKey.json");
@@ -154,6 +157,11 @@ public class Firebase {
         return query(query)[0];
     }
 
+    /**
+     * Register a listener on a firebase path to be notified when something changes on the remote server
+     * @param path The path to listen on for changes
+     * @param listener The callback for when something happened
+     */
     protected static void registerListener(String path, EventListener<DocumentSnapshot> listener) {
         docRefFromPath(path).addSnapshotListener(listener);
     }
