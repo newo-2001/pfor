@@ -7,6 +7,7 @@ import com.groep6.pfor.models.Faction;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Legion;
 import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.BattleView;
 
@@ -40,7 +41,7 @@ public class BattleController extends Controller {
 	 */
 	public void getCityData() {
 		for (int i = 0; i < 3; i++)
-			barbarians.push(new Barbarian(Faction.ANGLO_SAXSONS_FRANKS));
+			barbarians.push(new Barbarian(FactionType.ANGLO_SAXSONS_FRANKS));
 			legions.push(new Legion());
 	}
 
