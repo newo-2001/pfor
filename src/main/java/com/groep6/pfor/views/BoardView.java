@@ -87,7 +87,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToBattleView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            new BattleController();
+        	boardController.goToBattleView();
         }
     };
     
