@@ -142,7 +142,9 @@ public class City extends Tile {
      */
 	
 	public Legion removeLegion() {
-		return legions.remove(0);
+		if (!legions.empty())
+			return legions.remove(0);
+		return null;
 	}
 	
     /**

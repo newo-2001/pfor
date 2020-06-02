@@ -8,35 +8,35 @@ package com.groep6.pfor.models;
 public enum DiceFace {
 	BARBARIAN {
 		@Override
-		public void execute() {
-			
+		public void execute(City city) {
+			city.removeBarbarian();
 		}
 	},
 	LEGION {
 		@Override
-		public void execute() {
+		public void execute(City city) {
 			
 		}
 	},
 	BOTH {
 		@Override
-		public void execute() {
+		public void execute(City city) {
 			
 		}
 	},
 	TWO_BARBARIAN_LEGION {
 		@Override
-		public void execute() {
+		public void execute(City city) {
 			
 		}
 	},
 	SPECIAL {
 		@Override
-		public void execute() {
+		public void execute(City city) {
 			
 		}
 	};
 	
-	public abstract void execute();
+	public abstract void execute(City city);
 	
 }
