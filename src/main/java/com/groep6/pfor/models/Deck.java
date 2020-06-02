@@ -2,6 +2,8 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.models.cards.Card;
 
+import com.groep6.pfor.util.Observable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,8 +12,9 @@ import java.util.List;
 /**
  * Represents a Deck with cards
  * @author Bastiaan
+ * @author Nils van der Velden
  */
-public class Deck {
+public class Deck extends Observable{
 
     private List<Card> cards = new ArrayList<>();
 
@@ -32,6 +35,14 @@ public class Deck {
     
     public List<Card> getCards() {
         return cards;
+    }
+    
+    public Card removeCard(Card card) {
+        int index = cards.indexOf(card);
+        Card removedCard = cards.get(index);
+        cards.remove(card);
+        notifyObservers();
+        return removedCard;
     }
 
     /**
