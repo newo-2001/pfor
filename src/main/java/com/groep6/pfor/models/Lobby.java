@@ -3,6 +3,7 @@ package com.groep6.pfor.models;
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -21,6 +22,7 @@ public class Lobby extends Observable implements IObserver {
     private String code;
     private String passwordHash;
     private List<LobbyPlayer> players = new ArrayList<>();
+    private LobbyService lobbyService = new LobbyService();
 
     /**
      * @param password
@@ -28,6 +30,7 @@ public class Lobby extends Observable implements IObserver {
     public Lobby(String password) {
         this.code = generateCode();
         this.passwordHash = password;
+        lobbyService.registerObserver(this);
     }
 
     /**
@@ -41,6 +44,8 @@ public class Lobby extends Observable implements IObserver {
         this.code = code;
         this.passwordHash = passwordHash;
         this.players = Arrays.asList(players);
+
+        lobbyService.registerObserver(this);
     }
 
     /**
@@ -176,6 +181,8 @@ public class Lobby extends Observable implements IObserver {
 
     @Override
     public void update(Object... data) {
+        System.out.println(data);
+
         notifyObservers();
     }
 }
