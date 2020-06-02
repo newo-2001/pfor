@@ -1,0 +1,25 @@
+* {
+    -mdfx-font-color: #0e0e0e;
+    -mdfx-border-color-1: #888;
+}
+
+.markdown-heading-1 {
+    -fx-font-size: 40px;
+}
+.markdown-heading-2 {
+    -fx-font-size: 35px;
+}
+.markdown-heading-3 {
+    -fx-font-size: 30px;
+}
+
+.markdown-text {
+    -fx-font-family: 'Monotype Corsiva';
+    -fx-font-size: 25px;
+}
+.markdown-italic {
+    -fx-font-style: italic;
+}
+.markdown-bold {
+    -fx-font-weight: bold;
+}
