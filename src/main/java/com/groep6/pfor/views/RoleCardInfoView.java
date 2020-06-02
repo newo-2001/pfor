@@ -1,23 +1,19 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.RoleCardInfoController;
-import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
-
 import com.groep6.pfor.views.components.UIRoleCard;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
