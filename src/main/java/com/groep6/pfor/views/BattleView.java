@@ -49,16 +49,19 @@ public class BattleView extends View implements IObserver {
         update();
     }
     
+    /**
+     * Create the post battle screen. Displays amount of legions died, and amount of barbarians died.
+     */
     public void createView() {
     	root = new BorderPane();
     	VBox log = new VBox();
     	
-    	Text legionsLost = new Text(battleResult[0] + " Legions were killed");
+    	Text legionsLost = new Text(battleResult[0] + " Legioenen zijn gesneuveld");
         legionsLost.setFont(Font.font("verdana", FontWeight.NORMAL,
         		FontPosture.REGULAR, 32));
         legionsLost.setFill(Color.WHITE);
         
-    	Text barbariansLost = new Text(battleResult[1] + " Barbarians were killed");
+    	Text barbariansLost = new Text(battleResult[1] + " Barbaren zijn gesneuveld");
         barbariansLost.setFont(Font.font("verdana", FontWeight.NORMAL,
         		FontPosture.REGULAR, 32));
         barbariansLost.setFill(Color.WHITE);
@@ -74,7 +77,7 @@ public class BattleView extends View implements IObserver {
     	log.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
     	log.setAlignment(Pos.CENTER);
     	log.setSpacing(24);
-    	BorderPane.setMargin(log, new Insets(400, 750, 400, 750));
+    	root.setPadding(new Insets(400, 750, 400, 750));
         BackgroundImage postBattle = new BackgroundImage(new Image("images/battle_result_image.jpg"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(100, 100, true, true, true, true));
