@@ -31,7 +31,7 @@ public class BattleController extends Controller {
 //		Game game = Game.getInstance();
 //		Player player = game.getPlayerTurn();
 //		int[] battleResult = player.battle();
-		int[] battleResult = {2, 3};
+		int[] battleResult = {2, 3};					// TEMP
 		viewController.showView(new BattleView(this, battleResult));
 	}
 
