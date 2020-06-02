@@ -5,6 +5,8 @@ import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.models.cards.EventCard;
+import com.groep6.pfor.models.cards.actions.eventActions.FestinaLenteAction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
@@ -26,7 +28,7 @@ public class HandController extends Controller {
         localPlayer.getHand().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factions), Faction.ANGLO_SAXSONS_FRANKS));
         localPlayer.getHand().addCards(new CityCard("Card 5", new City("City 1", false, new Vector2f(), factions), Faction.ANGLO_SAXSONS_FRANKS));
         localPlayer.getHand().addCards(new CityCard("Card 6", new City("City 1", false, new Vector2f(), factions), Faction.ANGLO_SAXSONS_FRANKS));
-        localPlayer.getHand().addCards(new CityCard("Card 7", new City("City 1", false, new Vector2f(), factions), Faction.ANGLO_SAXSONS_FRANKS));
+        localPlayer.getHand().addCards(new EventCard("Event Card 1", new FestinaLenteAction()));
 
         viewController.showView(new HandView(this));
     }
