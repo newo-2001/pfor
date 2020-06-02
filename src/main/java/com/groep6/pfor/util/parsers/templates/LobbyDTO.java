@@ -40,7 +40,7 @@ public class LobbyDTO extends DTO {
      */
     public Lobby toModel() {
         LobbyPlayer[] players = new LobbyPlayer[this.players.size()];
-        for (int i = 0; i < this.players.size(); i++) players[i] = this.players.get(i).toModel();
+        for (int i = 0; i < this.players.size(); i++) players[i] = this.players.get(i).toModel(code);
         return new Lobby(code, password, players);
     }
 

@@ -20,20 +20,16 @@ public class LobbyPlayerDTO extends DTO {
     /** Whether this player is the host of lobby */
     public boolean host;
 
-    /** Which lobby this player belongs to */
-    public String lobby;
-
     /**
      * Make A Data Transfer Object with the specified fields
      * @param username The username of the player
      * @param role The role of the player
      * @param host Whether the player is the host of the lobby
      */
-    private LobbyPlayerDTO(String username, String role, boolean host, String lobby) {
+    private LobbyPlayerDTO(String username, String role, boolean host) {
         this.username = username;
         this.role = role;
         this.host = host;
-        this.lobby = lobby;
     }
 
     /**
@@ -48,7 +44,7 @@ public class LobbyPlayerDTO extends DTO {
      * Converts this Data Transfer Object to the model it represents
      * @return The model this DTO represents
      */
-    public LobbyPlayer toModel() {
+    public LobbyPlayer toModel(String lobby) {
         return new LobbyPlayer(username, getRoleCard(), host, false, lobby);
     }
 
@@ -58,6 +54,6 @@ public class LobbyPlayerDTO extends DTO {
      * @return The DTO of the model
      */
     public static LobbyPlayerDTO fromModel(LobbyPlayer player) {
-        return new LobbyPlayerDTO(player.getUsername(), player.getRoleCard().getName(), player.isHost(), player.getLobby());
+        return new LobbyPlayerDTO(player.getUsername(), player.getRoleCard().getName(), player.isHost());
     }
 }
