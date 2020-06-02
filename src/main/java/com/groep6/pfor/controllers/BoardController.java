@@ -20,6 +20,10 @@ public class BoardController extends Controller {
     public BoardController() {
         viewController.showView(new BoardView(this));
     };
+    
+    public void goToBattleView() {
+    	new BattleController();
+    }
 
     public void goToHand() {
         new HandController();
