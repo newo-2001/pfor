@@ -80,11 +80,13 @@ public class HandView extends View {
 
         Button discardCardButton = new UIButton("Kaart afleggen");
         discardCardButton.setPrefWidth(150);
+        discardCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, discardCard);
 
         Button playCardButton = new UIButton("Speel kaart");
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
-
+        playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
+        
         Button goBackButton = new UIButton("Ga terug");
         goBackButton.setPrefWidth(150);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -96,14 +98,30 @@ public class HandView extends View {
         root.setCenter(scrollPane);
         root.setRight(buttonsPane);
     }
-
+    
+    /** Event handler for the back button */
     EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-            handController.goBack();
+        	handController.goBack();
         }
     };
     
+    
+    EventHandler<javafx.scene.input.MouseEvent> discardCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            handController.removeSelectedCard();
+        }
+    };
+    
+    EventHandler<javafx.scene.input.MouseEvent> playCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            //handController.playCard(card);
+        }
+    };
+
     // Select a card
     EventHandler<javafx.scene.input.MouseEvent> selectCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
@@ -120,9 +138,11 @@ public class HandView extends View {
             card.deselect();
         }
     }
+    
 
     @Override
     public Pane getRoot() {
         return root;
     }
 }
+

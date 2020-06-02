@@ -52,10 +52,5 @@ public class Hand extends Observable {
     public Card getCard(int index) {
         return cards.get(index);
     }
-    
-    public void setCard(Card card) {
-        this.card = card;
-        notifyObservers();
-    }
 }
 
