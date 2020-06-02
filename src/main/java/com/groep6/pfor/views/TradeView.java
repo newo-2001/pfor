@@ -72,12 +72,13 @@ public class TradeView extends View implements IObserver {
         buttonsPane.setAlignment(Pos.CENTER);
         buttonsPane.setPadding(new Insets(50, 50, 50, 50));
         
-        withdrawButton = new UIButton("Kaart afleggen");
+        withdrawButton = new UIButton("Kaart opnemen");
         withdrawButton.setDisable(true);
         withdrawButton.setPrefWidth(150);
         withdrawButton.addEventFilter(MouseEvent.MOUSE_CLICKED, withdrawCard);
         
-        depositeButton = new UIButton("Kaart opnemen");
+        depositeButton = new UIButton("Kaart afleggen");
+        depositeButton.setDisable(false);
         depositeButton.setPrefWidth(150);
         depositeButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         depositeButton.addEventFilter(MouseEvent.MOUSE_CLICKED, depositeCard);
@@ -129,6 +130,7 @@ public class TradeView extends View implements IObserver {
             UICard source = (UICard) e.getSource();
             source.select();
             tradeController.selectCard(source.getCard());
+            withdrawButton.setDisable(false);
         }
     };
 
@@ -155,11 +157,10 @@ public class TradeView extends View implements IObserver {
     EventHandler<javafx.scene.input.MouseEvent> withdrawCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-            tradeController.goBack();
+            tradeController.withdrawCard();
         }
     };
         
-    
 
 	@Override
 	public void update(Object... data) {

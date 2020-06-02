@@ -17,6 +17,7 @@ public class ActionButton extends UIButton {
 		setPrefSize(150, 60);
 		setBackground(new Background(new BackgroundFill(Color.web("#ef4140"), CornerRadii.EMPTY, Insets.EMPTY)));
 		setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setWrapText(true);
 	}
 
 }

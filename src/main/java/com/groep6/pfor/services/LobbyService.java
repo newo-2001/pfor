@@ -20,13 +20,26 @@ import javax.annotation.Nullable;
  */
 public class LobbyService extends Observable {
     /**
+     * Obtain the list of players in a lobby
+     * @param code The code of the lobby
+     * @return The list of players in that lobby
+     */
+    public LobbyPlayer[] getPlayers(String code) {
+        DocumentSnapshot[] docs = Firebase.requestCollection("lobbies/" + code + "/players");
+        LobbyPlayer[] players = new LobbyPlayer[docs.length];
+        for (int i = 0; i < docs.length; i++) players[i] = docs[i].toObject(LobbyPlayerDTO.class).toModel(code);
+        return players;
+    }
+
+    /**
      * Obtain a lobby using its lobby code
      * @param code The lobby code of the requested lobby
      * @return The lobby that has that code
      * @throws NoDocumentException If the query had no results
      */
     public Lobby get(String code) throws NoDocumentException {
-        return Firebase.requestDocument("lobbies/" + code).toObject(LobbyDTO.class).toModel();
+        LobbyPlayer[] players = getPlayers(code);
+        return Firebase.requestDocument("lobbies/" + code).toObject(LobbyDTO.class).toModel(players);
     }
 
     /**
@@ -35,13 +48,14 @@ public class LobbyService extends Observable {
      */
     public void create(Lobby lobby) {
         Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
+        Firebase.addDocument("lobbies/" + lobby.getCode() + "/players", LobbyPlayerDTO.fromModel(lobby.getPlayers().get(0)));
         Firebase.registerListener("lobbies/" + lobby.getCode(), new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
                 if (e != null) e.printStackTrace();
                 else {
-                    Lobby lobby = documentSnapshot.toObject(LobbyDTO.class).toModel();
-                    notifyObservers(lobby);
+                    LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
+                    notifyObservers(dto.toModel(getPlayers(dto.code)));
                 }
             }
         });
@@ -52,7 +66,7 @@ public class LobbyService extends Observable {
      * @param player The player in question
      */
     public void join(LobbyPlayer player) {
-        Firebase.addDocument("lobbies/" + player.getLobby(), LobbyPlayerDTO.fromModel(player));
+        Firebase.addDocument("lobbies/" + player.getLobby() + "/players", LobbyPlayerDTO.fromModel(player));
     }
 
     /**
@@ -86,6 +100,6 @@ public class LobbyService extends Observable {
      * @return A partial query that can be extended
      */
     private Query getPlayerQuery(LobbyPlayer player) {
-        return Firebase.collRefFromPath("lobbies/" + player.getLobby() + "/players").whereEqualTo("username", player.getUsername());
+        return Firebase.collRefFromPath("lobbies/" + player.getLobby() + "/players");//.whereEqualTo("username", player.getUsername());
     }
 }

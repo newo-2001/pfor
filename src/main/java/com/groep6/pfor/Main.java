@@ -30,9 +30,9 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
 
         // Start game music
-        MediaController.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.1, true);
+        MediaController.getInstance().addToQueue("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");
 
         // Set default view
-        new BoardController();
+        new MenuController();
     }
 }
