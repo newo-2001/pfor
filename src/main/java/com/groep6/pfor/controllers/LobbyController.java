@@ -35,6 +35,10 @@ public class LobbyController extends Controller {
         new MenuController();
     }
 
+    public void startGame() {
+
+    }
+
     @Override
     public void registerObserver(IObserver view) {
         lobby.registerObserver(view);

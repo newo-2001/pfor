@@ -19,6 +19,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import java.util.List;
+
+import java.util.ArrayList;
 
 /**
  * The view that show's the lobby with players, before the game is started
@@ -26,9 +29,13 @@ import javafx.scene.text.Text;
  */
 public class LobbyView extends View implements IObserver {
 
+    private static final int MIN_PLAYERS = 3;
+
     private LobbyController lobbyController;
 
     private BorderPane root;
+    private Button startGameButton;
+    private List<LobbyPlayer> players;
 
     public LobbyView(LobbyController controller) {
         lobbyController = controller;
@@ -54,7 +61,9 @@ public class LobbyView extends View implements IObserver {
         bottomButtomBox.setAlignment(Pos.CENTER);
         BorderPane.setMargin(bottomButtomBox, new Insets(12,12,100,12));
 
-        Button startGameButton = new UIButton("Start Spel");
+        startGameButton = new UIButton("Start Spel");
+        startGameButton.setDisable(true);
+        startGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startGame);
 
         Button goBackButton = new UIButton("Terug");
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -75,8 +84,11 @@ public class LobbyView extends View implements IObserver {
         playerContainer.setVgap(50);
         playerContainer.setAlignment(Pos.CENTER);
 
-        for (LobbyPlayer player: lobbyController.getLobbyPlayers()) {
-            UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(1, player.getUsername(), player.getRoleCard());
+        players = lobbyController.getLobbyPlayers();
+
+        for (int i = 0; i < players.size(); i++) {
+            LobbyPlayer player = players.get(i);
+            UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(++i, player.getUsername(), player.getRoleCard());
             playerContainer.getChildren().add(uiLobbyPlayerInfo);
         }
 
@@ -99,9 +111,21 @@ public class LobbyView extends View implements IObserver {
         }
     };
 
+    EventHandler<javafx.scene.input.MouseEvent> startGame = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+
+            lobbyController.startGame();
+
+        }
+    };
+
     @Override
     public void update() {
         createPlayers();
+
+        if (players.size() >= MIN_PLAYERS) startGameButton.setDisable(false);
+        else startGameButton.setDisable(true);
     }
 
     @Override
