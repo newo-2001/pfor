@@ -25,7 +25,9 @@ public class UICityCard extends UICard {
         setCenter(nameText);
 
         HBox factionBox = new HBox();
+        UIText factionText = new UIText("Faction: ");
 
+        factionBox.getChildren().addAll(factionText);
 
         setBottom(factionBox);
     }

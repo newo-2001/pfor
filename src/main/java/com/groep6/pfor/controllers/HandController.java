@@ -6,6 +6,7 @@ import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
 import com.groep6.pfor.models.cards.actions.eventActions.FestinaLenteAction;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
@@ -20,7 +21,7 @@ public class HandController extends Controller {
     public HandController() {
         game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true)));
         Player localPlayer = game.getLocalPlayer();
-        FactionType[] factionTypes = new FactionType[] {};
+        Faction[] factionTypes = new Faction[] {};
         localPlayer.getHand().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factionTypes), FactionType.ANGLO_SAXSONS_FRANKS));
         localPlayer.getHand().addCards(new CityCard("Card 2", new City("City 1", false, new Vector2f(), factionTypes), FactionType.ANGLO_SAXSONS_FRANKS));
         localPlayer.getHand().addCards(new CityCard("Card 3", new City("City 1", false, new Vector2f(), factionTypes), FactionType.ANGLO_SAXSONS_FRANKS));
