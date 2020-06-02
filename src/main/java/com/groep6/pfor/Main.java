@@ -33,6 +33,7 @@ public class Main extends Application {
         MediaController.getInstance().addToQueue("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");
 
         // Set default view
-        new BoardController();
+        new MenuController();
+        //new BoardController();
     }
 }

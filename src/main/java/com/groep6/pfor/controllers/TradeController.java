@@ -57,8 +57,7 @@ public class TradeController extends Controller {
     public void withdrawCard() {
     	System.out.println("Kaart is verwijderd");
         game.getTradeDeck().removeCard(selectedCard);
-        
-    	System.out.println(game.getTradeDeck());
-    	
+        game.getLocalPlayer().getHand().addCards(selectedCard);
+    	System.out.println(game.getTradeDeck());	
     }
 }
