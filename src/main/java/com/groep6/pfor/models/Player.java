@@ -74,18 +74,24 @@ public class Player {
     // Actions
     
     public void battle() {
+    	
     	Dice dice = new Dice();
-    	Stack<Legion> legions = city.getLegions();
+    	Stack<Legion> legionsBefore = city.getLegions();
+    	Stack<Barbarian> barbariansBefore = city.getBarbarians();
     	int diceAmount = 3;
     	
     	// Decide amount of dice to roll.
-    	if (legions.size() < 3 && !legions.empty()) {
-    		diceAmount = legions.size();
+    	if (legionsBefore.size() < 3 && !legionsBefore.empty()) {
+    		diceAmount = legionsBefore.size();
     	}
     	
     	for (int i = 0; i < diceAmount; i++) {
     		dice.roll(city);
     	}
+    	
+    	int legionsLost = legionsBefore.size() - city.getLegions().size();
+    	int barbariansLost = barbariansBefore.size() - city.getBarbarians().size();
+    	
     }
     
     
