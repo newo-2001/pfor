@@ -24,7 +24,7 @@ public class MediaController extends Controller {
 	public static void play(String filePath, boolean repeat) {
 		Media sound = new Media(Paths.get(filePath).toUri().toString());
 		mp = new MediaPlayer(sound);
-		mp.setVolume(0.3);
+		mp.setVolume(0.1);
 
 		if (repeat) {
 			mp.setOnEndOfMedia(new Runnable() {
