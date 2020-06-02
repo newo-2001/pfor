@@ -1,14 +1,21 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.InstructionController;
-import com.groep6.pfor.views.components.UIText;
+import com.groep6.pfor.views.components.UIButton;
+import com.sandec.mdfx.MDFXNode;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextFlow;
+
+import javafx.scene.input.MouseEvent;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * The view where the game's instructions are shown
@@ -28,30 +35,45 @@ public class InstructionView extends View {
 
         root = new BorderPane();
 
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setPadding(new Insets(-1));
+        String markdown = "";
+        try {
+            markdown = new String(Files.readAllBytes(Paths.get(getClass().getResource("/misc/game_rules.md").toURI())));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-        TextFlow instructions = new TextFlow(new UIText("Instructions").setSize(30).setWeight(FontWeight.BOLD));
+        MDFXNode mdfxNode = new MDFXNode(markdown);
+        mdfxNode.getStylesheets().add("/stylesheets/game_rules.css");
+        ScrollPane content = new ScrollPane(mdfxNode);
+        content.setFitToHeight(true);
+        content.setFitToWidth(true);
 
-        Pane instructionsPane = new Pane();
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/paper.jpg"),
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/paper_background.jpg"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
-        instructionsPane.setBackground(new Background(backgroundImage));
-        instructionsPane.setPadding(new Insets(-1));
-        instructionsPane.getChildren().add(instructions);
-        instructionsPane.setPrefWidth(300);
+        mdfxNode.setPadding(new Insets(50, 200, 50, 200));
+        mdfxNode.setBackground(new Background(backgroundImage));
 
-        root.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        scrollPane.setContent(instructions);
+        Button goBackButton = new UIButton("Ga terug");
+        goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
-        root.setCenter(instructionsPane);
+        HBox buttonPane = new HBox(12, goBackButton);
+        buttonPane.setAlignment(Pos.BOTTOM_RIGHT);
+        mdfxNode.getChildren().add(0, buttonPane);
+
+        root.setPrefWidth(300);
+        root.setCenter(content);
     }
 
     @Override
     public Pane getRoot() {
         return root;
     }
+
+    EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            instructionController.goBack();
+        }
+    };
 }
