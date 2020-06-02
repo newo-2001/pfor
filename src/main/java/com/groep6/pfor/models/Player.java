@@ -1,5 +1,7 @@
 package com.groep6.pfor.models;
 
+import java.util.Stack;
+
 import com.groep6.pfor.models.cards.RoleCard;
 
 /**
@@ -29,7 +31,7 @@ public class Player {
         this.username = username;
         if (turn) setTurn();
     }
-
+    
     public boolean isTurn() {
         return turn;
     }
@@ -68,4 +70,31 @@ public class Player {
     public String toString () {
         return String.format("Player: %s, role: %s, city: %s, turn: %b, actions: %d", username, roleCard.getName(), city.getName(), turn, actionsRemaining);
     }
+    
+    // Actions
+    
+    public int[] battle() {
+    	
+    	Dice dice = new Dice();
+    	Stack<Legion> legionsBefore = city.getLegions();
+    	Stack<Barbarian> barbariansBefore = city.getBarbarians();
+    	int diceAmount = 3;
+    	
+    	// Decide amount of dice to roll.
+    	if (legionsBefore.size() < 3 && !legionsBefore.empty()) {
+    		diceAmount = legionsBefore.size();
+    	}
+    	
+    	for (int i = 0; i < diceAmount; i++) {
+    		dice.roll(city);
+    	}
+    	
+    	int legionsLost = legionsBefore.size() - city.getLegions().size();
+    	int barbariansLost = barbariansBefore.size() - city.getBarbarians().size();
+
+    	int[] battleResults = {legionsLost, barbariansLost};
+    	return battleResults;
+    }
+    
+    
 }

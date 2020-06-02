@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.controllers.BattleController;
 import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.controllers.RecruitBarbarianController;
@@ -12,7 +13,6 @@ import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -87,7 +87,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToBattleView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+        	boardController.goToBattleView();
         }
     };
     

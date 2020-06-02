@@ -6,9 +6,40 @@ package com.groep6.pfor.models;
  *
  */
 public enum DiceFace {
-	BARBARIAN,
-	LEGION,
-	BOTH,
-	TWO_BARBARIAN_LEGION,
-	SPECIAL
+	BARBARIAN {
+		@Override
+		public void execute(City city) {
+			city.removeBarbarian();
+		}
+	},
+	LEGION {
+		@Override
+		public void execute(City city) {
+			city.removeLegion();
+		}
+	},
+	BOTH {
+		@Override
+		public void execute(City city) {
+			city.removeBarbarian();
+			city.removeLegion();
+		}
+	},
+	TWO_BARBARIAN_LEGION {
+		@Override
+		public void execute(City city) {
+			city.removeBarbarian();
+			city.removeBarbarian();
+			city.removeLegion();
+		}
+	},
+	SPECIAL {
+		@Override
+		public void execute(City city) {
+			// Execute order 66
+		}
+	};
+	
+	public abstract void execute(City city);
+	
 }

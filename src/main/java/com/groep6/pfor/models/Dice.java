@@ -1,6 +1,7 @@
 package com.groep6.pfor.models;
 
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * Dice for Pandemic: Fall of Rome. Each face on this dice represents an outcome
@@ -39,10 +40,10 @@ public class Dice {
 	 * @return DiceFace representation of the outcome in a battle.
 	 * 
 	 */
-	public DiceFace roll() {
+	public void roll(City city) {
 		int randomIndex = r.nextInt(6);
 		DiceFace outcome = faces[randomIndex];
-		return outcome;
+		outcome.execute(city);
 	}
 	
 }
