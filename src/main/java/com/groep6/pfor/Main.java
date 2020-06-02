@@ -32,7 +32,9 @@ public class Main extends Application {
         MediaController.play("src/main/resources/sound/music/Last_stand_of_an_Empire.mp3", 0.1, true);
 
         // Set default view
-		new MenuController();
+		//new MenuController();
+		
+		new HandController();
 
         //System.out.println(new PlayerService().get("CxDNFdDaJJNTEJkOmkQo"));
 

@@ -64,8 +64,15 @@ public class HandController extends Controller {
         }
     }
     
-    public void playCard(Card card) {
-    	game.getLocalPlayer().getHand();
+    public void playCard() {
+        if (selectedCard instanceof CityCard) {
+        	System.out.println("Cant play a city card");
+        }
+        if (selectedCard instanceof EventCard) {
+        	System.out.println("Playing card");
+            game.getLocalPlayer().getHand().removeCard(selectedCard);
+        	game.getInvasionDiscardPile().addCards(selectedCard);
+        }
     }
     
     public Card getCard(Card card) {
