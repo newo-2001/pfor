@@ -63,6 +63,18 @@ public class Firebase {
         return null;
     }
 
+    protected static DocumentSnapshot[] requestCollection(String path) {
+        try {
+            CollectionReference collRef = collRefFromPath(path);
+            ApiFuture<QuerySnapshot> future = collRef.get();
+            return future.get().getDocuments().toArray(new DocumentSnapshot[0]);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     /**
      * Add a DTO to a collection
      *
