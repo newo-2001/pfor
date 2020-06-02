@@ -1,6 +1,7 @@
 package com.groep6.pfor.views.components;
 
 import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.CardType;
 import com.groep6.pfor.models.cards.RoleCard;
 import javafx.beans.binding.Bindings;
 import javafx.scene.paint.Color;
@@ -8,20 +9,20 @@ import javafx.scene.text.*;
 
 public class UIRoleCard extends UICard {
 
-    private static final String CARD_NAME = "Karakterkaart";
+    private static final CardType CARD_TYPE = CardType.ROLE;
 
     private RoleCard card;
 
     public UIRoleCard(RoleCard card) {
-        super(CARD_NAME);
+        super(CARD_TYPE);
         this.card = card;
 
         createView();
     }
 
-    public void createView() {
+    private void createView() {
         UIText nameText = new UIText(card.getName());
-        nameText.setWeight(FontWeight.BOLD).setSize(18).setColor(Color.web("#D5544F"));;
+        nameText.setWeight(FontWeight.BOLD).setSize(18).setColor(Color.web("#D5544F"));
 
         UIText descriptionText = new UIText(card.getAbility().getDescription());
         descriptionText.setAlignment(TextAlignment.CENTER);

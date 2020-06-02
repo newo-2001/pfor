@@ -2,9 +2,13 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.CityCard;
+import com.groep6.pfor.models.cards.EventCard;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
+import com.groep6.pfor.views.components.UICityCard;
+import com.groep6.pfor.views.components.UIEventCard;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -49,8 +53,14 @@ public class HandView extends View {
         cardsPane.setHgap(50);
 
         for (Card card: cards) {
-//            UICard uiCard = new UICard(card);
-//            cardsPane.getChildren().add(uiCard);
+            UICard uiCard = null;
+
+            if (card instanceof CityCard) uiCard = new UICityCard((CityCard) card);
+            else if (card instanceof EventCard) uiCard = new UIEventCard((EventCard) card);
+
+            if (uiCard != null) {
+                cardsPane.getChildren().add(uiCard);
+            }
         }
 
         scrollPane.setContent(cardsPane);

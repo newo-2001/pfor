@@ -66,14 +66,14 @@ public class RoleCardInfoView extends View {
 
         /** For loop to get the different role cards and put there information in the flowPane*/
         for (RoleCard card: roleCardInfoController.getRoleCards()) {
-            UICard uicard = new UIRoleCard(card);
+            UICard uiCard = new UIRoleCard(card);
 
-            if (roleCardInfoController.getCurrentlySelectedRoleCard() == card) uicard.select();
+            if (roleCardInfoController.getCurrentlySelectedRoleCard() == card) uiCard.select();
 
-            uicard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
+            uiCard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
 
-            uiCards.add(uicard);
-            cardsPane.getChildren().add(uicard);
+            uiCards.add(uiCard);
+            cardsPane.getChildren().add(uiCard);
         }
 
         /** Put the different cards in the scrollPane */
