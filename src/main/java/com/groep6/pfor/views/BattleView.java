@@ -39,7 +39,7 @@ public class BattleView extends View implements IObserver {
 
     /**
      * The constructor
-     * @param battleController The battleController
+     * @param controller The battleController
      */
     public BattleView(BattleController controller, int[] result) {
         battleController = controller;
@@ -53,12 +53,12 @@ public class BattleView extends View implements IObserver {
     	root = new BorderPane();
     	VBox log = new VBox();
     	
-    	Text legionsLost = new Text(battleResult[0] + " Legions were killed");
+    	Text legionsLost = new Text(battleResult[0] + " legioenen zijn vermoord");
         legionsLost.setFont(Font.font("verdana", FontWeight.NORMAL,
         		FontPosture.REGULAR, 32));
         legionsLost.setFill(Color.WHITE);
         
-    	Text barbariansLost = new Text(battleResult[1] + " Barbarians were killed");
+    	Text barbariansLost = new Text(battleResult[1] + " barbaren zijn vermoord");
         barbariansLost.setFont(Font.font("verdana", FontWeight.NORMAL,
         		FontPosture.REGULAR, 32));
         barbariansLost.setFill(Color.WHITE);
@@ -73,6 +73,7 @@ public class BattleView extends View implements IObserver {
     	log.getChildren().addAll(legionsLost, barbariansLost, goBackButton);
     	log.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
     	log.setAlignment(Pos.CENTER);
+    	log.setPadding(new Insets(50));
     	log.setSpacing(24);
     	BorderPane.setMargin(log, new Insets(400, 750, 400, 750));
         BackgroundImage postBattle = new BackgroundImage(new Image("images/battle_result_image.jpg"),
