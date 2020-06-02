@@ -27,7 +27,9 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
 
         // Set default view
-        new MenuController();
+
+		new HandController();
+        //new MenuController();
 
         new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
     }
