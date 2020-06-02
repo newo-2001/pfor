@@ -32,7 +32,10 @@ public class Game extends Observable {
     }
 
     private Game() {
-        // Create players from LobbyPlayers
+        // Create new dice instances
+        for (int i = 0; i < die.length; i++) {
+            die[i] = new Dice();
+        }
     }
 
     /**

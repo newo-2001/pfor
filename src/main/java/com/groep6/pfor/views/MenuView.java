@@ -49,15 +49,11 @@ public class MenuView extends View {
         Button exitGameButton = new UIButton("Exit Game");
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/win_background.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                backgroundSize);
 
         buttonBox.getChildren().addAll(hostGameButton, joinGameButton, exitGameButton);
         BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
 
-        root.setBackground(new Background(backgroundImage));
+        setBackground(root, "images/win_background.jpg");
         root.setBottom(buttonBox);
     }
 
