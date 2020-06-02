@@ -73,7 +73,7 @@ public class Player {
     
     // Actions
     
-    public void battle() {
+    public int[] battle() {
     	
     	Dice dice = new Dice();
     	Stack<Legion> legionsBefore = city.getLegions();
@@ -91,7 +91,9 @@ public class Player {
     	
     	int legionsLost = legionsBefore.size() - city.getLegions().size();
     	int barbariansLost = barbariansBefore.size() - city.getBarbarians().size();
-    	
+
+    	int[] battleResults = {legionsLost, barbariansLost};
+    	return battleResults;
     }
     
     
