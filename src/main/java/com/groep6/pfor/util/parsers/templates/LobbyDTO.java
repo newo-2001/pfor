@@ -3,6 +3,10 @@ package com.groep6.pfor.util.parsers.templates;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * The Data Transfer Object that represents a Lobby in Firebase.
  *
@@ -13,7 +17,7 @@ public class LobbyDTO extends DTO {
     public String code;
 
     /** The list of players that are in the lobby */
-    public LobbyPlayerDTO[] players;
+    public List<LobbyPlayerDTO> players;
 
     /** The password that is required to join the lobby */
     public String password;
@@ -27,7 +31,7 @@ public class LobbyDTO extends DTO {
     private LobbyDTO(String code, String password, LobbyPlayerDTO[] players) {
         this.code = code;
         this.password = password;
-        this.players = players;
+        this.players = Arrays.asList(players);
     }
 
     /**
@@ -35,8 +39,8 @@ public class LobbyDTO extends DTO {
      * @return The lobby object that this instance represents
      */
     public Lobby toModel() {
-        LobbyPlayer[] players = new LobbyPlayer[this.players.length];
-        for (int i = 0; i < this.players.length; i++) players[i] = this.players[i].toModel();
+        LobbyPlayer[] players = new LobbyPlayer[this.players.size()];
+        for (int i = 0; i < this.players.size(); i++) players[i] = this.players.get(i).toModel();
         return new Lobby(code, password, players);
     }
 

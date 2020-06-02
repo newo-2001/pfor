@@ -53,7 +53,7 @@ public class Lobby {
 
         if (players.size() == 0) isHost = true;
 
-        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost);
+        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost, code);
         players.add(lobbyPlayer);
         return lobbyPlayer;
     }

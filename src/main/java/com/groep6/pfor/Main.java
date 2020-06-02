@@ -4,6 +4,7 @@ import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.controllers.ViewController;
+import com.groep6.pfor.services.Firebase;
 import com.groep6.pfor.services.PlayerService;
 
 import javafx.application.Application;
@@ -23,6 +24,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         // Setup logger
         Logger logger = LoggerFactory.getLogger(Main.class);
+        Firebase.initialize();
 
         // Get ViewController instance and set primaryStage
         ViewController viewController = ViewController.getInstance();

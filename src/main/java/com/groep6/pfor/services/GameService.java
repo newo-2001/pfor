@@ -10,7 +10,7 @@ import com.google.firebase.database.annotations.Nullable;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-public class GameService extends Service {
+public class GameService {
 
     private static final String COLLECTION = "games";
 
@@ -34,10 +34,5 @@ public class GameService extends Service {
 //        }
 
         return snapshot;
-    }
-
-    @Override
-    public void subscribe(String documentID) {
-
     }
 }

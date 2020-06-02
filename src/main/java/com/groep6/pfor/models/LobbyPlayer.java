@@ -11,18 +11,19 @@ public class LobbyPlayer {
     private String username;
     private RoleCard roleCard;
     private boolean isHost;
+    private String lobby;
 
     /**
      * @param username
      * @param isHost
      */
-    public LobbyPlayer(String username, RoleCard roleCard, boolean isHost) {
+    public LobbyPlayer(String username, RoleCard roleCard, boolean isHost, String lobby) {
         this.username = username;
         this.roleCard = roleCard;
         this.isHost = isHost;
     }
 
-    public LobbyPlayer(String username, boolean isHost) {
+    public LobbyPlayer(String username, boolean isHost, String lobby) {
         this.username = username;
         this.isHost = isHost;
     }
@@ -46,5 +47,12 @@ public class LobbyPlayer {
      */
     public String getUsername() {
         return username;
+    }
+
+    /**
+     * @return The lobby code of the lobby that the player is in
+     */
+    public String getLobby() {
+        return lobby;
     }
 }
