@@ -31,8 +31,8 @@ public class BattleController extends Controller {
 	public BattleController() {
 		Game game = Game.getInstance();
 		Player player = game.getPlayerTurn();
-		player.battle();
-		viewController.showView(new BattleView(this));
+		int[] battleResult = player.battle();
+		viewController.showView(new BattleView(this, battleResult));
 	}
 
 	/**
