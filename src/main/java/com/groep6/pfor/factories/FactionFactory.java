@@ -15,7 +15,7 @@ public class FactionFactory {
 
     private FactionFactory() {
         factions.add(new Faction(FactionType.ANGLO_SAXSONS_FRANKS, Color.ORANGE));
-        factions.add(new Faction(FactionType.VANDELS, Color.PURPLE));
+        factions.add(new Faction(FactionType.VANDALS, Color.PURPLE));
         factions.add(new Faction(FactionType.HUNS, Color.GREEN));
         factions.add(new Faction(FactionType.VISIGOTHS, Color.WHITE));
         factions.add(new Faction(FactionType.OSTROGOTHS, Color.BLUE));

@@ -21,10 +21,10 @@ public class MediaController extends Controller {
 	 * Plays music
 	 * @param filePath
 	 */
-	public static void play(String filePath, boolean repeat) {
+	public static void play(String filePath, double volume, boolean repeat) {
 		Media sound = new Media(Paths.get(filePath).toUri().toString());
 		mp = new MediaPlayer(sound);
-		mp.setVolume(0.3);
+		mp.setVolume(volume);
 
 		if (repeat) {
 			mp.setOnEndOfMedia(new Runnable() {

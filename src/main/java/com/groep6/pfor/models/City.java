@@ -1,5 +1,7 @@
 package com.groep6.pfor.models;
 
+import java.util.Stack;
+
 /**
  * Represents a city tile 
  *
@@ -11,12 +13,9 @@ import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.util.parsers.templates.FactionDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class City extends Tile {
-	private List<Barbarian> barbarians = new ArrayList<Barbarian>();
-	private List<Legion> legions = new ArrayList<Legion>();
+	private Stack<Barbarian> barbarians = new Stack<Barbarian>();
+	private Stack<Legion> legions = new Stack<Legion>();
 	private boolean fort = false;
 	private boolean harbour;
 	private String name;
@@ -79,8 +78,16 @@ public class City extends Tile {
      * @returns a arrayList with barbarians in a specific city
      */
 	
-	public List<Barbarian> getBarbarians() {
+	public Stack<Barbarian> getBarbarians() {
 		return barbarians;
+	}
+	
+	/**
+     * @returns a arrayList with legions in a specific city
+     */
+	
+	public Stack<Legion> getLegions() {
+		return legions;
 	}
 	
     /**
@@ -136,7 +143,9 @@ public class City extends Tile {
 	 * @return Removed barbarian
 	 */
 	public Barbarian removeBarbarian() {
-		return barbarians.remove(0);
+		if (!barbarians.empty())
+			return barbarians.pop();
+		return null;
 	}
 
     /**
@@ -144,7 +153,9 @@ public class City extends Tile {
      */
 	
 	public Legion removeLegion() {
-		return legions.remove(0);
+		if (!legions.empty())
+			return legions.pop();
+		return null;
 	}
 	
     /**

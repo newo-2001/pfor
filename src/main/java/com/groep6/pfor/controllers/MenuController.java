@@ -10,7 +10,6 @@ public class MenuController extends Controller {
 
     public MenuController() {
         viewController.showView(new MenuView(this));
-        MediaController.play("src/main/resources/sound/music/Last_stand_of_an_Empire.mp3", true);
     }
 
     public void goToHostView() {

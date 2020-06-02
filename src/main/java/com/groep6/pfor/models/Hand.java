@@ -10,11 +10,11 @@ import com.groep6.pfor.util.Observable;
 
 /**
  * @author Bastiaan Jansen
+ * @author Nils van der Velden
  */
 public class Hand extends Observable {
 
     private List<Card> cards = new ArrayList<>();
-	private Card card;
 
     public Hand(Card... cards) {
         addCards(cards);
