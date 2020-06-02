@@ -2,6 +2,7 @@ package com.groep6.pfor;
 
 import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.controllers.ViewController;
+import com.groep6.pfor.models.Board;
 import com.groep6.pfor.services.Firebase;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.services.PlayerService;
@@ -32,6 +33,6 @@ public class Main extends Application {
         MediaController.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.1, true);
 
         // Set default view
-        new HandController();
+        new BoardController();
     }
 }
