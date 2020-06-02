@@ -34,6 +34,5 @@ public class Main extends Application {
 
         // Set default view
         new MenuController();
-        //new BoardController();
     }
 }
