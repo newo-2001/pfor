@@ -37,6 +37,7 @@ public class HandView extends View implements IObserver {
     private BorderPane root;
     private Button discardCardButton;
     private Button playCardButton;
+    private Button goBackButton;
     private ScrollPane scrollPane;
     private FlowPane cardsPane;
     private List<UICard> uiCards = new ArrayList<>();
@@ -73,7 +74,8 @@ public class HandView extends View implements IObserver {
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
         
-        Button goBackButton = new UIButton("Ga terug");
+        goBackButton = new UIButton("Ga terug");
+        goBackButton.setDisable(false);
         goBackButton.setPrefWidth(150);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
@@ -93,7 +95,7 @@ public class HandView extends View implements IObserver {
         cardsPane.setHgap(50);
 
         scrollPane.setContent(cardsPane);
-
+        
         for (Card card: cards) {
             UICard uiCard = null;
 
@@ -149,6 +151,14 @@ public class HandView extends View implements IObserver {
         }
     }
     
+    public void handleCardLimit() {
+        if(cards.size() > 7) {
+        	goBackButton.setDisable(true);
+        } else {
+        	goBackButton.setDisable(false);
+        }
+    }
+    
 
     @Override
     public Pane getRoot() {
@@ -158,8 +168,9 @@ public class HandView extends View implements IObserver {
     @Override
     public void update(Object... data) {
         createCards();
-
+        handleCardLimit();
         discardCardButton.setDisable(true);
+    	//goBackButton.setDisable(false);
     }
 }
 
