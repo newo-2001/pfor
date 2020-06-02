@@ -27,11 +27,13 @@ public class LobbyPlayer extends Observable {
         this.roleCard = roleCard;
         this.isHost = isHost;
         this.isLocal = isLocal;
+        this.lobby = lobby;
     }
 
     public LobbyPlayer(String username, boolean isHost, String lobby) {
         this.username = username;
         this.isHost = isHost;
+        this.lobby = lobby;
     }
 
     /**

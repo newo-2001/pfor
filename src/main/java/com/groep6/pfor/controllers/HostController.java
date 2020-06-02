@@ -17,14 +17,14 @@ public class HostController extends Controller {
         viewController.showView(new HostView(this));
     }
 
-    public void createLobby(String code, String username, String password) throws EmptyFieldException {
+    public void createLobby(String username, String password) throws EmptyFieldException {
         if (username.isEmpty()) throw new EmptyFieldException("Username cannot be empty");
 
         // Create new lobby
         Lobby lobby = new Lobby(password);
 
         try {
-            lobby.join(code, username, password, true);
+            lobby.join(lobby.getCode(), username, password, true);
 
             // Send to lobby service
             LobbyService lobbyService = new LobbyService();
