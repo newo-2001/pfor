@@ -31,6 +31,8 @@ public class HandController extends Controller {
         localPlayer.getHand().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.HUNS)));
         localPlayer.getHand().addCards(new CityCard("Card 5", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VANDELS)));
         localPlayer.getHand().addCards(new CityCard("Card 6", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
+        localPlayer.getHand().addCards(new CityCard("Card 7", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
+        localPlayer.getHand().addCards(new CityCard("Card 8", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
         localPlayer.getHand().addCards(new EventCard("Event Card 1", new FestinaLenteAction()));
 
         viewController.showView(new HandView(this));

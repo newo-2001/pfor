@@ -3,7 +3,6 @@ package com.groep6.pfor;
 import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.services.PlayerService;
-
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
