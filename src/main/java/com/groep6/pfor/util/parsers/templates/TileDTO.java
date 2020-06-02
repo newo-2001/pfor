@@ -1,7 +1,8 @@
 package com.groep6.pfor.util.parsers.templates;
 
 import com.google.gson.annotations.SerializedName;
-import com.groep6.pfor.models.Faction;
+import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 
 public class TileDTO {
     @SerializedName("position")

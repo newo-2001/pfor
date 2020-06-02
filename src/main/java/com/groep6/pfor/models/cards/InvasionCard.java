@@ -1,7 +1,8 @@
 package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Faction;
+import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 
 import java.util.ArrayList;
 import java.util.List;
