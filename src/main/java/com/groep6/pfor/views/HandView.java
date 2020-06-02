@@ -5,6 +5,7 @@ import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
+import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
 import com.groep6.pfor.views.components.UICityCard;
@@ -27,59 +28,47 @@ import java.util.List;
  * @author Bastiaan Jansen
  * @author Nils van der Velden
  */
-public class HandView extends View {
+public class HandView extends View implements IObserver {
     private HandController handController;
 
     /** The list of cards that the player has, as CardView's */
     private List<Card> cards = new ArrayList<>();
 
     private BorderPane root;
+    private Button discardCardButton;
+    private Button playCardButton;
+    private ScrollPane scrollPane;
+    private FlowPane cardsPane;
     private List<UICard> uiCards = new ArrayList<>();
 
     public HandView(HandController handController) {
         this.handController = handController;
         cards = handController.getCards();
+        handController.registerObserver(this);
 
         createView();
+
+        update();
     }
 
     private void createView() {
         root = new BorderPane();
-        ScrollPane scrollPane = new ScrollPane();
+
+        scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.setPadding(new Insets(-1));
-        
-        FlowPane cardsPane = new FlowPane();
-        setBackground(cardsPane, "images/character_info_background.jpg");
-        cardsPane.setPadding(new Insets(20, 20, 20, 20));
-        cardsPane.setVgap(50);
-        cardsPane.setHgap(50);
-
-        for (Card card: cards) {
-            UICard uiCard = null;
-
-            if (card instanceof CityCard) uiCard = new UICityCard((CityCard) card);
-            else if (card instanceof EventCard) uiCard = new UIEventCard((EventCard) card);
-
-            if (uiCard != null) {
-                uiCard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
-                uiCards.add(uiCard);
-                cardsPane.getChildren().add(uiCard);
-            }
-        }
-        
-        scrollPane.setContent(cardsPane);
 
         VBox buttonsPane = new VBox(20);
         buttonsPane.setAlignment(Pos.CENTER);
         buttonsPane.setPadding(new Insets(50, 50, 50, 50));
 
-        Button discardCardButton = new UIButton("Kaart afleggen");
+        discardCardButton = new UIButton("Kaart afleggen");
+        discardCardButton.setDisable(true);
         discardCardButton.setPrefWidth(150);
         discardCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, discardCard);
 
-        Button playCardButton = new UIButton("Speel kaart");
+        playCardButton = new UIButton("Speel kaart");
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
@@ -94,6 +83,29 @@ public class HandView extends View {
 
         root.setCenter(scrollPane);
         root.setRight(buttonsPane);
+    }
+
+    private void createCards() {
+        cardsPane = new FlowPane();
+        setBackground(cardsPane, "images/character_info_background.jpg");
+        cardsPane.setPadding(new Insets(20, 20, 20, 20));
+        cardsPane.setVgap(50);
+        cardsPane.setHgap(50);
+
+        scrollPane.setContent(cardsPane);
+
+        for (Card card: cards) {
+            UICard uiCard = null;
+
+            if (card instanceof CityCard) uiCard = new UICityCard((CityCard) card);
+            else if (card instanceof EventCard) uiCard = new UIEventCard((EventCard) card);
+
+            if (uiCard != null) {
+                uiCard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
+                uiCards.add(uiCard);
+                cardsPane.getChildren().add(uiCard);
+            }
+        }
     }
     
 
@@ -127,6 +139,7 @@ public class HandView extends View {
             UICard source = (UICard) e.getSource();
             source.select();
             handController.selectCard(source.getCard());
+            discardCardButton.setDisable(false);
         }
     };
 
@@ -140,6 +153,13 @@ public class HandView extends View {
     @Override
     public Pane getRoot() {
         return root;
+    }
+
+    @Override
+    public void update() {
+        createCards();
+
+        discardCardButton.setDisable(true);
     }
 }
 

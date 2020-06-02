@@ -42,7 +42,7 @@ public class HandController extends Controller {
 
     @Override
     public void registerObserver(IObserver view) {
-
+        game.getLocalPlayer().getHand().registerObserver(view);
     }
 
     public void selectCard(Card card) {
@@ -50,12 +50,9 @@ public class HandController extends Controller {
     }
     
     public void removeSelectedCard() {
-    	if(selectedCard != null) {
-    		game.getLocalPlayer().getHand().removeCard(selectedCard);
-    		System.out.println("Kaart verwijderd");
-    	} else {
-    		System.out.println("Geen kaart geselecteerd");
-    	}
+        if (selectedCard == null) return;
+
+        game.getLocalPlayer().getHand().removeCard(selectedCard);
     }
     
     public void playCard(Card card) {
