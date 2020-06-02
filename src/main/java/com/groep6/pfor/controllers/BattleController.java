@@ -3,7 +3,6 @@ package com.groep6.pfor.controllers;
 import java.util.Stack;
 
 import com.groep6.pfor.models.Barbarian;
-import com.groep6.pfor.models.Faction;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Legion;
 import com.groep6.pfor.models.Player;
