@@ -153,4 +153,8 @@ public class Firebase {
     public static QueryDocumentSnapshot queryOne(Query query) {
         return query(query)[0];
     }
+
+    protected static void registerListener(String path, EventListener<DocumentSnapshot> listener) {
+        docRefFromPath(path).addSnapshotListener(listener);
+    }
 }

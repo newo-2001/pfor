@@ -10,7 +10,6 @@ import com.groep6.pfor.views.RoleCardInfoView;
 import java.util.List;
 
 public class LobbyController extends Controller {
-
     private Game game = Game.getInstance();
     private Lobby lobby;
 

@@ -97,7 +97,7 @@ public class LobbyView extends View implements IObserver {
     };
 
     @Override
-    public void update() {
+    public void update(Object... data) {
         createPlayers();
     }
 }

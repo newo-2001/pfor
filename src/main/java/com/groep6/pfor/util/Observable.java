@@ -30,7 +30,7 @@ public abstract class Observable {
     }
 
     /** Notify all registered observer that this object's state has changed. */
-    protected void notifyObservers() {
-        for (IObserver observer : observers) observer.update();
+    protected void notifyObservers(Object... data) {
+        for (IObserver observer : observers) observer.update(data);
     }
 }
