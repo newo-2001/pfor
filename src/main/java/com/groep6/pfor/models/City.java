@@ -1,5 +1,8 @@
 package com.groep6.pfor.models;
 
+import java.util.List;
+import java.util.Stack;
+
 /**
  * Represents a city tile 
  *
@@ -8,12 +11,9 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.util.Vector2f;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class City extends Tile {
-	private List<Barbarian> barbarians = new ArrayList<Barbarian>();
-	private List<Legion> legions = new ArrayList<Legion>();
+	private Stack<Barbarian> barbarians = new Stack<Barbarian>();
+	private Stack<Legion> legions = new Stack<Legion>();
 	private boolean fort = false;
 	private boolean harbour;
 	private String name;
@@ -76,8 +76,16 @@ public class City extends Tile {
      * @returns a arrayList with barbarians in a specific city
      */
 	
-	public List<Barbarian> getBarbarians() {
+	public Stack<Barbarian> getBarbarians() {
 		return barbarians;
+	}
+	
+	/**
+     * @returns a arrayList with legions in a specific city
+     */
+	
+	public Stack<Legion> getLegions() {
+		return legions;
 	}
 	
     /**
