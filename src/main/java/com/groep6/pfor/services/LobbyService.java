@@ -48,17 +48,7 @@ public class LobbyService extends Observable {
      */
     public void create(Lobby lobby) {
         Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
-        Firebase.addDocument("lobbies/" + lobby.getCode() + "/players", LobbyPlayerDTO.fromModel(lobby.getPlayers().get(0)));
-        Firebase.registerListener("lobbies/" + lobby.getCode(), new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
-                if (e != null) e.printStackTrace();
-                else {
-                    LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
-                    notifyObservers(dto.toModel(getPlayers(dto.code)));
-                }
-            }
-        });
+        join(lobby.getPlayers().get(0));
     }
 
     /**
@@ -67,6 +57,7 @@ public class LobbyService extends Observable {
      */
     public void join(LobbyPlayer player) {
         Firebase.addDocument("lobbies/" + player.getLobby() + "/players", LobbyPlayerDTO.fromModel(player));
+        Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
     }
 
     /**
@@ -101,5 +92,16 @@ public class LobbyService extends Observable {
      */
     private Query getPlayerQuery(LobbyPlayer player) {
         return Firebase.collRefFromPath("lobbies/" + player.getLobby() + "/players");//.whereEqualTo("username", player.getUsername());
+    }
+
+    private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
+        @Override
+        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
+            if (e != null) e.printStackTrace();
+            else {
+                LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
+                notifyObservers(dto.toModel(getPlayers(dto.code)));
+            }
+        }
     }
 }
