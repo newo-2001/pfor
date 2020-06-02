@@ -97,8 +97,10 @@ public class LobbyService extends Observable {
     private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
         @Override
         public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
+            System.out.println("aangeropen");
             if (e != null) e.printStackTrace();
             else {
+                System.out.println("aangeropen 2");
                 LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
                 notifyObservers(dto.toModel(getPlayers(dto.code)));
             }

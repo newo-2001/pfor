@@ -61,7 +61,7 @@ public class Lobby extends Observable implements IObserver {
 
         if (players.size() == 0) isHost = true;
 
-        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost, isLocal, code);
+        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, RoleCardFactory.getInstance().pickRandomRoleCard(), isHost, isLocal, code);
         lobbyPlayer.registerObserver(this);
         players.add(lobbyPlayer);
         return lobbyPlayer;
@@ -84,15 +84,15 @@ public class Lobby extends Observable implements IObserver {
      * Makes sure a role card can only be picked once
      * @return RoleCard
      */
-    public RoleCard pickRandomRoleCard() {
-        RoleCard card = RoleCardFactory.getInstance().pickRandomRoleCard();
-
-        for (LobbyPlayer player: players) {
-            if (player.getRoleCard() == card) return pickRandomRoleCard();
-        }
-
-        return card;
-    }
+//    public RoleCard pickRandomRoleCard() {
+//        RoleCard card = RoleCardFactory.getInstance().pickRandomRoleCard();
+//
+//        for (LobbyPlayer player: players) {
+//            if (player.getRoleCard() == card) return pickRandomRoleCard();
+//        }
+//
+//        return card;
+//    }
 
     /**
      * Get the password of the lobby (hashed of course)
@@ -187,19 +187,14 @@ public class Lobby extends Observable implements IObserver {
 
         LobbyPlayer localPlayer = this.getLocalPlayer();
 
-        this.players = new ArrayList<>();
+        this.players = lobby.getPlayers();
 
-        this.players.addAll(lobby.getPlayers());
-
-        for (LobbyPlayer player: this.players) {
-            System.out.println(player);
+        for (LobbyPlayer player: lobby.getPlayers()) {
             if (player.equals(localPlayer)) {
                 player.setLocal(true);
                 break;
             }
         }
-
-        System.out.println("sd");
 
         notifyObservers();
     }
