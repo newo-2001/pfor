@@ -7,6 +7,7 @@ import com.groep6.pfor.models.Legion;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
+import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.views.BattleView;
 
 /**
@@ -31,7 +32,7 @@ public class BattleController extends Controller {
 //		Player player = game.getPlayerTurn();
 //		int[] battleResult = player.battle();
 		int[] battleResult = {2, 3};
-		MusicManager.getInstance().playEffect("src/main/resources/sounds/effects/BattleSound.mp3");
+		SoundEffectManager.play("src/main/resources/sounds/effects/BattleSound.mp3");
 		viewController.showView(new BattleView(this, battleResult));
 	}
 
