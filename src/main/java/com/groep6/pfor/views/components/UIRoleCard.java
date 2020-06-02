@@ -3,7 +3,6 @@ package com.groep6.pfor.views.components;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CardType;
 import com.groep6.pfor.models.cards.RoleCard;
-import javafx.beans.binding.Bindings;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 

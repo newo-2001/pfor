@@ -11,7 +11,6 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HandController extends Controller {
