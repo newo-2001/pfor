@@ -18,6 +18,7 @@ import java.util.List;
 public class HandController extends Controller {
 
     private Game game = Game.getInstance();
+    private Card selectedCard;
 
     public HandController() {
         game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true)));
@@ -45,6 +46,23 @@ public class HandController extends Controller {
     }
 
     public void selectCard(Card card) {
-    	game.getLocalPlayer().getHand().setCard(card);
+    	this.selectedCard = card;
+    }
+    
+    public void removeSelectedCard() {
+    	if(selectedCard != null) {
+    		game.getLocalPlayer().getHand().removeCard(selectedCard);
+    		System.out.println("Kaart verwijderd");
+    	} else {
+    		System.out.println("Geen kaart geselecteerd");
+    	}
+    }
+    
+    public void playCard(Card card) {
+    	game.getLocalPlayer().getHand();
+    }
+    
+    public Card getCard(Card card) {
+    	return card;
     }
 }
