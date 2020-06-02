@@ -20,4 +20,14 @@ public class Faction {
         return color;
     }
 
+    @Override
+    public String toString() {
+        return factionType.name();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Faction)) return false;
+        return ((Faction) o).factionType == factionType;
+    }
 }
