@@ -7,6 +7,7 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -36,10 +37,10 @@ public class Lobby extends Observable implements IObserver {
         this.code = generateCode();
     }
 
-    public Lobby(String code, String passwordHash, List<LobbyPlayer> players) {
+    public Lobby(String code, String passwordHash, LobbyPlayer[] players) {
         this.code = code;
         this.passwordHash = passwordHash;
-        this.players = players;
+        this.players = Arrays.asList(players);
     }
 
     /**
@@ -54,7 +55,7 @@ public class Lobby extends Observable implements IObserver {
 
         if (players.size() == 0) isHost = true;
 
-        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost, isLocal);
+        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost, isLocal, code);
         lobbyPlayer.registerObserver(this);
         players.add(lobbyPlayer);
         return lobbyPlayer;
@@ -85,6 +86,14 @@ public class Lobby extends Observable implements IObserver {
         }
 
         return card;
+    }
+
+    /**
+     * Get the password of the lobby (hashed of course)
+     * @return The hashed password of the lobby
+     */
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
     /**
@@ -166,7 +175,7 @@ public class Lobby extends Observable implements IObserver {
     }
 
     @Override
-    public void update() {
+    public void update(Object... data) {
         notifyObservers();
     }
 }

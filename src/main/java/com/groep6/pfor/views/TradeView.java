@@ -97,9 +97,8 @@ public class TradeView extends View implements IObserver {
     
 
 	@Override
-	public void update() {
+	public void update(Object... data) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

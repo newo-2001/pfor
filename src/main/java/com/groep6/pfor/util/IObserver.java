@@ -7,5 +7,5 @@ package com.groep6.pfor.util;
  */
 public interface IObserver {
     /** A callback method that will be called upon state change. */
-    void update();
+    void update(Object... data);
 }
