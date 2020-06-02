@@ -1,6 +1,5 @@
 package com.groep6.pfor.models;
 
-import java.util.List;
 import java.util.Stack;
 
 /**
@@ -143,7 +142,9 @@ public class City extends Tile {
 	 * @return Removed barbarian
 	 */
 	public Barbarian removeBarbarian() {
-		return barbarians.remove(0);
+		if (!barbarians.empty())
+			return barbarians.pop();
+		return null;
 	}
 
     /**
@@ -152,7 +153,7 @@ public class City extends Tile {
 	
 	public Legion removeLegion() {
 		if (!legions.empty())
-			return legions.remove(0);
+			return legions.pop();
 		return null;
 	}
 	
