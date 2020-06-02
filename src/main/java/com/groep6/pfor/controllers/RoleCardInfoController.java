@@ -1,10 +1,12 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.RoleCardInfoView;
 import java.util.List;
@@ -38,5 +40,15 @@ public class RoleCardInfoController extends Controller {
 
     public void selectCard(RoleCard card) {
         lobby.getLocalPlayer().setRoleCard(card);
+
+        LobbyService lobbyService = new LobbyService();
+
+        try {
+            lobbyService.updatePlayer(lobby.getLocalPlayer());
+        } catch (NoDocumentException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 }

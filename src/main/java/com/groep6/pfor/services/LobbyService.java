@@ -68,7 +68,7 @@ public class LobbyService extends Observable {
      * This lobby will be derived from the player's lobby field
      * @param player The player in question
      */
-    public void leave(LobbyPlayer player) {
+    public void leave(LobbyPlayer player) throws NoDocumentException {
         Firebase.queryOne(getPlayerQuery(player)).getReference().delete();
     }
 
@@ -76,7 +76,7 @@ public class LobbyService extends Observable {
      * Update a player's data on server to this new data
      * @param player The new player data that will override the old data
      */
-    public void updatePlayer(LobbyPlayer player) {
+    public void updatePlayer(LobbyPlayer player) throws NoDocumentException {
         Firebase.queryOne(getPlayerQuery(player)).getReference().set(LobbyPlayerDTO.fromModel(player));
     }
 
