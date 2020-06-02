@@ -37,6 +37,10 @@ public class BoardController extends Controller {
         return game.getDecayLevel();
     }
 
+    public List<Player> getPlayers() {
+        return game.getAllPlayers();
+    }
+
     @Override
     public void registerObserver(IObserver view) {
         game.registerObserver(view);

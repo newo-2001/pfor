@@ -5,6 +5,7 @@ import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.controllers.RecruitBarbarianController;
 import com.groep6.pfor.controllers.RecruitLegionController;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
@@ -32,6 +33,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import java.util.List;
 
 /**
  * The view that shows the board
@@ -207,12 +209,15 @@ public class BoardView extends View implements IObserver {
     private HBox createPlayerList() {
     	HBox playerList = new HBox();
 
-    	// TODO implement player data recovery system to show instead of temp solution below.
-    	UIPlayerInfo player1 = new UIPlayerInfo(Color.YELLOW, 1, "mitchvR609", "Magister Militum");
-    	UIPlayerInfo player2 = new UIPlayerInfo(Color.GREEN, 2, "bastiaan350", "Consul");
-    	UIPlayerInfo player3 = new UIPlayerInfo(Color.BLUE, 3, "nils2020", "Magister Militum");
-    	
-    	playerList.getChildren().addAll(player1, player2, player3);   
+    	List<Player> players = boardController.getPlayers();
+
+    	for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+
+            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), ++i, player.getUsername(), player.getRoleCard().getName());
+            playerList.getChildren().add(uiPlayerInfo);
+        }
+
     	playerList.setAlignment(Pos.CENTER);
     	playerList.setPadding(new Insets(20, 20, 20, 20));
     	playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
