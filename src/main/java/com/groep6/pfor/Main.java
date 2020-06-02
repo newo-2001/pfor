@@ -34,8 +34,9 @@ public class Main extends Application {
         // Set default view
 		//new MenuController();
 		
-		new HandController();
-
+		//new HandController();
+        
+        new TradeController();
         //System.out.println(new PlayerService().get("CxDNFdDaJJNTEJkOmkQo"));
 
         // Setup service
