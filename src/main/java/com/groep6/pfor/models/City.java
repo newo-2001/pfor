@@ -25,7 +25,7 @@ public class City extends Tile {
 	 * @param name The name of a specific city
 	 * @param harbour Whether or not a city has a harbour
 	 * @param position The Vector2f (position) of a specific city
-	 * @param factionTypes What factions are allowed in a specific city
+	 * @param factions What factions are allowed in a specific city
 	 */
 	public City(String name, boolean harbour, Vector2f position, Faction[] factions) {
 		super(position, factions);
@@ -37,7 +37,7 @@ public class City extends Tile {
      * @returns An array with factions that can access the city
      */
 	public FactionType[] getFactions() {
-		return factionTypes;
+		return factions;
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class City extends Tile {
      */
     public int getBarbarianCount(FactionType factionType) {
 		int count = 0;
-		for (FactionType f : factionTypes) {
-			if (f == factionType) count++;
+		for (Faction f : factions) {
+			if (f.getFactionType() == factionType) count++;
 		}
 		return count;
 	}
@@ -163,10 +163,10 @@ public class City extends Tile {
 	@Override
 	public String toString() {
 		String s = String.format("City: %s, harbour: %b, position: %s, factions: [", name, harbour, position);
-		for (FactionType f : factionTypes) {
-			s += f.name() + ", ";
+		for (Faction f : factions) {
+			s += f.getFactionType().name() + ", ";
 		}
-		if (factionTypes.length > 0) s = s.substring(0, s.length()-2);
+		if (factions.length > 0) s = s.substring(0, s.length()-2);
 		s += "], neighbours: [";
 		for (City neighbour : neighbouringCities) {
 			s += neighbour.getName() + ", ";
