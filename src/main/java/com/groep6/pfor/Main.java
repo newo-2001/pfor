@@ -28,8 +28,11 @@ public class Main extends Application {
         ViewController viewController = ViewController.getInstance();
         viewController.setPrimaryStage(primaryStage);
 
+        // Start game music
+        MediaController.play("src/main/resources/sound/music/Last_stand_of_an_Empire.mp3", true);
+
         // Set default view
-		new MenuController();
+		new HandController();
 
         new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
     }
