@@ -2,6 +2,7 @@ package com.groep6.pfor.controllers;
 
 import java.util.List;
 
+import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
@@ -18,10 +19,11 @@ public class TradeController extends Controller {
 
     public TradeController() {
         Faction[] factions = new Faction[] {};
-    	game.getTradeDeck().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factions), FactionType.ANGLO_SAXSONS_FRANKS));
-    	game.getTradeDeck().addCards(new CityCard("Card 2", new City("City 1", false, new Vector2f(), factions), FactionType.ANGLO_SAXSONS_FRANKS));
-    	game.getTradeDeck().addCards(new CityCard("Card 3", new City("City 1", false, new Vector2f(), factions), FactionType.ANGLO_SAXSONS_FRANKS));
-    	game.getTradeDeck().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factions), FactionType.ANGLO_SAXSONS_FRANKS));
+        FactionFactory factionFactory = FactionFactory.getInstance();
+    	game.getTradeDeck().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
+    	game.getTradeDeck().addCards(new CityCard("Card 2", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
+    	game.getTradeDeck().addCards(new CityCard("Card 3", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
+    	game.getTradeDeck().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
     	
     	viewController.showView(new TradeView(this));
     }

@@ -9,14 +9,20 @@ import java.util.List;
 
 public class FactionFactory {
 
+    private static final FactionFactory SINGLE_INSTANCE = new FactionFactory();
+
     List<Faction> factions = new ArrayList<>();
 
-    public FactionFactory() {
+    private FactionFactory() {
         factions.add(new Faction(FactionType.ANGLO_SAXSONS_FRANKS, Color.ORANGE));
         factions.add(new Faction(FactionType.VANDELS, Color.PURPLE));
         factions.add(new Faction(FactionType.HUNS, Color.GREEN));
         factions.add(new Faction(FactionType.VISIGOTHS, Color.WHITE));
         factions.add(new Faction(FactionType.OSTROGOTHS, Color.BLUE));
+    }
+
+    public static FactionFactory getInstance() {
+        return SINGLE_INSTANCE;
     }
 
     public List<Faction> getFactions() {
