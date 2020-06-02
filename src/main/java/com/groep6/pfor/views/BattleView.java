@@ -39,7 +39,7 @@ public class BattleView extends View implements IObserver {
 
     /**
      * The constructor
-     * @param battleController The battleController
+     * @param controller The battleController
      */
     public BattleView(BattleController controller, int[] result) {
         battleController = controller;
@@ -76,6 +76,7 @@ public class BattleView extends View implements IObserver {
     	log.getChildren().addAll(legionsLost, barbariansLost, goBackButton);
     	log.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
     	log.setAlignment(Pos.CENTER);
+    	log.setPadding(new Insets(50));
     	log.setSpacing(24);
     	root.setPadding(new Insets(400, 750, 400, 750));
         BackgroundImage postBattle = new BackgroundImage(new Image("images/battle_result_image.jpg"),

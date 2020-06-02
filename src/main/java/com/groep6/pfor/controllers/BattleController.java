@@ -31,7 +31,9 @@ public class BattleController extends Controller {
 //		Game game = Game.getInstance();
 //		Player player = game.getPlayerTurn();
 //		int[] battleResult = player.battle();
-		int[] battleResult = {2, 3};					// TEMP
+		int[] battleResult = {2, 3};
+
+		MediaController.play("src/main/resources/sounds/effects/BattleSound.mp3", 0.1, false);
 		viewController.showView(new BattleView(this, battleResult));
 	}
 

@@ -16,14 +16,18 @@ import com.groep6.pfor.views.TradeView;
 public class TradeController extends Controller {
 	
 	private Game game = Game.getInstance();
+    private Card selectedCard;
 
     public TradeController() {
-        Faction[] factions = new Faction[] {};
+        Faction[] factionTypes = new Faction[] {};
         FactionFactory factionFactory = FactionFactory.getInstance();
-    	game.getTradeDeck().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
-    	game.getTradeDeck().addCards(new CityCard("Card 2", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
-    	game.getTradeDeck().addCards(new CityCard("Card 3", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
-    	game.getTradeDeck().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factions), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
+        game.getTradeDeck().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
+        game.getTradeDeck().addCards(new CityCard("Card 2", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.OSTROGOTHS)));
+        game.getTradeDeck().addCards(new CityCard("Card 3", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
+        game.getTradeDeck().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.HUNS)));
+        game.getTradeDeck().addCards(new CityCard("Card 5", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VANDALS)));
+        game.getTradeDeck().addCards(new CityCard("Card 6", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
+    	game.getTradeDeck().addCards(new CityCard("Card 8", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
     	
     	viewController.showView(new TradeView(this));
     }
@@ -34,5 +38,12 @@ public class TradeController extends Controller {
 
     @Override
     public void registerObserver(IObserver view) {
+    }
+    
+    public void selectCard(Card card) {
+    	this.selectedCard = card;
+    }
+    public Card getCard(Card card) {
+    	return card;
     }
 }
