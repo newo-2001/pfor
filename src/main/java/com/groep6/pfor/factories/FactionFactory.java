@@ -11,7 +11,7 @@ public class FactionFactory {
     List<Faction> factions = new ArrayList<>();
 
     public FactionFactory() {
-        factions.add(new Faction(FactionType.));
+//        factions.add(new Faction(FactionType.));
     }
 
 }
