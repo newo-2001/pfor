@@ -51,10 +51,7 @@ public class HandView extends View {
         scrollPane.setPadding(new Insets(-1));
         
         FlowPane cardsPane = new FlowPane();
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/character_info_background.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
-        cardsPane.setBackground(new Background(backgroundImage));
+        setBackground(cardsPane, "images/character_info_background.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);
@@ -97,7 +94,7 @@ public class HandView extends View {
         root.setRight(buttonsPane);
     }
 
-    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             handController.goBack();
@@ -105,7 +102,7 @@ public class HandView extends View {
     };
     
     // Select a card
-    EventHandler<javafx.scene.input.MouseEvent> selectCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> selectCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             deselectAllCards();

@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class Game extends Observable {
     private Deck invasionDiscardPile;
     private Deck cityDiscardPile;
     private Dice[] die = new Dice[3];
-    private List<Faction> friendlyFactions;
+    private List<FactionType> friendlyFactionTypes;
     private Player localPlayer;
 
     public static Game getInstance() {
@@ -134,8 +135,8 @@ public class Game extends Observable {
         return die;
     }
 
-    public boolean isFriendlyFaction(Faction faction) {
-        if (friendlyFactions.contains(faction)) return true;
+    public boolean isFriendlyFaction(FactionType factionType) {
+        if (friendlyFactionTypes.contains(factionType)) return true;
         return false;
     }
 
