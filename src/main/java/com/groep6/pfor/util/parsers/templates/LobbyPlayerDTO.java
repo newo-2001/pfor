@@ -20,6 +20,8 @@ public class LobbyPlayerDTO extends DTO {
     /** Whether this player is the host of lobby */
     public boolean host;
 
+    public LobbyPlayerDTO() {}
+
     /**
      * Make A Data Transfer Object with the specified fields
      * @param username The username of the player

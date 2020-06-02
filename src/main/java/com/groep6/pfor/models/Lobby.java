@@ -38,12 +38,13 @@ public class Lobby extends Observable implements IObserver {
      */
     public Lobby() {
         this.code = generateCode();
+        lobbyService.registerObserver(this);
     }
 
     public Lobby(String code, String passwordHash, LobbyPlayer[] players) {
         this.code = code;
         this.passwordHash = passwordHash;
-        this.players = Arrays.asList(players);
+        this.players.addAll(Arrays.asList(players));
 
         lobbyService.registerObserver(this);
     }
@@ -184,7 +185,21 @@ public class Lobby extends Observable implements IObserver {
 
         Lobby lobby = (Lobby) data[0];
 
-        this.players = lobby.players;
+        LobbyPlayer localPlayer = this.getLocalPlayer();
+
+        this.players = new ArrayList<>();
+
+        this.players.addAll(lobby.getPlayers());
+
+        for (LobbyPlayer player: this.players) {
+            System.out.println(player);
+            if (player.equals(localPlayer)) {
+                player.setLocal(true);
+                break;
+            }
+        }
+
+        System.out.println("sd");
 
         notifyObservers();
     }

@@ -19,6 +19,8 @@ public class LobbyDTO extends DTO {
     /** The password that is required to join the lobby */
     public String password;
 
+    public LobbyDTO() {}
+
     /**
      * Construct a Data Transfer Object with the specified fields
      * @param code The lobby code

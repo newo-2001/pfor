@@ -66,10 +66,23 @@ public class LobbyPlayer extends Observable {
         return isLocal;
     }
 
+    public void setLocal(boolean isLocal) {
+        this.isLocal = isLocal;
+    }
+
     /**
      * @return The lobby code of the lobby that the player is in
      */
     public String getLobby() {
         return lobby;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof LobbyPlayer)) return false;
+
+        LobbyPlayer player = (LobbyPlayer) o;
+
+        return player.getUsername().equals(this.username);
     }
 }
