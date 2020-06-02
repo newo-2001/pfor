@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.controllers.LobbyController;
 import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.IObserver;
@@ -29,8 +30,6 @@ import java.util.ArrayList;
  */
 public class LobbyView extends View implements IObserver {
 
-    private static final int MIN_PLAYERS = 3;
-
     private LobbyController lobbyController;
 
     private BorderPane root;
@@ -41,6 +40,12 @@ public class LobbyView extends View implements IObserver {
         lobbyController = controller;
         lobbyController.registerObserver(this);
 
+        createView();
+
+        update();
+    }
+
+    private void createView() {
         root = new BorderPane();
 
         UIText codeText = new UIText("Lobby code: " + lobbyController.getLobbyCode());
@@ -62,14 +67,11 @@ public class LobbyView extends View implements IObserver {
         BorderPane.setMargin(bottomButtomBox, new Insets(12,12,100,12));
 
         startGameButton = new UIButton("Start Spel");
-        startGameButton.setDisable(true);
         startGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startGame);
 
         Button goBackButton = new UIButton("Terug");
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
-
-        createPlayers();
 
 
         bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
@@ -78,7 +80,7 @@ public class LobbyView extends View implements IObserver {
         root.getChildren().add(codeText);
     }
 
-    public void createPlayers() {
+    private void createPlayers() {
         FlowPane playerContainer = new FlowPane();
         playerContainer.setHgap(50);
         playerContainer.setVgap(50);
@@ -124,7 +126,7 @@ public class LobbyView extends View implements IObserver {
     public void update() {
         createPlayers();
 
-        if (players.size() >= MIN_PLAYERS) startGameButton.setDisable(false);
+        if (players.size() >= LobbyController.MIN_PLAYERS) startGameButton.setDisable(false);
         else startGameButton.setDisable(true);
     }
 
