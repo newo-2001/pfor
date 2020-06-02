@@ -181,7 +181,10 @@ public class Lobby extends Observable implements IObserver {
 
     @Override
     public void update(Object... data) {
-        System.out.println(data);
+
+        Lobby lobby = (Lobby) data[0];
+
+        this.players = lobby.players;
 
         notifyObservers();
     }

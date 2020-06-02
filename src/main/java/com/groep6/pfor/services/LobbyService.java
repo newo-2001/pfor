@@ -91,7 +91,7 @@ public class LobbyService extends Observable {
      * @return A partial query that can be extended
      */
     private Query getPlayerQuery(LobbyPlayer player) {
-        return Firebase.collRefFromPath("lobbies/" + player.getLobby() + "/players");//.whereEqualTo("username", player.getUsername());
+        return Firebase.collRefFromPath("lobbies/" + player.getLobby() + "/players"); //.whereEqualTo("username", player.getUsername());
     }
 
     private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
@@ -103,5 +103,5 @@ public class LobbyService extends Observable {
                 notifyObservers(dto.toModel(getPlayers(dto.code)));
             }
         }
-    }
+    };
 }
