@@ -1,5 +1,7 @@
 package com.groep6.pfor.controllers;
 
+import java.nio.file.Paths;
+
 import com.groep6.pfor.util.IObserver;
 
 import javafx.scene.media.Media;
@@ -11,17 +13,15 @@ import javafx.scene.media.MediaPlayer;
  *
  */
 public class MediaController extends Controller {
-	
-	MediaPlayer mp;
 
 	/**
 	 * Plays a sound file.
 	 * 
 	 */
-	public void play(String filePath) {
-		Media sound = new Media("filePath");
-		mp = new MediaPlayer(sound);
-		mp.setVolume(0.3);
+	public static void play(String filePath) {
+		Media sound = new Media(Paths.get(filePath).toUri().toString());
+		MediaPlayer mp = new MediaPlayer(sound);
+		mp.setVolume(0.1);
 		mp.setAutoPlay(true);
 	}
 	
