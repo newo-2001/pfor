@@ -1,7 +1,9 @@
 package com.groep6.pfor.views.components;
 
 import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.CardType;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -17,19 +19,32 @@ public abstract class UICard extends BorderPane {
 
     private boolean selected = false;
 
-    public UICard(String cardName) {
+    protected CardType cardType;
+
+    public UICard(CardType cardType) {
+        this.cardType = cardType;
+
         setMinWidth(WIDTH);
         setMinHeight(HEIGHT);
         setMaxWidth(WIDTH);
         setMaxHeight(HEIGHT);
         setPadding(new Insets(20));
+        setCursor(Cursor.HAND);
 
+        createView();
+    }
+
+    private void createView() {
         BackgroundImage backgroundImage = new BackgroundImage(new Image("images/paper.jpg"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
+                BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, false));
         setBackground(new Background(backgroundImage));
 
-        setCursor(Cursor.HAND);
+        UIText cardTypeText = new UIText(cardType.toString().toUpperCase());
+        cardTypeText.setAlignment(TextAlignment.CENTER).setWeight(FontWeight.BOLD).setSize(18);
+        setTop(cardTypeText);
+
+        setAlignment(cardTypeText, Pos.CENTER);
     }
 
     public void select() {
@@ -47,5 +62,9 @@ public abstract class UICard extends BorderPane {
     }
 
     public abstract Card getCard();
+
+    public CardType getCardType() {
+        return cardType;
+    }
 
 }
