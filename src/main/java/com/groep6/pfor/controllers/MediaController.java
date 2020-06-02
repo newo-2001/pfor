@@ -6,6 +6,7 @@ import com.groep6.pfor.util.IObserver;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  * Media controller to play, loop and stop audio files.
@@ -17,19 +18,27 @@ public class MediaController extends Controller {
 	private static MediaPlayer mp;
 
 	/**
-	 * Plays a sound file.
-	 * 
+	 * Plays music
+	 * @param filePath
 	 */
-	public static void play(String filePath) {
+	public static void play(String filePath, boolean repeat) {
 		Media sound = new Media(Paths.get(filePath).toUri().toString());
 		mp = new MediaPlayer(sound);
 		mp.setVolume(0.3);
-		mp.setAutoPlay(true);
+
+		if (repeat) {
+			mp.setOnEndOfMedia(new Runnable() {
+				public void run() {
+					mp.seek(Duration.ZERO);
+				}
+			});
+		}
+
+		mp.play();
 	}
 	
 	/**
 	 * Stops currently playing sound file.
-	 * 
 	 */
 	public void stop() {
 		mp.stop();
