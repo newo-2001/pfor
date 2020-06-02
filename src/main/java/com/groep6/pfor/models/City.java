@@ -36,7 +36,7 @@ public class City extends Tile {
     /**
      * @returns An array with factions that can access the city
      */
-	public FactionType[] getFactions() {
+	public Faction[] getFactions() {
 		return factions;
 	}
 
