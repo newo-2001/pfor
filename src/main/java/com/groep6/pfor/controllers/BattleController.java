@@ -1,8 +1,12 @@
 package com.groep6.pfor.controllers;
 
+import java.util.Stack;
+
 import com.groep6.pfor.models.Barbarian;
 import com.groep6.pfor.models.Faction;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Legion;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.BattleView;
 
@@ -14,23 +18,30 @@ import com.groep6.pfor.views.BattleView;
  */
 public class BattleController extends Controller {
 
-	// Array simulation of barbarians and legions in a city.
-	// TODO implement data aquisition from the current players current city.
-	private Barbarian[] barbarians = { new Barbarian(Faction.ANGLO_SAXSONS_FRANKS), new Barbarian(Faction.ANGLO_SAXSONS_FRANKS),
-			new Barbarian(Faction.ANGLO_SAXSONS_FRANKS) };
-	private Legion[] legions = {new Legion(), new Legion(), new Legion()};
+	// ArrayList simulation of barbarians and legions in a city.
+	// TODO implement data acquisition from the current players current city.
+	Stack<Barbarian> barbarians = new Stack<>();
+	Stack<Legion> legions = new Stack<>();
 
 	/**
 	 * Constructor for BattleController. First performs a battle, then places the result in a new BattleView.
 	 * 
 	 */
 	public BattleController() {
-		battle();
+		Game game = Game.getInstance();
+		Player player = game.getPlayerTurn();
+		// player.battle();
 		viewController.showView(new BattleView(this));
 	}
 
-	public void battle() {
-
+	/**
+	 * Acquires amount of legions and barbarians to fight in the players current city.
+	 * TODO implement data acquisition from city.
+	 */
+	public void getCityData() {
+		for (int i = 0; i < 3; i++)
+			barbarians.push(new Barbarian(Faction.ANGLO_SAXSONS_FRANKS));
+			legions.push(new Legion());
 	}
 
 	@Override
