@@ -15,25 +15,28 @@ public enum DiceFace {
 	LEGION {
 		@Override
 		public void execute(City city) {
-			
+			city.removeLegion();
 		}
 	},
 	BOTH {
 		@Override
 		public void execute(City city) {
-			
+			city.removeBarbarian();
+			city.removeLegion();
 		}
 	},
 	TWO_BARBARIAN_LEGION {
 		@Override
 		public void execute(City city) {
-			
+			city.removeBarbarian();
+			city.removeBarbarian();
+			city.removeLegion();
 		}
 	},
 	SPECIAL {
 		@Override
 		public void execute(City city) {
-			
+			// Execute order 66
 		}
 	};
 	
