@@ -4,20 +4,25 @@ import com.groep6.pfor.controllers.RoleCardInfoController;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
-
+import com.groep6.pfor.views.components.UIRoleCard;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The view that shows the role card's information
  * @author Nils van der Velden
+ * @author Bastiaan Jansen
  */
 public class RoleCardInfoView extends View {
 
@@ -25,15 +30,16 @@ public class RoleCardInfoView extends View {
     private RoleCardInfoController roleCardInfoController;
 
     private BorderPane root;
+    private List<UICard> uiCards = new ArrayList<>();
     
     /**
      * Initializes the RoleCardInfoView
-     * @param the roleCardInfoController
+     * @param roleCardInfoController
      */
 
     public RoleCardInfoView(RoleCardInfoController roleCardInfoController) {
         this.roleCardInfoController = roleCardInfoController;
-        
+
         createView();
     }
 
@@ -44,18 +50,27 @@ public class RoleCardInfoView extends View {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
+        scrollPane.setPadding(new Insets(-1));
         
         /** FlowPane that represents the individual cards */
         FlowPane cardsPane = new FlowPane();
+        setBackground(cardsPane, "images/character_info_background.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);
 
         /** For loop to get the different role cards and put there information in the flowPane*/
         for (RoleCard card: roleCardInfoController.getRoleCards()) {
-            UICard uicard = new UICard(card.getName());
-            cardsPane.getChildren().add(uicard);
+            UICard uiCard = new UIRoleCard(card);
+
+            if (roleCardInfoController.getCurrentlySelectedRoleCard() == card) uiCard.select();
+
+            uiCard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
+
+            uiCards.add(uiCard);
+            cardsPane.getChildren().add(uiCard);
         }
+
         /** Put the different cards in the scrollPane */
         scrollPane.setContent(cardsPane);
         
@@ -79,13 +94,31 @@ public class RoleCardInfoView extends View {
         root.setRight(buttonPane);
     }
 
-    	/** Event handler for the back button */
-        EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent e) {
-                roleCardInfoController.goBack();
-            }
-        };
+    /** Event handler for the back button */
+    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            roleCardInfoController.goBack();
+        }
+    };
+
+    // Select a card
+    EventHandler<javafx.scene.input.MouseEvent> selectCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            deselectAllCards();
+            UICard source = (UICard) e.getSource();
+            source.select();
+            roleCardInfoController.selectCard((RoleCard) source.getCard());
+        }
+    };
+
+    public void deselectAllCards() {
+        for (UICard card: uiCards) {
+            card.deselect();
+        }
+    }
+
 
     @Override
     public Pane getRoot() {

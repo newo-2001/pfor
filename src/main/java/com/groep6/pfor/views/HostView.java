@@ -5,6 +5,7 @@ import com.groep6.pfor.exceptions.EmptyFieldException;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPasswordField;
+import com.groep6.pfor.views.components.UIText;
 import com.groep6.pfor.views.components.UITextField;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -35,9 +36,8 @@ public class HostView extends View implements IObserver {
 
         VBox form = new VBox();
 
-        Text text = new Text("Host Game");
-        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
-        text.setFill(Color.WHITE);
+        UIText text = new UIText("Host Game");
+        text.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
 
         usernameTextField = new UITextField("Username");
         usernameTextField.getLabel().setTextFill(Color.WHITE);

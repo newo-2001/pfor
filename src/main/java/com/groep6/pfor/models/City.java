@@ -9,6 +9,8 @@ import java.util.Stack;
  * @author Nils van der Velden
  */
 
+import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 
 public class City extends Tile {
@@ -46,13 +48,13 @@ public class City extends Tile {
 	}
 	
     /**
-     * @param faction The faction to count the barbarians of
+     * @param factionType The faction to count the barbarians of
      * @returns the amount of barbarians in this city of the specified faction
      */
-    public int getBarbarianCount(Faction faction) {
+    public int getBarbarianCount(FactionType factionType) {
 		int count = 0;
 		for (Faction f : factions) {
-			if (f == faction) count++;
+			if (f.getFactionType() == factionType) count++;
 		}
 		return count;
 	}
@@ -106,11 +108,11 @@ public class City extends Tile {
 	
     /**
      * adds a barbarian to a specific city
-     * @param faction
+     * @param factionType
      */
 	
-	public void addBarbarian(Faction faction) {
-		barbarians.add(new Barbarian(faction));
+	public void addBarbarian(FactionType factionType) {
+		barbarians.add(new Barbarian(factionType));
 	}
 	
     /**
@@ -122,19 +124,26 @@ public class City extends Tile {
 	}
 	
     /**
-     * @param faction
+     * @param factionType
      * @return a barbarian and removes that specific barbarian from a specific city
      */
 	
-	public Barbarian removeBarbarian(Faction faction) {
+	public Barbarian removeBarbarian(FactionType factionType) {
 		for(int x = 0; x < barbarians.size(); x++) {
 			Barbarian barbarian = barbarians.get(x);
 			
-			if (barbarian.getFaction() == faction) {
+			if (barbarian.getFactionType() == factionType) {
 				return barbarians.remove(x);
 			} 
 		}
 		return null;
+	}
+
+	/**
+	 * @return Removed barbarian
+	 */
+	public Barbarian removeBarbarian() {
+		return barbarians.remove(0);
 	}
 
     /**
@@ -165,7 +174,7 @@ public class City extends Tile {
 	public String toString() {
 		String s = String.format("City: %s, harbour: %b, position: %s, factions: [", name, harbour, position);
 		for (Faction f : factions) {
-			s += f.name() + ", ";
+			s += f.getFactionType().name() + ", ";
 		}
 		if (factions.length > 0) s = s.substring(0, s.length()-2);
 		s += "], neighbours: [";

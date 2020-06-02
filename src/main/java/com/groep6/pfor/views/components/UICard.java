@@ -1,26 +1,68 @@
 package com.groep6.pfor.views.components;
 
+import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.CardType;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-import javafx.scene.text.Font;
 
-import java.awt.*;
+public abstract class UICard extends BorderPane {
 
-public class UICard extends BorderPane {
+    private static final int WIDTH = 220;
+    private static final int HEIGHT = 300;
 
-    public UICard(String name) {
-        setMinWidth(220);
-        setMinHeight(300);
-        setBackground(new Background(new BackgroundFill(Color.web("#feffd9"), CornerRadii.EMPTY, Insets.EMPTY)));
+    private boolean selected = false;
 
-        Text nameText = new Text(name);
-        nameText.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 20));
+    protected CardType cardType;
 
-        setCenter(nameText);
+    public UICard(CardType cardType) {
+        this.cardType = cardType;
+
+        setMinWidth(WIDTH);
+        setMinHeight(HEIGHT);
+        setMaxWidth(WIDTH);
+        setMaxHeight(HEIGHT);
+        setPadding(new Insets(20));
+        setCursor(Cursor.HAND);
+
+        createView();
+    }
+
+    private void createView() {
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/paper.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, false));
+        setBackground(new Background(backgroundImage));
+
+        UIText cardTypeText = new UIText(cardType.toString().toUpperCase());
+        cardTypeText.setAlignment(TextAlignment.CENTER).setWeight(FontWeight.BOLD).setSize(18);
+        setTop(cardTypeText);
+
+        setAlignment(cardTypeText, Pos.CENTER);
+    }
+
+    public void select() {
+        selected = true;
+        setBorder(new Border(new BorderStroke(Color.YELLOW, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
+    }
+
+    public void deselect() {
+        selected = false;
+        setBorder(Border.EMPTY);
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public abstract Card getCard();
+
+    public CardType getCardType() {
+        return cardType;
     }
 
 }

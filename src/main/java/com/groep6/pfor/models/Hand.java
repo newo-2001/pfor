@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.groep6.pfor.util.Observable;
+
 /**
  * @author Bastiaan Jansen
  */
-public class Hand {
+public class Hand extends Observable {
 
     private List<Card> cards = new ArrayList<>();
+	private Card card;
 
     public Hand(Card... cards) {
         addCards(cards);
@@ -49,5 +52,10 @@ public class Hand {
     public Card getCard(int index) {
         return cards.get(index);
     }
-
+    
+    public void setCard(Card card) {
+        this.card = card;
+        notifyObservers();
+    }
 }
+

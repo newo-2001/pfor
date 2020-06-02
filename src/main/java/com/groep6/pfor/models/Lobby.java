@@ -3,6 +3,8 @@ package com.groep6.pfor.models;
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.Random;
  *
  * @author Bastiaan Jansen
  */
-public class Lobby {
+public class Lobby extends Observable implements IObserver {
 
     private String code;
     private String passwordHash;
@@ -45,14 +47,15 @@ public class Lobby {
      * @param username
      * @return new instance of LobbyPlayer
      */
-    public LobbyPlayer join(String code, String username, String password) throws IncorrentPasswordException {
+    public LobbyPlayer join(String code, String username, String password, boolean isLocal) throws IncorrentPasswordException {
         if (!validatePassword(password)) throw new IncorrentPasswordException();
 
         boolean isHost = false;
 
         if (players.size() == 0) isHost = true;
 
-        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost);
+        LobbyPlayer lobbyPlayer = new LobbyPlayer(username, pickRandomRoleCard(), isHost, isLocal);
+        lobbyPlayer.registerObserver(this);
         players.add(lobbyPlayer);
         return lobbyPlayer;
     }
@@ -152,5 +155,18 @@ public class Lobby {
 
     public Game start() {
         return Game.getInstance();
+    }
+
+    public LobbyPlayer getLocalPlayer() {
+        for (LobbyPlayer player: players) {
+            if (player.isLocal()) return player;
+        }
+
+        return null;
+    }
+
+    @Override
+    public void update() {
+        notifyObservers();
     }
 }

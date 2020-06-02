@@ -11,6 +11,8 @@ import java.util.List;
 
 public class LobbyController extends Controller {
 
+    public static final int MIN_PLAYERS = 3;
+
     private Game game = Game.getInstance();
     private Lobby lobby;
 
@@ -28,15 +30,19 @@ public class LobbyController extends Controller {
     }
 
     public void goToRoleCardInfoView() {
-        new RoleCardInfoController();
+        new RoleCardInfoController(lobby);
     }
 
     public void goToMenu() {
         new MenuController();
     }
 
+    public void startGame() {
+
+    }
+
     @Override
     public void registerObserver(IObserver view) {
-
+        lobby.registerObserver(view);
     }
 }

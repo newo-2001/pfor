@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,18 +19,18 @@ public class Base<T extends Piece> extends Tile {
 	/**
 	 * Initializes a new City with the given components.
 	 * @param position The Vector2f (position) of a specific base
-	 * @param faction What faction is allowed in a specific base
+	 * @param factionType What faction is allowed in a specific base
 	 */
-	public Base(Vector2f position, Faction faction, T... pieces) {
-		super(position, new Faction[]{faction});
+	public Base(Vector2f position, FactionType factionType, T... pieces) {
+		super(position, new FactionType[]{factionType});
 	}
 	
     /**
      * @returns what faction has access to a specific base
      */
 	
-	public Faction getFaction() {
-		return factions[0];
+	public FactionType getFaction() {
+		return factionTypes[0];
 	}
 	
     /**

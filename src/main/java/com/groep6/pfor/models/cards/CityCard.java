@@ -1,7 +1,7 @@
 package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 
 /**
  * Represents a city card
@@ -11,17 +11,17 @@ public class CityCard extends Card {
 
     private String name;
     private City city;
-    private Faction faction;
+    private FactionType factionType;
 
     /**
      * @param name
      * @param city
-     * @param faction
+     * @param factionType
      */
-    public CityCard(String name, City city, Faction faction) {
+    public CityCard(String name, City city, FactionType factionType) {
         this.name = name;
         this.city = city;
-        this.faction = faction;
+        this.factionType = factionType;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CityCard extends Card {
     /**
      * @return Faction
      */
-    public Faction getFaction() {
-        return faction;
+    public FactionType getFactionType() {
+        return factionType;
     }
 }

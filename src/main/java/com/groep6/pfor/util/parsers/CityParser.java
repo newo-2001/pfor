@@ -5,9 +5,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Faction;
-import com.groep6.pfor.util.FileReader;
-import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.util.parsers.templates.CityDTO;
 
 import java.text.ParseException;

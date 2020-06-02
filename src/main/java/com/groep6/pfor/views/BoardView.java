@@ -9,6 +9,7 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 
+import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -153,10 +154,8 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
     	
-    	Text actionCount = new Text("<X> Actions left");
-    	actionCount.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 30));
-        actionCount.setFill(Color.WHITE);
+    	UIText actionCount = new UIText("<X> Actions left");
+    	actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
     	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
         Button conspireButton = new ActionButton("SAMENSPANNEN");

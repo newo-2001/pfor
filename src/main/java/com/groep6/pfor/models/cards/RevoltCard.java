@@ -1,7 +1,7 @@
 package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 
 /**
  * Represents a revolt card
@@ -10,17 +10,17 @@ import com.groep6.pfor.models.Faction;
 public class RevoltCard extends Card {
     private String name;
     private City location;
-    private Faction faction;
+    private FactionType factionType;
 
     /**
      * @param name
      * @param location
-     * @param faction
+     * @param factionType
      */
-    public RevoltCard(String name, City location, Faction faction) {
+    public RevoltCard(String name, City location, FactionType factionType) {
         this.name = name;
         this.location = location;
-        this.faction = faction;
+        this.factionType = factionType;
     }
 
     /**
@@ -51,7 +51,7 @@ public class RevoltCard extends Card {
     /**
      * @return Faction
      */
-    public Faction getFaction() {
-        return faction;
+    public FactionType getFactionType() {
+        return factionType;
     }
 }
