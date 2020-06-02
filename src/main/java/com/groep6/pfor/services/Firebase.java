@@ -137,10 +137,11 @@ public class Firebase {
      * @param query The query to perform
      * @return The result of executing the query
      */
-    protected static QueryDocumentSnapshot[] query(Query query) {
+    protected static QueryDocumentSnapshot[] query(Query query) throws NoDocumentException {
         try {
             ApiFuture<QuerySnapshot> future =  query.get();
             QuerySnapshot snapshot = future.get();
+            if (snapshot.isEmpty()) throw new NoDocumentException();
             return snapshot.getDocuments().toArray(new QueryDocumentSnapshot[0]);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
@@ -153,7 +154,7 @@ public class Firebase {
      * @param query The query to execute
      * @return The first result of the query
      */
-    public static QueryDocumentSnapshot queryOne(Query query) {
+    public static QueryDocumentSnapshot queryOne(Query query) throws NoDocumentException {
         return query(query)[0];
     }
 
