@@ -10,6 +10,8 @@ import com.groep6.pfor.models.cards.actions.eventActions.FestinaLenteAction;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.MusicManager;
+import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
 
@@ -62,6 +64,8 @@ public class HandController extends Controller {
         if (selectedCard instanceof EventCard) {
         	game.getInvasionDiscardPile().addCards(selectedCard);
         }
+
+        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
     }
     
     public void playCard() {
@@ -73,6 +77,8 @@ public class HandController extends Controller {
             game.getLocalPlayer().getHand().removeCard(selectedCard);
         	game.getInvasionDiscardPile().addCards(selectedCard);
         }
+
+        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
     }
     
     public Card getCard(Card card) {

@@ -3,11 +3,10 @@ package com.groep6.pfor.controllers;
 import java.util.Stack;
 
 import com.groep6.pfor.models.Barbarian;
-import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Legion;
-import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.BattleView;
 
 /**
@@ -32,7 +31,7 @@ public class BattleController extends Controller {
 //		Player player = game.getPlayerTurn();
 //		int[] battleResult = player.battle();
 		int[] battleResult = {2, 3};
-		MediaController.getInstance().play(MediaController.getInstance().getMedia("src/main/resources/sounds/effects/BattleSound.mp3"), false);
+		MusicManager.getInstance().playEffect("src/main/resources/sounds/effects/BattleSound.mp3");
 		viewController.showView(new BattleView(this, battleResult));
 	}
 

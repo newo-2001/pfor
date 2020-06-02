@@ -1,12 +1,9 @@
-package com.groep6.pfor.controllers;
+package com.groep6.pfor.util;
 
 import java.nio.file.Paths;
 
-import com.groep6.pfor.util.IObserver;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +12,17 @@ import java.util.List;
  * Media controller to play, loop and stop audio files.
  * @author Mitchell van Rijswijk
  */
-public class MediaController extends Controller {
+public class MusicManager {
 
-	private static final MediaController INSTANCE = new MediaController();
+	private static final MusicManager INSTANCE = new MusicManager();
 	private MediaPlayer mediaPlayer;
 	private double volume = 0.1;
 	private boolean playing = false;
 	private List<Media> mediaList = new ArrayList<>();
 
-	private MediaController() {}
+	private MusicManager() {}
 
-	public static MediaController getInstance() {
+	public static MusicManager getInstance() {
 		return INSTANCE;
 	}
 
@@ -69,13 +66,18 @@ public class MediaController extends Controller {
 	public void playNext() {
 		if (mediaList.size() <= 0) return;
 
-		play(mediaList.get(0), false);
-		mediaList.remove(0);
+		play(mediaList.remove(0), false);
 	}
 
 	public Media getMedia(String filePath) {
 		Media media = new Media(Paths.get(filePath).toUri().toString());
 		return media;
+	}
+
+	public void playEffect(String filePath) {
+		Media media = getMedia(filePath);
+
+		play(media, false);
 	}
 	
 	/**
@@ -96,8 +98,5 @@ public class MediaController extends Controller {
 	public void setVolume(double volume) {
 		this.volume = volume;
 	}
-	
-	@Override
-	public void registerObserver(IObserver view) {}
 
 }

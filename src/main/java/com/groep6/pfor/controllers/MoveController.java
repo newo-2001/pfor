@@ -2,6 +2,7 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.MoveView;
 
 /**
@@ -13,7 +14,9 @@ public class MoveController extends Controller {
 	private Game game = Game.getInstance();
 	
     public MoveController() {
-    	viewController.showView(new MoveView(this));
+
+        MusicManager.getInstance().playEffect("src/main/resources/sounds/effects/MarchSound.mp3");
+        viewController.showView(new MoveView(this));
     };
     
     public int takeZero() {
