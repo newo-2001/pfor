@@ -72,6 +72,8 @@ public class HandView extends View {
             else if (card instanceof EventCard) uiCard = new UIEventCard((EventCard) card);
 
             if (uiCard != null) {
+                uiCard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
+                uiCards.add(uiCard);
                 cardsPane.getChildren().add(uiCard);
             }
         }
@@ -115,7 +117,7 @@ public class HandView extends View {
             deselectAllCards();
             UICard source = (UICard) e.getSource();
             source.select();
-            handController.selectCard((RoleCard) source.getCard());
+            handController.selectCard(source.getCard());
         }
     };
 

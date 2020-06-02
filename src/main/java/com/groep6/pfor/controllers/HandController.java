@@ -42,7 +42,7 @@ public class HandController extends Controller {
 
     }
 
-    public void selectCard(RoleCard card) {
+    public void selectCard(Card card) {
     	game.getLocalPlayer().getHand().setCard(card);
     	
     }
