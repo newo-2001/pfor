@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.groep6.pfor.util.Observable;
+
 /**
  * @author Bastiaan Jansen
  */
-public class Hand {
+public class Hand extends Observable {
 
     private List<Card> cards = new ArrayList<>();
+	private Card card;
 
     public Hand(Card... cards) {
         addCards(cards);
@@ -23,10 +26,12 @@ public class Hand {
 
     public void addCards(Card... cards) {
         this.cards.addAll(Arrays.asList(cards));
+        notifyObservers();
     }
 
     public void removeCards(Card... cards) {
         this.cards.removeAll(Arrays.asList(cards));
+        notifyObservers();
     }
 
     public List<Card> getCards() {
@@ -36,6 +41,7 @@ public class Hand {
     public Card removeCard(int index) {
         Card removedCard = cards.get(index);
         cards.remove(index);
+        notifyObservers();
         return removedCard;
     }
 
@@ -43,11 +49,12 @@ public class Hand {
         int index = cards.indexOf(card);
         Card removedCard = cards.get(index);
         cards.remove(card);
+        notifyObservers();
         return removedCard;
     }
 
     public Card getCard(int index) {
         return cards.get(index);
     }
-
 }
+

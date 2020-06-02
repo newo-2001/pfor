@@ -8,6 +8,7 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 
+import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -41,6 +42,7 @@ import javafx.scene.text.Text;
 public class BoardView extends View implements IObserver {
     
 	private BoardController boardController;
+	private BorderPane root;
 
     public BoardView(BoardController controller) {
         boardController = controller;
@@ -55,7 +57,7 @@ public class BoardView extends View implements IObserver {
      * 
      */
     public void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         // Top - players
         HBox playerList = createPlayerList();
@@ -73,8 +75,6 @@ public class BoardView extends View implements IObserver {
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();
         root.setRight(actionButtonLayout);
-        
-        scene = new Scene(root);
     }
 
     EventHandler<MouseEvent> goToTradeView = new EventHandler<MouseEvent>() {
@@ -154,10 +154,8 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
     	
-    	Text actionCount = new Text("<X> Actions left");
-    	actionCount.setFont(Font.font("verdana", FontWeight.BOLD,
-                FontPosture.REGULAR, 30));
-        actionCount.setFill(Color.WHITE);
+    	UIText actionCount = new UIText("<X> Actions left");
+    	actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
     	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
         Button conspireButton = new ActionButton("SAMENSPANNEN");
@@ -225,5 +223,10 @@ public class BoardView extends View implements IObserver {
     @Override
     public void update() {
     	
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

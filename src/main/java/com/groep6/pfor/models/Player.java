@@ -23,6 +23,13 @@ public class Player {
         username = player.getUsername();
     }
 
+    public Player(String username, City city, RoleCard roleCard, boolean turn) {
+        this.roleCard = roleCard;
+        this.city = city;
+        this.username = username;
+        if (turn) setTurn();
+    }
+
     public boolean isTurn() {
         return turn;
     }
@@ -51,5 +58,14 @@ public class Player {
 
     public RoleCard getRoleCard() {
         return roleCard;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String toString () {
+        return String.format("Player: %s, role: %s, city: %s, turn: %b, actions: %d", username, roleCard.getName(), city.getName(), turn, actionsRemaining);
     }
 }

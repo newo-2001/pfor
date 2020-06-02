@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
@@ -18,12 +19,13 @@ public class Game extends Observable {
     private final int MAX_DECAY_LEVEL = 8;
     private int invasionLevel = 0;
     private final int MAX_INVASION_LEVEL = 7;
+    private Deck tradeDeck = new Deck();
     private Deck invasionDeck;
     private Deck cityDeck;
     private Deck invasionDiscardPile;
     private Deck cityDiscardPile;
     private Dice[] die = new Dice[3];
-    private List<Faction> friendlyFactions;
+    private List<FactionType> friendlyFactionTypes;
     private Player localPlayer;
 
     public static Game getInstance() {
@@ -31,7 +33,10 @@ public class Game extends Observable {
     }
 
     private Game() {
-        // Create players from LobbyPlayers
+        // Create new dice instances
+        for (int i = 0; i < die.length; i++) {
+            die[i] = new Dice();
+        }
     }
 
     /**
@@ -82,6 +87,10 @@ public class Game extends Observable {
     public Deck getInvasionDeck() {
         return invasionDeck;
     }
+    
+    public Deck getTradeDeck() {
+    	return tradeDeck;
+    }
 
     /**
      * @return decay level
@@ -126,8 +135,8 @@ public class Game extends Observable {
         return die;
     }
 
-    public boolean isFriendlyFaction(Faction faction) {
-        if (friendlyFactions.contains(faction)) return true;
+    public boolean isFriendlyFaction(FactionType factionType) {
+        if (friendlyFactionTypes.contains(factionType)) return true;
         return false;
     }
 

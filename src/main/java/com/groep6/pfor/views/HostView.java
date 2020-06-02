@@ -5,6 +5,7 @@ import com.groep6.pfor.exceptions.EmptyFieldException;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPasswordField;
+import com.groep6.pfor.views.components.UIText;
 import com.groep6.pfor.views.components.UITextField;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-import javafx.stage.Stage;
 
 /**
  * The view that show's the screen to create a lobby as a host
@@ -25,36 +25,51 @@ public class HostView extends View implements IObserver {
 
     private HostController hostController;
 
+    private StackPane root;
     private UITextField usernameTextField;
     private UITextField passwordTextField;
 
     public HostView(HostController hostController) {
         this.hostController = hostController;
 
-        Pane root = new Pane();
+        root = new StackPane();
 
         VBox form = new VBox();
 
-        Text text = new Text("Host Game");
-        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
-        text.setFill(Color.WHITE);
+        UIText text = new UIText("Host Game");
+        text.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
 
         usernameTextField = new UITextField("Username");
         usernameTextField.getLabel().setTextFill(Color.WHITE);
         passwordTextField = new UIPasswordField("Password");
         passwordTextField.getLabel().setTextFill(Color.WHITE);
 
+        HBox buttonBox = new HBox();
+        buttonBox.setPadding(new Insets(5, 0, 0, 0));
+        buttonBox.setSpacing(20);
+
         Button hostGameButton = new UIButton("Host Game");
         hostGameButton.setPadding(new Insets(10));
+        hostGameButton.setMinWidth(100);
+        hostGameButton.setMaxWidth(100);
         hostGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, hostGame);
+        
+        Button goBackButton = new UIButton("Ga terug");
+        goBackButton.setPadding(new Insets(10));
+        goBackButton.setMinWidth(100);
+        goBackButton.setMaxWidth(100);
+        goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
+        goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
-        form.getChildren().addAll(text, usernameTextField, passwordTextField, hostGameButton);
+        buttonBox.getChildren().addAll(hostGameButton, goBackButton);
+
+        form.getChildren().addAll(text, usernameTextField, passwordTextField, buttonBox);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        form.setPadding(new Insets(50));
+        form.setPadding(new Insets(400));
+        form.setAlignment(Pos.CENTER);
 
         root.getChildren().add(form);
-        scene = new Scene(root);
     }
 
     /**
@@ -74,9 +89,21 @@ public class HostView extends View implements IObserver {
 
         }
     };
+    
+    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            hostController.goBack();
+        }
+    };
 
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

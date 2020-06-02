@@ -1,7 +1,7 @@
 package com.groep6.pfor.models.cards;
 
-import com.groep6.pfor.models.Color;
 import com.groep6.pfor.models.cards.actions.IAction;
+import javafx.scene.paint.*;
 
 /**
  * @author Bastiaan Jansen
@@ -36,5 +36,9 @@ public class RoleCard extends Card {
 
     public Color getColor() {
         return color;
+    }
+
+    public IAction getAbility() {
+        return ability;
     }
 }

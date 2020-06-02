@@ -1,5 +1,7 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.models.factions.FactionType;
+
 /**
  * Represents a barbarian
  *
@@ -7,22 +9,22 @@ package com.groep6.pfor.models;
  */
 
 public class Barbarian extends Piece {
-	private Faction faction;
+	private FactionType factionType;
 	
     /**
      * Initializes a new Barbarian with the given components.
-     * @param faction The faction the barbarian belongs to
+     * @param factionType The faction the barbarian belongs to
      */
 	
-	public Barbarian(Faction faction) {
-		this.faction = faction;
+	public Barbarian(FactionType factionType) {
+		this.factionType = factionType;
 	}
 	
     /**
      * @return the faction a specific barbarian belongs to
      */
 	
-	public Faction getFaction() {
-		return faction;
+	public FactionType getFactionType() {
+		return factionType;
 	}
 }

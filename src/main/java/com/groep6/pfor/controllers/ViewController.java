@@ -2,9 +2,13 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.View;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.border.Border;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +17,9 @@ import java.util.List;
  * @author Bastiaan Jansen
  */
 public class ViewController {
+
+    private static final int MIN_WIDTH = 1080;
+    private static final int MIN_HEIGHT = 720;
 
     private static final ViewController INSTANCE = new ViewController();
     public static ViewController getInstance() { return INSTANCE; }
@@ -29,6 +36,9 @@ public class ViewController {
      */
     public void setPrimaryStage(Stage stage) {
         this.stage = stage;
+        stage.setMinWidth(MIN_WIDTH);
+        stage.setMinHeight(MIN_HEIGHT);
+        stage.setFullScreen(true);
     }
 
     /**
@@ -36,9 +46,30 @@ public class ViewController {
      * @param view
      */
     public void showView(View view) {
+
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+        boolean isFullScreen = stage.isFullScreen();
+
         visitedViews.add(view);
-        Scene scene = view.getScene();
-        stage.setScene(scene);
+        Pane root = view.getRoot();
+
+        Scene scene = stage.getScene();
+
+        if (scene != null) {
+            scene.setRoot(root);
+        } else {
+            Scene newScene = new Scene(root);
+            stage.setScene(newScene);
+        }
+
+        if (isFullScreen) {
+            stage.setFullScreen(true);
+        } else {
+            stage.setWidth(width);
+            stage.setHeight(height);
+        }
+
         stage.show();
     }
 

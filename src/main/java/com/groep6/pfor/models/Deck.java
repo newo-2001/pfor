@@ -29,6 +29,10 @@ public class Deck {
     public void addCards(Card... cards) {
         this.cards.addAll(Arrays.asList(cards));
     }
+    
+    public List<Card> getCards() {
+        return cards;
+    }
 
     /**
      * Shuffles deck

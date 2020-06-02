@@ -23,6 +23,8 @@ public class WinView extends View {
     /** The winController */
     private WinController winController;
 
+    private BorderPane root;
+
     /**
      * The constructor
      */
@@ -36,7 +38,7 @@ public class WinView extends View {
      * Create and fill the view with text and a background image
      */
     private void createView() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         Text winText = new UIBorderedText("GEWONNEN", "#ffce00", 1, "red");
         winText.setFont(Font.font("Verdana", 60));
@@ -47,7 +49,7 @@ public class WinView extends View {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 backgroundSize);
 
-        Button backToMenuButton = new UIButton("Hoofd Menu");
+        Button backToMenuButton = new UIButton("Hoofdmenu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
         backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenuView);
 
@@ -57,8 +59,6 @@ public class WinView extends View {
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
         root.setBackground(new Background(backgroundImage));
-
-        scene = new Scene(root);
     }
 
     EventHandler<MouseEvent> goToMenuView = new EventHandler<MouseEvent>() {
@@ -67,4 +67,9 @@ public class WinView extends View {
             winController.goToMenuView();
         }
     };
+
+    @Override
+    public Pane getRoot() {
+        return root;
+    }
 }

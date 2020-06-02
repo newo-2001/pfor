@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 
 /**
  * The view where the game's instructions are shown
- * @author Mathijs
+ * @author Bastiaan Jansen
  */
 public class InstructionView extends View {
     /** The instructionController */
@@ -63,6 +63,11 @@ public class InstructionView extends View {
 
         root.setPrefWidth(300);
         root.setCenter(content);
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 
     EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {

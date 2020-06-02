@@ -2,6 +2,9 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.BattleController;
 import com.groep6.pfor.util.IObserver;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 /**
  * The battleView
@@ -10,6 +13,7 @@ import com.groep6.pfor.util.IObserver;
 public class BattleView extends View implements IObserver {
     /** The battleController */
     private BattleController battleController;
+    private BorderPane root;
 
     /**
      * The constructor
@@ -17,10 +21,17 @@ public class BattleView extends View implements IObserver {
      */
     public BattleView(BattleController battleController) {
         this.battleController = battleController;
+
+        root = new BorderPane();
     }
 
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public Pane getRoot() {
+        return root;
     }
 }

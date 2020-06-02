@@ -1,5 +1,7 @@
 package com.groep6.pfor.util;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Represents a vector in 2d space. Has mathematical applications
  * but is also useful to wrap two float together, mostly used for coordinates.
@@ -197,5 +199,10 @@ public class Vector2f {
      */
     public float angle(Vector2f vec) {
         return (float) Math.acos(dot(vec) / (length() * vec.length()));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s", x, y);
     }
 }
