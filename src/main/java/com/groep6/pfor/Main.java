@@ -29,6 +29,6 @@ public class Main extends Application {
         // Set default view
         new HandController();
 
-        new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
+//        new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
     }
 }
