@@ -14,14 +14,16 @@ import javafx.scene.media.MediaPlayer;
  */
 public class MediaController extends Controller {
 
+	private static MediaPlayer mp;
+
 	/**
 	 * Plays a sound file.
 	 * 
 	 */
 	public static void play(String filePath) {
 		Media sound = new Media(Paths.get(filePath).toUri().toString());
-		MediaPlayer mp = new MediaPlayer(sound);
-		mp.setVolume(0.1);
+		mp = new MediaPlayer(sound);
+		mp.setVolume(0.3);
 		mp.setAutoPlay(true);
 	}
 	
@@ -30,7 +32,7 @@ public class MediaController extends Controller {
 	 * 
 	 */
 	public void stop() {
-		
+		mp.stop();
 	}
 	
 	@Override
