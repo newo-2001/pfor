@@ -11,6 +11,7 @@ import java.util.Stack;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
+import com.groep6.pfor.util.parsers.templates.FactionDTO;
 
 public class City extends Tile {
 	private Stack<Barbarian> barbarians = new Stack<Barbarian>();
@@ -21,11 +22,11 @@ public class City extends Tile {
 
 	/**
 	 * Initializes a new City with the given components.
-	 * @param name The name of a specific city
-	 * @param harbour Whether or not a city has a harbour
-	 * @param position The Vector2f (position) of a specific city
-	 * @param factions What factions are allowed in a specific city
-	 */
+     * @param name The name of a specific city
+     * @param harbour Whether or not a city has a harbour
+     * @param position The Vector2f (position) of a specific city
+     * @param factions What factions are allowed in a specific city
+     */
 	public City(String name, boolean harbour, Vector2f position, Faction[] factions) {
 		super(position, factions);
 		this.name = name;

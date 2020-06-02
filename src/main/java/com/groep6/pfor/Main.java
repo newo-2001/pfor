@@ -27,8 +27,10 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
 
         // Set default view
-        new HandController();
 
-//        new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
+		new HandController();
+        //new MenuController();
+
+        new PlayerService().get("CxDNFdDaJJNTEJkOmkQo");
     }
 }

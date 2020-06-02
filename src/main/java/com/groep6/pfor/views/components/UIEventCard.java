@@ -27,6 +27,6 @@ public class UIEventCard extends UICard {
 
     @Override
     public Card getCard() {
-        return null;
+        return card;
     }
 }

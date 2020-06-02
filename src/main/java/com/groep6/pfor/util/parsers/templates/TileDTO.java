@@ -1,7 +1,6 @@
 package com.groep6.pfor.util.parsers.templates;
 
 import com.google.gson.annotations.SerializedName;
-import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 
 public class TileDTO {
@@ -12,13 +11,13 @@ public class TileDTO {
     private String[] neighbours;
 
     @SerializedName("factions")
-    private Faction[] factions;
+    private FactionType[] factions;
 
     public Vector2fDTO getPosition() {
         return position;
     }
 
-    public Faction[] getFactions() {
+    public FactionType[] getFactions() {
         return factions;
     }
 

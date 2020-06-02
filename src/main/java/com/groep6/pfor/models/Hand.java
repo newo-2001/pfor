@@ -10,11 +10,11 @@ import com.groep6.pfor.util.Observable;
 
 /**
  * @author Bastiaan Jansen
+ * @author Nils van der Velden
  */
 public class Hand extends Observable {
 
     private List<Card> cards = new ArrayList<>();
-	private Card card;
 
     public Hand(Card... cards) {
         addCards(cards);
@@ -26,10 +26,12 @@ public class Hand extends Observable {
 
     public void addCards(Card... cards) {
         this.cards.addAll(Arrays.asList(cards));
+        notifyObservers();
     }
 
     public void removeCards(Card... cards) {
         this.cards.removeAll(Arrays.asList(cards));
+        notifyObservers();
     }
 
     public List<Card> getCards() {
@@ -39,6 +41,7 @@ public class Hand extends Observable {
     public Card removeCard(int index) {
         Card removedCard = cards.get(index);
         cards.remove(index);
+        notifyObservers();
         return removedCard;
     }
 
@@ -46,6 +49,7 @@ public class Hand extends Observable {
         int index = cards.indexOf(card);
         Card removedCard = cards.get(index);
         cards.remove(card);
+        notifyObservers();
         return removedCard;
     }
 
