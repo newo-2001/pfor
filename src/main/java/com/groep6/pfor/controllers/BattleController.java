@@ -33,7 +33,7 @@ public class BattleController extends Controller {
 //		int[] battleResult = player.battle();
 		int[] battleResult = {2, 3};
 
-		MediaController.play("src/main/resources/sounds/effects/BattleSound.mp3", 0.5, false);
+		MediaController.getInstance().play(MediaController.getInstance().getMedia("src/main/resources/sounds/effects/BattleSound.mp3"), false);
 
 		viewController.showView(new BattleView(this, battleResult));
 	}
