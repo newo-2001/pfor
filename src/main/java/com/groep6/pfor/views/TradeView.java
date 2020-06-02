@@ -77,7 +77,7 @@ public class TradeView extends View implements IObserver {
         withdrawButton.setPrefWidth(150);
         withdrawButton.addEventFilter(MouseEvent.MOUSE_CLICKED, withdrawCard);
         
-        depositeButton = new UIButton("Speel kaart");
+        depositeButton = new UIButton("Kaart opnemen");
         depositeButton.setPrefWidth(150);
         depositeButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         depositeButton.addEventFilter(MouseEvent.MOUSE_CLICKED, depositeCard);
