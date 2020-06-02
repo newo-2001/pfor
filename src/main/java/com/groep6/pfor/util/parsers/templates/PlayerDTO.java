@@ -6,7 +6,12 @@ import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.RoleCard;
 
-public class PlayerDTO {
+/**
+ * The Data Transfer Object that represents a Player in Firebase
+ *
+ * @author Owen Elderbroek
+ */
+public class PlayerDTO extends DTO {
     /** The username of the player */
     public String username;
 

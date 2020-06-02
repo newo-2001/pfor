@@ -14,21 +14,22 @@ public class LobbyPlayer extends Observable {
     private RoleCard roleCard;
     private boolean isHost;
     private boolean isLocal;
-
-    public LobbyPlayer() {}
+    private String lobby;
 
     /**
      * @param username
      * @param isHost
+     * @param isLocal
+     * @param lobby
      */
-    public LobbyPlayer(String username, RoleCard roleCard, boolean isHost, boolean isLocal) {
+    public LobbyPlayer(String username, RoleCard roleCard, boolean isHost, boolean isLocal, String lobby) {
         this.username = username;
         this.roleCard = roleCard;
         this.isHost = isHost;
         this.isLocal = isLocal;
     }
 
-    public LobbyPlayer(String username, boolean isHost) {
+    public LobbyPlayer(String username, boolean isHost, String lobby) {
         this.username = username;
         this.isHost = isHost;
     }
@@ -61,5 +62,12 @@ public class LobbyPlayer extends Observable {
 
     public boolean isLocal() {
         return isLocal;
+    }
+
+    /**
+     * @return The lobby code of the lobby that the player is in
+     */
+    public String getLobby() {
+        return lobby;
     }
 }

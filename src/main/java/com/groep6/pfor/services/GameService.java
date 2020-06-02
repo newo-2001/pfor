@@ -10,7 +10,7 @@ import com.google.firebase.database.annotations.Nullable;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-public class GameService extends Service {
+public class GameService {
 
     private static final String COLLECTION = "games";
 
@@ -18,26 +18,21 @@ public class GameService extends Service {
 
         DocumentSnapshot snapshot = null;
 
-        try {
-            DocumentReference docRef = db.collection(COLLECTION).document(documentID);
-            ApiFuture<DocumentSnapshot> future = docRef.get();
-
-            DocumentSnapshot document = future.get();
-            if (document.exists()) {
-                System.out.println("Document data: " + document.getData());
-                snapshot = document;
-            } else {
-                System.out.println("No such document!");
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DocumentReference docRef = db.collection(COLLECTION).document(documentID);
+//            ApiFuture<DocumentSnapshot> future = docRef.get();
+//
+//            DocumentSnapshot document = future.get();
+//            if (document.exists()) {
+//                System.out.println("Document data: " + document.getData());
+//                snapshot = document;
+//            } else {
+//                System.out.println("No such document!");
+//            }
+//        } catch (InterruptedException | ExecutionException e) {
+//            e.printStackTrace();
+//        }
 
         return snapshot;
-    }
-
-    @Override
-    public void subscribe(String documentID) {
-
     }
 }
