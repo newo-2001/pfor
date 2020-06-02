@@ -103,5 +103,5 @@ public class LobbyService extends Observable {
                 notifyObservers(dto.toModel(getPlayers(dto.code)));
             }
         }
-    }
+    };
 }
