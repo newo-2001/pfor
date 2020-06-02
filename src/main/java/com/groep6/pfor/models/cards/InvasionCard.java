@@ -1,6 +1,7 @@
 package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 
 import java.util.ArrayList;
@@ -14,17 +15,17 @@ public class InvasionCard extends Card {
 
     private String name;
     private List<City> route;
-    private FactionType factionType;
+    private Faction faction;
 
     /**
      * @param name
-     * @param factionType
+     * @param faction
      * @param route
      */
-    public InvasionCard(String name, FactionType factionType, ArrayList<City> route) {
+    public InvasionCard(String name, Faction faction, ArrayList<City> route) {
         this.name = name;
         this.route = route;
-        this.factionType = factionType;
+        this.faction = faction;
     }
 
     /**
@@ -42,8 +43,8 @@ public class InvasionCard extends Card {
     /**
      * @return Faction
      */
-    public FactionType getFactionType() {
-        return factionType;
+    public Faction getFaction() {
+        return faction;
     }
 
     /**

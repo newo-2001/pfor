@@ -14,6 +14,6 @@ public class CityDTO {
     private boolean harbour;
 
     public City toModel() {
-        return new City(name, harbour, tile.getPosition().toModel(), tile.getFactionTypes());
+        return new City(name, harbour, tile.getPosition().toModel(), tile.getFactions());
     }
 }
