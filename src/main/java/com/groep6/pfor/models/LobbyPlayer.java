@@ -7,6 +7,7 @@ import com.groep6.pfor.util.Observable;
  * Represents a lobby player
  * @author Bastiaan Jansen
  */
+
 public class LobbyPlayer extends Observable {
 
     private String username;

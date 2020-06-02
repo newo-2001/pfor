@@ -2,15 +2,19 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
+import com.groep6.pfor.views.components.UIRoleCard;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -22,6 +26,7 @@ import java.util.List;
 /**
  * The view that represents a player's hand with cards
  * @author Bastiaan Jansen
+ * @author Nils van der Velden
  */
 public class HandView extends View {
     private HandController handController;
@@ -43,7 +48,13 @@ public class HandView extends View {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
+        scrollPane.setPadding(new Insets(-1));
+        
         FlowPane cardsPane = new FlowPane();
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/character_info_background.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
+        cardsPane.setBackground(new Background(backgroundImage));
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);
@@ -52,6 +63,19 @@ public class HandView extends View {
 //            UICard uiCard = new UICard(card);
 //            cardsPane.getChildren().add(uiCard);
         }
+        
+        for (Card card: handController.getCards()) {
+            UICard uicard = new UICard(card);
+
+            uicard.select();
+
+            uicard.addEventFilter(MouseEvent.MOUSE_CLICKED, selectCard);
+
+            uiCards.add(uicard);
+            cardsPane.getChildren().add(uicard);
+        }
+
+        
 
         scrollPane.setContent(cardsPane);
 
@@ -84,6 +108,23 @@ public class HandView extends View {
             handController.goBack();
         }
     };
+    
+    // Select a card
+    EventHandler<javafx.scene.input.MouseEvent> selectCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+            deselectAllCards();
+            UICard source = (UICard) e.getSource();
+            source.select();
+            handController.selectCard((RoleCard) source.getCard());
+        }
+    };
+
+    public void deselectAllCards() {
+        for (UICard card: uiCards) {
+            card.deselect();
+        }
+    }
 
     @Override
     public Pane getRoot() {

@@ -4,6 +4,7 @@ import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
+import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
@@ -37,5 +38,10 @@ public class HandController extends Controller {
     @Override
     public void registerObserver(IObserver view) {
 
+    }
+
+    public void selectCard(RoleCard card) {
+    	game.getLocalPlayer().getHand().setCard(card);
+    	
     }
 }
