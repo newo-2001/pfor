@@ -11,10 +11,11 @@
 }
 .markdown-heading-3 {
     -fx-font-size: 30px;
+    -fx-font-weight: bold;
 }
 
 .markdown-text {
-    -fx-font-family: 'Monotype Corsiva';
+    -fx-font-family: "Comic Sans MS", cursive, sans-serif;
     -fx-font-size: 25px;
 }
 .markdown-italic {
