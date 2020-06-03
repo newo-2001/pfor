@@ -66,9 +66,7 @@ public class BoardView extends View implements IObserver {
         root.setTop(playerList);
         
         // Center - board
-        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, true);
-        Pane boardPane = new Pane();
-        setBackground(boardPane, "images/board.jpg");
+        Pane boardPane = createBoard();
         root.setCenter(boardPane);
         
         // Right - action buttons
@@ -196,6 +194,12 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
         
         return actionButtonLayout;
+    }
+    
+    private Pane createBoard() {
+    	Pane boardPane = new Pane();
+        setBackground(boardPane, "images/board.jpg");
+        return boardPane;
     }
 
     /**
