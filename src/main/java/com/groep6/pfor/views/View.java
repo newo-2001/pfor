@@ -13,7 +13,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 
 /**
  * Abstract class for each view in the app. Contains the scene, viewport and methods to decide
@@ -26,40 +25,6 @@ public abstract class View {
 
     protected Scene scene;
     protected Rectangle2D viewport;
-    
-    /**
-     * Initialize a view. Preparation for potential pillar- and letterboxing.
-     * @author Mitchell van Rijswijk
-     * 
-     */
-    public View() {
-    	viewport = Screen.getPrimary().getBounds();
-    	setBackground(getRoot(), Color.BLACK);
-    	checkPillarBoxing();
-    	checkLetterBoxing();
-    }
-    
-    /**
-     * Compares root height with viewport height. Decides whether to pillarbox or not.
-     * @author Mitchell van Rijswijk
-     * 
-     */
-    protected void checkPillarBoxing() {
-    	if (getRoot().getHeight() > viewport.getHeight()) {
-    		double ratio = getRoot().getWidth() / getRoot().getHeight();
-    		getRoot().setPrefSize(viewport.getHeight() * ratio, viewport.getHeight());
-    	}
-    }
-    
-    /**
-     * Compares root width with viewport width. Decides whether to letterbox or not.
-     * @author Mitchell van Rijswijk
-     * 
-     */
-    protected void checkLetterBoxing() {
-    	
-    }
-
     public abstract Pane getRoot();
 
     /**
