@@ -3,21 +3,25 @@ package com.groep6.pfor.controllers;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
 
 import java.util.List;
 
-public class LobbyController extends Controller {
+public class LobbyController extends Controller implements IObserver {
 
     public static final int MIN_PLAYERS = 3;
 
     private Game game = Game.getInstance();
+    private LobbyService lobbyService = new LobbyService();
     private Lobby lobby;
 
     public LobbyController(Lobby lobby) {
         this.lobby = lobby;
+        lobbyService.registerListener(lobby);
+        lobbyService.registerObserver(this);
         viewController.showView(new LobbyView(this));
     }
 
@@ -44,5 +48,25 @@ public class LobbyController extends Controller {
     @Override
     public void registerObserver(IObserver view) {
         lobby.registerObserver(view);
+    }
+
+    @Override
+    public void update(Object... data) {
+
+        if (data.length > 0) {
+            Lobby serverLobby = (Lobby) data[0];
+
+            LobbyPlayer localPlayer = lobby.getLocalPlayer();
+
+            lobby.updateLobby(serverLobby);
+            lobby.update();
+
+            for (LobbyPlayer player: lobby.getPlayers()) {
+                if (player.equals(localPlayer)) {
+                    player.setLocal(true);
+                    break;
+                }
+            }
+        }
     }
 }

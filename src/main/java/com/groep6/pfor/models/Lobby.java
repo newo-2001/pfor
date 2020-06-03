@@ -30,7 +30,6 @@ public class Lobby extends Observable implements IObserver {
     public Lobby(String password) {
         this.code = generateCode();
         this.passwordHash = password;
-        lobbyService.registerObserver(this);
     }
 
     /**
@@ -38,15 +37,12 @@ public class Lobby extends Observable implements IObserver {
      */
     public Lobby() {
         this.code = generateCode();
-        lobbyService.registerObserver(this);
     }
 
     public Lobby(String code, String passwordHash, List<LobbyPlayer> players) {
         this.code = code;
         this.passwordHash = passwordHash;
         this.players.addAll(players);
-
-        lobbyService.registerObserver(this);
     }
 
     /**
@@ -62,7 +58,6 @@ public class Lobby extends Observable implements IObserver {
         if (players.size() == 0) isHost = true;
 
         LobbyPlayer lobbyPlayer = new LobbyPlayer(username, RoleCardFactory.getInstance().pickRandomRoleCard(), isHost, isLocal, code);
-        lobbyPlayer.registerObserver(this);
         players.add(lobbyPlayer);
         return lobbyPlayer;
     }
@@ -182,22 +177,20 @@ public class Lobby extends Observable implements IObserver {
 
     @Override
     public void update(Object... data) {
+        notifyObservers();
+    }
 
-        if (data.length > 0) {
-            Lobby lobby = (Lobby) data[0];
+    public void updateLobby(Lobby lobby) {
 
-            LobbyPlayer localPlayer = this.getLocalPlayer();
+        LobbyPlayer localPlayer = getLocalPlayer();
 
-            this.players = lobby.getPlayers();
+        players = lobby.getPlayers();
 
-            for (LobbyPlayer player: lobby.getPlayers()) {
-                if (player.equals(localPlayer)) {
-                    player.setLocal(true);
-                    break;
-                }
+        for (LobbyPlayer player: lobby.getPlayers()) {
+            if (player.equals(localPlayer)) {
+                player.setLocal(true);
+                break;
             }
         }
-
-        notifyObservers();
     }
 }

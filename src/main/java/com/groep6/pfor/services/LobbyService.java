@@ -7,6 +7,7 @@ import com.google.cloud.firestore.Query;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
