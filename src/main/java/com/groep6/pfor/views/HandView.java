@@ -192,6 +192,7 @@ public class HandView extends View implements IObserver {
         createCards();
         handleCardLimit();
         discardCardButton.setDisable(true);
+        depositCardButton.setDisable(true);
     }
 }
 
