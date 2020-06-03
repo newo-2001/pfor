@@ -2,7 +2,6 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.models.cards.Card;
-import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
 import com.groep6.pfor.util.IObserver;
@@ -15,7 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -180,8 +178,7 @@ public class HandView extends View implements IObserver {
         	goBackButton.setDisable(false);
         }
     }
-    
-
+   
     @Override
     public Pane getRoot() {
         return root;
