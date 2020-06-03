@@ -70,6 +70,7 @@ public class HandView extends View implements IObserver {
         discardCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, discardCard);
 
         playCardButton = new UIButton("Speel kaart");
+        playCardButton.setDisable(true);
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
@@ -142,6 +143,12 @@ public class HandView extends View implements IObserver {
             source.select();
             handController.selectCard(source.getCard());
             discardCardButton.setDisable(false);
+
+            if (source instanceof UIEventCard) {
+                playCardButton.setDisable(false);
+            } else {
+                playCardButton.setDisable(true);
+            }
         }
     };
 

@@ -69,13 +69,12 @@ public class HandController extends Controller {
     }
     
     public void playCard() {
-        if (selectedCard instanceof CityCard) {
-        	System.out.println("Cant play a city card");
-        }
+        if (selectedCard == null) return;
+
         if (selectedCard instanceof EventCard) {
-        	System.out.println("Playing card");
             game.getLocalPlayer().getHand().removeCard(selectedCard);
         	game.getInvasionDiscardPile().addCards(selectedCard);
+        	((EventCard) selectedCard).executeEvent();
         }
 
         SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");

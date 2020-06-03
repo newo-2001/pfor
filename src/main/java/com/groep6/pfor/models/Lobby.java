@@ -182,22 +182,6 @@ public class Lobby extends Observable implements IObserver {
 
     @Override
     public void update(Object... data) {
-
-        if (data.length > 0) {
-            Lobby lobby = (Lobby) data[0];
-
-            LobbyPlayer localPlayer = this.getLocalPlayer();
-
-            this.players = lobby.getPlayers();
-
-            for (LobbyPlayer player: lobby.getPlayers()) {
-                if (player.equals(localPlayer)) {
-                    player.setLocal(true);
-                    break;
-                }
-            }
-        }
-
         notifyObservers();
     }
 }
