@@ -39,7 +39,18 @@ public class LobbyController extends Controller {
     public void goToMenu() {
         // Delete from lobby
         LobbyService lobbyService = new LobbyService();
-        lobbyService.leave(lobby.getLocalPlayer());
+        LobbyPlayer player = lobby.getLocalPlayer();
+        lobbyService.leave(player);
+
+        if (player.isHost()) {
+            boolean lobbyIsEmpty = lobby.getPlayers().size() == 0;
+
+            if (lobbyIsEmpty) {
+                lobbyService.remove(lobby);
+            } else {
+                lobbyService.giveHost(lobby.getPlayers().get(0));
+            }
+        }
 
         new MenuController();
     }
