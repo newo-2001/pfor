@@ -6,13 +6,10 @@ import com.google.cloud.firestore.*;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
-import com.groep6.pfor.util.Observable;
+import com.groep6.pfor.util.ServerEvent;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
-import com.sun.xml.internal.bind.v2.model.core.TypeRef;
-
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +18,10 @@ import java.util.Map;
  *
  * @author Owen Elderbroek
  */
-public class LobbyService extends Observable {
+public class LobbyService {
+    /** This event is fired when a lobby is changed */
+    public static ServerEvent lobbyChangeEvent = new ServerEvent();
+
     /**
      * Obtain the list of players in a lobby
      * @param code The code of the lobby
@@ -98,7 +98,7 @@ public class LobbyService extends Observable {
         @Override
         public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
             if (e != null) e.printStackTrace();
-            else notifyObservers(documentSnapshot.toObject(LobbyDTO.class).toModel());
+            else LobbyService.lobbyChangeEvent.fire(documentSnapshot.toObject(LobbyDTO.class).toModel());
 
             System.out.println("Updating...");
         }

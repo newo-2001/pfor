@@ -2,13 +2,11 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.factories.RoleCardFactory;
-import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -193,5 +191,11 @@ public class Lobby extends Observable implements IObserver {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Lobby)) return false;
+        return ((Lobby) o).code == code;
     }
 }
