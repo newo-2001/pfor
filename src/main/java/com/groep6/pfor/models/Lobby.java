@@ -41,10 +41,10 @@ public class Lobby extends Observable implements IObserver {
         lobbyService.registerObserver(this);
     }
 
-    public Lobby(String code, String passwordHash, LobbyPlayer[] players) {
+    public Lobby(String code, String passwordHash, List<LobbyPlayer> players) {
         this.code = code;
         this.passwordHash = passwordHash;
-        this.players.addAll(Arrays.asList(players));
+        this.players.addAll(players);
 
         lobbyService.registerObserver(this);
     }

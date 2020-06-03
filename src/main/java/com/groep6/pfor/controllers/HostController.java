@@ -28,7 +28,8 @@ public class HostController extends Controller {
 
             // Send to lobby service
             LobbyService lobbyService = new LobbyService();
-            lobbyService.create(lobby);
+            lobbyService.registerListener(lobby);
+            lobbyService.set(lobby);
 
             // Send user to lobby
             new LobbyController(lobby);
