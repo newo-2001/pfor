@@ -1,5 +1,6 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -8,6 +9,8 @@ import com.groep6.pfor.models.cards.actions.IAction;
  *
  */
 public class FestinaLenteAction implements IAction {
+
+	private Game game = Game.getInstance();
 
 	/**
 	 * Allows the player to move another player to a city of choice, with his 

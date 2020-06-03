@@ -55,8 +55,7 @@ public class HandController extends Controller {
         
         if (selectedCard instanceof CityCard) {
         	game.getCityDiscardPile().addCards(selectedCard);
-        }
-        if (selectedCard instanceof EventCard) {
+        } else if (selectedCard instanceof EventCard) {
         	game.getInvasionDiscardPile().addCards(selectedCard);
         }
 

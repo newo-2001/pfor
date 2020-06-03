@@ -4,23 +4,16 @@ import com.groep6.pfor.controllers.BattleController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 
+import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -34,7 +27,7 @@ import javafx.scene.text.Text;
 public class BattleView extends View implements IObserver {
     /** The battleController */
     private BattleController battleController;
-    private BorderPane root;
+    private StackPane root;
     private int[] battleResult;
 
     /**
@@ -53,23 +46,19 @@ public class BattleView extends View implements IObserver {
      * Create the post battle screen. Displays amount of legions died, and amount of barbarians died.
      */
     public void createView() {
-    	root = new BorderPane();
+    	root = new StackPane();
+
     	VBox log = new VBox();
+    	log.setMaxSize(500, 300);
     	
-    	Text legionsLost = new Text(battleResult[0] + " Legioenen zijn gesneuveld");
-        legionsLost.setFont(Font.font("verdana", FontWeight.NORMAL,
-        		FontPosture.REGULAR, 32));
-        legionsLost.setFill(Color.WHITE);
+    	UIText legionsLost = new UIText(battleResult[0] + " Legioenen zijn gesneuveld");
+    	legionsLost.setSize(32).setColor(Color.WHITE);
         
-    	Text barbariansLost = new Text(battleResult[1] + " Barbaren zijn gesneuveld");
-        barbariansLost.setFont(Font.font("verdana", FontWeight.NORMAL,
-        		FontPosture.REGULAR, 32));
-        barbariansLost.setFill(Color.WHITE);
+    	UIText barbariansLost = new UIText(battleResult[1] + " Barbaren zijn gesneuveld");
+    	barbariansLost.setSize(32).setColor(Color.WHITE);
         
         Button goBackButton = new UIButton("Ga terug");
         goBackButton.setPadding(new Insets(10));
-        goBackButton.setMinWidth(100);
-        goBackButton.setMaxWidth(100);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
         
@@ -78,12 +67,9 @@ public class BattleView extends View implements IObserver {
     	log.setAlignment(Pos.CENTER);
     	log.setPadding(new Insets(50));
     	log.setSpacing(24);
-    	root.setPadding(new Insets(400, 750, 400, 750));
-        BackgroundImage postBattle = new BackgroundImage(new Image("images/battle_result_image.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                new BackgroundSize(100, 100, true, true, true, true));
-        root.setBackground(new Background(postBattle));
-    	root.setCenter(log);
+
+        setBackground(root, "images/battle_result_image.jpg");
+    	root.getChildren().add(log);
     }
     
     EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
