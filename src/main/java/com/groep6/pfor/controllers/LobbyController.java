@@ -1,13 +1,12 @@
 package com.groep6.pfor.controllers;
 
-import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.models.*;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LobbyController extends Controller implements IObserver {
@@ -44,6 +43,11 @@ public class LobbyController extends Controller implements IObserver {
     }
 
     public void startGame() {
+
+        game.setLocalPlayer(new Player(lobby.getLocalPlayer()));
+        game.addPlayers(lobby.getPlayers().toArray(new LobbyPlayer[0]));
+
+        new BoardController();
 
     }
 

@@ -58,7 +58,6 @@ public class BattleView extends View implements IObserver {
     	barbariansLost.setSize(32).setColor(Color.WHITE);
         
         Button goBackButton = new UIButton("Ga terug");
-        goBackButton.setPadding(new Insets(10));
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
         
