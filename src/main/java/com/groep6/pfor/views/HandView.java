@@ -38,6 +38,7 @@ public class HandView extends View implements IObserver {
     private Button discardCardButton;
     private Button playCardButton;
     private Button goBackButton;
+    private Button depositCardButton;
     private ScrollPane scrollPane;
     private FlowPane cardsPane;
     private List<UICard> uiCards = new ArrayList<>();
@@ -64,7 +65,7 @@ public class HandView extends View implements IObserver {
         buttonsPane.setAlignment(Pos.CENTER);
         buttonsPane.setPadding(new Insets(50, 50, 50, 50));
 
-        discardCardButton = new UIButton("Kaart afleggen");
+        discardCardButton = new UIButton("Kaart verwijderen");
         discardCardButton.setDisable(true);
         discardCardButton.setPrefWidth(150);
         discardCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, discardCard);
@@ -80,8 +81,14 @@ public class HandView extends View implements IObserver {
         goBackButton.setPrefWidth(150);
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        
+        depositCardButton = new UIButton("Kaart afleggen");
+        depositCardButton.setDisable(true);
+        depositCardButton.setPrefWidth(150);
+        depositCardButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
+        depositCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, depositCard);
 
-        buttonsPane.getChildren().addAll(discardCardButton, playCardButton, goBackButton);
+        buttonsPane.getChildren().addAll(depositCardButton, discardCardButton, playCardButton, goBackButton);
         buttonsPane.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         root.setCenter(scrollPane);
@@ -143,12 +150,20 @@ public class HandView extends View implements IObserver {
             source.select();
             handController.selectCard(source.getCard());
             discardCardButton.setDisable(false);
+            depositCardButton.setDisable(false);
 
             if (source instanceof UIEventCard) {
                 playCardButton.setDisable(false);
             } else {
                 playCardButton.setDisable(true);
             }
+        }
+    };
+    
+    EventHandler<MouseEvent> depositCard = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(javafx.scene.input.MouseEvent e) {
+        	handController.depositCard();
         }
     };
 
@@ -177,7 +192,6 @@ public class HandView extends View implements IObserver {
         createCards();
         handleCardLimit();
         discardCardButton.setDisable(true);
-    	//goBackButton.setDisable(false);
     }
 }
 
