@@ -4,6 +4,7 @@ import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.services.LobbyService;
@@ -39,8 +40,9 @@ public class RoleCardInfoController extends Controller {
     }
 
     public void selectCard(RoleCard card) {
-        lobby.getLocalPlayer().setRoleCard(card);
+        LobbyPlayer localPlayer = lobby.getLocalPlayer();
+        localPlayer.setRoleCard(card);
         LobbyService lobbyService = new LobbyService();
-        lobbyService.set(lobby);
+        lobbyService.updateRoleCard(localPlayer);
     }
 }
