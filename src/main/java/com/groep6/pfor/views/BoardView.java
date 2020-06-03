@@ -5,6 +5,7 @@ import com.groep6.pfor.controllers.BoardController;
 import com.groep6.pfor.controllers.HandController;
 import com.groep6.pfor.controllers.RecruitBarbarianController;
 import com.groep6.pfor.controllers.RecruitLegionController;
+import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
@@ -83,6 +84,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToTradeView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
+        	new TradeController();
             
         }
     };
@@ -161,7 +163,7 @@ public class BoardView extends View implements IObserver {
     	actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
     	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
-        Button conspireButton = new UIButton("SAMENSPANNEN");
+        Button conspireButton = new UIButton("RUILEN");
         conspireButton.setPrefSize(150, 60);
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
         actionButtonLayout.add(conspireButton, 0, 1);
