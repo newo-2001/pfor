@@ -94,7 +94,7 @@ public class LobbyView extends View implements IObserver {
 
         for (int i = 0; i < players.size(); i++) {
             LobbyPlayer player = players.get(i);
-            UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(i + 1, player.getUsername(), player.getRoleCard());
+            UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(i + 1, player.getUsername(), player.getRoleCard(), player.isHost());
 
             playerContainer.getChildren().add(uiLobbyPlayerInfo);
         }
