@@ -175,7 +175,7 @@ public class Lobby extends Observable implements IObserver {
     }
 
     @Override
-    public void update(Object... data) {
+    public void update() {
         notifyObservers();
     }
 
@@ -191,11 +191,13 @@ public class Lobby extends Observable implements IObserver {
                 break;
             }
         }
+
+        update();
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Lobby)) return false;
-        return ((Lobby) o).code == code;
+        return ((Lobby) o).code.equals(code);
     }
 }

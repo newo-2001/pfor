@@ -80,7 +80,7 @@ public class BattleView extends View implements IObserver {
     };
 
     @Override
-    public void update(Object... data) {
+    public void update() {
 
     }
 

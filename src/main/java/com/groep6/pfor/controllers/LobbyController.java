@@ -4,23 +4,23 @@ import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.services.LobbyService;
+import com.groep6.pfor.util.IEventCallback;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
 
 import java.util.List;
 
-public class LobbyController extends Controller implements IObserver {
+public class LobbyController extends Controller {
 
     public static final int MIN_PLAYERS = 3;
 
     private Game game = Game.getInstance();
-    private LobbyService lobbyService;
     private Lobby lobby;
 
-    public LobbyController(Lobby lobby, LobbyService lobbyService) {
+    public LobbyController(Lobby lobby) {
         this.lobby = lobby;
-        this.lobbyService = lobbyService;
+        LobbyService.lobbyChangeEvent.subscribe(onLobbyChange);
         viewController.showView(new LobbyView(this));
     }
 
@@ -38,6 +38,7 @@ public class LobbyController extends Controller implements IObserver {
 
     public void goToMenu() {
         // Delete from lobby
+        LobbyService lobbyService = new LobbyService();
         lobbyService.leave(lobby.getLocalPlayer());
 
         new MenuController();
@@ -53,23 +54,14 @@ public class LobbyController extends Controller implements IObserver {
     }
 
 
-    @Override
-    public void update(Object... data) {
+    private IEventCallback onLobbyChange = new IEventCallback() {
+        @Override
+        public void onEvent(Object... eventData) {
+            Lobby serverLobby = (Lobby) eventData[0];
 
-        if (data.length > 0) {
-            Lobby serverLobby = (Lobby) data[0];
-
-            LobbyPlayer localPlayer = lobby.getLocalPlayer();
+            if (!serverLobby.equals(lobby)) return;
 
             lobby.updateLobby(serverLobby);
-            lobby.update();
-
-            for (LobbyPlayer player: lobby.getPlayers()) {
-                if (player.equals(localPlayer)) {
-                    player.setLocal(true);
-                    break;
-                }
-            }
         }
-    }
+    };
 }
