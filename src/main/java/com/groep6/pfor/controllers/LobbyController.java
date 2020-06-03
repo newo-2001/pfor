@@ -1,13 +1,12 @@
 package com.groep6.pfor.controllers;
 
-import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.models.*;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LobbyController extends Controller implements IObserver {
@@ -20,6 +19,7 @@ public class LobbyController extends Controller implements IObserver {
 
     public LobbyController(Lobby lobby) {
         this.lobby = lobby;
+        lobbyService.registerListener(lobby);
         lobbyService.registerObserver(this);
         viewController.showView(new LobbyView(this));
     }
@@ -44,6 +44,11 @@ public class LobbyController extends Controller implements IObserver {
 
     public void startGame() {
 
+        game.setLocalPlayer(new Player(lobby.getLocalPlayer()));
+        game.addPlayers(lobby.getPlayers().toArray(new LobbyPlayer[0]));
+
+        new BoardController();
+
     }
 
     @Override
@@ -53,21 +58,21 @@ public class LobbyController extends Controller implements IObserver {
 
     @Override
     public void update(Object... data) {
+
         if (data.length > 0) {
             Lobby serverLobby = (Lobby) data[0];
 
-//            LobbyPlayer localPlayer = lobby.getLocalPlayer();
+            LobbyPlayer localPlayer = lobby.getLocalPlayer();
 
-            lobby = serverLobby;
+            lobby.updateLobby(serverLobby);
+            lobby.update();
 
-            System.out.println("sd");
-
-//            for (LobbyPlayer player: lobby.getPlayers()) {
-//                if (player.equals(localPlayer)) {
-//                    player.setLocal(true);
-//                    break;
-//                }
-//            }
+            for (LobbyPlayer player: lobby.getPlayers()) {
+                if (player.equals(localPlayer)) {
+                    player.setLocal(true);
+                    break;
+                }
+            }
         }
     }
 }

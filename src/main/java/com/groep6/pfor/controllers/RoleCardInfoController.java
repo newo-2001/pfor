@@ -40,15 +40,7 @@ public class RoleCardInfoController extends Controller {
 
     public void selectCard(RoleCard card) {
         lobby.getLocalPlayer().setRoleCard(card);
-
         LobbyService lobbyService = new LobbyService();
-
-        try {
-            lobbyService.updatePlayer(lobby.getLocalPlayer());
-        } catch (NoDocumentException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-
+        lobbyService.set(lobby);
     }
 }

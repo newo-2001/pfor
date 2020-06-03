@@ -19,23 +19,30 @@ public class LobbyDTO extends DTO {
     /** The password that is required to join the lobby */
     public String password;
 
+    /** The players in this lobby */
+    public List<LobbyPlayerDTO> players;
+
     public LobbyDTO() {}
 
     /**
      * Construct a Data Transfer Object with the specified fields
      * @param code The lobby code
-     * @param password The password for the lobbys
+     * @param password The password for the lobbies
+     * @param players The players in the lobby
      */
-    private LobbyDTO(String code, String password) {
+    private LobbyDTO(String code, String password, List<LobbyPlayerDTO> players) {
         this.code = code;
         this.password = password;
+        this.players = players;
     }
 
     /**
      * Converts this Data Transfer Object to its corresponding business model
      * @return The lobby object that this instance represents
      */
-    public Lobby toModel(LobbyPlayer[] players) {
+    public Lobby toModel() {
+        List<LobbyPlayer> players = new ArrayList<>();
+        for (LobbyPlayerDTO player : this.players) players.add(player.toModel(code));
         return new Lobby(code, password, players);
     }
 
@@ -45,6 +52,8 @@ public class LobbyDTO extends DTO {
      * @return The DTO of the model
      */
     public static LobbyDTO fromModel(Lobby lobby) {
-        return new LobbyDTO(lobby.getCode(), lobby.getPasswordHash());
+        List<LobbyPlayerDTO> players = new ArrayList<>();
+        for (LobbyPlayer player : lobby.getPlayers()) players.add(LobbyPlayerDTO.fromModel(player));
+        return new LobbyDTO(lobby.getCode(), lobby.getPasswordHash(), players);
     }
 }

@@ -1,11 +1,6 @@
 package com.groep6.pfor.views;
 
-import com.groep6.pfor.controllers.BattleController;
-import com.groep6.pfor.controllers.BoardController;
-import com.groep6.pfor.controllers.HandController;
-import com.groep6.pfor.controllers.RecruitBarbarianController;
-import com.groep6.pfor.controllers.RecruitLegionController;
-import com.groep6.pfor.controllers.TradeController;
+import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
@@ -35,6 +30,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+
 import java.util.List;
 
 /**
@@ -51,7 +48,9 @@ public class BoardView extends View implements IObserver {
     public BoardView(BoardController controller) {
         boardController = controller;
         boardController.registerObserver(this);
+
         createView();
+
         update();
     }
 
@@ -68,9 +67,12 @@ public class BoardView extends View implements IObserver {
         root.setTop(playerList);
         
         // Center - board
-        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, false);
+        BackgroundImage board = new BackgroundImage(new Image("images/board.jpg"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                boardSize);
         Pane boardPane = new Pane();
-        setBackground(boardPane, "images/board.jpg");
+        boardPane.setBackground(new Background(board));
         root.setCenter(boardPane);
         
         // Right - action buttons

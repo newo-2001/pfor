@@ -7,19 +7,17 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UILobbyPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+
 import java.util.List;
 
 import java.util.ArrayList;
@@ -34,7 +32,9 @@ public class LobbyView extends View implements IObserver {
 
     private BorderPane root;
     private Button startGameButton;
-    private List<LobbyPlayer> players;
+    private FlowPane playerContainer;
+    private ScrollPane scrollPane;
+    private List<LobbyPlayer> players = new ArrayList<>();
 
     public LobbyView(LobbyController controller) {
         lobbyController = controller;
@@ -73,15 +73,16 @@ public class LobbyView extends View implements IObserver {
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
 
-
         bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
+        setBackground(root, "images/background-5.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
+        root.setCenter(scrollPane);
         root.getChildren().add(codeText);
     }
 
     private void createPlayers() {
-        FlowPane playerContainer = new FlowPane();
+        playerContainer = new FlowPane();
         playerContainer.setHgap(50);
         playerContainer.setVgap(50);
         playerContainer.setAlignment(Pos.CENTER);
@@ -91,12 +92,17 @@ public class LobbyView extends View implements IObserver {
         for (int i = 0; i < players.size(); i++) {
             LobbyPlayer player = players.get(i);
             UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(i + 1, player.getUsername(), player.getRoleCard());
+
             playerContainer.getChildren().add(uiLobbyPlayerInfo);
         }
 
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/lobby_background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
-        root.setBackground(new Background(backgroundImage));
-        root.setCenter(playerContainer);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                root.setCenter(playerContainer);
+            }
+        });
+
     }
 
     EventHandler<MouseEvent> goToHostView = new EventHandler<MouseEvent>() {
@@ -106,14 +112,14 @@ public class LobbyView extends View implements IObserver {
         }
     };
     
-    EventHandler<javafx.scene.input.MouseEvent> goToMenu = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> goToMenu = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             lobbyController.goToMenu();
         }
     };
 
-    EventHandler<javafx.scene.input.MouseEvent> startGame = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> startGame = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
 
@@ -126,7 +132,7 @@ public class LobbyView extends View implements IObserver {
     public void update(Object... data) {
         createPlayers();
 
-        if (players.size() >= LobbyController.MIN_PLAYERS) startGameButton.setDisable(false);
+        if (players.size() >= LobbyController.MIN_PLAYERS || Config.DEBUG) startGameButton.setDisable(false);
         else startGameButton.setDisable(true);
     }
 

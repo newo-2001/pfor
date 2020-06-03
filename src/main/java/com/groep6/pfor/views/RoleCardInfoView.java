@@ -10,9 +10,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -54,7 +51,7 @@ public class RoleCardInfoView extends View {
         
         /** FlowPane that represents the individual cards */
         FlowPane cardsPane = new FlowPane();
-        setBackground(cardsPane, "images/character_info_background.jpg");
+        setBackground(cardsPane, "images/background-4.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);
