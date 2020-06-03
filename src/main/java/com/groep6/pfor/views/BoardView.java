@@ -77,6 +77,7 @@ public class BoardView extends View implements IObserver {
         
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();
+        root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         root.setRight(actionButtonLayout);
     }
 
