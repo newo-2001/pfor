@@ -40,6 +40,7 @@ public class LobbyController extends Controller {
         // Delete from lobby
         LobbyService lobbyService = new LobbyService();
         LobbyPlayer player = lobby.getLocalPlayer();
+        lobby.removePlayer(player);
         lobbyService.leave(player);
 
         if (player.isHost()) {
