@@ -51,6 +51,15 @@ public class LobbyService {
     }
 
     /**
+     * Thanos snap a lobby out of the database, never to be seen again
+     * @param lobby The lobby to be Thanos snapped
+     */
+    public void remove(Lobby lobby) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + lobby.getCode());
+        doc.delete();
+    }
+
+    /**
      * Create a lobby on the server.
      * All the players in this lobby will automagically be joined
      * It will be assumed that all these players belong to this client (should really ever only be 1 player!)
@@ -69,6 +78,17 @@ public class LobbyService {
     public void updateRoleCard(LobbyPlayer player) {
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
         doc.update(FieldPath.of("players", player.getUsername(), "role"), player.getRoleCard().getName());
+    }
+
+    /**
+     * Gives a player lobby host
+     * Note! This does not remove host from the other players
+     * You should do that yourself
+     * @param player The player to be the new lobby host
+     */
+    public void giveHost(LobbyPlayer player) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername(), "host"), true);
     }
 
     /**
