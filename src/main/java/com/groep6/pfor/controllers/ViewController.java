@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class ViewController {
 
-    private static final int MIN_WIDTH = 1080;
-    private static final int MIN_HEIGHT = 720;
+    private static final int MIN_WIDTH = 1440;
+    private static final int MIN_HEIGHT = 900;
 
     private static final ViewController INSTANCE = new ViewController();
     public static ViewController getInstance() { return INSTANCE; }
@@ -34,8 +34,8 @@ public class ViewController {
      */
     public void setPrimaryStage(Stage stage) {
         this.stage = stage;
-        stage.setMinWidth(MIN_WIDTH);
-        stage.setMinHeight(MIN_HEIGHT);
+        stage.setWidth(MIN_WIDTH);
+        stage.setHeight(MIN_HEIGHT);
         stage.setFullScreen(true);
     }
 
