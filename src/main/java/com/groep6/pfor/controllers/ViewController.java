@@ -34,6 +34,7 @@ public class ViewController {
      */
     public void setPrimaryStage(Stage stage) {
         this.stage = stage;
+        stage.setResizable(false);
         stage.setWidth(MIN_WIDTH);
         stage.setHeight(MIN_HEIGHT);
         //stage.setFullScreen(true);
