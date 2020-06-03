@@ -1,5 +1,7 @@
 package com.groep6.pfor.services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.firestore.*;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Lobby;
@@ -7,9 +9,12 @@ import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
+import com.sun.xml.internal.bind.v2.model.core.TypeRef;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The LobbyService class acts as a gateway to Firebase for all lobby related actions
@@ -74,7 +79,9 @@ public class LobbyService extends Observable {
     public void join(LobbyPlayer player) {
         Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
-        doc.update(FieldPath.of("players", player.getUsername()), LobbyPlayerDTO.fromModel(player));
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> kv = mapper.convertValue(LobbyPlayerDTO.fromModel(player), new TypeReference<Map<String, Object>>() {});
+        doc.update("players." + player.getUsername(), kv);
     }
 
     /**
