@@ -131,7 +131,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> goToInstructionView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+            boardController.goToInstructionView();
         }
     };
     

@@ -25,6 +25,10 @@ public class BoardController extends Controller {
     	new BattleController();
     }
 
+    public void goToInstructionView() {
+        new InstructionController();
+    }
+
     public void goToHand() {
         new HandController();
     }
