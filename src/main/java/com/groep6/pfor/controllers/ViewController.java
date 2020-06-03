@@ -36,7 +36,7 @@ public class ViewController {
         this.stage = stage;
         stage.setWidth(MIN_WIDTH);
         stage.setHeight(MIN_HEIGHT);
-        stage.setFullScreen(true);
+        //stage.setFullScreen(true);
     }
 
     /**
@@ -61,12 +61,12 @@ public class ViewController {
             stage.setScene(newScene);
         }
 
-        if (isFullScreen) {
-            stage.setFullScreen(true);
-        } else {
+//        if (isFullScreen) {
+//            stage.setFullScreen(true);
+//        } else {
             stage.setWidth(width);
             stage.setHeight(height);
-        }
+//        }
 
         stage.show();
     }
