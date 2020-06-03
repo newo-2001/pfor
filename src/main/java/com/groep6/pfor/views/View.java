@@ -24,7 +24,6 @@ import javafx.scene.paint.Color;
 public abstract class View {
 
     protected Scene scene;
-    protected Rectangle2D viewport;
     public abstract Pane getRoot();
 
     /**
