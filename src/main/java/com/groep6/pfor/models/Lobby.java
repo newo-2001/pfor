@@ -59,6 +59,7 @@ public class Lobby extends Observable implements IObserver {
 
         LobbyPlayer lobbyPlayer = new LobbyPlayer(username, RoleCardFactory.getInstance().pickRandomRoleCard(), isHost, isLocal, code);
         players.add(lobbyPlayer);
+        lobbyPlayer.registerObserver(this);
         return lobbyPlayer;
     }
 

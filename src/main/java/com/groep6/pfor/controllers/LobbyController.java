@@ -20,7 +20,6 @@ public class LobbyController extends Controller implements IObserver {
 
     public LobbyController(Lobby lobby) {
         this.lobby = lobby;
-        lobbyService.registerListener(lobby);
         lobbyService.registerObserver(this);
         viewController.showView(new LobbyView(this));
     }

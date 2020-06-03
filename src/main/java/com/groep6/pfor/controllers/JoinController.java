@@ -26,15 +26,13 @@ public class JoinController extends Controller {
     public void joinLobby(String code, String username, String password) throws EmptyFieldException {
         if (username.isEmpty()) throw new EmptyFieldException("Username cannot be empty");
         else if(code.isEmpty()) throw new EmptyFieldException("Unique code cannot be empty");
-
         
         try {
 
             LobbyService lobbyService = new LobbyService();
             Lobby lobby = lobbyService.get(code);
-            lobby.join(code, username, password, true);
-            lobbyService.registerListener(lobby);
-            lobbyService.set(lobby);
+            LobbyPlayer player = lobby.join(code, username, password, true);
+            lobbyService.join(player);
             lobby.update(lobby);
 
             new LobbyController(lobby);

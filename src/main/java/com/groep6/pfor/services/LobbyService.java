@@ -6,6 +6,7 @@ import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
+import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -51,8 +52,8 @@ public class LobbyService extends Observable {
      * @param lobby The lobby to be created
      */
     public void create(Lobby lobby) {
+        for (LobbyPlayer player : lobby.getPlayers()) Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
         Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
-        for (LobbyPlayer player : lobby.getPlayers()) join(player);
     }
 
     /**
@@ -73,7 +74,7 @@ public class LobbyService extends Observable {
     public void join(LobbyPlayer player) {
         Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
-        doc.update(FieldPath.of("players", player.getUsername()), player);
+        doc.update(FieldPath.of("players", player.getUsername()), LobbyPlayerDTO.fromModel(player));
     }
 
     /**

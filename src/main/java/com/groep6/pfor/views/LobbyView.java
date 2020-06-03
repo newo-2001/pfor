@@ -38,7 +38,6 @@ public class LobbyView extends View implements IObserver {
     private BorderPane root;
     private Button startGameButton;
     private FlowPane playerContainer;
-    private ScrollPane scrollPane;
     private List<LobbyPlayer> players = new ArrayList<>();
 
     public LobbyView(LobbyController controller) {
@@ -82,7 +81,6 @@ public class LobbyView extends View implements IObserver {
         setBackground(root, "images/lobby_background.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
-        root.setCenter(scrollPane);
         root.getChildren().add(codeText);
     }
 
