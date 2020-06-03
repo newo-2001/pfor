@@ -20,6 +20,7 @@ public class LobbyController extends Controller implements IObserver {
 
     public LobbyController(Lobby lobby) {
         this.lobby = lobby;
+        lobbyService.registerListener(lobby);
         lobbyService.registerObserver(this);
         viewController.showView(new LobbyView(this));
     }
@@ -53,21 +54,21 @@ public class LobbyController extends Controller implements IObserver {
 
     @Override
     public void update(Object... data) {
+
         if (data.length > 0) {
             Lobby serverLobby = (Lobby) data[0];
 
-//            LobbyPlayer localPlayer = lobby.getLocalPlayer();
+            LobbyPlayer localPlayer = lobby.getLocalPlayer();
 
-            lobby = serverLobby;
+            lobby.updateLobby(serverLobby);
+            lobby.update();
 
-            System.out.println("sd");
-
-//            for (LobbyPlayer player: lobby.getPlayers()) {
-//                if (player.equals(localPlayer)) {
-//                    player.setLocal(true);
-//                    break;
-//                }
-//            }
+            for (LobbyPlayer player: lobby.getPlayers()) {
+                if (player.equals(localPlayer)) {
+                    player.setLocal(true);
+                    break;
+                }
+            }
         }
     }
 }
