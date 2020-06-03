@@ -13,8 +13,6 @@ import com.groep6.pfor.views.RoleCardInfoView;
 import java.util.List;
 
 public class RoleCardInfoController extends Controller {
-	
-    private Game game = Game.getInstance();
 
     private Lobby lobby;
     private RoleCard currentlySelectedRoleCard;
