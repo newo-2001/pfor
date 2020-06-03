@@ -22,8 +22,7 @@ public class TradeController extends Controller {
     private Card selectedCard;
 
     public TradeController() {
-        game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true, "")));
-        Player localPlayer = game.getLocalPlayer();
+    	game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true, "")));
         Faction[] factionTypes = new Faction[] {};
         FactionFactory factionFactory = FactionFactory.getInstance();
         game.getTradeDeck().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
@@ -44,14 +43,11 @@ public class TradeController extends Controller {
     @Override
     public void registerObserver(IObserver view) {
     	game.getTradeDeck().registerObserver(view);
+        game.getLocalPlayer().getHand().registerObserver(view);
     }
     
     public void selectCard(Card card) {
     	this.selectedCard = card;
-    }
-    
-    public Card getCard(Card card) {
-    	return card;
     }
     
     public void withdrawCard() {
@@ -59,5 +55,13 @@ public class TradeController extends Controller {
         game.getTradeDeck().removeCard(selectedCard);
         game.getLocalPlayer().getHand().addCards(selectedCard);
     	System.out.println(game.getTradeDeck());	
+    }
+    
+    public void depositeCard() {
+    	new HandController();
+    }
+    
+    public Card getCard(Card card) {
+    	return card;
     }
 }

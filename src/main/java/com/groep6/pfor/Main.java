@@ -30,5 +30,9 @@ public class Main extends Application {
 
         // Set default view
         new HandController();
+        
+        // new MenuController();
+        // new HandController();
+        // new TradeController();
     }
 }
