@@ -6,11 +6,9 @@ import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
-import com.groep6.pfor.models.cards.actions.eventActions.FestinaLenteAction;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
@@ -33,10 +31,7 @@ public class HandController extends Controller {
         localPlayer.getHand().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.HUNS)));
         localPlayer.getHand().addCards(new CityCard("Card 5", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VANDALS)));
         localPlayer.getHand().addCards(new CityCard("Card 6", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
-        localPlayer.getHand().addCards(new CityCard("Card 7", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
-        localPlayer.getHand().addCards(new CityCard("Card 8", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
-        localPlayer.getHand().addCards(new EventCard("Event Card 1", new FestinaLenteAction()));
-
+    
         viewController.showView(new HandView(this));
     }
 
@@ -82,4 +77,9 @@ public class HandController extends Controller {
     public Card getCard(Card card) {
     	return card;
     }
+
+	public void depositCard() {
+        game.getLocalPlayer().getHand().removeCard(selectedCard);
+		game.getTradeDeck().addCards(selectedCard);
+	}
 }
