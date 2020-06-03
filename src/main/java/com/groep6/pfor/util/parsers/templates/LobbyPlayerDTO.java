@@ -11,22 +11,30 @@ import com.groep6.pfor.models.cards.RoleCard;
  * @author Owen Elderbroek
  */
 public class LobbyPlayerDTO extends DTO {
-    /** This player's username */
+    /**
+     * This player's username
+     */
     public String username;
 
-    /** The name of the rolecard the player has */
+    /**
+     * The name of the rolecard the player has
+     */
     public String role;
 
-    /** Whether this player is the host of lobby */
+    /**
+     * Whether this player is the host of lobby
+     */
     public boolean host;
 
-    public LobbyPlayerDTO() {}
+    public LobbyPlayerDTO() {
+    }
 
     /**
      * Make A Data Transfer Object with the specified fields
+     *
      * @param username The username of the player
-     * @param role The role of the player
-     * @param host Whether the player is the host of the lobby
+     * @param role     The role of the player
+     * @param host     Whether the player is the host of the lobby
      */
     private LobbyPlayerDTO(String username, String role, boolean host) {
         this.username = username;
@@ -34,12 +42,16 @@ public class LobbyPlayerDTO extends DTO {
         this.host = host;
     }
 
-    /**
-     * Obtains the rolecard by its name from the RoleCardFactor
-     * @return The rolecard that goes by the given name
-     */
-    private RoleCard getRoleCard() {
-        return RoleCardFactory.getInstance().getCardByName(role);
+    public String getUsername() {
+        return username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public boolean getHost() {
+        return host;
     }
 
     /**
@@ -47,7 +59,7 @@ public class LobbyPlayerDTO extends DTO {
      * @return The model this DTO represents
      */
     public LobbyPlayer toModel(String lobby) {
-        return new LobbyPlayer(username, getRoleCard(), host, false, lobby);
+        return new LobbyPlayer(username, RoleCardFactory.getInstance().getCardByName(role), host, false, lobby);
     }
 
     /**

@@ -185,7 +185,7 @@ public class HandView extends View implements IObserver {
     }
 
     @Override
-    public void update(Object... data) {
+    public void update() {
         createCards();
         handleCardLimit();
         discardCardButton.setDisable(true);

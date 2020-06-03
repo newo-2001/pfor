@@ -13,11 +13,13 @@ public class UILobbyPlayerInfo extends VBox {
     private int playerNumber;
     private String username;
     private RoleCard roleCard;
+    private boolean isHost;
 
-    public UILobbyPlayerInfo(int playerNumber, String username, RoleCard roleCard) {
+    public UILobbyPlayerInfo(int playerNumber, String username, RoleCard roleCard, boolean isHost) {
         this.playerNumber = playerNumber;
         this.username = username;
         this.roleCard = roleCard;
+        this.isHost = isHost;
 
         createView();
     }
@@ -28,7 +30,7 @@ public class UILobbyPlayerInfo extends VBox {
         setPadding(new Insets(30));
         setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
 
-        UIText playerNumberText = new UIText("Speler " + playerNumber);
+        UIText playerNumberText = new UIText("Speler " + playerNumber + (isHost ? " (Host)" : ""));
         playerNumberText.setWeight(FontWeight.BOLD).setSize(15).setAlignment(TextAlignment.CENTER).setFill(Color.WHITE);
 
         GridPane gridPane = new GridPane();

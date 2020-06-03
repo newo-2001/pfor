@@ -33,7 +33,6 @@ public class LobbyView extends View implements IObserver {
     private BorderPane root;
     private Button startGameButton;
     private FlowPane playerContainer;
-    private ScrollPane scrollPane;
     private List<LobbyPlayer> players = new ArrayList<>();
 
     public LobbyView(LobbyController controller) {
@@ -77,7 +76,6 @@ public class LobbyView extends View implements IObserver {
         setBackground(root, "images/background-5.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
-        root.setCenter(scrollPane);
         root.getChildren().add(codeText);
     }
 
@@ -91,7 +89,7 @@ public class LobbyView extends View implements IObserver {
 
         for (int i = 0; i < players.size(); i++) {
             LobbyPlayer player = players.get(i);
-            UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(i + 1, player.getUsername(), player.getRoleCard());
+            UILobbyPlayerInfo uiLobbyPlayerInfo = new UILobbyPlayerInfo(i + 1, player.getUsername(), player.getRoleCard(), player.isHost());
 
             playerContainer.getChildren().add(uiLobbyPlayerInfo);
         }
@@ -129,7 +127,7 @@ public class LobbyView extends View implements IObserver {
     };
 
     @Override
-    public void update(Object... data) {
+    public void update() {
         createPlayers();
 
         if (players.size() >= LobbyController.MIN_PLAYERS || Config.DEBUG) startGameButton.setDisable(false);

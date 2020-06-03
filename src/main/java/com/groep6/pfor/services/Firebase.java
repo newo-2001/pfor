@@ -171,6 +171,14 @@ public class Firebase {
     }
 
     /**
+     * Obtain a new Writebatch
+     * @return A new Writebatch object
+     */
+    public static WriteBatch newBatch() {
+        return db.batch();
+    }
+
+    /**
      * Register a listener on a firebase path to be notified when something changes on the remote server
      * @param path The path to listen on for changes
      * @param listener The callback for when something happened

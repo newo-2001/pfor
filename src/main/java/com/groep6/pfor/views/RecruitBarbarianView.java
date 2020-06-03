@@ -103,7 +103,7 @@ public class RecruitBarbarianView extends View implements IObserver {
     };
 
 	@Override
-	public void update(Object... data) {
+	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
