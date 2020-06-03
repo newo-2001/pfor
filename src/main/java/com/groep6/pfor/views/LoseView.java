@@ -6,7 +6,6 @@ import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -42,7 +41,7 @@ public class LoseView extends View {
         root.setCenter(loseText);
 
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/lose_background.jpg"),
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/background-6.jpg"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 backgroundSize);
 

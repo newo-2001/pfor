@@ -8,21 +8,16 @@ import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UILobbyPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+
 import java.util.List;
 
 import java.util.ArrayList;
@@ -79,7 +74,7 @@ public class LobbyView extends View implements IObserver {
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
 
         bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
-        setBackground(root, "images/lobby_background.jpg");
+        setBackground(root, "images/background-5.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
         root.setCenter(scrollPane);

@@ -9,15 +9,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 /**
  * BattleView. Shows the result of a passed battle.
@@ -67,7 +61,7 @@ public class BattleView extends View implements IObserver {
     	log.setPadding(new Insets(50));
     	log.setSpacing(24);
 
-        setBackground(root, "images/battle_result_image.jpg");
+        setBackground(root, "images/background-3.jpg");
     	root.getChildren().add(log);
     }
     
