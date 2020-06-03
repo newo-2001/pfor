@@ -91,7 +91,7 @@ public class LobbyService {
      */
     public void leave(LobbyPlayer player) {
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
-        doc.update(FieldPath.of("players", player.getUsername()), null);
+        doc.update(FieldPath.of("players", player.getUsername()), FieldValue.delete());
     }
 
     private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
