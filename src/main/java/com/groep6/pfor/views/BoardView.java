@@ -8,6 +8,7 @@ import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.ActionButton;
+import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 
 import com.groep6.pfor.views.components.UIText;
@@ -160,41 +161,49 @@ public class BoardView extends View implements IObserver {
     	actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
     	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
-        Button conspireButton = new ActionButton("SAMENSPANNEN");
+        Button conspireButton = new UIButton("SAMENSPANNEN");
+        conspireButton.setPrefSize(150, 60);
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
         actionButtonLayout.add(conspireButton, 0, 1);
         
-        Button battleButton = new ActionButton("VECHTEN");
+        Button battleButton = new UIButton("VECHTEN");
+        battleButton.setPrefSize(150, 60);
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);  
         actionButtonLayout.add(battleButton, 1, 1);
         
-        Button allianceButton = new ActionButton("ALLIANTIE SLUITEN");
+        Button allianceButton = new UIButton("ALLIANTIE SLUITEN");
+        allianceButton.setPrefSize(150, 60);
         allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView); 
         actionButtonLayout.add(allianceButton, 0, 2);
         
-        Button recruitBarbarianButton = new ActionButton("BARBAREN INHUREN");
+        Button recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
+        recruitBarbarianButton.setPrefSize(150, 60);
         recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
         
-        Button buildButton = new ActionButton("FORT BOUWEN");
+        Button buildButton = new UIButton("FORT BOUWEN");
+        buildButton.setPrefSize(150, 60);
         buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
         actionButtonLayout.add(buildButton, 0, 3);
         
-        Button recruitButton = new ActionButton("LEGIOEN REKRUTEREN");
+        Button recruitButton = new UIButton("LEGIOEN REKRUTEREN");
+        recruitButton.setPrefSize(150, 60);
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
         actionButtonLayout.add(recruitButton, 1, 3);
         
-        Button showHandButton = new ActionButton("BEKIJK HAND");
+        Button showHandButton = new UIButton("BEKIJK HAND");
+        showHandButton.setPrefSize(150, 60);
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
         actionButtonLayout.add(showHandButton, 0, 8);
         
-        Button helpButton = new ActionButton("HELP");
+        Button helpButton = new UIButton("HELP");
+        helpButton.setPrefSize(150, 60);
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
         actionButtonLayout.add(helpButton, 1, 8);
         
-        Button nextTurnButton = new ActionButton("VOLGENDE BEURT");
+        Button nextTurnButton = new UIButton("VOLGENDE BEURT");
+        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 60);
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
-        nextTurnButton.setPrefWidth((2 * nextTurnButton.getPrefWidth()) + actionButtonLayout.getHgap());
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
         
