@@ -163,7 +163,7 @@ public class BoardView extends View implements IObserver {
     	actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
     	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
         
-        Button conspireButton = new UIButton("SAMENSPANNEN");
+        Button conspireButton = new UIButton("RUILEN");
         conspireButton.setPrefSize(150, 60);
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
         actionButtonLayout.add(conspireButton, 0, 1);
