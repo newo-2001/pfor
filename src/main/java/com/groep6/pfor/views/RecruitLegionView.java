@@ -8,15 +8,22 @@ package com.groep6.pfor.views;
 import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
+import com.groep6.pfor.views.components.UIText;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -27,7 +34,7 @@ public class RecruitLegionView extends View implements IObserver {
     /** The recruitLegionController */
     private RecruitLegionController recruitLegionController;
 
-    private BorderPane root;
+    private StackPane root;
     
     public RecruitLegionView(RecruitLegionController recruitLegionController) {
         this.recruitLegionController = recruitLegionController;
@@ -38,17 +45,22 @@ public class RecruitLegionView extends View implements IObserver {
     }
     
     public void createView() {
-        root = new BorderPane();
+        root = new StackPane();
+        
+        VBox box = new VBox();
+        box.setMaxSize(500, 300);
+        box.setAlignment(Pos.CENTER);
+        box.setSpacing(40);
+        box.setPadding(new Insets(50));
+        box.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
     	
-    	Text text = new Text("Hoeveel legioenen wil je rekruteren?");
+    	UIText text = new UIText("Hoeveel legioenen wil je rekruteren?");
+    	text.setSize(20).setWeight(FontWeight.BOLD).setColor(Color.WHITE);
     	
-    	text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR,20));
-    	text.setFill(Color.BLACK);
-    	root.setCenter(text);
     	
         Button backButton = new UIButton("Go back");
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, menuButtonClicked);
-        root.setTop(backButton);
+        backButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         
         HBox buttonBox = new HBox(30);
         buttonBox.setAlignment(Pos.CENTER);
@@ -64,8 +76,11 @@ public class RecruitLegionView extends View implements IObserver {
         
         buttonBox.getChildren().addAll(recruitOne, recruitTwo, recruitThree);
         
-        BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
-        root.setBottom(buttonBox);
+        box.getChildren().addAll(text, buttonBox, backButton);
+        
+        root.getChildren().add(box);
+        
+        setBackground(root, "images/battle_result_image.jpg");
         
     }	
         EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {
