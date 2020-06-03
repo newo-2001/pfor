@@ -25,7 +25,7 @@ public class JoinController extends Controller {
     
     public void joinLobby(String code, String username, String password) throws EmptyFieldException {
         if (username.isEmpty()) throw new EmptyFieldException("Username cannot be empty");
-        else if(code.isEmpty()) throw new EmptyFieldException("Unique code cannot be empty");
+        else if (code.isEmpty()) throw new EmptyFieldException("Unique code cannot be empty");
         
         try {
 
