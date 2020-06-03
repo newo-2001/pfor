@@ -99,6 +99,8 @@ public class LobbyService extends Observable {
         public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
             if (e != null) e.printStackTrace();
             else notifyObservers(documentSnapshot.toObject(LobbyDTO.class).toModel());
+
+            System.out.println("Updating...");
         }
     };
 }

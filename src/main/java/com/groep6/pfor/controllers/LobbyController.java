@@ -15,12 +15,12 @@ public class LobbyController extends Controller implements IObserver {
     public static final int MIN_PLAYERS = 3;
 
     private Game game = Game.getInstance();
-    private LobbyService lobbyService = new LobbyService();
+    private LobbyService lobbyService;
     private Lobby lobby;
 
-    public LobbyController(Lobby lobby) {
+    public LobbyController(Lobby lobby, LobbyService lobbyService) {
         this.lobby = lobby;
-        lobbyService.registerObserver(this);
+        this.lobbyService = lobbyService;
         viewController.showView(new LobbyView(this));
     }
 
@@ -38,6 +38,7 @@ public class LobbyController extends Controller implements IObserver {
 
     public void goToMenu() {
         // Delete from lobby
+        lobbyService.leave(lobby.getLocalPlayer());
 
         new MenuController();
     }
@@ -50,6 +51,7 @@ public class LobbyController extends Controller implements IObserver {
     public void registerObserver(IObserver view) {
         lobby.registerObserver(view);
     }
+
 
     @Override
     public void update(Object... data) {

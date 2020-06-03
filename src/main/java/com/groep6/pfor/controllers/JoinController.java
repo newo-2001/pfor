@@ -35,7 +35,7 @@ public class JoinController extends Controller {
             lobbyService.join(player);
             lobby.update(lobby);
 
-            new LobbyController(lobby);
+            new LobbyController(lobby, lobbyService);
         	
         } catch (IncorrentPasswordException | NoDocumentException error) {
             System.out.println("Error: " + error.getMessage());

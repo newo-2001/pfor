@@ -31,7 +31,7 @@ public class HostController extends Controller {
             lobbyService.create(lobby);
 
             // Send user to lobby
-            new LobbyController(lobby);
+            new LobbyController(lobby, lobbyService);
 
         } catch (IncorrentPasswordException error) {
             System.out.println("Error: " + error.getMessage());
