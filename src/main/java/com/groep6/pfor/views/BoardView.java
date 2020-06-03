@@ -67,11 +67,8 @@ public class BoardView extends View implements IObserver {
         
         // Center - board
         BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage board = new BackgroundImage(new Image("images/board.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                boardSize);
         Pane boardPane = new Pane();
-        boardPane.setBackground(new Background(board));
+        setBackground(boardPane, "images/board.jpg");
         root.setCenter(boardPane);
         
         // Right - action buttons
