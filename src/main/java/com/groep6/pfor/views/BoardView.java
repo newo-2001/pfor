@@ -67,7 +67,7 @@ public class BoardView extends View implements IObserver {
         root.setTop(playerList);
         
         // Center - board
-        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, true);
+        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage board = new BackgroundImage(new Image("images/board.jpg"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 boardSize);
