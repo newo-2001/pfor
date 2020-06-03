@@ -1,16 +1,11 @@
 package com.groep6.pfor.services;
 
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.EventListener;
-import com.google.cloud.firestore.FirestoreException;
-import com.google.cloud.firestore.Query;
+import com.google.cloud.firestore.*;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
-import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
-import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,7 +22,7 @@ public class LobbyService extends Observable {
      * @return The list of players in that lobby
      */
     public List<LobbyPlayer> getPlayers(String code) throws NoDocumentException {
-        return get(code).getPlayers();
+        return Firebase.requestDocument("lobbies/" + code).toObject(LobbyDTO.class).toModel().getPlayers();
     }
 
     /**
@@ -42,14 +37,53 @@ public class LobbyService extends Observable {
 
     /**
      * Update a lobby's data on server to this new data
+     * Warning! This will overwrite the entire lobby, Only use if you have good reason to!
      * @param lobby The new lobby data that will override the old data
      */
     public void set(Lobby lobby) {
         Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
     }
 
-    public void registerListener(Lobby lobby) {
-        Firebase.registerListener("lobbies/" + lobby.getCode(), onLobbyChange);
+    /**
+     * Create a lobby on the server.
+     * All the players in this lobby will automagically be joined
+     * It will be assumed that all these players belong to this client (should really ever only be 1 player!)
+     * @param lobby The lobby to be created
+     */
+    public void create(Lobby lobby) {
+        Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
+        for (LobbyPlayer player : lobby.getPlayers()) join(player);
+    }
+
+    /**
+     * Sync a player's rolecard with firebase
+     * @param player The player to change, note: the card to sync with is the card
+     *               that the this instance has
+     */
+    public void updateRoleCard(LobbyPlayer player) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername(), "role"), player.getRoleCard().getName());
+    }
+
+    /**
+     * Make a player join a lobby
+     * @param player The player to join a lobby, note: The lobby to join is specified
+     *               in the player instance.
+     */
+    public void join(LobbyPlayer player) {
+        Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername()), player);
+    }
+
+    /**
+     * Remove a player from the firebase lobby,
+     * The lobby to leave is specified in the player's lobby field
+     * @param player The player that should leave
+     */
+    public void leave(LobbyPlayer player) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername()), null);
     }
 
     private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {

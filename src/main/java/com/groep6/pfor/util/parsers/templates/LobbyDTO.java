@@ -3,9 +3,7 @@ package com.groep6.pfor.util.parsers.templates;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * The Data Transfer Object that represents a Lobby in Firebase.
@@ -20,7 +18,7 @@ public class LobbyDTO extends DTO {
     public String password;
 
     /** The players in this lobby */
-    public List<LobbyPlayerDTO> players;
+    public Map<String, LobbyPlayerDTO> players;
 
     public LobbyDTO() {}
 
@@ -30,7 +28,7 @@ public class LobbyDTO extends DTO {
      * @param password The password for the lobbies
      * @param players The players in the lobby
      */
-    private LobbyDTO(String code, String password, List<LobbyPlayerDTO> players) {
+    private LobbyDTO(String code, String password, Map<String, LobbyPlayerDTO> players) {
         this.code = code;
         this.password = password;
         this.players = players;
@@ -42,7 +40,7 @@ public class LobbyDTO extends DTO {
      */
     public Lobby toModel() {
         List<LobbyPlayer> players = new ArrayList<>();
-        for (LobbyPlayerDTO player : this.players) players.add(player.toModel(code));
+        for (LobbyPlayerDTO player : this.players.values()) players.add(player.toModel(code));
         return new Lobby(code, password, players);
     }
 
@@ -52,8 +50,8 @@ public class LobbyDTO extends DTO {
      * @return The DTO of the model
      */
     public static LobbyDTO fromModel(Lobby lobby) {
-        List<LobbyPlayerDTO> players = new ArrayList<>();
-        for (LobbyPlayer player : lobby.getPlayers()) players.add(LobbyPlayerDTO.fromModel(player));
+        Map<String, LobbyPlayerDTO> players = new HashMap<>();
+        for (LobbyPlayer player : lobby.getPlayers()) players.put(player.getUsername(), LobbyPlayerDTO.fromModel(player));
         return new LobbyDTO(lobby.getCode(), lobby.getPasswordHash(), players);
     }
 }
