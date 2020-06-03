@@ -150,7 +150,7 @@ public class TradeView extends View implements IObserver {
     EventHandler<javafx.scene.input.MouseEvent> depositeCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-            tradeController.goBack();
+            tradeController.depositeCard();
         }
     };
     
