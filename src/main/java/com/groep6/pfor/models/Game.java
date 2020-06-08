@@ -1,6 +1,6 @@
 package com.groep6.pfor.models;
 
-import com.groep6.pfor.factories.PlayerCardFactory;
+import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.Observable;
 
@@ -22,7 +22,7 @@ public class Game extends Observable {
     private final int MAX_INVASION_LEVEL = 7;
     private Deck tradeCardsDeck = new Deck();
     private Deck invasionCardsDeck = new Deck();
-    private Deck playerCardsDeck;
+    private Deck cityCardsDeck;
     private Deck invasionCardsDiscardPile = new Deck();
     private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
@@ -33,8 +33,8 @@ public class Game extends Observable {
     }
 
     private Game() {
-        playerCardsDeck = PlayerCardFactory.getInstance().getPlayerCardDeck();
-        playerCardsDeck.shuffle();
+        cityCardsDeck = CityCardFactory.getInstance().getCityCardDeck();
+        cityCardsDeck.shuffle();
 
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
@@ -143,7 +143,7 @@ public class Game extends Observable {
     }
 
     public Deck getPlayerCardsDeck() {
-        return playerCardsDeck;
+        return cityCardsDeck;
     }
 
     public Deck getInvasionCardsDiscardPile() {
