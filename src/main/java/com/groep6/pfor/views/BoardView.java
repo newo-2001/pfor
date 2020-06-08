@@ -15,6 +15,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -33,6 +34,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -91,7 +93,6 @@ public class BoardView extends View implements IObserver {
         @Override
         public void handle(MouseEvent e) {
         	new TradeController();
-            
         }
     };
     
@@ -235,11 +236,11 @@ public class BoardView extends View implements IObserver {
         
         return actionButtonLayout;
     }
-    
+
     /**
      * Creates the image of the board.
      * @return Pane layout of the board.
-     * 
+     *
      */
     private Canvas createBoard() {
         Canvas canvas = new Canvas(CANVAS_SIZE.x, CANVAS_SIZE.y);
@@ -248,7 +249,7 @@ public class BoardView extends View implements IObserver {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, CANVAS_SIZE.x, CANVAS_SIZE.y);
 
-        updateCanvas.start();
+        updateCanvas();
 
         return canvas;
     }
@@ -282,26 +283,26 @@ public class BoardView extends View implements IObserver {
         return (Canvas) root.getCenter();
     }
 
-    private AnimationTimer updateCanvas = new AnimationTimer() {
-        @Override
-        public void handle(long time) {
-            GraphicsContext gc = getCanvas().getGraphicsContext2D();
+    public void updateCanvas() {
+        GraphicsContext gc = getCanvas().getGraphicsContext2D();
 
-            // Draw city circles
-            gc.setFill(Color.RED);
-            for (Tile tile : boardController.getTiles()) {
-                if (tile instanceof City) {
-                    City city = (City) tile;
-                    Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
-                    gc.fillOval(pos.x - CIRCLE_RADIUS, pos.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
-                }
+        // Draw city circles
+        gc.setFill(Color.RED);
+        for (Tile tile : boardController.getTiles()) {
+            if (tile instanceof City) {
+                City city = (City) tile;
+                Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
+                gc.fillOval(pos.x - CIRCLE_RADIUS, pos.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
             }
         }
-    };
+    }
 
     @Override
     public void update() {
-    	
+        createBoard();
+    	updateCanvas();
+
+    	createPlayerList();
     }
 
     @Override
