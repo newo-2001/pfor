@@ -43,16 +43,15 @@ public class Game extends Observable {
     public Player nextTurn() {
         // Get current turn player
         Player currentPlayer = getPlayerTurn();
+        Player nextPlayer;
 
         if (currentPlayer == null) {
-            Player nextplayer = players.get(0);
-            nextplayer.setTurn();
-            return nextplayer;
+            nextPlayer = players.get(0);
+            nextPlayer.setTurn();
+            return nextPlayer;
         }
 
         int index = players.indexOf(currentPlayer);
-
-        Player nextPlayer;
 
         if (players.size() > index)  nextPlayer = players.get(index + 1);
         else nextPlayer = players.get(0);
