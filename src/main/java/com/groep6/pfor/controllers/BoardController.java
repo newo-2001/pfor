@@ -23,7 +23,6 @@ public class BoardController extends Controller {
     };
     
     public void queueMusic() {
-    	MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");
     	// to be expanded.
     }
     
@@ -37,6 +36,10 @@ public class BoardController extends Controller {
 
     public void goToHand() {
         new HandController();
+    }
+
+    public Player getPlayerTurn() {
+        return game.getPlayerTurn();
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 
 /**
@@ -8,6 +10,7 @@ import com.groep6.pfor.util.IObserver;
 public abstract class Controller {
 
     protected ViewController viewController;
+    protected Game game = Game.getInstance();
 
     public Controller() {
         viewController = ViewController.getInstance();

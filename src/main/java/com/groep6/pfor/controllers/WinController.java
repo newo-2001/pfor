@@ -8,7 +8,7 @@ import com.groep6.pfor.views.WinView;
 public class WinController extends Controller {
 
     public WinController() {
-    	MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/To_fight_another_day.mp3");	// Change to loop just in this view.
+//    	MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/To_fight_another_day.mp3");
         viewController.showView(new WinView(this));
     }
 

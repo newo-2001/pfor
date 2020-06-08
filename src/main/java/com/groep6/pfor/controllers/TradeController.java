@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.models.Game;
@@ -38,12 +39,19 @@ public class TradeController extends Controller {
     }
     
     public void withdrawCard() {
+        Player player = game.getPlayerTurn();
+        if (player.getActionsRemaining() <= 0) return;
+
         game.getTradeCardsDeck().removeCard(selectedCard);
         game.getLocalPlayer().getHand().addCards(selectedCard);
-    	game.getPlayerTurn().decreaseActionsRemaining();
+    	player.decreaseActionsRemaining();
     }
     
     public Card getCard(Card card) {
     	return card;
+    }
+
+    public Player getLocalPlayer() {
+        return game.getLocalPlayer();
     }
 }

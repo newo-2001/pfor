@@ -123,7 +123,7 @@ public class TradeView extends View implements IObserver {
             UICard source = (UICard) e.getSource();
             source.select();
             tradeController.selectCard(source.getCard());
-            withdrawButton.setDisable(false);
+            if (tradeController.getLocalPlayer().getActionsRemaining() > 0) withdrawButton.setDisable(false);
         }
     };
 
@@ -133,17 +133,18 @@ public class TradeView extends View implements IObserver {
         }
     }
     
-    EventHandler<javafx.scene.input.MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> goBack = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             tradeController.goBack();
         }
     };
     
-    EventHandler<javafx.scene.input.MouseEvent> withdrawCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> withdrawCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             tradeController.withdrawCard();
+            if (tradeController.getLocalPlayer().getActionsRemaining() <= 0) withdrawButton.setDisable(true);
         }
     };
         

@@ -1,10 +1,9 @@
 package com.groep6.pfor.models;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Stack;
 
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.util.Observable;
 
 /**
  * @author Bastiaan Jansen
@@ -16,7 +15,7 @@ public class Player extends Observable {
     private City city;
     private String username;
     private boolean turn = false;
-    private int actionsRemaining = 0;
+    private int actionsRemaining = 4;
     private boolean isLocal;
 
     /**

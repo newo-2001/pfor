@@ -60,6 +60,7 @@ public class BoardView extends View implements IObserver {
 	private static final Vector2f CANVAS_SIZE = new Vector2f(842, 617);
 	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
 
+	private UIText actionCount;
 
     private Button conspireButton;
     private Button battleButton;
@@ -202,7 +203,7 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        UIText actionCount = new UIText("<X> Actions left");
+        actionCount = new UIText();
         actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
         actionButtonLayout.add(actionCount, 0, 0, 2, 1);
 
@@ -328,6 +329,7 @@ public class BoardView extends View implements IObserver {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                actionCount.setText(boardController.getPlayerTurn().getActionsRemaining() + " actions left");
                 updateCanvas();
                 createPlayerList();
             }
