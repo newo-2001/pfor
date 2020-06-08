@@ -65,8 +65,10 @@ public class LobbyView extends View implements IObserver {
         bottomButtomBox.setAlignment(Pos.CENTER);
         BorderPane.setMargin(bottomButtomBox, new Insets(12,12,100,12));
 
-        startGameButton = new UIButton("Start Spel");
-        startGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startGame);
+        if (lobbyController.getHost().equals(lobbyController.getLocalPlayer())) {
+            startGameButton = new UIButton("Start Spel");
+            startGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startGame);
+        }
 
         Button goBackButton = new UIButton("Terug");
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));

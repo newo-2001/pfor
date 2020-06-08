@@ -75,20 +75,6 @@ public class Lobby extends Observable implements IObserver {
     }
 
     /**
-     * Makes sure a role card can only be picked once
-     * @return RoleCard
-     */
-//    public RoleCard pickRandomRoleCard() {
-//        RoleCard card = RoleCardFactory.getInstance().pickRandomRoleCard();
-//
-//        for (LobbyPlayer player: players) {
-//            if (player.getRoleCard() == card) return pickRandomRoleCard();
-//        }
-//
-//        return card;
-//    }
-
-    /**
      * Get the password of the lobby (hashed of course)
      * @return The hashed password of the lobby
      */

@@ -64,6 +64,14 @@ public class LobbyController extends Controller {
 
     }
 
+    public LobbyPlayer getLocalPlayer() {
+        return lobby.getLocalPlayer();
+    }
+
+    public LobbyPlayer getHost() {
+        return lobby.getHost();
+    }
+
     @Override
     public void registerObserver(IObserver view) {
         lobby.registerObserver(view);
