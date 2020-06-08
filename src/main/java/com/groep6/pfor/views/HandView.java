@@ -152,11 +152,7 @@ public class HandView extends View implements IObserver {
             discardCardButton.setDisable(false);
             if (handController.getLocalPlayer().getActionsRemaining() > 0) depositCardButton.setDisable(false);
 
-            if (source instanceof UIEventCard) {
-                playCardButton.setDisable(false);
-            } else {
-                playCardButton.setDisable(true);
-            }
+            playCardButton.setDisable(!(source instanceof UIEventCard));
         }
     };
     
@@ -175,11 +171,7 @@ public class HandView extends View implements IObserver {
     }
     
     public void handleCardLimit() {
-        if(cards.size() > 7) {
-        	goBackButton.setDisable(true);
-        } else {
-        	goBackButton.setDisable(false);
-        }
+        goBackButton.setDisable(cards.size() > 7);
     }
    
     @Override
