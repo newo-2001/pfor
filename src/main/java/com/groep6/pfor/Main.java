@@ -5,6 +5,7 @@ import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.Board;
 import com.groep6.pfor.services.Firebase;
 import com.groep6.pfor.util.MusicManager;
+import com.groep6.pfor.util.Playlist;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -29,7 +30,12 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
 
         // Start game music
-        MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");	// Change to loop just in this view.
+        Playlist playlist = new Playlist();
+        playlist.add("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");
+        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");
+
+        MusicManager musicManager = new MusicManager(playlist);
+        musicManager.play();
   
         // Set default view
         new MenuController();
