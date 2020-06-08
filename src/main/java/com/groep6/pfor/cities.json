@@ -1,25 +1,345 @@
 [
   {
-    "name": "bruh",
-    "harbour": true,
-    "tile": {
-      "position": {
-        "x": 5,
-        "y": 6
-      },
-      "factions": ["HUNS", "VANDELS"],
-      "neighbours": ["rome"]
-    }
-  }, {
-    "name": "rome",
+    "name": "Eburacum",
     "harbour": false,
     "tile": {
       "position": {
-        "x": 8,
-        "y": -5
+        "x": 0.299,
+        "y": 0.190
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS"],
+      "neighbours": ["Londinium"]
+    }
+  }, {
+    "name": "Londinium",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.283,
+        "y": 0.282
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS"],
+      "neighbours": ["Eburacum", "Gesoriacum", "Lutetia"]
+    }
+  }, {
+    "name": "Gesoriacum",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.409,
+        "y": 0.287
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS"],
+      "neighbours": ["Londinium", "Mogontiacum"]
+    }
+  }, {
+    "name": "Lutetia",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.309,
+        "y": 0.386
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS", "HUNS"],
+      "neighbours": ["Londinium", "Mogontiacum", "Burdigala", "Lugdunum"]
+    }
+  }, {
+    "name": "Mogontiacum",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.443,
+        "y": 0.370
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS", "VANDALS"],
+      "neighbours": ["Lutetia", "Lugdunum"]
+    }
+  }, {
+    "name": "Burdigala",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.242,
+        "y": 0.524
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS", "VANDALS"],
+      "neighbours": ["Lutetia", "Lugdunum", "Narbo", "Caesaraugusta"]
+    }
+  }, {
+    "name": "Lugdunum",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.343,
+        "y": 0.524
+      },
+      "factions": ["HUNS", "VANDALS"],
+      "neighbours": ["Lutetia", "Mogontiacum", "Lugdunum", "Burdigala"]
+    }
+  }, {
+    "name": "Mediolanum",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.431,
+        "y": 0.524
       },
       "factions": ["HUNS"],
-      "neighbours": []
+      "neighbours": ["Lugdunum", "Iuvavum"]
     }
-  }
+  }, {
+    "name": "Iuvavum",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.505,
+        "y": 0.459
+      },
+      "factions": ["HUNS"],
+      "neighbours": ["Mediolanum", "Carnuntum"]
+    }
+  }, {
+    "name": "Carnuntum",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.605,
+        "y": 0.464
+      },
+      "factions": ["HUNS", "OSTROGOTHS"],
+      "neighbours": ["Aquileia", "Iuvavum"]
+    }
+  }, {
+    "name": "Aquileia",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.555,
+        "y": 0.562
+      },
+      "factions": ["OSTROGOTHS", "VISIGOTHS"],
+      "neighbours": ["Ravenna", "Narona", "Carnuntum"]
+    }
+  }, {
+    "name": "Ravenna",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.495,
+        "y": 0.595
+      },
+      "factions": ["VISIGOTHS"],
+      "neighbours": ["Aquileia", "Roma", "Genua"]
+    }
+  }, {
+    "name": "Genua",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.405,
+        "y": 0.606
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS","VISIGOTHS"],
+      "neighbours": ["Ravenna", "Roma", "Narbo"]
+    }
+  }, {
+    "name": "Narbo",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.291,
+        "y": 0.658
+      },
+      "factions": ["ANGLO_SAXSONS_FRANKS","VISIGOTHS"],
+      "neighbours": ["Genua", "Burdigala", "Nova Carthago"]
+    }
+  }, {
+    "name": "Caesaraugusta",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.188,
+        "y": 0.618
+      },
+      "factions": ["VANDALS"],
+      "neighbours": ["Burdigala", "Corduba"]
+    }
+  }, {
+    "name": "Corduba",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.102,
+        "y": 0.755
+      },
+      "factions": ["VANDALS", "VISIGOTHS"],
+      "neighbours": ["Caesaraugusta", "Nova Carthago", "Tingi"]
+    }
+  }, {
+    "name": "Nova Carthago",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.213,
+        "y": 0.786
+      },
+      "factions": ["VISIGOTHS"],
+      "neighbours": ["Corduba", "Narbo"]
+    }
+  }, {
+    "name": "Tingi",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.064,
+        "y": 0.831
+      },
+      "factions": ["VANDALS"],
+      "neighbours": ["Corduba", "Cesarea"]
+    }
+  }, {
+    "name": "Cesarea",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.235,
+        "y": 0.877
+      },
+      "factions": ["VANDALS"],
+      "neighbours": ["Tingi", "Carthago"]
+    }
+  }, {
+    "name": "Carthago",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.433,
+        "y": 0.903
+      },
+      "factions": ["VANDALS"],
+      "neighbours": ["Cesarea", "Roma", "Syracusae"]
+    }
+  }, {
+    "name": "Syracusae",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.549,
+        "y": 0.914
+      },
+      "factions": ["VANDALS"],
+      "neighbours": ["Carthago", "Athenae"]
+    }
+  }, {
+    "name": "Athenae",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.740,
+        "y": 0.883
+      },
+      "factions": ["VISIGOTHS", "VANDALS"],
+      "neighbours": ["Syracusae", "Patrae", "Constantinopolis"]
+    }
+  }, {
+    "name": "Patrae",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.664,
+        "y": 0.809
+      },
+      "factions": ["VISIGOTHS", "HUNS"],
+      "neighbours": ["Athenae", "Brundisium", "Philippopolis"]
+    }
+  }, {
+    "name": "Brundisium",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.602,
+        "y": 0.770
+      },
+      "factions": ["HUNS"],
+      "neighbours": ["Patrae", "Roma"]
+    }
+  }, {
+    "name": "Roma",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.499,
+        "y": 0.705
+      },
+      "factions": ["HUNS", "VISIGOTHS", "VANDALS", "ANGLO_SAXSONS_FRANKS", "OSTROGOTHS"],
+      "neighbours": ["Brundisium", "Aquileia", "Ravenna", "Genua"]
+    }
+  }, {
+    "name": "Narona",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.608,
+        "y": 0.671
+      },
+      "factions": ["VISIGOTHS"],
+      "neighbours": ["Aquileia", "Philippopolis"]
+    }
+  }, {
+    "name": "Philippopolis",
+    "harbour": false,
+    "tile": {
+      "position": {
+        "x": 0.739,
+        "y": 0.665
+      },
+      "factions": ["HUNS", "VISIGOTHS"],
+      "neighbours": ["Narona", "Patrae"]
+    }
+  }, {
+    "name": "Constantinopolis",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.838,
+        "y": 0.736
+      },
+      "factions": ["OSTROGOTHS", "VISIGOTHS", "VANDALS"],
+      "neighbours": ["Athenae", "Sinope", "Tyras"]
+    }
+  }, {
+    "name": "Sinope",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.966,
+        "y": 0.671
+      },
+      "factions": ["OSTROGOTHS"],
+      "neighbours": ["Constantinopolis", "Chersonesus"]
+    }
+  }, {
+    "name": "Chersonesus",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.938,
+        "y": 0.579
+      },
+      "factions": ["OSTROGOTHS"],
+      "neighbours": ["Sinope"]
+    }
+  }, {
+    "name": "Tyras",
+    "harbour": true,
+    "tile": {
+      "position": {
+        "x": 0.850,
+        "y": 0.540
+      },
+      "factions": ["VISIGOTHS"],
+      "neighbours": ["Constantinopolis"]
+    }
+  },
+
 ]
