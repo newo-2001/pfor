@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MusicManager {
 
-	private MediaPlayer mediaPlayer;
+	private static MediaPlayer mediaPlayer;
 	private double volume = 0.1;
 	private Playlist playlist;
 

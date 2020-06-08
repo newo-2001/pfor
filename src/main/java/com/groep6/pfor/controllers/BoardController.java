@@ -38,6 +38,10 @@ public class BoardController extends Controller {
         new HandController();
     }
 
+    public Player getPlayerTurn() {
+        return game.getPlayerTurn();
+    }
+
     /**
      * @param amount
      */

@@ -2,6 +2,7 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.factories.PlayerCardFactory;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * @author Bastiaan Jansen
  */
-public class Game extends Observable {
+public class Game extends Observable implements IObserver {
 
     private static Game SINGLE_INSTANCE = new Game();
 
@@ -65,7 +66,11 @@ public class Game extends Observable {
      * @param lobbyPlayers
      */
     public void addPlayers(LobbyPlayer... lobbyPlayers) {
-        for (LobbyPlayer player: lobbyPlayers) players.add(new Player(player));
+        for (LobbyPlayer lobbyPlayer: lobbyPlayers) {
+            Player player = new Player(lobbyPlayer);
+            player.registerObserver(this);
+            players.add(player);
+        }
         notifyObservers();
     }
 
@@ -169,5 +174,10 @@ public class Game extends Observable {
         }
 
         return null;
+    }
+
+    @Override
+    public void update() {
+        notifyObservers();
     }
 }
