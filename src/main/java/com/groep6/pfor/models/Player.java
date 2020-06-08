@@ -78,11 +78,6 @@ public class Player extends Observable {
     public String getUsername() {
         return username;
     }
-
-    @Override
-    public String toString () {
-        return String.format("Player: %s, role: %s, city: %s, turn: %b, actions: %d", username, roleCard.getName(), city.getName(), turn, actionsRemaining);
-    }
     
     // Actions
     

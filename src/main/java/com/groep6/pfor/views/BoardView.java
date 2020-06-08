@@ -1,18 +1,15 @@
 package com.groep6.pfor.views;
 
-import com.groep6.pfor.Config;
 import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
-import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 
 import com.groep6.pfor.views.components.UIText;
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,25 +24,15 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Popup;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * The view that shows the board
@@ -280,11 +267,9 @@ public class BoardView extends View implements IObserver {
 
     /**
      * Creates the list of players, shown on the top of the game screen.
-     * @return HBox layout of the players.
-     *
      */
 
-    private HBox createPlayerList() {
+    private void createPlayerList() {
         HBox playerList = new HBox();
 
         List<Player> players = boardController.getPlayers();
@@ -292,7 +277,7 @@ public class BoardView extends View implements IObserver {
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
 
-            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), ++i, player.getUsername(), player.getRoleCard().getName(), player.isTurn());
+            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), i + 1, player.getUsername(), player.getRoleCard().getName(), player.isTurn());
             playerList.getChildren().add(uiPlayerInfo);
         }
 
@@ -302,7 +287,6 @@ public class BoardView extends View implements IObserver {
 
         root.setTop(playerList);
 
-        return playerList;
     }
 
     private Canvas getCanvas() {
