@@ -1,7 +1,6 @@
 package com.groep6.pfor.models;
 
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
@@ -20,11 +19,11 @@ public class Game extends Observable {
     private final int MAX_DECAY_LEVEL = 8;
     private int invasionLevel = 0;
     private final int MAX_INVASION_LEVEL = 7;
-    private Deck tradeDeck = new Deck();
-    private Deck invasionDeck = new Deck();
-    private Deck cityDeck = new Deck();
-    private Deck invasionDiscardPile = new Deck();
-    private Deck cityDiscardPile = new Deck();
+    private Deck tradeCardsDeck = new Deck();
+    private Deck invasionCardsDeck = new Deck();
+    private Deck playerCardsDeck = new Deck();
+    private Deck invasionCardsDiscardPile = new Deck();
+    private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
 
@@ -102,12 +101,12 @@ public class Game extends Observable {
     /**
      * @return invasion deck
      */
-    public Deck getInvasionDeck() {
-        return invasionDeck;
+    public Deck getInvasionCardsDeck() {
+        return invasionCardsDeck;
     }
     
-    public Deck getTradeDeck() {
-    	return tradeDeck;
+    public Deck getTradeCardsDeck() {
+    	return tradeCardsDeck;
     }
 
     /**
@@ -139,16 +138,16 @@ public class Game extends Observable {
         notifyObservers();
     }
 
-    public Deck getCityDeck() {
-        return cityDeck;
+    public Deck getPlayerCardsDeck() {
+        return playerCardsDeck;
     }
 
-    public Deck getInvasionDiscardPile() {
-        return invasionDiscardPile;
+    public Deck getInvasionCardsDiscardPile() {
+        return invasionCardsDiscardPile;
     }
 
-    public Deck getCityDiscardPile() {
-        return cityDiscardPile;
+    public Deck getCityCardsDiscardPile() {
+        return cityCardsDiscardPile;
     }
 
     public Dice[] getDie() {
