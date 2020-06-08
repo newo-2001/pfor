@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class ViewController {
 
-    private static final int MIN_WIDTH = 1440;
-    private static final int MIN_HEIGHT = 900;
+    private static final int MIN_WIDTH = 1280;
+    private static final int MIN_HEIGHT = 720;
 
     private static final ViewController INSTANCE = new ViewController();
     public static ViewController getInstance() { return INSTANCE; }

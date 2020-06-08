@@ -227,6 +227,7 @@ public class BoardView extends View implements IObserver {
      * @return HBox layout of the players.
      * 
      */
+    
     private HBox createPlayerList() {
     	HBox playerList = new HBox();
 
