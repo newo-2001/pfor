@@ -14,6 +14,8 @@ import com.groep6.pfor.views.components.UIPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -98,6 +100,14 @@ public class BoardView extends View implements IObserver {
         GridPane actionButtonLayout = createActionButtons();
         root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         root.setRight(actionButtonLayout);
+
+        // Change listeners
+        root.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(newValue);
+            }
+        });
     }
 
     EventHandler<MouseEvent> goToTradeView = new EventHandler<MouseEvent>() {
@@ -301,8 +311,6 @@ public class BoardView extends View implements IObserver {
     }
 
     public void updateCanvas() {
-        Canvas canvas = getCanvas();
-        System.out.println(canvas);
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
 
         // Draw city circles
