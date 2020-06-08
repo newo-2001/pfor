@@ -4,8 +4,8 @@
     "harbour": false,
     "tile": {
       "position": {
-        "x": 0.299,
-        "y": 0.190
+        "x": 0.300,
+        "y": 0.188
       },
       "factions": ["ANGLO_SAXSONS_FRANKS"],
       "neighbours": ["Londinium"]
@@ -15,7 +15,7 @@
     "harbour": true,
     "tile": {
       "position": {
-        "x": 0.283,
+        "x": 0.281,
         "y": 0.282
       },
       "factions": ["ANGLO_SAXSONS_FRANKS"],
@@ -26,8 +26,8 @@
     "harbour": true,
     "tile": {
       "position": {
-        "x": 0.409,
-        "y": 0.287
+        "x": 0.410,
+        "y": 0.286
       },
       "factions": ["ANGLO_SAXSONS_FRANKS"],
       "neighbours": ["Londinium", "Mogontiacum"]
@@ -48,8 +48,8 @@
     "harbour": false,
     "tile": {
       "position": {
-        "x": 0.443,
-        "y": 0.370
+        "x": 0.445,
+        "y": 0.368
       },
       "factions": ["ANGLO_SAXSONS_FRANKS", "VANDALS"],
       "neighbours": ["Lutetia", "Lugdunum"]
@@ -71,7 +71,7 @@
     "tile": {
       "position": {
         "x": 0.343,
-        "y": 0.524
+        "y": 0.509
       },
       "factions": ["HUNS", "VANDALS"],
       "neighbours": ["Lutetia", "Mogontiacum", "Lugdunum", "Burdigala"]
