@@ -7,7 +7,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  * @author Mitchell van Rijswijk
  *
  */
-public class DoUtEsAction implements IAction {
+public class DoUtDesAction implements IAction {
 
 	/**
 	 * Allows 2 players to trade a citycard when they are in the same city.
