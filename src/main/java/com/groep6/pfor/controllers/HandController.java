@@ -1,7 +1,6 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.factories.FactionFactory;
-import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
@@ -44,9 +43,9 @@ public class HandController extends Controller {
         game.getLocalPlayer().getHand().removeCard(selectedCard);
         
         if (selectedCard instanceof CityCard) {
-        	game.getCityDiscardPile().addCards(selectedCard);
+        	game.getCityCardsDiscardPile().addCards(selectedCard);
         } else if (selectedCard instanceof EventCard) {
-        	game.getInvasionDiscardPile().addCards(selectedCard);
+        	game.getInvasionCardsDiscardPile().addCards(selectedCard);
         }
 
         SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
@@ -57,7 +56,7 @@ public class HandController extends Controller {
 
         if (selectedCard instanceof EventCard) {
             game.getLocalPlayer().getHand().removeCard(selectedCard);
-        	game.getInvasionDiscardPile().addCards(selectedCard);
+        	game.getInvasionCardsDiscardPile().addCards(selectedCard);
         	((EventCard) selectedCard).executeEvent();
         }
 
@@ -74,6 +73,6 @@ public class HandController extends Controller {
 
 	public void depositCard() {
         game.getLocalPlayer().getHand().removeCard(selectedCard);
-		game.getTradeDeck().addCards(selectedCard);
+		game.getTradeCardsDeck().addCards(selectedCard);
 	}
 }
