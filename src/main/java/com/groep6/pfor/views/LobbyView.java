@@ -68,13 +68,14 @@ public class LobbyView extends View implements IObserver {
         if (lobbyController.getHost().equals(lobbyController.getLocalPlayer())) {
             startGameButton = new UIButton("Start Spel");
             startGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startGame);
+            bottomButtomBox.getChildren().addAll(startGameButton);
         }
 
         Button goBackButton = new UIButton("Terug");
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
+        bottomButtomBox.getChildren().add(goBackButton);
 
-        bottomButtomBox.getChildren().addAll(startGameButton, goBackButton);
         setBackground(root, "images/background-5.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
