@@ -3,6 +3,7 @@ package com.groep6.pfor.factories;
 import com.groep6.pfor.Config;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.util.parsers.CityParser;
+import sun.java2d.pipe.AAShapePipe;
 
 import java.text.ParseException;
 
@@ -21,6 +22,10 @@ public class CityFactory {
             cities = new CityParser().parseFile("cities.json");
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+
+        for (City city : cities) {
+
         }
     }
 

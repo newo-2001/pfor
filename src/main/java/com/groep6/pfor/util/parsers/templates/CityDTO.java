@@ -32,4 +32,12 @@ public class CityDTO extends DTO {
         for (int i = 0; i < this.tile.getFactions().length; i++) factions[i] = FactionFactory.getInstance().getFaction(this.tile.getFactions()[i]);
         return new City(name, harbour, tile.getPosition().toModel(), factions);
     }
+
+    public String[] getNeighbours() {
+        return tile.getNeighbours();
+    }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -2,8 +2,10 @@ package com.groep6.pfor.controllers;
 
 import java.util.List;
 
+import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.BoardView;
@@ -43,8 +45,16 @@ public class BoardController extends Controller {
         return game.getDecayLevel();
     }
 
+    public Tile[] getTiles() {
+        return game.getBoard().getTiles();
+    }
+
     public List<Player> getPlayers() {
         return game.getAllPlayers();
+    }
+
+    public void cityPressed(City city) {
+        System.out.println(city);
     }
 
     @Override

@@ -108,8 +108,8 @@ public class Vector2f {
      * @return Itself for chaining.
      */
     public Vector2f mul(Vector2f vec) {
-        this.x += vec.x;
-        this.y += vec.y;
+        this.x *= vec.x;
+        this.y *= vec.y;
         return this;
     }
 
@@ -128,8 +128,8 @@ public class Vector2f {
      * @return Itself for chaining.
      */
     public Vector2f div(Vector2f vec) {
-        this.x += vec.x;
-        this.y += vec.y;
+        this.x /= vec.x;
+        this.y /= vec.y;
         return this;
     }
 
@@ -169,6 +169,15 @@ public class Vector2f {
      */
     public Vector2f normalize() {
         return div(length());
+    }
+
+    /**
+     * Given another vector calculate the distance between the ends of both vectors
+     * @param vec The vector to calculate the distance to
+     * @return The distance between the two ends of the given vectors
+     */
+    public float distance(Vector2f vec) {
+        return new Vector2f(this).sub(vec).abs().length();
     }
 
     /**
