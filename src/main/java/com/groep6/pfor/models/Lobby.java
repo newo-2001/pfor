@@ -20,7 +20,6 @@ public class Lobby extends Observable implements IObserver {
     private String code;
     private String passwordHash;
     private List<LobbyPlayer> players = new ArrayList<>();
-    private LobbyService lobbyService = new LobbyService();
 
     /**
      * @param password
@@ -67,9 +66,9 @@ public class Lobby extends Observable implements IObserver {
      * @return Whether password is the same as the lobby password
      */
     private boolean validatePassword(String password) {
-        if (passwordHash != null) return true;
+        if (passwordHash == null) return true;
 
-        if (password == passwordHash) return true;
+        if (password.equals(passwordHash)) return true;
 
         return false;
     }

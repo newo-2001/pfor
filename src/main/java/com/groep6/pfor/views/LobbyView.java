@@ -65,7 +65,7 @@ public class LobbyView extends View implements IObserver {
         bottomButtomBox.setAlignment(Pos.CENTER);
         BorderPane.setMargin(bottomButtomBox, new Insets(12,12,100,12));
 
-        if (lobbyController.getHost().equals(lobbyController.getLocalPlayer())) {
+        if (lobbyController.getHost() != null && lobbyController.getHost().equals(lobbyController.getLocalPlayer())) {
             startGameButton = new UIButton("Start Spel");
             startGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startGame);
             bottomButtomBox.getChildren().addAll(startGameButton);
@@ -133,8 +133,10 @@ public class LobbyView extends View implements IObserver {
     public void update() {
         createPlayers();
 
-        if (players.size() >= LobbyController.MIN_PLAYERS || Config.DEBUG) startGameButton.setDisable(false);
-        else startGameButton.setDisable(true);
+        if (startGameButton != null) {
+            if (players.size() >= LobbyController.MIN_PLAYERS || Config.DEBUG) startGameButton.setDisable(false);
+            else startGameButton.setDisable(true);
+        }
     }
 
     @Override

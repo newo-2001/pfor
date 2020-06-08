@@ -33,6 +33,7 @@ public class JoinController extends Controller {
             Lobby lobby = lobbyService.get(code);
             LobbyPlayer player = lobby.join(code, username, password, true);
             lobbyService.join(player);
+
             lobby.updateLobby(lobby);
 
             new LobbyController(lobby);
