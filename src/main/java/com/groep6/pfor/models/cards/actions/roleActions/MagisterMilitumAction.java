@@ -1,5 +1,8 @@
 package com.groep6.pfor.models.cards.actions.roleActions;
 
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -9,14 +12,16 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class MagisterMilitumAction implements IAction {
 
+	private Game game = Game.getInstance();
+
 	/**
 	 * Reduces the amount of barbarians in the current city by 2.
 	 * 
 	 */
 	public void execute() {
-		/* 
-		 * currentCity.removeBarbarians(2); 
-		 */
+		Player player = game.getLocalPlayer();
+		City city = player.getCity();
+		city.removeBarbarians(2);
 	}
 
 	/**

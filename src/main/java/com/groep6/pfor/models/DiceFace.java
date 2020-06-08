@@ -9,34 +9,35 @@ public enum DiceFace {
 	BARBARIAN {
 		@Override
 		public void execute(City city) {
-			city.removeBarbarian();
+			city.removeBarbarians(1);
 		}
 	},
 	LEGION {
 		@Override
 		public void execute(City city) {
-			city.removeLegion();
+			city.removeLegions(1);
 		}
 	},
 	BOTH {
 		@Override
 		public void execute(City city) {
-			city.removeBarbarian();
-			city.removeLegion();
+			city.removeBarbarians(1);
+			city.removeLegions(1);
 		}
 	},
 	TWO_BARBARIAN_LEGION {
 		@Override
 		public void execute(City city) {
-			city.removeBarbarian();
-			city.removeBarbarian();
-			city.removeLegion();
+			city.removeBarbarians(2);
+			city.removeLegions(1);
 		}
 	},
 	SPECIAL {
 		@Override
 		public void execute(City city) {
-			// Execute order 66
+			Game game = Game.getInstance();
+			Player player =  game.getPlayerTurn();
+			player.getRoleCard().executeAbility();
 		}
 	};
 	

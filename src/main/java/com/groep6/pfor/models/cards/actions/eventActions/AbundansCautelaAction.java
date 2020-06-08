@@ -1,5 +1,6 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -9,6 +10,8 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class AbundansCautelaAction implements IAction {
 
+	private Game game = Game.getInstance();
+
 	/**
 	 * Decreases the invasion rate by 2 for the next invasion.
 	 */
@@ -17,6 +20,9 @@ public class AbundansCautelaAction implements IAction {
 		 * if (game.getState().equals(invasion))
 		 * 		invasionController.removeInvasionsForThisRound(2);
 		 */
+
+		game.increaseInvasionLevel(2);
+
 	}
 
 	/**

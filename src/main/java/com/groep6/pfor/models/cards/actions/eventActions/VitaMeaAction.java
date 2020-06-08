@@ -1,5 +1,8 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -9,15 +12,16 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class VitaMeaAction implements IAction {
 
+	private Game game = Game.getInstance();
+
 	/**
 	 * Replace 1 barbarian with 1 legion in the current city.
 	 */
 	public void execute() {
-		/*
-		 * currentCity.removeBarbarians(1);
-		 * currentCity.addLegions(1);
-		 * card.discard();
-		 */
+		Player player = game.getPlayerTurn();
+		City city = player.getCity();
+		city.removeBarbarians(1);
+		city.addLegion();
 	}
 
 	/**

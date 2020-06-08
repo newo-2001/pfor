@@ -1,5 +1,8 @@
 package com.groep6.pfor.models.cards.actions.roleActions;
 
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -9,16 +12,17 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class PraefectusClassisAction implements IAction {
 
+	private Game game = Game.getInstance();
+
 	/**
 	 * Checks if the current city is a port city. If it is, removes a
 	 * barbarian from the city.
-	 * 
 	 */
 	public void execute() {
-		/* 
-		 * if (currentCity.hasPort() && currentCity.hasBarbarians())
-		 * 		currentCity.removeBarbarians(1);
-		 */
+		Player player = game.getLocalPlayer();
+		City city = player.getCity();
+
+		if (city.hasHarbour()) city.removeBarbarians(1);
 	}
 
 	/**

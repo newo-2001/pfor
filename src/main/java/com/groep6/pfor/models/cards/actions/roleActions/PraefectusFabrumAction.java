@@ -1,5 +1,8 @@
 package com.groep6.pfor.models.cards.actions.roleActions;
 
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -9,16 +12,18 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class PraefectusFabrumAction implements IAction {
 
+	private Game game = Game.getInstance();
+
 	/**
 	 * Checks if the current city has a fort. If it has, removes 2
 	 * barbarians from the city.
 	 * 
 	 */
 	public void execute() {
-		/* 
-		 * if (currentCity.hasFort() && currentCity.getBarbarians() >= 2)
-		 * 		currentCity.removeBarbarians(2);
-		 */
+		Player player = game.getLocalPlayer();
+		City city = player.getCity();
+
+		if (city.hasFort()) city.removeBarbarians(2);
 	}
 
 	/**

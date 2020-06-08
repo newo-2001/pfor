@@ -1,5 +1,7 @@
 package com.groep6.pfor.models;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Stack;
 
 import com.groep6.pfor.models.cards.RoleCard;
@@ -7,7 +9,7 @@ import com.groep6.pfor.models.cards.RoleCard;
 /**
  * @author Bastiaan Jansen
  */
-public class Player {
+public class Player extends Observable {
 
     private Hand hand = new Hand();
     private RoleCard roleCard;
@@ -95,6 +97,18 @@ public class Player {
     	int[] battleResults = {legionsLost, barbariansLost};
     	return battleResults;
     }
-    
+
+    /**
+     * Add more actions
+     * @param amount
+     */
+    public void addActions(int amount) {
+        actionsRemaining += amount;
+        notifyObservers();
+    }
+
+    public City getCity() {
+        return city;
+    }
     
 }

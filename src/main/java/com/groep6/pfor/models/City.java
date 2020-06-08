@@ -140,22 +140,24 @@ public class City extends Tile {
 	}
 
 	/**
+	 * @param amount
 	 * @return Removed barbarian
 	 */
-	public Barbarian removeBarbarian() {
-		if (!barbarians.empty())
-			return barbarians.pop();
-		return null;
+	public void removeBarbarians(int amount) {
+		for (int i = 0; i < amount; i++) {
+			if (!barbarians.empty()) barbarians.pop();
+		}
 	}
 
     /**
+	 * @param amount
      * @return a legion and removes that specific legion from a city
      */
 	
-	public Legion removeLegion() {
-		if (!legions.empty())
-			return legions.pop();
-		return null;
+	public void removeLegions(int amount) {
+		for (int i = 0; i < amount; i++) {
+			if (!legions.empty()) legions.pop();
+		}
 	}
 	
     /**

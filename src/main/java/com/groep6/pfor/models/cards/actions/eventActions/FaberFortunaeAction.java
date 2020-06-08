@@ -1,5 +1,9 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
+import com.groep6.pfor.models.Deck;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -9,19 +13,16 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class FaberFortunaeAction implements IAction {
 
+	private Game game = Game.getInstance();
+
 	/**
 	 * Draws a citycard for the player and adds it to his hand.
 	 */
 	public void execute() {
-		/*
-		 * Deck deck = Game.discardDeck();
-		 * Card cityCard = null;
-		 * for (Card card: deck) {
-		 * 		if (card.getCityColor().equals(currentCity.getColor()))
-		 * 			cityCard = card;
-		 * player.getHand().add(cityCard);
-		 * card.discard();
-		 */
+		Deck cityDeck = game.getCityDeck();
+		CityCard card = (CityCard) cityDeck.draw();
+		Player player = game.getPlayerTurn();
+		player.getHand().addCards(card);
 	}
 
 	/**

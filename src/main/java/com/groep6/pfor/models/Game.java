@@ -101,22 +101,24 @@ public class Game extends Observable {
     }
 
     /**
-     * Increase decay level, when decay level. When reached the max, return
+     * Increase decay level, when decay level. When reached the max, return.
+     * @param amount
      */
-    public void increaseDecayLevel() {
-        if (decayLevel >= MAX_DECAY_LEVEL) return;
+    public void increaseDecayLevel(int amount) {
+        if (decayLevel + amount >= MAX_DECAY_LEVEL) return;
 
-        decayLevel++;
+        decayLevel += amount;
         notifyObservers();
     }
 
     /**
-     * Increase invasion level. When reached the max, return
+     * Increase invasion level. When reached the max, return.
+     * @param amount
      */
-    public void increaseInvasionLevel() {
-        if (invasionLevel >= MAX_INVASION_LEVEL) return;
+    public void increaseInvasionLevel(int amount) {
+        if (invasionLevel + amount >= MAX_INVASION_LEVEL) return;
 
-        invasionLevel++;
+        invasionLevel += amount;
         notifyObservers();
     }
 

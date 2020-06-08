@@ -32,8 +32,11 @@ public class BoardController extends Controller {
         new HandController();
     }
 
-    public void increaseDecayLevel() {
-        game.increaseDecayLevel();
+    /**
+     * @param amount
+     */
+    public void increaseDecayLevel(int amount) {
+        game.increaseDecayLevel(amount);
     }
 
     public int getDecayLevel() {
