@@ -62,6 +62,10 @@ public class BoardController extends Controller {
         System.out.println(city);
     }
 
+    public Player getLocalPlayer() {
+        return game.getLocalPlayer();
+    }
+
     @Override
     public void registerObserver(IObserver view) {
         game.registerObserver(view);
