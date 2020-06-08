@@ -9,7 +9,7 @@ import com.groep6.pfor.util.Vector2f;
 
 public class PlayerCardFactory {
 	
-	private static final PlayerCardFactory SINGLE_INSTANCE = new PlayerCardFactory();
+	private static final PlayerCardFactory INSTANCE = new PlayerCardFactory();
 	private Deck playerCardDeck = new Deck();
 	
 	private PlayerCardFactory() {
@@ -64,5 +64,13 @@ public class PlayerCardFactory {
 		playerCardDeck.addCards(new CityCard(cityFactory.getCityByName("Burdigala"), factionFactory.getFaction(FactionType.VANDALS)));		
 		playerCardDeck.addCards(new CityCard(cityFactory.getCityByName("Syracusae"), factionFactory.getFaction(FactionType.VANDALS)));
 		playerCardDeck.addCards(new CityCard(cityFactory.getCityByName("Tingi"), factionFactory.getFaction(FactionType.VANDALS)));
+	}
+
+	public static PlayerCardFactory getInstance() {
+		return INSTANCE;
+	}
+
+	public Deck getPlayerCardDeck() {
+		return playerCardDeck;
 	}
 }
