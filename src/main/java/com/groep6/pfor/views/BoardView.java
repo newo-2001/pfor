@@ -54,7 +54,7 @@ public class BoardView extends View implements IObserver {
 	private BoardController boardController;
 	private BorderPane root;
 	private static final Vector2f CANVAS_SIZE = new Vector2f(842, 617);
-	private static final float CIRCLE_RADIUS = 15f;
+	private static final float CIRCLE_RADIUS = 19f / CANVAS_SIZE.y;
 
     public BoardView(BoardController controller) {
         boardController = controller;
@@ -161,7 +161,7 @@ public class BoardView extends View implements IObserver {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 Vector2f mouse = new Vector2f((float) event.getX(), (float) event.getY());
-                if (pos.distance(mouse) < CIRCLE_RADIUS) {
+                if (pos.distance(mouse) < CIRCLE_RADIUS * CANVAS_SIZE.y) {
                     boardController.cityPressed(city);
                     break;
                 }
@@ -293,7 +293,8 @@ public class BoardView extends View implements IObserver {
                 if (tile instanceof City) {
                     City city = (City) tile;
                     Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
-                    gc.fillOval(pos.x - CIRCLE_RADIUS, pos.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
+                    float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
+                    gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
                 }
             }
         }
