@@ -58,6 +58,8 @@ public class Game extends Observable implements IObserver {
         currentPlayer.notTurn();
         nextPlayer.setTurn();
 
+        notifyObservers();
+
         return nextPlayer;
     }
 
