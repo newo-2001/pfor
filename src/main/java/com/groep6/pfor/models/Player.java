@@ -110,5 +110,9 @@ public class Player extends Observable {
     public City getCity() {
         return city;
     }
+
+    public void notTurn() {
+        turn = false;
+    }
     
 }

@@ -40,6 +40,29 @@ public class Game extends Observable {
         }
     }
 
+    public Player nextTurn() {
+        // Get current turn player
+        Player currentPlayer = getPlayerTurn();
+
+        if (currentPlayer == null) {
+            Player nextplayer = players.get(0);
+            nextplayer.setTurn();
+            return nextplayer;
+        }
+
+        int index = players.indexOf(currentPlayer);
+
+        Player nextPlayer;
+
+        if (players.size() > index)  nextPlayer = players.get(index + 1);
+        else nextPlayer = players.get(0);
+
+        currentPlayer.notTurn();
+        nextPlayer.setTurn();
+
+        return nextPlayer;
+    }
+
     /**
      * Adds LobbyPlayers to game
      * @param lobbyPlayers
