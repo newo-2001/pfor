@@ -5,6 +5,8 @@ import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
+import com.groep6.pfor.util.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class Lobby extends Observable implements IObserver {
      */
     public Lobby(String password) {
         this.code = generateCode();
-        this.passwordHash = password;
+        this.passwordHash = PasswordEncoder.hash(password);
     }
 
     /**
@@ -68,9 +70,7 @@ public class Lobby extends Observable implements IObserver {
     private boolean validatePassword(String password) {
         if (passwordHash == null) return true;
 
-        if (password.equals(passwordHash)) return true;
-
-        return false;
+        return PasswordEncoder.matches(password, passwordHash);
     }
 
     /**
