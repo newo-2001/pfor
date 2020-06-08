@@ -17,24 +17,39 @@ public class LobbyController extends Controller {
     private Game game = Game.getInstance();
     private Lobby lobby;
 
+    /**
+     * @param lobby
+     */
     public LobbyController(Lobby lobby) {
         this.lobby = lobby;
         LobbyService.lobbyChangeEvent.subscribe(onLobbyChange);
         viewController.showView(new LobbyView(this));
     }
 
+    /**
+     * @return lobby code
+     */
     public String getLobbyCode() {
         return lobby.getCode();
     }
 
+    /**
+     * @return list of current lobbyPlayers in the lobby
+     */
     public List<LobbyPlayer> getLobbyPlayers() {
         return lobby.getPlayers();
     }
 
+    /**
+     * Go to a new view: roleCardInfoView
+     */
     public void goToRoleCardInfoView() {
         new RoleCardInfoController(lobby);
     }
 
+    /**
+     * Go to new view: MenuView
+     */
     public void goToMenu() {
         // Delete from lobby
         LobbyService lobbyService = new LobbyService();
@@ -64,10 +79,16 @@ public class LobbyController extends Controller {
 
     }
 
+    /**
+     * @return local lobbyPlayer
+     */
     public LobbyPlayer getLocalPlayer() {
         return lobby.getLocalPlayer();
     }
 
+    /**
+     * @return Host of the lobby
+     */
     public LobbyPlayer getHost() {
         return lobby.getHost();
     }
@@ -78,6 +99,9 @@ public class LobbyController extends Controller {
     }
 
 
+    /**
+     * Run code every time the server sends an update
+     */
     private IEventCallback onLobbyChange = new IEventCallback() {
         @Override
         public void onEvent(Object... eventData) {
