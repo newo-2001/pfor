@@ -27,7 +27,6 @@ public class Game extends Observable {
     private Deck cityDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
-    private Player localPlayer;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
@@ -41,15 +40,11 @@ public class Game extends Observable {
     }
 
     public Player nextTurn() {
+        if (players.size() <= 0) return null;
+
         // Get current turn player
         Player currentPlayer = getPlayerTurn();
         Player nextPlayer;
-
-        if (currentPlayer == null) {
-            nextPlayer = players.get(0);
-            nextPlayer.setTurn();
-            return nextPlayer;
-        }
 
         int index = players.indexOf(currentPlayer);
 
@@ -166,10 +161,10 @@ public class Game extends Observable {
     }
 
     public Player getLocalPlayer() {
-        return localPlayer;
-    }
+        for (Player player: players) {
+            if (player.isLocal()) return player;
+        }
 
-    public void setLocalPlayer(Player localPlayer) {
-        this.localPlayer = localPlayer;
+        return null;
     }
 }

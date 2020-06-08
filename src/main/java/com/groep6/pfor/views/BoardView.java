@@ -88,10 +88,6 @@ public class BoardView extends View implements IObserver {
     public void createView() {
         root = new BorderPane();
 
-        // Top - players
-        HBox playerList = createPlayerList();
-        root.setTop(playerList);
-
         // Center - board
         Canvas boardCanvas = createBoard();
         root.setCenter(boardCanvas);
@@ -295,13 +291,15 @@ public class BoardView extends View implements IObserver {
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
 
-            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), ++i, player.getUsername(), player.getRoleCard().getName());
+            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), ++i, player.getUsername(), player.getRoleCard().getName(), player.isTurn());
             playerList.getChildren().add(uiPlayerInfo);
         }
 
         playerList.setAlignment(Pos.CENTER);
         playerList.setPadding(new Insets(20, 20, 20, 20));
         playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        root.setTop(playerList);
 
         return playerList;
     }
@@ -341,6 +339,7 @@ public class BoardView extends View implements IObserver {
             allianceButton.setDisable(false);
             buildButton.setDisable(false);
             recruitButton.setDisable(false);
+            recruitBarbarianButton.setDisable(false);
             nextTurnButton.setDisable(false);
         } else {
             conspireButton.setDisable(true);
@@ -348,6 +347,7 @@ public class BoardView extends View implements IObserver {
             allianceButton.setDisable(true);
             buildButton.setDisable(true);
             recruitButton.setDisable(true);
+            recruitBarbarianButton.setDisable(true);
             nextTurnButton.setDisable(true);
         }
     }

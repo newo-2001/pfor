@@ -45,6 +45,6 @@ public class PlayerDTO extends DTO {
      * @return The model representation of this data object
      */
     public Player toModel() {
-        return new Player(username, getCity(), getRoleCard(), turn);
+        return new Player(username, getCity(), getRoleCard(), turn, false);
     }
 }

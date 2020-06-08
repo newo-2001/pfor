@@ -21,7 +21,7 @@ public class HandController extends Controller {
     private Card selectedCard;
 
     public HandController() {
-        game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true, "")));
+//        game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true, "")));
         Player localPlayer = game.getLocalPlayer();
         Faction[] factionTypes = new Faction[] {};
         FactionFactory factionFactory = FactionFactory.getInstance();

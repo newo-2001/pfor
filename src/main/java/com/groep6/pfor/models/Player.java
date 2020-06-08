@@ -17,6 +17,7 @@ public class Player extends Observable {
     private String username;
     private boolean turn = false;
     private int actionsRemaining = 0;
+    private boolean isLocal;
 
     /**
      * The Player constructor clones all necessary the information from LobbyPlayer to Player
@@ -25,12 +26,14 @@ public class Player extends Observable {
     public Player(LobbyPlayer player) {
         roleCard = player.getRoleCard();
         username = player.getUsername();
+        isLocal = player.isLocal();
     }
 
-    public Player(String username, City city, RoleCard roleCard, boolean turn) {
+    public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
         this.roleCard = roleCard;
         this.city = city;
         this.username = username;
+        this.isLocal = isLocal;
         if (turn) setTurn();
     }
     
@@ -113,6 +116,10 @@ public class Player extends Observable {
 
     public void notTurn() {
         turn = false;
+    }
+
+    public boolean isLocal() {
+        return isLocal;
     }
     
 }

@@ -72,8 +72,8 @@ public class LobbyController extends Controller {
 
     public void startGame() {
 
-        game.setLocalPlayer(new Player(lobby.getLocalPlayer()));
         game.addPlayers(lobby.getPlayers().toArray(new LobbyPlayer[0]));
+        game.getLocalPlayer().setTurn();
 
         new BoardController();
 
