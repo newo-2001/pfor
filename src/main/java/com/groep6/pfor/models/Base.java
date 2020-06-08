@@ -18,12 +18,30 @@ public class Base<T extends Piece> extends Tile {
 	private List<T> pieces = new ArrayList<T>();
 
 	/**
-	 * Initializes a new City with the given components.
+	 * Initializes a new Base with the given components.
 	 * @param position The Vector2f (position) of a specific base
 	 * @param factions What faction is allowed in a specific base
 	 */
 	public Base(Vector2f position, Faction[] factions, T... pieces) {
 		super(position, factions);
+	}
+
+	/**
+	 * Intializes a new Base from Firebase data
+	 * @param factions the factions allowed in this base
+	 * @param pieces The pieces in the base
+	 */
+	public Base(Faction[] factions, T... pieces) {
+		super(null, factions);
+		this.pieces.addAll(Arrays.asList(pieces));
+	}
+
+	/**
+	 * Overwrite the pieces in this base with those in a Firebase instance
+	 * @param base The firebase instance of the base
+	 */
+	public void updateBase(Base base) {
+		this.pieces = base.pieces;
 	}
 	
     /**

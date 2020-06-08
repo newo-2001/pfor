@@ -1,38 +1,127 @@
 package com.groep6.pfor.services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.EventListener;
-import com.google.cloud.firestore.FirestoreException;
-import com.google.firebase.database.annotations.Nullable;
+import com.google.cloud.firestore.*;
+import com.groep6.pfor.exceptions.NoDocumentException;
+import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.models.Player;
+import com.groep6.pfor.util.ServerEvent;
+import com.groep6.pfor.util.parsers.templates.LobbyDTO;
+import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class GameService {
 
-    private static final String COLLECTION = "games";
+    /** This event is fired when a Game is changed */
+    public static ServerEvent gameChangeEvent = new ServerEvent();
 
-    public DocumentSnapshot get(String documentID) {
-
-        DocumentSnapshot snapshot = null;
-
-//        try {
-//            DocumentReference docRef = db.collection(COLLECTION).document(documentID);
-//            ApiFuture<DocumentSnapshot> future = docRef.get();
-//
-//            DocumentSnapshot document = future.get();
-//            if (document.exists()) {
-//                System.out.println("Document data: " + document.getData());
-//                snapshot = document;
-//            } else {
-//                System.out.println("No such document!");
-//            }
-//        } catch (InterruptedException | ExecutionException e) {
-//            e.printStackTrace();
-//        }
-
-        return snapshot;
+    /**
+     * Obtain the list of players in a game
+     * @param code The code of the game
+     * @return The list of players in that game
+     */
+    public List<Player> getPlayers(String code) throws NoDocumentException {
+        return Firebase.requestDocument("games/" + code).toObject(GameDTO.class).toModel().getPlayers();
     }
+
+    /**
+     * Obtain a lobby using its lobby code
+     * @param code The lobby code of the requested lobby
+     * @return The lobby that has that code
+     * @throws NoDocumentException If the query had no results
+     */
+    public Lobby get(String code) throws NoDocumentException {
+        return Firebase.requestDocument("lobbies/" + code).toObject(LobbyDTO.class).toModel();
+    }
+
+    /**
+     * Update a lobby's data on server to this new data
+     * Warning! This will overwrite the entire lobby, Only use if you have good reason to!
+     * @param lobby The new lobby data that will override the old data
+     */
+    public void set(Lobby lobby) {
+        Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
+    }
+
+    /**
+     * Thanos snap a lobby out of the database, never to be seen again
+     * @param lobby The lobby to be Thanos snapped
+     */
+    public void remove(Lobby lobby) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + lobby.getCode());
+        doc.delete();
+    }
+
+    /**
+     * Create a lobby on the server.
+     * All the players in this lobby will automagically be joined
+     * It will be assumed that all these players belong to this client (should really ever only be 1 player!)
+     * @param lobby The lobby to be created
+     */
+    public void create(Lobby lobby) {
+        for (LobbyPlayer player : lobby.getPlayers()) Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
+        Firebase.setDocument("lobbies/" + lobby.getCode(), LobbyDTO.fromModel(lobby));
+    }
+
+    /**
+     * Sync a player's rolecard with firebase
+     * @param player The player to change, note: the card to sync with is the card
+     *               that the this instance has
+     */
+    public void updateRoleCard(LobbyPlayer player) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername(), "role"), player.getRoleCard().getName());
+    }
+
+    /**
+     * Gives a player lobby host
+     * Note! This does not remove host from the other players
+     * You should do that yourself
+     * @param player The player to be the new lobby host
+     */
+    public void giveHost(LobbyPlayer player) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername(), "host"), true);
+    }
+
+    /**
+     * Make a player join a lobby
+     * @param player The player to join a lobby, note: The lobby to join is specified
+     *               in the player instance.
+     */
+    public void join(LobbyPlayer player) {
+        Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> kv = mapper.convertValue(LobbyPlayerDTO.fromModel(player), new TypeReference<Map<String, Object>>() {});
+        doc.update("players." + player.getUsername(), kv);
+    }
+
+    /**
+     * Remove a player from the firebase lobby,
+     * The lobby to leave is specified in the player's lobby field
+     * @param player The player that should leave
+     */
+    public void leave(LobbyPlayer player) {
+        DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
+        doc.update(FieldPath.of("players", player.getUsername()), FieldValue.delete());
+    }
+
+    private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
+        @Override
+        public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
+            if (e != null) e.printStackTrace();
+            else LobbyService.lobbyChangeEvent.fire(documentSnapshot.toObject(LobbyDTO.class).toModel());
+
+            System.out.println("Updating...");
+        }
+    };
 }

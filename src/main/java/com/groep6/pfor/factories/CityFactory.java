@@ -23,10 +23,6 @@ public class CityFactory {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        for (City city : cities) {
-
-        }
     }
 
     /**

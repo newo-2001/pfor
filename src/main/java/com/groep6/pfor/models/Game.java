@@ -40,6 +40,47 @@ public class Game extends Observable {
         }
     }
 
+    public Game(Board board, List<Player> players, List<Faction> friendlyFactions, int decayLevel, int invasionLevel,
+                Deck tradeDeck, Deck invasionDeck, Deck cityDeck, Deck invasionDiscardPile, Deck cityDiscardPile) {
+        this.board = board;
+        this.players = players;
+        this.friendlyFactions = friendlyFactions;
+        this.decayLevel = decayLevel;
+        this.invasionLevel = invasionLevel;
+        this.tradeDeck = tradeDeck;
+        this.invasionDeck = invasionDeck;
+        this.cityDeck = cityDeck;
+        this.invasionDiscardPile = invasionDiscardPile;
+        this.cityDiscardPile = cityDiscardPile;
+
+        // Create new dice instances
+        for (int i = 0; i < die.length; i++) {
+            die[i] = new Dice();
+        }
+    }
+
+    /**
+     * Update the local game with the data from the remote version
+     * @param remote The remote version of the game
+     */
+    public static void updateGame(Game remote) {
+        Game client = getInstance();
+        Player local = client.getLocalPlayer();
+        getInstance().players = remote.getAllPlayers();
+        for (Player player : client.getAllPlayers()) {
+            if (player.equals(local)) client.setLocalPlayer(local);
+        }
+
+        client.board = remote.board;
+        client.decayLevel = remote.decayLevel;
+        client.invasionLevel = remote.invasionLevel;
+        client.invasionDeck = remote.invasionDeck;
+        client.invasionDiscardPile = remote.invasionDiscardPile;
+        client.cityDeck = remote.cityDeck;
+        client.cityDiscardPile = remote.cityDiscardPile;
+        client.tradeDeck = remote.tradeDeck;
+    }
+
     public Player nextTurn() {
         // Get current turn player
         Player currentPlayer = getPlayerTurn();
@@ -110,7 +151,11 @@ public class Game extends Observable {
     public Deck getInvasionDeck() {
         return invasionDeck;
     }
-    
+
+    public int getInvasionLevel() {
+        return invasionLevel;
+    }
+
     public Deck getTradeDeck() {
     	return tradeDeck;
     }
