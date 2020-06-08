@@ -18,9 +18,14 @@ public class BoardController extends Controller {
     private Game game = Game.getInstance();
 
     public BoardController() {
-    	MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");
+    	queueMusic();
         viewController.showView(new BoardView(this));
     };
+    
+    public void queueMusic() {
+    	MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");
+    	// to be expanded.
+    }
     
     public void goToBattleView() {
     	new BattleController();

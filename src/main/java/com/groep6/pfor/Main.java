@@ -29,7 +29,7 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
 
         // Start game music
-        MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");
+        MusicManager.getInstance().addToQueue("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");	// Change to loop just in this view.
 
         // Set default view
         new BoardController();
