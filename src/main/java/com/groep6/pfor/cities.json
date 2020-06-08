@@ -4,10 +4,10 @@
     "harbour": true,
     "tile": {
       "position": {
-        "x": 5,
-        "y": 6
+        "x": 0.4,
+        "y": 0.5
       },
-      "factions": ["HUNS", "VANDELS"],
+      "factions": ["HUNS", "VANDALS"],
       "neighbours": ["rome"]
     }
   }, {
@@ -15,8 +15,8 @@
     "harbour": false,
     "tile": {
       "position": {
-        "x": 8,
-        "y": -5
+        "x": 0.8,
+        "y": 0.2
       },
       "factions": ["HUNS"],
       "neighbours": []

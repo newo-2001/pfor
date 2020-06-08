@@ -20,7 +20,6 @@ public class CityParser extends JsonParser {
 
     @Override
     public Object[] parse(JsonArray json) {
-        Gson gson = new Gson();
         List<City> cities = new ArrayList<>();
         for (Iterator<JsonElement> it = json.iterator(); it.hasNext();) {
             JsonObject cityField = (JsonObject) it.next();

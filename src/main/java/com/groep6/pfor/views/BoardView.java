@@ -1,18 +1,25 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.*;
+import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.ActionButton;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 
 import com.groep6.pfor.views.components.UIText;
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -33,6 +40,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The view that shows the board
@@ -44,6 +53,8 @@ public class BoardView extends View implements IObserver {
     
 	private BoardController boardController;
 	private BorderPane root;
+	private static final Vector2f CANVAS_SIZE = new Vector2f(842, 617);
+	private static final float CIRCLE_RADIUS = 15f;
 
     public BoardView(BoardController controller) {
         boardController = controller;
@@ -67,8 +78,8 @@ public class BoardView extends View implements IObserver {
         root.setTop(playerList);
         
         // Center - board
-        Pane boardPane = createBoard();
-        root.setCenter(boardPane);
+        Canvas boardCanvas = createBoard();
+        root.setCenter(boardCanvas);
         
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();
@@ -137,6 +148,24 @@ public class BoardView extends View implements IObserver {
         @Override
         public void handle(MouseEvent e) {
             
+        }
+    };
+
+    EventHandler<MouseEvent> onCanvasClick = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (event.getButton() != MouseButton.PRIMARY) return;
+
+            for (Tile tile : boardController.getTiles()) {
+                if (!(tile instanceof City)) continue;
+                City city = (City) tile;
+                Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
+                Vector2f mouse = new Vector2f((float) event.getX(), (float) event.getY());
+                if (pos.distance(mouse) < CIRCLE_RADIUS) {
+                    boardController.cityPressed(city);
+                    break;
+                }
+            }
         }
     };
     
@@ -212,14 +241,16 @@ public class BoardView extends View implements IObserver {
      * @return Pane layout of the board.
      * 
      */
-    private Pane createBoard() {
-        BackgroundSize boardSize = new BackgroundSize(100, 100, true, true, true, false);
-        BackgroundImage board = new BackgroundImage(new Image("images/board.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                boardSize);
-        Pane boardPane = new Pane();
-        boardPane.setBackground(new Background(board));
-        return boardPane;
+    private Canvas createBoard() {
+        Canvas canvas = new Canvas(CANVAS_SIZE.x, CANVAS_SIZE.y);
+        canvas.setOnMouseClicked(onCanvasClick);
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.drawImage(new Image("images/board.jpg"), 0, 0, CANVAS_SIZE.x, CANVAS_SIZE.y);
+
+        updateCanvas.start();
+
+        return canvas;
     }
 
     /**
@@ -246,7 +277,28 @@ public class BoardView extends View implements IObserver {
         
     	return playerList;
     }
-    
+
+    private Canvas getCanvas() {
+        return (Canvas) root.getCenter();
+    }
+
+    private AnimationTimer updateCanvas = new AnimationTimer() {
+        @Override
+        public void handle(long time) {
+            GraphicsContext gc = getCanvas().getGraphicsContext2D();
+
+            // Draw city circles
+            gc.setFill(Color.RED);
+            for (Tile tile : boardController.getTiles()) {
+                if (tile instanceof City) {
+                    City city = (City) tile;
+                    Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
+                    gc.fillOval(pos.x - CIRCLE_RADIUS, pos.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
+                }
+            }
+        }
+    };
+
     @Override
     public void update() {
     	

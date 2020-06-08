@@ -14,7 +14,7 @@ public class Game extends Observable {
 
     private static Game SINGLE_INSTANCE = new Game();
 
-    private Board board;
+    private Board board = new Board();
     private List<Player> players = new ArrayList<>();
     private int decayLevel = 0;
     private final int MAX_DECAY_LEVEL = 8;
