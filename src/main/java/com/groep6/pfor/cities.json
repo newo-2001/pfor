@@ -30,7 +30,7 @@
         "y": 0.286
       },
       "factions": ["ANGLO_SAXSONS_FRANKS"],
-      "neighbours": ["Londinium", "Mogontiacum"]
+      "neighbours": ["Londinium", "Mogontiacum", "Lutetia"]
     }
   }, {
     "name": "Lutetia",
@@ -41,7 +41,7 @@
         "y": 0.386
       },
       "factions": ["ANGLO_SAXSONS_FRANKS", "HUNS"],
-      "neighbours": ["Londinium", "Mogontiacum", "Burdigala", "Lugdunum"]
+      "neighbours": ["Londinium", "Mogontiacum", "Burdigala", "Lugdunum", "Gesoriacum"]
     }
   }, {
     "name": "Mogontiacum",
@@ -52,7 +52,7 @@
         "y": 0.368
       },
       "factions": ["ANGLO_SAXSONS_FRANKS", "VANDALS"],
-      "neighbours": ["Lutetia", "Lugdunum"]
+      "neighbours": ["Lutetia", "Lugdunum", "Mediolanum"]
     }
   }, {
     "name": "Burdigala",
@@ -74,7 +74,7 @@
         "y": 0.508
       },
       "factions": ["HUNS", "VANDALS"],
-      "neighbours": ["Lutetia", "Mogontiacum", "Lugdunum", "Burdigala"]
+      "neighbours": ["Lutetia", "Mogontiacum", "Lugdunum", "Burdigala", "Narbo"]
     }
   }, {
     "name": "Mediolanum",
@@ -85,7 +85,7 @@
         "y": 0.522
       },
       "factions": ["HUNS"],
-      "neighbours": ["Lugdunum", "Iuvavum"]
+      "neighbours": ["Lugdunum", "Iuvavum", "Ravenna", "Genua", "Mogontiacum"]
     }
   }, {
     "name": "Iuvavum",
@@ -129,7 +129,7 @@
         "y": 0.593
       },
       "factions": ["VISIGOTHS"],
-      "neighbours": ["Aquileia", "Roma", "Genua"]
+      "neighbours": ["Aquileia", "Roma", "Genua","Mediolanum"]
     }
   }, {
     "name": "Genua",
@@ -151,7 +151,7 @@
         "y": 0.654
       },
       "factions": ["ANGLO_SAXSONS_FRANKS","VISIGOTHS"],
-      "neighbours": ["Genua", "Burdigala", "Nova Carthago"]
+      "neighbours": ["Genua", "Burdigala", "Nova Carthago", "Lugdunum", "Caesaraugusta"]
     }
   }, {
     "name": "Caesaraugusta",
@@ -184,7 +184,7 @@
         "y": 0.785
       },
       "factions": ["VISIGOTHS"],
-      "neighbours": ["Corduba", "Narbo"]
+      "neighbours": ["Corduba", "Narbo", "Caesaraugusta", "Cesarea"]
     }
   }, {
     "name": "Tingi",
@@ -228,7 +228,7 @@
         "y": 0.914
       },
       "factions": ["VANDALS"],
-      "neighbours": ["Carthago", "Athenae"]
+      "neighbours": ["Carthago", "Athenae", "Brundisium"]
     }
   }, {
     "name": "Athenae",
@@ -250,7 +250,7 @@
         "y": 0.808
       },
       "factions": ["VISIGOTHS", "HUNS"],
-      "neighbours": ["Athenae", "Brundisium", "Philippopolis"]
+      "neighbours": ["Athenae", "Brundisium", "Philippopolis", "Narona", "Tyras", "Constantinopolis"]
     }
   }, {
     "name": "Brundisium",
@@ -305,7 +305,7 @@
         "y": 0.733
       },
       "factions": ["OSTROGOTHS", "VISIGOTHS", "VANDALS"],
-      "neighbours": ["Athenae", "Sinope", "Tyras"]
+      "neighbours": ["Athenae", "Sinope", "Tyras", "Philippopolis"]
     }
   }, {
     "name": "Sinope",
@@ -338,7 +338,7 @@
         "y": 0.540
       },
       "factions": ["VISIGOTHS"],
-      "neighbours": ["Constantinopolis"]
+      "neighbours": ["Constantinopolis", "Chersonesus", "Philippopolis"]
     }
   }
 ]
