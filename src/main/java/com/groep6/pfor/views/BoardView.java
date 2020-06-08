@@ -54,7 +54,7 @@ public class BoardView extends View implements IObserver {
 	private BoardController boardController;
 	private BorderPane root;
 	private static final Vector2f CANVAS_SIZE = new Vector2f(842, 617);
-	private static final float CIRCLE_RADIUS = 19f / CANVAS_SIZE.y;
+	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
 
     public BoardView(BoardController controller) {
         boardController = controller;
