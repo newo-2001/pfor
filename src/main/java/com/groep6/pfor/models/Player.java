@@ -27,6 +27,14 @@ public class Player extends Observable {
         roleCard = player.getRoleCard();
         username = player.getUsername();
         isLocal = player.isLocal();
+
+        // Add starting cards to hand
+        Game game = Game.getInstance();
+
+        int cardAmount = 3;
+        for (int i = 0; i < cardAmount; i++) {
+            hand.addCards(game.getPlayerCardsDeck().draw());
+        }
     }
 
     public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
@@ -57,6 +65,7 @@ public class Player extends Observable {
     public void decreaseActionsRemaining() {
         if (actionsRemaining <= 0) return;
         actionsRemaining--;
+        notifyObservers();
     }
 
     public Hand getHand() {

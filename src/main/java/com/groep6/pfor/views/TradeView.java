@@ -40,7 +40,6 @@ public class TradeView extends View implements IObserver {
     
     private BorderPane root;
     private Button withdrawButton;
-    private Button depositeButton;
     private Button goBackButton;
     private ScrollPane scrollPane;
     private FlowPane cardsPane;
@@ -77,12 +76,6 @@ public class TradeView extends View implements IObserver {
         withdrawButton.setPrefWidth(150);
         withdrawButton.addEventFilter(MouseEvent.MOUSE_CLICKED, withdrawCard);
         
-        depositeButton = new UIButton("Kaart afleggen");
-        depositeButton.setDisable(false);
-        depositeButton.setPrefWidth(150);
-        depositeButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
-        depositeButton.addEventFilter(MouseEvent.MOUSE_CLICKED, depositeCard);
-        
         goBackButton = new UIButton("Ga terug");
         goBackButton.setDisable(false);
         goBackButton.setPrefWidth(150);
@@ -90,7 +83,7 @@ public class TradeView extends View implements IObserver {
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
 
         
-        buttonsPane.getChildren().addAll(depositeButton, withdrawButton, goBackButton);
+        buttonsPane.getChildren().addAll(withdrawButton, goBackButton);
         buttonsPane.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         root.setCenter(scrollPane);
@@ -144,13 +137,6 @@ public class TradeView extends View implements IObserver {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             tradeController.goBack();
-        }
-    };
-    
-    EventHandler<javafx.scene.input.MouseEvent> depositeCard = new EventHandler<javafx.scene.input.MouseEvent>() {
-        @Override
-        public void handle(javafx.scene.input.MouseEvent e) {
-            tradeController.depositeCard();
         }
     };
     

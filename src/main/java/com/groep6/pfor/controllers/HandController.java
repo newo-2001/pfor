@@ -74,5 +74,6 @@ public class HandController extends Controller {
 	public void depositCard() {
         game.getLocalPlayer().getHand().removeCard(selectedCard);
 		game.getTradeCardsDeck().addCards(selectedCard);
+        game.getPlayerTurn().decreaseActionsRemaining();
 	}
 }
