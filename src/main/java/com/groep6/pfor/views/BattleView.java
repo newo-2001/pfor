@@ -22,16 +22,18 @@ public class BattleView extends View implements IObserver {
     /** The battleController */
     private BattleController battleController;
     private StackPane root;
-    private int[] battleResult;
+    private int legionsLost = 0;
+    private int barbariansLost = 0;
 
     /**
      * The constructor
      * @param controller The battleController
      */
-    public BattleView(BattleController controller, int[] result) {
+    public BattleView(BattleController controller, int legionsLost, int barbariansLost) {
         battleController = controller;
+        this.legionsLost = legionsLost;
+        this.barbariansLost = barbariansLost;
         battleController.registerObserver(this);
-        battleResult = result;
         createView();
         update();
     }
@@ -45,10 +47,10 @@ public class BattleView extends View implements IObserver {
     	VBox log = new VBox();
     	log.setMaxSize(500, 300);
     	
-    	UIText legionsLost = new UIText(battleResult[0] + " Legioenen zijn gesneuveld");
+    	UIText legionsLost = new UIText(this.legionsLost + " Legioenen zijn gesneuveld");
     	legionsLost.setSize(32).setColor(Color.WHITE);
         
-    	UIText barbariansLost = new UIText(battleResult[1] + " Barbaren zijn gesneuveld");
+    	UIText barbariansLost = new UIText(this.barbariansLost + " Barbaren zijn gesneuveld");
     	barbariansLost.setSize(32).setColor(Color.WHITE);
         
         Button goBackButton = new UIButton("Ga terug");

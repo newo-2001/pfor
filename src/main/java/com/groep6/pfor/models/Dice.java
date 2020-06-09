@@ -40,10 +40,11 @@ public class Dice {
 	 * @return DiceFace representation of the outcome in a battle.
 	 * 
 	 */
-	public void roll(City city) {
+	public DiceFace roll(City city) {
 		int randomIndex = r.nextInt(6);
 		DiceFace outcome = faces[randomIndex];
 		outcome.execute(city);
+		return outcome;
 	}
 	
 }

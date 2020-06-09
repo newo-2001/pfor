@@ -1,7 +1,11 @@
 package com.groep6.pfor.models;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Stack;
+import java.util.List;
 
+import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.util.Observable;
 
@@ -34,6 +38,12 @@ public class Player extends Observable {
         for (int i = 0; i < cardAmount; i++) {
             hand.addCards(game.getPlayerCardsDeck().draw());
         }
+
+        // Set start city
+        Random rand = new Random();
+        CityFactory cityFactory = CityFactory.getInstance();
+        List<City> cities = Arrays.asList(cityFactory.getAllCities());
+        city = cities.get(rand.nextInt(cities.size() - 1));
     }
 
     public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
@@ -81,27 +91,26 @@ public class Player extends Observable {
     
     // Actions
     
-    public int[] battle() {
+    public DiceFace[] battle() {
     	
     	Dice dice = new Dice();
-    	Stack<Legion> legionsBefore = city.getLegions();
-    	Stack<Barbarian> barbariansBefore = city.getBarbarians();
+    	List<Legion> legionsBefore = city.getLegions();
+    	List<Barbarian> barbariansBefore = city.getBarbarians();
     	int diceAmount = 3;
-    	
+
     	// Decide amount of dice to roll.
-    	if (legionsBefore.size() < 3 && !legionsBefore.empty()) {
+    	if (legionsBefore.size() <= 3 && legionsBefore.size() > 0) {
     		diceAmount = legionsBefore.size();
     	}
-    	
-    	for (int i = 0; i < diceAmount; i++) {
-    		dice.roll(city);
-    	}
-    	
-    	int legionsLost = legionsBefore.size() - city.getLegions().size();
-    	int barbariansLost = barbariansBefore.size() - city.getBarbarians().size();
 
-    	int[] battleResults = {legionsLost, barbariansLost};
-    	return battleResults;
+        DiceFace[] diceFaces = new DiceFace[diceAmount];
+    	for (int i = 0; i < diceAmount; i++) {
+            diceFaces[i] = dice.roll(city);
+    	}
+
+    	decreaseActionsRemaining();
+
+        return diceFaces;
     }
 
     /**

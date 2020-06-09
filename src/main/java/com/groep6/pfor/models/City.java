@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -12,10 +13,11 @@ import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.util.parsers.templates.FactionDTO;
+import java.util.List;
 
 public class City extends Tile {
-	private Stack<Barbarian> barbarians = new Stack<Barbarian>();
-	private Stack<Legion> legions = new Stack<Legion>();
+	private List<Barbarian> barbarians = new ArrayList<>();
+	private List<Legion> legions = new ArrayList<>();
 	private boolean fort = false;
 	private boolean harbour;
 	private String name;
@@ -78,7 +80,7 @@ public class City extends Tile {
      * @returns a arrayList with barbarians in a specific city
      */
 	
-	public Stack<Barbarian> getBarbarians() {
+	public List<Barbarian> getBarbarians() {
 		return barbarians;
 	}
 	
@@ -86,7 +88,7 @@ public class City extends Tile {
      * @returns a arrayList with legions in a specific city
      */
 	
-	public Stack<Legion> getLegions() {
+	public List<Legion> getLegions() {
 		return legions;
 	}
 	
@@ -145,7 +147,7 @@ public class City extends Tile {
 	 */
 	public void removeBarbarians(int amount) {
 		for (int i = 0; i < amount; i++) {
-			if (!barbarians.empty()) barbarians.pop();
+			if (barbarians.size() > 0) barbarians.remove(0);
 		}
 	}
 
@@ -156,7 +158,7 @@ public class City extends Tile {
 	
 	public void removeLegions(int amount) {
 		for (int i = 0; i < amount; i++) {
-			if (!legions.empty()) legions.pop();
+			if (legions.size() > 0) legions.remove(0);
 		}
 	}
 	

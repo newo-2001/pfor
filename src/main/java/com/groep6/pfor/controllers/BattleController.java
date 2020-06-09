@@ -2,8 +2,7 @@ package com.groep6.pfor.controllers;
 
 import java.util.Stack;
 
-import com.groep6.pfor.models.Barbarian;
-import com.groep6.pfor.models.Legion;
+import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
@@ -18,6 +17,8 @@ import com.groep6.pfor.views.BattleView;
  */
 public class BattleController extends Controller {
 
+	private Game game = Game.getInstance();
+
 	// ArrayList simulation of barbarians and legions in a city.
 	// TODO implement data acquisition from the current players current city.
 	Stack<Barbarian> barbarians = new Stack<>();
@@ -28,12 +29,19 @@ public class BattleController extends Controller {
 	 * 
 	 */
 	public BattleController() {
-//		Game game = Game.getInstance();
-//		Player player = game.getPlayerTurn();
-//		int[] battleResult = player.battle();
-		int[] battleResult = {2, 3};
+		Player player = game.getPlayerTurn();
+		DiceFace[] battleResults = player.battle();
+
+		int legionsLost = 0;
+		int barbariansLost = 0;
+
+		for (int i = 0; i < battleResults.length; i++) {
+			legionsLost += battleResults[i].getLegionCount();
+			barbariansLost += battleResults[i].getBarbarianCount();
+		}
+
+		viewController.showView(new BattleView(this, legionsLost, barbariansLost));
 		SoundEffectManager.play("src/main/resources/sounds/effects/BattleSound.mp3");
-		viewController.showView(new BattleView(this, battleResult));
 	}
 
 	/**
