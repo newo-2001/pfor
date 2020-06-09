@@ -121,8 +121,10 @@ public class City extends Tile {
      * adds a legion to a specific city
      */
 	
-	public void addLegion() {
-		legions.add(new Legion());
+	public void addLegions(int amount) {
+		for (int i = 0; i < amount; i++) {
+			legions.add(new Legion());
+		}
 	}
 	
     /**
@@ -130,15 +132,17 @@ public class City extends Tile {
      * @return a barbarian and removes that specific barbarian from a specific city
      */
 	
-	public Barbarian removeBarbarian(FactionType factionType) {
-		for(int x = 0; x < barbarians.size(); x++) {
+	public void removeBarbarians(FactionType factionType, int amount) {
+		for (int x = 0; x < barbarians.size(); x++) {
 			Barbarian barbarian = barbarians.get(x);
-			
-			if (barbarian.getFactionType() == factionType) {
-				return barbarians.remove(x);
-			} 
+			for (int i = 0; i < amount; i++) {
+				if (barbarian.getFactionType() == factionType) {
+					barbarians.remove(x);
+				}
+			}
 		}
-		return null;
+
+		notifyObservers();
 	}
 
 	/**
@@ -149,6 +153,8 @@ public class City extends Tile {
 		for (int i = 0; i < amount; i++) {
 			if (barbarians.size() > 0) barbarians.remove(0);
 		}
+
+		notifyObservers();
 	}
 
     /**
@@ -160,6 +166,8 @@ public class City extends Tile {
 		for (int i = 0; i < amount; i++) {
 			if (legions.size() > 0) legions.remove(0);
 		}
+
+		notifyObservers();
 	}
 	
     /**
@@ -167,6 +175,7 @@ public class City extends Tile {
      */
 	public void placeFort() {
 		this.fort = true;
+		notifyObservers();
 	}
 	
     /**

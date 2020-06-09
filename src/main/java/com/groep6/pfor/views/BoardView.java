@@ -4,6 +4,7 @@ import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
@@ -331,23 +332,29 @@ public class BoardView extends View implements IObserver {
             }
         });
 
-        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn() && boardController.getLocalPlayer().getActionsRemaining() > 0) {
-            conspireButton.setDisable(false);
-            battleButton.setDisable(false);
-            allianceButton.setDisable(false);
-            buildButton.setDisable(false);
-            recruitButton.setDisable(false);
-            recruitBarbarianButton.setDisable(false);
-        } else {
-            conspireButton.setDisable(true);
-            battleButton.setDisable(true);
-            allianceButton.setDisable(true);
-            buildButton.setDisable(true);
-            recruitButton.setDisable(true);
-            recruitBarbarianButton.setDisable(true);
-        }
+        if (boardController.getLocalPlayer() != null) {
+            if (!boardController.getLocalPlayer().isTurn()) {
+                conspireButton.setDisable(true);
+                battleButton.setDisable(true);
+                allianceButton.setDisable(true);
+                buildButton.setDisable(true);
+                recruitButton.setDisable(true);
+                recruitBarbarianButton.setDisable(true);
+                nextTurnButton.setDisable(true);
+            } else {
+                nextTurnButton.setDisable(false);
 
-        nextTurnButton.setDisable(!boardController.getLocalPlayer().isTurn());
+                if (boardController.getLocalPlayer().getActionsRemaining() > 0) {
+                    conspireButton.setDisable(false);
+                    battleButton.setDisable(false);
+                    allianceButton.setDisable(false);
+                    buildButton.setDisable(false);
+
+                    recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
+                    recruitButton.setDisable(!boardController.canRecruitLegions());
+                }
+            }
+        }
     }
     
     public void updateCanvasSize() {

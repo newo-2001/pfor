@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Nils van der Velden
  */
-public abstract class Tile {
+public abstract class Tile extends Observable {
 	protected Vector2f position;
 	protected Faction[] factions;
 	protected List<City> neighbouringCities = new ArrayList<>();
