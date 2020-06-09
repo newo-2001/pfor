@@ -12,10 +12,16 @@ public enum FactionType {
 
     private String name;
 
+    /**
+     * @param name
+     */
     FactionType(String name) {
         this.name = name;
     }
 
+    /**
+     * @return Dutch name of faction
+     */
     public String getName() {
         return name;
     }

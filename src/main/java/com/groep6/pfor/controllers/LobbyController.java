@@ -30,11 +30,11 @@ public class LobbyController extends Controller {
         GameService.gameChangeEvent.subscribe(new IEventCallback() {
             @Override
             public void onEvent(Object... eventData) {
+                System.out.println("On Lobby Change");
+
                 Game game = (Game) eventData[0];
 
                 Game.getInstance().updateGame(game);
-
-                System.out.println("On Lobby Change");
 
                 new BoardController();
             }
