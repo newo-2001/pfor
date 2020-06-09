@@ -46,7 +46,7 @@ public class Game extends Observable implements IObserver {
             die[i] = new Dice();
         }
 
-        // Add barbarians to 4 cities
+        // Add barbarians to 9 cities
         int cityAmount = 9;
         for (int i = 0; i < cityAmount; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
