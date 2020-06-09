@@ -109,7 +109,7 @@ public class Game extends Observable implements IObserver {
             }
         }
 
-        board = remote.board;
+        board.updateBoard(remote.board);
         decayLevel = remote.decayLevel;
         invasionLevel = remote.invasionLevel;
         invasionCardsDeck = remote.invasionCardsDeck;

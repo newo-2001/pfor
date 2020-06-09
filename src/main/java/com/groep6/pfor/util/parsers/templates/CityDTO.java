@@ -49,6 +49,7 @@ public class CityDTO extends DTO {
         Stack<Legion> legions = new Stack<>();
         for (int i = 0; i < this.legions; i++) legions.push(new Legion());
         Stack<Barbarian> barbarians = new Stack<>();
+        // Use fancy bitfields to save immense amounts of strain on the database
         addBarbarians(FactionType.VISIGOTHS, this.barbarians & 63, barbarians);
         addBarbarians(FactionType.VANDALS, (this.barbarians & (63 << 6)) >> 6, barbarians);
         addBarbarians(FactionType.ANGLO_SAXSONS_FRANKS, (this.barbarians & (63 << 12)) >> 12, barbarians);
