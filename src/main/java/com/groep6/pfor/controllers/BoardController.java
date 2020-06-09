@@ -65,6 +65,11 @@ public class BoardController extends Controller {
     public Player getLocalPlayer() {
         return game.getLocalPlayer();
     }
+    
+    public void move(City city) {
+        Player player = Game.getInstance().getLocalPlayer();
+    	player.move(city);
+    }
 
     public void nextTurn() {
         // Draw 2 cards from game deck

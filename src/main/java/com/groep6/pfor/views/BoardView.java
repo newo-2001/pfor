@@ -178,15 +178,18 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> onCanvasClick = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            if (event.getButton() != MouseButton.PRIMARY) return;
-
+            if (event.getButton() != MouseButton.SECONDARY) return;
+            // Check mouse event on city
             for (Tile tile : boardController.getTiles()) {
                 if (!(tile instanceof City)) continue;
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 Vector2f mouse = new Vector2f((float) event.getX(), (float) event.getY());
                 if (pos.distance(mouse) < CIRCLE_RADIUS * CANVAS_SIZE.y) {
+                	// Move player on right click
+                	boardController.move(city);
                     boardController.cityPressed(city);
+                    update();
                     break;
                 }
             }
