@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Bastiaan Jansen
+ */
 public class Playlist {
 
     private List<Media> songs = new ArrayList<>();
@@ -14,6 +17,10 @@ public class Playlist {
     private boolean repeat = true;
     private int currentIndex = 0;
 
+    /**
+     * @param shuffle
+     * @param repeat
+     */
     public Playlist(boolean shuffle, boolean repeat) {
         this.shuffle = shuffle;
         this.repeat = repeat;
@@ -21,16 +28,26 @@ public class Playlist {
 
     public Playlist() {}
 
+    /**
+     * @param path
+     */
     public void add(String path) {
         Media media = new Media(Paths.get(path).toUri().toString());
         songs.add(media);
         if (shuffle) Collections.shuffle(songs);
     }
 
+    /**
+     * @param index
+     * @return media object
+     */
     public Media getSong(int index) {
         return songs.get(index);
     }
 
+    /**
+     * @return Get next media object from playlist
+     */
     public Media next() {
         Media media = songs.get(currentIndex);
 
