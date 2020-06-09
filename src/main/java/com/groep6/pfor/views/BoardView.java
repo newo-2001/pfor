@@ -372,7 +372,6 @@ public class BoardView extends View implements IObserver {
         getCanvas().setWidth(CANVAS_SIZE.x);
         getCanvas().setHeight(CANVAS_SIZE.y);
         updateCanvas();
-        System.out.println(canvasX + " - " + canvasY);
     }
 
     @Override
