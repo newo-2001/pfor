@@ -46,6 +46,9 @@ public class Player extends Observable implements IObserver {
         List<City> cities = Arrays.asList(cityFactory.getAllCities());
         city = cities.get(rand.nextInt(cities.size() - 1));
         city.registerObserver(this);
+
+        // Add two legions to start city
+        city.addLegions(2);
     }
 
     public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
