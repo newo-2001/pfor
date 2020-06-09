@@ -331,14 +331,13 @@ public class BoardView extends View implements IObserver {
             }
         });
 
-        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn()) {
+        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn() && boardController.getLocalPlayer().getActionsRemaining() > 0) {
             conspireButton.setDisable(false);
             battleButton.setDisable(false);
             allianceButton.setDisable(false);
             buildButton.setDisable(false);
             recruitButton.setDisable(false);
             recruitBarbarianButton.setDisable(false);
-            nextTurnButton.setDisable(false);
         } else {
             conspireButton.setDisable(true);
             battleButton.setDisable(true);
@@ -346,8 +345,9 @@ public class BoardView extends View implements IObserver {
             buildButton.setDisable(true);
             recruitButton.setDisable(true);
             recruitBarbarianButton.setDisable(true);
-            nextTurnButton.setDisable(true);
         }
+
+        nextTurnButton.setDisable(!boardController.getLocalPlayer().isTurn());
     }
     
     public void updateCanvasSize() {
