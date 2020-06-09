@@ -1,12 +1,14 @@
 package com.groep6.pfor.models;
 
 import com.groep6.pfor.factories.CityCardFactory;
+import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Bastiaan Jansen
@@ -34,6 +36,7 @@ public class Game extends Observable implements IObserver {
     }
 
     private Game() {
+        Random rand = new Random();
         cityCardsDeck = CityCardFactory.getInstance().getCityCardDeck();
         cityCardsDeck.shuffle();
 
@@ -43,7 +46,11 @@ public class Game extends Observable implements IObserver {
         }
 
         // Add barbarians to cities
-
+        for (int i = 0; i < 4; i++) {
+            City[] cities = CityFactory.getInstance().getAllCities();
+            City city = cities[rand.nextInt(cities.length - 1)];
+            city.add
+        }
     }
 
     public Player nextTurn() {
