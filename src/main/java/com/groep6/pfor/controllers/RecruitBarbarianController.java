@@ -27,6 +27,7 @@ public class RecruitBarbarianController extends Controller {
                 city.removeBarbarians(faction.getFactionType(), amount);
                 city.addLegions(amount);
                 player.decreaseActionsRemaining();
+                new BoardController();
                 return;
             }
         }

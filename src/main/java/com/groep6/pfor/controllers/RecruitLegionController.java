@@ -27,6 +27,7 @@ public class RecruitLegionController extends Controller {
     public void recruit(int amount) {
 		if (city.hasFort()) city.addLegions(amount);
 		player.decreaseActionsRemaining();
+		new BoardController();
 	}
 
 	@Override

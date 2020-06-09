@@ -80,6 +80,13 @@ public class BoardController extends Controller {
         if (player.getHand().getCards().size() > 7) new HandController();
     }
 
+    public void buildFort() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+        city.placeFort();
+        player.decreaseActionsRemaining();
+    }
+
     public boolean canRecruitBarbarians() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
@@ -97,6 +104,13 @@ public class BoardController extends Controller {
         City city = player.getCity();
 
         return city.hasFort();
+    }
+
+    public boolean canBuildFort() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+
+        return !city.hasFort();
     }
 
     @Override
