@@ -4,12 +4,10 @@ import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
-import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
-
 import com.groep6.pfor.views.components.UIText;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
