@@ -146,6 +146,7 @@ public class BoardView extends View implements IObserver {
         @Override
         public void handle(MouseEvent e) {
             boardController.buildFort();
+            update();
         }
     };
 
@@ -354,13 +355,16 @@ public class BoardView extends View implements IObserver {
             	}
             	
             	if(city.getBarbarians().size() > 0) {
-            		gc.setFill(Color.PINK);
+            		gc.setFill(Color.CYAN);
             		gc.fillText(Integer.toString(city.getTotalBarbarianCount()), cityPos.x - r/100, cityPos.y - r/100);
             		
                 	gc.setFill(Color.TRANSPARENT);
             	}
             	
 
+            	if (city.hasFort()) {
+            		gc.drawImage(new Image("images/Fort.png"), cityPos.x - r, cityPos.y + r / 2, r, r / 1.35);
+            	}
                 gc.fillOval(cityPos.x - r, cityPos.y - r, r * 2, r * 2);
             }
         }
