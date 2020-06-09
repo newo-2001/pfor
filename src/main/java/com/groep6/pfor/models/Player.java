@@ -20,7 +20,7 @@ public class Player extends Observable implements IObserver {
     private City city;
     private String username;
     private boolean turn = false;
-    private int actionsRemaining = 4;
+    private int actionsRemaining = 0;
     private boolean isLocal;
 
     /**
