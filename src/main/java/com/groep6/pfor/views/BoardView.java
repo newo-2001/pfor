@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.groep6.pfor.controllers.BoardController;
@@ -10,6 +11,7 @@ import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Legion;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.util.IObserver;
@@ -38,6 +40,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 /**
@@ -334,6 +337,29 @@ public class BoardView extends View implements IObserver {
 	                	gc.setFill(Color.TRANSPARENT);
             		}
             	}
+            	
+            	// Draw legions
+            	if (city.getLegions().size() > 0) {
+            		gc.setFill(Color.WHITE);
+                	//gc.strokeRect(cityPos.x - r/2.5, cityPos.y - r/2.5, r / 1.35, r / 1.35);
+            		//gc.fillRect(cityPos.x - r/2.5, cityPos.y - r/2.5, r / 1.35, r / 1.35);
+                	//gc.setFill(Color.WHITE);
+            		//gc.strokeText(Integer.toString(city.getLegionCount()), cityPos.x - r/5, cityPos.y - r/5);
+            		gc.setFont(new Font("Arial", 20));
+            		gc.setFill(Color.RED);
+                	gc.fillText(Integer.toString(city.getLegionCount()), cityPos.x - r/5, cityPos.y - r/5);
+            		
+                	gc.setFill(Color.TRANSPARENT);
+            		
+            	}
+            	
+            	if(city.getBarbarians().size() > 0) {
+            		gc.setFill(Color.PINK);
+            		gc.fillText(Integer.toString(city.getTotalBarbarianCount()), cityPos.x - r/100, cityPos.y - r/100);
+            		
+                	gc.setFill(Color.TRANSPARENT);
+            	}
+            	
 
                 gc.fillOval(cityPos.x - r, cityPos.y - r, r * 2, r * 2);
             }
