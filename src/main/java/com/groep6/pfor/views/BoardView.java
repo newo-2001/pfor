@@ -50,7 +50,7 @@ public class BoardView extends View implements IObserver {
 	private static int canvasY = Math.round(canvasX * (880f / 1200f));
 	
 	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
-	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
+	private static final float CIRCLE_RADIUS = 40f / CANVAS_SIZE.y;
 
 	private UIText actionCount;
 
@@ -207,53 +207,53 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(actionCount, 0, 0, 2, 1);
 
         conspireButton = new UIButton("RUILEN");
-        conspireButton.setPrefSize(150, 60);
+        conspireButton.setPrefSize(150, 80);
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);
         conspireButton.setDisable(true);
         actionButtonLayout.add(conspireButton, 0, 1);
 
         battleButton = new UIButton("VECHTEN");
-        battleButton.setPrefSize(150, 60);
+        battleButton.setPrefSize(150, 80);
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);
         battleButton.setDisable(true);
         actionButtonLayout.add(battleButton, 1, 1);
 
         allianceButton = new UIButton("ALLIANTIE SLUITEN");
-        allianceButton.setPrefSize(150, 60);
+        allianceButton.setPrefSize(150, 80);
         allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView);
         allianceButton.setDisable(true);
         actionButtonLayout.add(allianceButton, 0, 2);
 
         recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
-        recruitBarbarianButton.setPrefSize(150, 60);
+        recruitBarbarianButton.setPrefSize(150, 80);
         recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         recruitBarbarianButton.setDisable(true);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
 
         buildButton = new UIButton("FORT BOUWEN");
-        buildButton.setPrefSize(150, 60);
+        buildButton.setPrefSize(150, 80);
         buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
         buildButton.setDisable(true);
         actionButtonLayout.add(buildButton, 0, 3);
 
         recruitButton = new UIButton("LEGIOEN REKRUTEREN");
-        recruitButton.setPrefSize(150, 60);
+        recruitButton.setPrefSize(150, 80);
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
         recruitButton.setDisable(true);
         actionButtonLayout.add(recruitButton, 1, 3);
 
         showHandButton = new UIButton("BEKIJK HAND");
-        showHandButton.setPrefSize(150, 60);
+        showHandButton.setPrefSize(150, 80);
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
         actionButtonLayout.add(showHandButton, 0, 8);
 
         helpButton = new UIButton("HELP");
-        helpButton.setPrefSize(150, 60);
+        helpButton.setPrefSize(150, 80);
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
         actionButtonLayout.add(helpButton, 1, 8);
 
         nextTurnButton = new UIButton("VOLGENDE BEURT");
-        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 60);
+        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 80);
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         nextTurnButton.setDisable(true);
@@ -310,7 +310,7 @@ public class BoardView extends View implements IObserver {
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
 
         // Draw city circles
-        gc.setFill(Color.RED);
+        gc.setFill(Color.TRANSPARENT);
         for (Tile tile : boardController.getTiles()) {
             if (tile instanceof City) {
                 City city = (City) tile;

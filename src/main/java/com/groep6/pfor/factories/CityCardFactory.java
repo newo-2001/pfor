@@ -4,6 +4,11 @@ import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.factions.FactionType;
 
+/**
+ *
+ * @author Nils van der Velden
+ */
+
 public class CityCardFactory {
 	
 	private static final CityCardFactory INSTANCE = new CityCardFactory();
