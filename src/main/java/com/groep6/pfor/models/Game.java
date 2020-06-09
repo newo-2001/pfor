@@ -2,6 +2,7 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
+import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
@@ -91,15 +92,13 @@ public class Game extends Observable implements IObserver {
      */
     public void updateGame(Game remote) {
         Player local = getLocalPlayer();
-//        addPlayers(remote.getAllPlayers().toArray(new Player[0]));
         players.clear();
 
         for (Player player: remote.getAllPlayers()) {
             if (player.equals(local)) {
-                addPlayers(local);
-            } else {
-                addPlayers(player);
+                player.getHand().addCards(local.getHand().getCards().toArray(new Card[0]));
             }
+            addPlayers(player);
         }
 
         for (Player player : getAllPlayers()) {
