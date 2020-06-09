@@ -31,9 +31,9 @@ public class Main extends Application {
 
         // Start game music
         Playlist playlist = new Playlist();
-        playlist.add("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");
-        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");
-        playlist.add("src/main/resources/sounds/music/To_fight_another_day.mp3");
+        playlist.add("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3");	// Main menu theme
+        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
+        playlist.add("src/main/resources/sounds/music/To_fight_another_day.mp3");	// Victory tune
 
         MusicManager musicManager = new MusicManager(playlist);
         musicManager.play();
