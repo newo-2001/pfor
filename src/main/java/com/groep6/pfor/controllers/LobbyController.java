@@ -7,6 +7,7 @@ import com.groep6.pfor.util.IEventCallback;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
+import javafx.application.Platform;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,10 +31,10 @@ public class LobbyController extends Controller {
         LobbyService.gameStartEvent.subscribe(eventData -> {
             System.out.println("On Lobby Start");
 
-            Game.getInstance().setLocalPlayer(new Player(lobby.getLocalPlayer()));
+            Game.getInstance().addPlayers(lobby.getLocalPlayer());
             onGameChange.onEvent(eventData);
             GameService.gameChangeEvent.subscribe(onGameChange);
-            new BoardController();
+            Platform.runLater(() -> new BoardController());
         });
     }
 
