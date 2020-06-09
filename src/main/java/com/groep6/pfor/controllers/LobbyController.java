@@ -29,9 +29,10 @@ public class LobbyController extends Controller {
         viewController.showView(new LobbyView(this));
 
         LobbyService.gameStartEvent.subscribe(eventData -> {
-            if (Game.getInstance().getLocalPlayer().isHost()) return;
+            Game game = Game.getInstance();
+            if (game.getLocalPlayer() != null && game.getLocalPlayer().isHost()) return;
 
-            Game.getInstance().addPlayers(lobby.getLocalPlayer());
+            game.addPlayers(lobby.getLocalPlayer());
             onGameChange.onEvent(eventData);
             GameService.gameChangeEvent.subscribe(onGameChange);
             Platform.runLater(BoardController::new);
