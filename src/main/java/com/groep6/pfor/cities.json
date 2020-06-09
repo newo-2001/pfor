@@ -52,7 +52,7 @@
         "y": 0.368
       },
       "factions": ["ANGLO_SAXSONS_FRANKS", "VANDALS"],
-      "neighbours": ["Lutetia", "Lugdunum", "Mediolanum"]
+      "neighbours": ["Lutetia", "Lugdunum", "Mediolanum", "Gesoriacum"]
     }
   }, {
     "name": "Burdigala",
@@ -74,7 +74,7 @@
         "y": 0.508
       },
       "factions": ["HUNS", "VANDALS"],
-      "neighbours": ["Lutetia", "Mogontiacum", "Lugdunum", "Burdigala", "Narbo"]
+      "neighbours": ["Lutetia", "Mogontiacum", "Mediolanum", "Burdigala", "Narbo"]
     }
   }, {
     "name": "Mediolanum",
@@ -118,7 +118,7 @@
         "y": 0.561
       },
       "factions": ["OSTROGOTHS", "VISIGOTHS"],
-      "neighbours": ["Ravenna", "Narona", "Carnuntum"]
+      "neighbours": ["Ravenna", "Narona", "Carnuntum", "Roma"]
     }
   }, {
     "name": "Ravenna",
@@ -140,7 +140,7 @@
         "y": 0.604
       },
       "factions": ["ANGLO_SAXSONS_FRANKS","VISIGOTHS"],
-      "neighbours": ["Ravenna", "Roma", "Narbo"]
+      "neighbours": ["Ravenna", "Roma", "Narbo", "Mediolanum"]
     }
   }, {
     "name": "Narbo",
@@ -162,7 +162,7 @@
         "y": 0.616
       },
       "factions": ["VANDALS"],
-      "neighbours": ["Burdigala", "Corduba"]
+      "neighbours": ["Burdigala", "Corduba", "Narbo", "Nova Carthago"]
     }
   }, {
     "name": "Corduba",
@@ -206,7 +206,7 @@
         "y": 0.877
       },
       "factions": ["VANDALS"],
-      "neighbours": ["Tingi", "Carthago"]
+      "neighbours": ["Tingi", "Carthago", "Nova Carthago"]
     }
   }, {
     "name": "Carthago",
@@ -250,7 +250,7 @@
         "y": 0.808
       },
       "factions": ["VISIGOTHS", "HUNS"],
-      "neighbours": ["Athenae", "Brundisium", "Philippopolis", "Narona", "Tyras", "Constantinopolis"]
+      "neighbours": ["Athenae", "Brundisium", "Philippopolis", "Narona"]
     }
   }, {
     "name": "Brundisium",
@@ -261,7 +261,7 @@
         "y": 0.770
       },
       "factions": ["HUNS"],
-      "neighbours": ["Patrae", "Roma"]
+      "neighbours": ["Patrae", "Roma", "Syracusae"]
     }
   }, {
     "name": "Roma",
@@ -272,7 +272,7 @@
         "y": 0.705
       },
       "factions": ["HUNS", "VISIGOTHS", "VANDALS", "ANGLO_SAXSONS_FRANKS", "OSTROGOTHS"],
-      "neighbours": ["Brundisium", "Aquileia", "Ravenna", "Genua"]
+      "neighbours": ["Brundisium", "Aquileia", "Ravenna", "Genua", "Carthago"]
     }
   }, {
     "name": "Narona",
@@ -283,7 +283,7 @@
         "y": 0.670
       },
       "factions": ["VISIGOTHS"],
-      "neighbours": ["Aquileia", "Philippopolis"]
+      "neighbours": ["Aquileia", "Philippopolis", "Patrae"]
     }
   }, {
     "name": "Philippopolis",
@@ -294,7 +294,7 @@
         "y": 0.665
       },
       "factions": ["HUNS", "VISIGOTHS"],
-      "neighbours": ["Narona", "Patrae"]
+      "neighbours": ["Narona", "Patrae", "Constantinopolis", "Tyras"]
     }
   }, {
     "name": "Constantinopolis",
@@ -327,7 +327,7 @@
         "y": 0.577
       },
       "factions": ["OSTROGOTHS"],
-      "neighbours": ["Sinope"]
+      "neighbours": ["Sinope", "Tyras"]
     }
   }, {
     "name": "Tyras",
