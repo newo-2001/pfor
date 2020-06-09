@@ -49,7 +49,7 @@ public class BoardView extends View implements IObserver {
 	private static int canvasY = Math.round(canvasX * (880f / 1200f));
 	
 	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
-	private static final float CIRCLE_RADIUS = 40f / CANVAS_SIZE.y;
+	private static final float CIRCLE_RADIUS = ((20f / 833f) * canvasX) / CANVAS_SIZE.y;
 
 	private UIText actionCount;
 
@@ -68,7 +68,7 @@ public class BoardView extends View implements IObserver {
         boardController.registerObserver(this);
 
         createView();
-
+        System.out.println(CIRCLE_RADIUS);
         update();
     }
 
@@ -310,9 +310,8 @@ public class BoardView extends View implements IObserver {
         Player localPlayer = Game.getInstance().getLocalPlayer();
 
         // Draw city circles
-        
         for (Tile tile : boardController.getTiles()) {
-        	gc.setFill(Color.RED);
+        	gc.setFill(Color.TRANSPARENT);
             if (tile instanceof City) {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
@@ -321,8 +320,8 @@ public class BoardView extends View implements IObserver {
                 // place player
                 if (localPlayer.getCity().equals(city)) {
                 	gc.setFill(localPlayer.getRoleCard().getColor());
-                	gc.strokeOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
-                	gc.fillOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
+                	gc.strokeOval(pos.x - r, pos.y - r, r / 1.35, r / 1.35);
+                	gc.fillOval(pos.x - r, pos.y - r, r / 1.35, r / 1.35);
                 	gc.setFill(Color.TRANSPARENT);
                 }
                 gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
