@@ -91,13 +91,22 @@ public class Game extends Observable implements IObserver {
      */
     public void updateGame(Game remote) {
         Player local = getLocalPlayer();
-        addPlayers(remote.getAllPlayers().toArray(new Player[0]));
-        for (Player player : getAllPlayers()) {
-            if (player.equals(local)) setLocalPlayer(local);
-        }
+//        addPlayers(remote.getAllPlayers().toArray(new Player[0]));
+        players.clear();
 
         for (Player player: remote.getAllPlayers()) {
-            System.out.println(player.getHand().getCards().size());
+            if (player.equals(local)) {
+                addPlayers(local);
+            } else {
+                addPlayers(player);
+            }
+        }
+
+        for (Player player : getAllPlayers()) {
+            if (player.equals(local)) {
+                System.out.println(player);
+                setLocalPlayer(local);
+            }
         }
 
         board = remote.board;
