@@ -29,10 +29,12 @@ public class LobbyController extends Controller {
         viewController.showView(new LobbyView(this));
 
         LobbyService.gameStartEvent.subscribe(eventData -> {
+            System.out.println("Server update...");
             Game game = Game.getInstance();
             if (game.getLocalPlayer() != null && game.getLocalPlayer().isHost()) return;
 
             game.addPlayers(lobby.getLocalPlayer());
+            game.setCode(lobby.getCode());
             onGameChange.onEvent(eventData);
             GameService.gameChangeEvent.subscribe(onGameChange);
             Platform.runLater(BoardController::new);
