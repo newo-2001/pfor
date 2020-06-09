@@ -30,7 +30,7 @@ public class LobbyController extends Controller {
 
         LobbyService.gameStartEvent.subscribe(eventData -> {
             Game game = (Game) eventData[0];
-            if (game.getLocalPlayer().equals(lobby.getHost())) return;
+            if (game.getLocalPlayer()!=null) return;
 
             Game.getInstance().addPlayers(lobby.getLocalPlayer());
             onGameChange.onEvent(eventData);
