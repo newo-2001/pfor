@@ -33,7 +33,7 @@ public class LobbyController extends Controller {
 
                 Game.getInstance().updateGame(game);
 
-                System.out.println("sd");
+                System.out.println("On Lobby Change");
             }
         });
     }
