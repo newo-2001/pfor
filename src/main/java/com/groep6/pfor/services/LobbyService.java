@@ -100,7 +100,6 @@ public class LobbyService {
      */
     public void join(LobbyPlayer player) {
         if (listener == null) listener = Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
-        if (GameService.listener == null) GameService.listener = Firebase.registerListener("games/" + player.getLobby(), GameService.onGameChange);
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> kv = mapper.convertValue(LobbyPlayerDTO.fromModel(player), new TypeReference<Map<String, Object>>() {});
@@ -128,8 +127,15 @@ public class LobbyService {
     private static EventListener<DocumentSnapshot> onLobbyChange = (documentSnapshot, e) -> {
         if (e != null) e.printStackTrace();
         else {
-            cache = documentSnapshot.toObject(LobbyDTO.class).toModel();
-            LobbyService.lobbyChangeEvent.fire(cache);
+            LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
+            if (dto.started == true) {
+                GameService.listener = Firebase.registerListener("games/" + dto.code, GameService.onGameChange);
+                removeListener();
+                System.out.println("GAME_CHANGE LISTENER REGISTERED");
+            } else {
+                cache = dto.toModel();
+                LobbyService.lobbyChangeEvent.fire(cache);
+            }
         }
 
         System.out.println("LOBBY_CHANGE_EVENT");

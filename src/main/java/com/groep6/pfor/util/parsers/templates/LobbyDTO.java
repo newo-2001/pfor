@@ -20,6 +20,8 @@ public class LobbyDTO extends DTO {
     /** The players in this lobby */
     public Map<String, LobbyPlayerDTO> players;
 
+    public boolean started;
+
     public LobbyDTO() {}
 
     /**

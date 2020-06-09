@@ -67,6 +67,7 @@ public class GameService {
      */
     public void create(Game game) {
         Firebase.setDocument("games/" + game.getCode(), GameDTO.fromModel(game));
+        Firebase.docRefFromPath("lobbies/" + game.getCode()).update("started", true);
     }
 
     public static void removeListener() {
