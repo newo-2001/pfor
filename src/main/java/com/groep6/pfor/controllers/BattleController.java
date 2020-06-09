@@ -35,10 +35,13 @@ public class BattleController extends Controller {
 		int legionsLost = 0;
 		int barbariansLost = 0;
 
-		for (int i = 0; i < battleResults.length; i++) {
-			legionsLost += battleResults[i].getLegionCount();
-			barbariansLost += battleResults[i].getBarbarianCount();
+		for (DiceFace battleResult : battleResults) {
+			legionsLost += battleResult.getLegionCount();
+			barbariansLost += battleResult.getBarbarianCount();
 		}
+
+		legionsLost = Math.min(player.getCity().getLegionCount(), legionsLost);
+		barbariansLost = Math.min(player.getCity().getTotalBarbarianCount(), barbariansLost);
 
 		viewController.showView(new BattleView(this, legionsLost, barbariansLost));
 		SoundEffectManager.play("src/main/resources/sounds/effects/BattleSound.mp3");
