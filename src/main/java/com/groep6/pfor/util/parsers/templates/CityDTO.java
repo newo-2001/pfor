@@ -50,10 +50,10 @@ public class CityDTO extends DTO {
         for (int i = 0; i < this.legions; i++) legions.push(new Legion());
         Stack<Barbarian> barbarians = new Stack<>();
         addBarbarians(FactionType.VISIGOTHS, this.barbarians & 63, barbarians);
-        addBarbarians(FactionType.VANDALS, this.barbarians & (63 << 6) >> 6, barbarians);
-        addBarbarians(FactionType.ANGLO_SAXSONS_FRANKS, this.barbarians & (63 << 12) >> 12, barbarians);
-        addBarbarians(FactionType.HUNS, this.barbarians & (63 << 18) >> 18, barbarians);
-        addBarbarians(FactionType.OSTROGOTHS, this.barbarians & (63 << 24) >> 24, barbarians);
+        addBarbarians(FactionType.VANDALS, (this.barbarians & (63 << 6)) >> 6, barbarians);
+        addBarbarians(FactionType.ANGLO_SAXSONS_FRANKS, (this.barbarians & (63 << 12)) >> 12, barbarians);
+        addBarbarians(FactionType.HUNS, (this.barbarians & (63 << 18)) >> 18, barbarians);
+        addBarbarians(FactionType.OSTROGOTHS, (this.barbarians & (63 << 24)) >> 24, barbarians);
         return new City(name, legions, barbarians, fort);
     }
 
