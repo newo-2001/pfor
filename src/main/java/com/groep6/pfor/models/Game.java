@@ -46,12 +46,17 @@ public class Game extends Observable implements IObserver {
             die[i] = new Dice();
         }
 
-        // Add barbarians to cities
-        for (int i = 0; i < 4; i++) {
+        // Add barbarians to 4 cities
+        int cityAmount = 9;
+        for (int i = 0; i < cityAmount; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
             City city = cities[rand.nextInt(cities.length - 1)];
+            if (city.getName().equals("Roma")) {
+                i--;
+                continue;
+            }
             Faction[] factions = city.getFactions();
-            city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), rand.nextInt(3));
+            city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), rand.nextInt(4));
         }
     }
 

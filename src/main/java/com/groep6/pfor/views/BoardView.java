@@ -354,7 +354,7 @@ public class BoardView extends View implements IObserver {
             		
             	}
             	
-            	if(city.getBarbarians().size() > 0) {
+            	if (city.getBarbarians().size() > 0) {
             		gc.setFill(Color.CYAN);
             		gc.fillText(Integer.toString(city.getTotalBarbarianCount()), cityPos.x - r/100, cityPos.y - r/100);
             		
