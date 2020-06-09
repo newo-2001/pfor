@@ -10,6 +10,7 @@ import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.BoardView;
+import com.groep6.pfor.views.HandView;
 
 /**
  * @author Bastiaan Jansen
@@ -19,12 +20,7 @@ public class BoardController extends Controller {
     private Game game = Game.getInstance();
 
     public BoardController() {
-    	queueMusic();
         viewController.showView(new BoardView(this));
-    };
-    
-    public void queueMusic() {
-    	// to be expanded.
     }
     
     public void goToBattleView() {
@@ -68,6 +64,15 @@ public class BoardController extends Controller {
 
     public Player getLocalPlayer() {
         return game.getLocalPlayer();
+    }
+
+    public void nextTurn() {
+        // Draw 2 cards from game deck
+        Player player = game.getLocalPlayer();
+        player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
+
+        // Open hand when there are more than 7 cards in hand
+        if (player.getHand().getCards().size() > 7) new HandController();
     }
 
     public boolean canRecruitBarbarians() {
