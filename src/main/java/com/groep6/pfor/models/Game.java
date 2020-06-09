@@ -174,6 +174,10 @@ public class Game extends Observable implements IObserver {
     	return tradeCardsDeck;
     }
 
+    public Deck getCityCardsDeck() {
+        return cityCardsDeck;
+    }
+
     /**
      * @return decay level
      */
