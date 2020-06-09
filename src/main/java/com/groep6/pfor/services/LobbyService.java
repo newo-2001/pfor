@@ -9,7 +9,6 @@ import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.ServerEvent;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +20,8 @@ import java.util.Map;
 public class LobbyService {
     /** This event is fired when a lobby is changed */
     public static ServerEvent lobbyChangeEvent = new ServerEvent();
+    private static ListenerRegistration listener;
+    private static Lobby cache;
 
     /**
      * Obtain the list of players in a lobby
@@ -38,6 +39,7 @@ public class LobbyService {
      * @throws NoDocumentException If the query had no results
      */
     public Lobby get(String code) throws NoDocumentException {
+        if (cache != null) return cache;
         return Firebase.requestDocument("lobbies/" + code).toObject(LobbyDTO.class).toModel();
     }
 
@@ -97,7 +99,8 @@ public class LobbyService {
      *               in the player instance.
      */
     public void join(LobbyPlayer player) {
-        Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
+        if (listener == null) listener = Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
+        if (GameService.listener == null) GameService.listener = Firebase.registerListener("games/" + player.getLobby(), GameService.onGameChange);
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> kv = mapper.convertValue(LobbyPlayerDTO.fromModel(player), new TypeReference<Map<String, Object>>() {});
@@ -112,15 +115,25 @@ public class LobbyService {
     public void leave(LobbyPlayer player) {
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
         doc.update(FieldPath.of("players", player.getUsername()), FieldValue.delete());
+        removeListener();
+        GameService.removeListener();
     }
 
-    private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
-        @Override
-        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
-            if (e != null) e.printStackTrace();
-            else LobbyService.lobbyChangeEvent.fire(documentSnapshot.toObject(LobbyDTO.class).toModel());
+    public static void removeListener() {
+        if (listener == null) return;
+        listener.remove();
+        listener = null;
+    }
 
-            System.out.println("Updating...");
+    private static EventListener<DocumentSnapshot> onLobbyChange = (documentSnapshot, e) -> {
+        if (e != null) e.printStackTrace();
+        else {
+            cache = documentSnapshot.toObject(LobbyDTO.class).toModel();
+            LobbyService.lobbyChangeEvent.fire(cache);
         }
+
+        System.out.println("LOBBY_CHANGE_EVENT");
     };
+
+
 }

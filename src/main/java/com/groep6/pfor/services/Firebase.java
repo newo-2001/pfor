@@ -183,7 +183,7 @@ public class Firebase {
      * @param path The path to listen on for changes
      * @param listener The callback for when something happened
      */
-    protected static void registerListener(String path, EventListener<DocumentSnapshot> listener) {
-        docRefFromPath(path).addSnapshotListener(listener);
+    protected static ListenerRegistration registerListener(String path, EventListener<DocumentSnapshot> listener) {
+        return docRefFromPath(path).addSnapshotListener(listener);
     }
 }

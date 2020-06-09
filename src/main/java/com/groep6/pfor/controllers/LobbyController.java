@@ -71,12 +71,11 @@ public class LobbyController extends Controller {
     }
 
     public void startGame() {
-
+        game.setCode(getLobbyCode());
         game.addPlayers(lobby.getPlayers().toArray(new LobbyPlayer[0]));
         game.getLocalPlayer().setTurn();
 
         new BoardController();
-
     }
 
     /**

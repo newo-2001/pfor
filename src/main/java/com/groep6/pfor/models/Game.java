@@ -28,6 +28,7 @@ public class Game extends Observable implements IObserver {
     private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
+    private String code;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
@@ -60,6 +61,14 @@ public class Game extends Observable implements IObserver {
         for (int i = 0; i < die.length; i++) {
             die[i] = new Dice();
         }
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /**
