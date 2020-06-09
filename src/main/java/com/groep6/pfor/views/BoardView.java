@@ -9,7 +9,6 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
-
 import com.groep6.pfor.views.components.UIText;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -207,53 +206,53 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(actionCount, 0, 0, 2, 1);
 
         conspireButton = new UIButton("RUILEN");
-        conspireButton.setPrefSize(150, 60);
+        conspireButton.setPrefSize(150, 75);
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);
         conspireButton.setDisable(true);
         actionButtonLayout.add(conspireButton, 0, 1);
 
         battleButton = new UIButton("VECHTEN");
-        battleButton.setPrefSize(150, 60);
+        battleButton.setPrefSize(150, 75);
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);
         battleButton.setDisable(true);
         actionButtonLayout.add(battleButton, 1, 1);
 
         allianceButton = new UIButton("ALLIANTIE SLUITEN");
-        allianceButton.setPrefSize(150, 60);
+        allianceButton.setPrefSize(150, 75);
         allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView);
         allianceButton.setDisable(true);
         actionButtonLayout.add(allianceButton, 0, 2);
 
         recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
-        recruitBarbarianButton.setPrefSize(150, 60);
+        recruitBarbarianButton.setPrefSize(150, 75);
         recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         recruitBarbarianButton.setDisable(true);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
 
         buildButton = new UIButton("FORT BOUWEN");
-        buildButton.setPrefSize(150, 60);
+        buildButton.setPrefSize(150, 75);
         buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
         buildButton.setDisable(true);
         actionButtonLayout.add(buildButton, 0, 3);
 
         recruitButton = new UIButton("LEGIOEN REKRUTEREN");
-        recruitButton.setPrefSize(150, 60);
+        recruitButton.setPrefSize(150, 75);
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
         recruitButton.setDisable(true);
         actionButtonLayout.add(recruitButton, 1, 3);
 
         showHandButton = new UIButton("BEKIJK HAND");
-        showHandButton.setPrefSize(150, 60);
+        showHandButton.setPrefSize(150, 75);
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
         actionButtonLayout.add(showHandButton, 0, 8);
 
         helpButton = new UIButton("HELP");
-        helpButton.setPrefSize(150, 60);
+        helpButton.setPrefSize(150, 75);
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
         actionButtonLayout.add(helpButton, 1, 8);
 
         nextTurnButton = new UIButton("VOLGENDE BEURT");
-        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 60);
+        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 75);
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         nextTurnButton.setDisable(true);
@@ -342,23 +341,34 @@ public class BoardView extends View implements IObserver {
             }
         });
 
-        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn() && boardController.getLocalPlayer().getActionsRemaining() > 0) {
-            conspireButton.setDisable(false);
-            battleButton.setDisable(false);
-            allianceButton.setDisable(false);
-            buildButton.setDisable(false);
-            recruitButton.setDisable(false);
-            recruitBarbarianButton.setDisable(false);
-        } else {
+        if (!boardController.getLocalPlayer().isTurn()) {
             conspireButton.setDisable(true);
             battleButton.setDisable(true);
             allianceButton.setDisable(true);
             buildButton.setDisable(true);
             recruitButton.setDisable(true);
             recruitBarbarianButton.setDisable(true);
-        }
+            nextTurnButton.setDisable(true);
+        } else {
+            nextTurnButton.setDisable(false);
 
-        nextTurnButton.setDisable(!boardController.getLocalPlayer().isTurn());
+            if (boardController.getLocalPlayer().getActionsRemaining() > 0) {
+                conspireButton.setDisable(false);
+                battleButton.setDisable(false);
+                allianceButton.setDisable(false);
+                buildButton.setDisable(false);
+
+                recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
+                recruitButton.setDisable(!boardController.canRecruitLegions());
+            } else {
+                conspireButton.setDisable(true);
+                battleButton.setDisable(true);
+                allianceButton.setDisable(true);
+                buildButton.setDisable(true);
+                recruitBarbarianButton.setDisable(true);
+                recruitButton.setDisable(true);
+            }
+        }
     }
     
     public void updateCanvasSize() {

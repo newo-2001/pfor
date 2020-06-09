@@ -7,12 +7,13 @@ import java.util.List;
 
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
 /**
  * @author Bastiaan Jansen
  */
-public class Player extends Observable {
+public class Player extends Observable implements IObserver {
 
     private Hand hand = new Hand();
     private RoleCard roleCard;
@@ -44,6 +45,7 @@ public class Player extends Observable {
         CityFactory cityFactory = CityFactory.getInstance();
         List<City> cities = Arrays.asList(cityFactory.getAllCities());
         city = cities.get(rand.nextInt(cities.size() - 1));
+        city.registerObserver(this);
     }
 
     public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
@@ -133,5 +135,11 @@ public class Player extends Observable {
     public boolean isLocal() {
         return isLocal;
     }
-    
+
+    @Override
+    public void update() {
+        System.out.println("Legions: " + city.getLegions());
+        System.out.println("Barbarians: " + city.getBarbarians());
+        notifyObservers();
+    }
 }

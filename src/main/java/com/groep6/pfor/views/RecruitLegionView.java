@@ -88,21 +88,21 @@ public class RecruitLegionView extends View implements IObserver {
         EventHandler<MouseEvent> recruitOneClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-            	recruitLegionController.oneClicked();
+            	recruitLegionController.recruit(1);
             }
         };
         
         EventHandler<MouseEvent> recruitTwoClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-            	recruitLegionController.twoClicked();
+            	recruitLegionController.recruit(2);
             }
         };
         
         EventHandler<MouseEvent> recruitThreeClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-            	recruitLegionController.threeClicked();
+            	recruitLegionController.recruit(3);
             }
         };
 

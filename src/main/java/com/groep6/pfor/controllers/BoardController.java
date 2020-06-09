@@ -6,6 +6,7 @@ import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.BoardView;
@@ -67,6 +68,25 @@ public class BoardController extends Controller {
 
     public Player getLocalPlayer() {
         return game.getLocalPlayer();
+    }
+
+    public boolean canRecruitBarbarians() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+        Faction[] factions = city.getFactions();
+
+        for (Faction faction: factions) {
+            if (game.isFriendlyFaction(faction)) return true;
+        }
+
+        return false;
+    }
+
+    public boolean canRecruitLegions() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+
+        return city.hasFort();
     }
 
     @Override
