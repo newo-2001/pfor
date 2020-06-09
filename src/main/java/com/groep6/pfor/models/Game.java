@@ -41,6 +41,9 @@ public class Game extends Observable implements IObserver {
         for (int i = 0; i < die.length; i++) {
             die[i] = new Dice();
         }
+
+        // Add barbarians to cities
+
     }
 
     public Player nextTurn() {
