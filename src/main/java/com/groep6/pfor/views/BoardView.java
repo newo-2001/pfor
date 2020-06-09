@@ -49,7 +49,7 @@ public class BoardView extends View implements IObserver {
 	private static int canvasY = Math.round(canvasX * (880f / 1200f));
 	
 	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
-	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
+	private static final float CIRCLE_RADIUS = 40f / CANVAS_SIZE.y;
 
 	private UIText actionCount;
 
@@ -309,7 +309,7 @@ public class BoardView extends View implements IObserver {
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
 
         // Draw city circles
-        gc.setFill(Color.RED);
+        gc.setFill(Color.TRANSPARENT);
         for (Tile tile : boardController.getTiles()) {
             if (tile instanceof City) {
                 City city = (City) tile;
