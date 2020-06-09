@@ -1,6 +1,7 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.RecruitLegionView;
 
@@ -11,6 +12,7 @@ import com.groep6.pfor.views.RecruitLegionView;
 public class RecruitLegionController extends Controller{
 	
 	private Game game = Game.getInstance();
+	private Player player = game.getPlayerTurn();
 	
     public RecruitLegionController() {
     	viewController.showView(new RecruitLegionView(this));
@@ -31,7 +33,6 @@ public class RecruitLegionController extends Controller{
 	@Override
 	public void registerObserver(IObserver view) {
 		game.registerObserver(view);
-		
 	}
 
 }

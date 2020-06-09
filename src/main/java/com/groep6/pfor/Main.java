@@ -38,6 +38,7 @@ public class Main extends Application {
         musicManager.play();
   
         // Set default view
+        // new BoardController();
         new MenuController();
     }
 }

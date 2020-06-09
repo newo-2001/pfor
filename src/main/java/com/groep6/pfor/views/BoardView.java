@@ -50,7 +50,7 @@ public class BoardView extends View implements IObserver {
 	private static int canvasY = Math.round(canvasX * (880f / 1200f));
 	
 	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
-	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
+	private static final float CIRCLE_RADIUS = 40f / CANVAS_SIZE.y;
 
 	private UIText actionCount;
 
@@ -311,8 +311,9 @@ public class BoardView extends View implements IObserver {
         Player localPlayer = Game.getInstance().getLocalPlayer();
 
         // Draw city circles
-        gc.setFill(localPlayer.getRoleCard().getColor());
+        
         for (Tile tile : boardController.getTiles()) {
+        	gc.setFill(Color.TRANSPARENT);
             if (tile instanceof City) {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
@@ -320,9 +321,10 @@ public class BoardView extends View implements IObserver {
                 
                 // place player
                 if (localPlayer.getCity().equals(city)) {
+                	gc.setFill(localPlayer.getRoleCard().getColor());
                 	gc.fillOval(pos.x - r, pos.y - r, r, r);
+                	gc.setFill(Color.TRANSPARENT);
                 }
-            	gc.setFill(Color.RED);
                 gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
             }
         }
@@ -339,14 +341,13 @@ public class BoardView extends View implements IObserver {
             }
         });
 
-        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn()) {
+        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn() && boardController.getLocalPlayer().getActionsRemaining() > 0) {
             conspireButton.setDisable(false);
             battleButton.setDisable(false);
             allianceButton.setDisable(false);
             buildButton.setDisable(false);
             recruitButton.setDisable(false);
             recruitBarbarianButton.setDisable(false);
-            nextTurnButton.setDisable(false);
         } else {
             conspireButton.setDisable(true);
             battleButton.setDisable(true);
@@ -354,8 +355,9 @@ public class BoardView extends View implements IObserver {
             buildButton.setDisable(true);
             recruitButton.setDisable(true);
             recruitBarbarianButton.setDisable(true);
-            nextTurnButton.setDisable(true);
         }
+
+        nextTurnButton.setDisable(!boardController.getLocalPlayer().isTurn());
     }
     
     public void updateCanvasSize() {
