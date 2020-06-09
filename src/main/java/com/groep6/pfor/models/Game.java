@@ -224,8 +224,7 @@ public class Game extends Observable implements IObserver {
     }
 
     public boolean isFriendlyFaction(Faction faction) {
-        if (friendlyFactions.contains(faction)) return true;
-        return false;
+        return friendlyFactions.contains(faction);
     }
 
     public Player getLocalPlayer() {
