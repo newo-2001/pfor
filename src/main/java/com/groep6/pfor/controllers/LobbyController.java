@@ -27,19 +27,20 @@ public class LobbyController extends Controller {
         LobbyService.lobbyChangeEvent.subscribe(onLobbyChange);
         viewController.showView(new LobbyView(this));
 
-        GameService.gameChangeEvent.subscribe(new IEventCallback() {
-            @Override
-            public void onEvent(Object... eventData) {
-                System.out.println("On Lobby Change");
+        LobbyService.gameStartEvent.subscribe(eventData -> {
+            System.out.println("On Lobby Start");
 
-                Game game = (Game) eventData[0];
-
-                Game.getInstance().updateGame(game);
-
-                new BoardController();
-            }
+            Game.getInstance().setLocalPlayer(new Player(lobby.getLocalPlayer()));
+            onGameChange.onEvent(eventData);
+            GameService.gameChangeEvent.subscribe(onGameChange);
+            new BoardController();
         });
     }
+
+    private IEventCallback onGameChange = eventData -> {
+        Game game = (Game) eventData[0];
+        Game.getInstance().updateGame(game);
+    };
 
     /**
      * @return lobby code

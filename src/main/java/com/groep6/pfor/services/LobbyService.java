@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.firestore.*;
 import com.groep6.pfor.exceptions.NoDocumentException;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.ServerEvent;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class LobbyService {
     /** This event is fired when a lobby is changed */
     public static ServerEvent lobbyChangeEvent = new ServerEvent();
+    public static ServerEvent gameStartEvent = new ServerEvent();
     private static ListenerRegistration listener;
     private static Lobby cache;
 
@@ -116,6 +119,7 @@ public class LobbyService {
         doc.update(FieldPath.of("players", player.getUsername()), FieldValue.delete());
         removeListener();
         GameService.removeListener();
+        cache = null;
     }
 
     public static void removeListener() {
@@ -130,8 +134,13 @@ public class LobbyService {
             LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
             if (dto.started == true) {
                 GameService.listener = Firebase.registerListener("games/" + dto.code, GameService.onGameChange);
+                try {
+                    gameStartEvent.fire(new GameService().getGame(dto.code));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
                 removeListener();
-                System.out.println("GAME_CHANGE LISTENER REGISTERED");
             } else {
                 cache = dto.toModel();
                 LobbyService.lobbyChangeEvent.fire(cache);

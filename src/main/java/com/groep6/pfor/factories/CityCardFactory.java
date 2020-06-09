@@ -73,8 +73,8 @@ public class CityCardFactory {
 	}
 
 	public CityCard getCardByName(String name, Faction faction) {
-		// Yes, java 8 stream are beautiful
-		return (CityCard) cityCardDeck.getCards().stream().filter(card -> card.getName() == name && ((CityCard) card).getFaction() == faction).toArray()[0];
+		// Yes, java 8 streams are beautiful
+		return (CityCard) cityCardDeck.getCards().stream().filter(card -> card.getName().equals(name) && ((CityCard) card).getFaction().equals(faction)).toArray()[0];
 	}
 
 	public static CityCardFactory getInstance() {
