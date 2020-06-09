@@ -77,7 +77,7 @@ public class LobbyController extends Controller {
         Collections.shuffle(players);
 
         game.addPlayers(players.toArray(new LobbyPlayer[0]));
-        game.getLocalPlayer().setTurn();
+        game.getAllPlayers().get(0).setTurn();
 
         new BoardController();
 
