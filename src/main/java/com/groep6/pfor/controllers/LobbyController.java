@@ -39,7 +39,7 @@ public class LobbyController extends Controller {
         });
     }
 
-    private IEventCallback onGameChange = eventData -> {
+    private final IEventCallback onGameChange = eventData -> {
         Game game = (Game) eventData[0];
         Game.getInstance().updateGame(game);
     };

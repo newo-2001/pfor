@@ -50,7 +50,7 @@ public class Player extends Observable implements IObserver {
         // Add two legions to start city
         city.addLegions(2);
 
-        System.out.println(city);
+        System.out.println("PlayerCity: " + city);
     }
 
     public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
