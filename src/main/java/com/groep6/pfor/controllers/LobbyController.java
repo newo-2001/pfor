@@ -9,6 +9,7 @@ import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LobbyController extends Controller {
@@ -34,6 +35,8 @@ public class LobbyController extends Controller {
                 Game.getInstance().updateGame(game);
 
                 System.out.println("On Lobby Change");
+
+                new BoardController();
             }
         });
     }
@@ -83,9 +86,12 @@ public class LobbyController extends Controller {
     }
 
     public void startGame() {
+        List<LobbyPlayer> players = lobby.getPlayers();
+        Collections.shuffle(players);
+
         game.setCode(getLobbyCode());
-        game.addPlayers(lobby.getPlayers().toArray(new LobbyPlayer[0]));
-        game.getLocalPlayer().setTurn();
+        game.addPlayers(players.toArray(new LobbyPlayer[0]));
+        game.getAllPlayers().get(0).setTurn();
 
         GameService gameService = new GameService();
         gameService.create(game);

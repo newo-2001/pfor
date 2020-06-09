@@ -38,21 +38,29 @@ public class UIPlayerInfo extends HBox {
 		playerDot.setRadius(12);
 
 		VBox playerInfoBox = new VBox(3);
-		
-		UIText playerID = new UIText("Speler " + playerNumber + " (" + actionCount + " acties)");
-		playerID.setColor(Color.WHITE).setSize(13);
 
-		UIText playerName = new UIText(username + " (" + playerRole + ")");
+		TextFlow topText = new TextFlow();
+
+		UIText playerName = new UIText(username);
 		playerName.setColor(Color.WHITE).setSize(13);
+		topText.getChildren().add(playerName);
+
+		UIText playerActionCount = new UIText(" (" + actionCount + " acties)");
+		playerActionCount.setColor(Color.WHITE);
+
+		UIText playerRoleText = new UIText(playerRole);
+		playerRoleText.setColor(Color.WHITE);
 
 		if (isTurn) {
-			playerID.setWeight(FontWeight.BOLD);
+			topText.getChildren().add(playerActionCount);
+			playerActionCount.setWeight(FontWeight.BOLD);
+			playerRoleText.setWeight(FontWeight.BOLD);
 			playerName.setWeight(FontWeight.BOLD);
 			playerDot.setStroke(Color.WHITE);
 			playerDot.setStrokeWidth(3);
 		}
 
-		playerInfoBox.getChildren().addAll(playerID, playerName);
+		playerInfoBox.getChildren().addAll(topText, playerRoleText);
 		setSpacing(5);
         setAlignment(Pos.CENTER);
 		getChildren().addAll(playerDot, playerInfoBox);

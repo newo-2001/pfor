@@ -1,6 +1,13 @@
 package com.groep6.pfor.views;
 
-import com.groep6.pfor.controllers.*;
+import java.util.List;
+
+import com.groep6.pfor.controllers.BoardController;
+import com.groep6.pfor.controllers.HandController;
+import com.groep6.pfor.controllers.RecruitBarbarianController;
+import com.groep6.pfor.controllers.RecruitLegionController;
+import com.groep6.pfor.controllers.TradeController;
+import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
@@ -10,6 +17,7 @@ import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,8 +40,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 
-import java.util.List;
-
 /**
  * The view that shows the board
  * @author Bastiaan Jansen
@@ -49,7 +55,7 @@ public class BoardView extends View implements IObserver {
 	private static int canvasY = Math.round(canvasX * (880f / 1200f));
 	
 	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
-	private static final float CIRCLE_RADIUS = 40f / CANVAS_SIZE.y;
+	private static final float CIRCLE_RADIUS = ((20f / 833f) * canvasX) / CANVAS_SIZE.y;
 
 	private UIText actionCount;
 
@@ -68,7 +74,7 @@ public class BoardView extends View implements IObserver {
         boardController.registerObserver(this);
 
         createView();
-
+        System.out.println(CIRCLE_RADIUS);
         update();
     }
 
@@ -307,25 +313,27 @@ public class BoardView extends View implements IObserver {
     public void updateCanvas() {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
-        Player localPlayer = Game.getInstance().getLocalPlayer();
+        List<Player> players = Game.getInstance().getAllPlayers();
 
         // Draw city circles
-        
         for (Tile tile : boardController.getTiles()) {
-        	gc.setFill(Color.RED);
+        	gc.setFill(Color.TRANSPARENT);
             if (tile instanceof City) {
                 City city = (City) tile;
-                Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
+                Vector2f cityPos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
                 
-                // place player
-                if (localPlayer.getCity().equals(city)) {
-                	gc.setFill(localPlayer.getRoleCard().getColor());
-                	gc.strokeOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
-                	gc.fillOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
-                	gc.setFill(Color.TRANSPARENT);
-                }
-                gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
+                // Draw players
+            	for (Player player: players) {
+            		if (player.getCity().equals(city)) {
+	            		gc.setFill(player.getRoleCard().getColor());
+	                	gc.strokeOval(cityPos.x - r, cityPos.y - r, r / 1.35, r / 1.35);
+	                	gc.fillOval(cityPos.x - r, cityPos.y - r, r / 1.35, r / 1.35);
+	                	gc.setFill(Color.TRANSPARENT);
+            		}
+            	}
+
+                gc.fillOval(cityPos.x - r, cityPos.y - r, r * 2, r * 2);
             }
         }
     }
