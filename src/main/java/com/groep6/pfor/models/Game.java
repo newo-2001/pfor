@@ -100,7 +100,7 @@ public class Game extends Observable implements IObserver {
             System.out.println(player.getHand().getCards().size());
         }
 
-        board = remote.board;
+        board.updateBoard(remote.board);
         decayLevel = remote.decayLevel;
         invasionLevel = remote.invasionLevel;
         invasionCardsDeck = remote.invasionCardsDeck;
