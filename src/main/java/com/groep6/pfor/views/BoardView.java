@@ -2,14 +2,13 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
-import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
-
 import com.groep6.pfor.views.components.UIText;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -207,53 +206,53 @@ public class BoardView extends View implements IObserver {
         actionButtonLayout.add(actionCount, 0, 0, 2, 1);
 
         conspireButton = new UIButton("RUILEN");
-        conspireButton.setPrefSize(150, 80);
+        conspireButton.setPrefSize(150, 75);
         conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);
         conspireButton.setDisable(true);
         actionButtonLayout.add(conspireButton, 0, 1);
 
         battleButton = new UIButton("VECHTEN");
-        battleButton.setPrefSize(150, 80);
+        battleButton.setPrefSize(150, 75);
         battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);
         battleButton.setDisable(true);
         actionButtonLayout.add(battleButton, 1, 1);
 
         allianceButton = new UIButton("ALLIANTIE SLUITEN");
-        allianceButton.setPrefSize(150, 80);
+        allianceButton.setPrefSize(150, 75);
         allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView);
         allianceButton.setDisable(true);
         actionButtonLayout.add(allianceButton, 0, 2);
 
         recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
-        recruitBarbarianButton.setPrefSize(150, 80);
+        recruitBarbarianButton.setPrefSize(150, 75);
         recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
         recruitBarbarianButton.setDisable(true);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
 
         buildButton = new UIButton("FORT BOUWEN");
-        buildButton.setPrefSize(150, 80);
+        buildButton.setPrefSize(150, 75);
         buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
         buildButton.setDisable(true);
         actionButtonLayout.add(buildButton, 0, 3);
 
         recruitButton = new UIButton("LEGIOEN REKRUTEREN");
-        recruitButton.setPrefSize(150, 80);
+        recruitButton.setPrefSize(150, 75);
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
         recruitButton.setDisable(true);
         actionButtonLayout.add(recruitButton, 1, 3);
 
         showHandButton = new UIButton("BEKIJK HAND");
-        showHandButton.setPrefSize(150, 80);
+        showHandButton.setPrefSize(150, 75);
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
         actionButtonLayout.add(showHandButton, 0, 8);
 
         helpButton = new UIButton("HELP");
-        helpButton.setPrefSize(150, 80);
+        helpButton.setPrefSize(150, 75);
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
         actionButtonLayout.add(helpButton, 1, 8);
 
         nextTurnButton = new UIButton("VOLGENDE BEURT");
-        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 80);
+        nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 75);
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
         nextTurnButton.setDisable(true);
@@ -308,14 +307,24 @@ public class BoardView extends View implements IObserver {
     public void updateCanvas() {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
+        Player localPlayer = Game.getInstance().getLocalPlayer();
 
         // Draw city circles
-        gc.setFill(Color.TRANSPARENT);
+        
         for (Tile tile : boardController.getTiles()) {
+        	gc.setFill(Color.TRANSPARENT);
             if (tile instanceof City) {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
+                
+                // place player
+                if (localPlayer.getCity().equals(city)) {
+                	gc.setFill(localPlayer.getRoleCard().getColor());
+                	gc.strokeOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
+                	gc.fillOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
+                	gc.setFill(Color.TRANSPARENT);
+                }
                 gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
             }
         }
