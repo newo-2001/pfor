@@ -113,8 +113,15 @@ public class City extends Tile {
      * @param factionType
      */
 	
-	public void addBarbarian(FactionType factionType) {
-		barbarians.add(new Barbarian(factionType));
+	public void addBarbarians(FactionType factionType, int amount) {
+		if (barbarians.size() >= 4) {
+			Game.getInstance().increaseDecayLevel(1);
+			return;
+		}
+
+		for (int i = 0; i < amount; i++) {
+			barbarians.add(new Barbarian(factionType));
+		}
 	}
 	
     /**

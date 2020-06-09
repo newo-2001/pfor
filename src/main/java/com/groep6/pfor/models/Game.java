@@ -49,7 +49,8 @@ public class Game extends Observable implements IObserver {
         for (int i = 0; i < 4; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
             City city = cities[rand.nextInt(cities.length - 1)];
-            city.add
+            Faction[] factions = city.getFactions();
+            city.addBarbarians(factions[rand.nextInt(factions.length - 1)].getFactionType(), rand.nextInt(3));
         }
     }
 
