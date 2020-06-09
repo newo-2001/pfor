@@ -6,9 +6,7 @@ import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author Bastiaan Jansen
@@ -92,21 +90,28 @@ public class Game extends Observable implements IObserver {
      * @param remote The remote version of the game
      */
     public void updateGame(Game remote) {
-        Game client = getInstance();
-        Player local = client.getLocalPlayer();
-        getInstance().players = remote.getAllPlayers();
-        for (Player player : client.getAllPlayers()) {
-            if (player.equals(local)) client.setLocalPlayer(local);
+        Player local = getLocalPlayer();
+        addPlayers(remote.getAllPlayers().toArray(new Player[0]));
+        for (Player player : getAllPlayers()) {
+            if (player.equals(local)) setLocalPlayer(local);
         }
 
-        client.board = remote.board;
-        client.decayLevel = remote.decayLevel;
-        client.invasionLevel = remote.invasionLevel;
-        client.invasionCardsDeck = remote.invasionCardsDeck;
-        client.invasionCardsDiscardPile = remote.invasionCardsDiscardPile;
-        client.cityCardsDeck = remote.cityCardsDeck;
-        client.cityCardsDiscardPile = remote.cityCardsDiscardPile;
-        client.tradeCardsDeck = remote.tradeCardsDeck;
+        for (Player player: remote.getAllPlayers()) {
+            System.out.println(player.getHand().getCards().size());
+        }
+
+        board = remote.board;
+        decayLevel = remote.decayLevel;
+        invasionLevel = remote.invasionLevel;
+        invasionCardsDeck = remote.invasionCardsDeck;
+        invasionCardsDiscardPile = remote.invasionCardsDiscardPile;
+        cityCardsDeck = remote.cityCardsDeck;
+        cityCardsDiscardPile = remote.cityCardsDiscardPile;
+        tradeCardsDeck = remote.tradeCardsDeck;
+    }
+
+    public void addPlayers(Player... players) {
+        this.players.addAll(Arrays.asList(players));
     }
 
     public Player nextTurn() {
