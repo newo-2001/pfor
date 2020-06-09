@@ -32,6 +32,8 @@ public class LobbyController extends Controller {
                 Game game = (Game) eventData[0];
 
                 Game.getInstance().updateGame(game);
+
+                System.out.println("sd");
             }
         });
     }

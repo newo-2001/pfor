@@ -2,6 +2,7 @@ package com.groep6.pfor.factories;
 
 import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.CityCard;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 
 /**
