@@ -2,6 +2,7 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.util.IObserver;
@@ -307,14 +308,21 @@ public class BoardView extends View implements IObserver {
     public void updateCanvas() {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
+        Player localPlayer = Game.getInstance().getLocalPlayer();
 
         // Draw city circles
-        gc.setFill(Color.RED);
+        gc.setFill(localPlayer.getRoleCard().getColor());
         for (Tile tile : boardController.getTiles()) {
             if (tile instanceof City) {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
+                
+                // place player
+                if (localPlayer.getCity().equals(city)) {
+                	gc.fillOval(pos.x - r, pos.y - r, r, r);
+                }
+            	gc.setFill(Color.RED);
                 gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
             }
         }
