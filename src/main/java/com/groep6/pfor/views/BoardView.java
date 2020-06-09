@@ -322,7 +322,8 @@ public class BoardView extends View implements IObserver {
                 // place player
                 if (localPlayer.getCity().equals(city)) {
                 	gc.setFill(localPlayer.getRoleCard().getColor());
-                	gc.fillOval(pos.x - r, pos.y - r, r, r);
+                	gc.strokeOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
+                	gc.fillOval(pos.x - r, pos.y - r, r / 1.5, r / 1.5);
                 	gc.setFill(Color.TRANSPARENT);
                 }
                 gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
