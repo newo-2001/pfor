@@ -332,27 +332,32 @@ public class BoardView extends View implements IObserver {
             }
         });
 
-        if (boardController.getLocalPlayer() != null) {
-            if (!boardController.getLocalPlayer().isTurn()) {
+        if (!boardController.getLocalPlayer().isTurn()) {
+            conspireButton.setDisable(true);
+            battleButton.setDisable(true);
+            allianceButton.setDisable(true);
+            buildButton.setDisable(true);
+            recruitButton.setDisable(true);
+            recruitBarbarianButton.setDisable(true);
+            nextTurnButton.setDisable(true);
+        } else {
+            nextTurnButton.setDisable(false);
+
+            if (boardController.getLocalPlayer().getActionsRemaining() > 0) {
+                conspireButton.setDisable(false);
+                battleButton.setDisable(false);
+                allianceButton.setDisable(false);
+                buildButton.setDisable(false);
+
+                recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
+                recruitButton.setDisable(!boardController.canRecruitLegions());
+            } else {
                 conspireButton.setDisable(true);
                 battleButton.setDisable(true);
                 allianceButton.setDisable(true);
                 buildButton.setDisable(true);
-                recruitButton.setDisable(true);
                 recruitBarbarianButton.setDisable(true);
-                nextTurnButton.setDisable(true);
-            } else {
-                nextTurnButton.setDisable(false);
-
-                if (boardController.getLocalPlayer().getActionsRemaining() > 0) {
-                    conspireButton.setDisable(false);
-                    battleButton.setDisable(false);
-                    allianceButton.setDisable(false);
-                    buildButton.setDisable(false);
-
-                    recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
-                    recruitButton.setDisable(!boardController.canRecruitLegions());
-                }
+                recruitButton.setDisable(true);
             }
         }
     }
