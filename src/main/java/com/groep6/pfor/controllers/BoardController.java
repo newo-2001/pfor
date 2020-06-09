@@ -7,6 +7,7 @@ import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.BoardView;
@@ -78,6 +79,11 @@ public class BoardController extends Controller {
 
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
+
+        // Next turn
+        game.nextTurn();
+        GameService gameService = new GameService();
+        gameService.setGame(game);
     }
 
     public void buildFort() {
