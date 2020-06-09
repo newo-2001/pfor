@@ -84,21 +84,21 @@ public class RecruitBarbarianView extends View implements IObserver {
     EventHandler<MouseEvent> recruitOneClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	recruitBarbarianController.oneClicked();
+        	recruitBarbarianController.recruit(1);
         }
     };
     
     EventHandler<MouseEvent> recruitTwoClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	recruitBarbarianController.twoClicked();
+        	recruitBarbarianController.recruit(2);
         }
     };
     
     EventHandler<MouseEvent> recruitThreeClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	recruitBarbarianController.threeClicked();
+        	recruitBarbarianController.recruit(3);
         }
     };
 

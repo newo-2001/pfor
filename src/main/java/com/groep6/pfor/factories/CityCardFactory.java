@@ -1,17 +1,13 @@
 package com.groep6.pfor.factories;
 
-import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.CityCard;
-import com.groep6.pfor.models.cards.EventCard;
-import com.groep6.pfor.models.cards.actions.eventActions.DoUtDesAction;
-import com.groep6.pfor.models.cards.actions.eventActions.FaberFortunaeAction;
-import com.groep6.pfor.models.cards.actions.eventActions.HicManebimusOptimeAction;
-import com.groep6.pfor.models.cards.actions.eventActions.MortuiNonMordentAction;
-import com.groep6.pfor.models.cards.actions.eventActions.VitaMeaAction;
-import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
-import com.groep6.pfor.util.Vector2f;
+
+/**
+ *
+ * @author Nils van der Velden
+ */
 
 import java.util.function.Predicate;
 

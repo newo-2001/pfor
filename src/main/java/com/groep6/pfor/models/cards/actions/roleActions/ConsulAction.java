@@ -21,7 +21,7 @@ public class ConsulAction implements IAction {
 	public void execute() {
 		Player player = game.getLocalPlayer();
 		City city = player.getCity();
-		city.addLegion();
+		city.addLegions(1);
 	}
 
 	/**

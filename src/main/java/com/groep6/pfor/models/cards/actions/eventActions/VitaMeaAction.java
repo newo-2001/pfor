@@ -21,7 +21,7 @@ public class VitaMeaAction implements IAction {
 		Player player = game.getPlayerTurn();
 		City city = player.getCity();
 		city.removeBarbarians(1);
-		city.addLegion();
+		city.addLegions(1);
 	}
 
 	/**

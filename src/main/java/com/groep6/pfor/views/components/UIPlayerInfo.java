@@ -16,13 +16,15 @@ public class UIPlayerInfo extends HBox {
 	private String username;
 	private String playerRole;
 	private boolean isTurn;
+	private int actionCount;
 	
-	public UIPlayerInfo(Color playerColor, int playerNumber, String username, String playerRole, boolean isTurn) {
+	public UIPlayerInfo(Color playerColor, int playerNumber, String username, String playerRole, boolean isTurn, int actionCount) {
 		this.playerColor = playerColor;
 		this.playerNumber = playerNumber;
 		this.username = username;
 		this.playerRole = playerRole;
 		this.isTurn = isTurn;
+		this.actionCount = actionCount;
 
 		createDisplay();
 		setPadding(new Insets(0, 20, 0, 20));
@@ -37,7 +39,7 @@ public class UIPlayerInfo extends HBox {
 
 		VBox playerInfoBox = new VBox(3);
 		
-		UIText playerID = new UIText("Speler " + playerNumber);
+		UIText playerID = new UIText("Speler " + playerNumber + " (" + actionCount + " acties)");
 		playerID.setColor(Color.WHITE).setSize(13);
 
 		UIText playerName = new UIText(username + " (" + playerRole + ")");

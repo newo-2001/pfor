@@ -1,6 +1,7 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.*;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IEventCallback;
 import com.groep6.pfor.util.IObserver;
@@ -24,6 +25,15 @@ public class LobbyController extends Controller {
         this.lobby = lobby;
         LobbyService.lobbyChangeEvent.subscribe(onLobbyChange);
         viewController.showView(new LobbyView(this));
+
+        GameService.gameChangeEvent.subscribe(new IEventCallback() {
+            @Override
+            public void onEvent(Object... eventData) {
+                Game game = (Game) eventData[0];
+
+                Game.getInstance().updateGame(game);
+            }
+        });
     }
 
     /**
@@ -74,6 +84,9 @@ public class LobbyController extends Controller {
         game.setCode(getLobbyCode());
         game.addPlayers(lobby.getPlayers().toArray(new LobbyPlayer[0]));
         game.getLocalPlayer().setTurn();
+
+        GameService gameService = new GameService();
+        gameService.create(game);
 
         new BoardController();
     }

@@ -75,7 +75,7 @@ public class Game extends Observable implements IObserver {
      * Update the local game with the data from the remote version
      * @param remote The remote version of the game
      */
-    public static void updateGame(Game remote) {
+    public void updateGame(Game remote) {
         Game client = getInstance();
         Player local = client.getLocalPlayer();
         getInstance().players = remote.getAllPlayers();

@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -14,10 +15,11 @@ import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.util.parsers.templates.CityDTO;
 import com.groep6.pfor.util.parsers.templates.FactionDTO;
+import java.util.List;
 
 public class City extends Tile {
-	private Stack<Barbarian> barbarians = new Stack<Barbarian>();
-	private Stack<Legion> legions = new Stack<Legion>();
+	private List<Barbarian> barbarians = new ArrayList<>();
+	private List<Legion> legions = new ArrayList<>();
 	private boolean fort = false;
 	private boolean harbour;
 	private String name;
@@ -105,7 +107,7 @@ public class City extends Tile {
      * @returns a arrayList with barbarians in a specific city
      */
 	
-	public Stack<Barbarian> getBarbarians() {
+	public List<Barbarian> getBarbarians() {
 		return barbarians;
 	}
 	
@@ -113,7 +115,7 @@ public class City extends Tile {
      * @returns a arrayList with legions in a specific city
      */
 	
-	public Stack<Legion> getLegions() {
+	public List<Legion> getLegions() {
 		return legions;
 	}
 	
@@ -146,8 +148,10 @@ public class City extends Tile {
      * adds a legion to a specific city
      */
 	
-	public void addLegion() {
-		legions.add(new Legion());
+	public void addLegions(int amount) {
+		for (int i = 0; i < amount; i++) {
+			legions.add(new Legion());
+		}
 	}
 	
     /**
@@ -155,15 +159,17 @@ public class City extends Tile {
      * @return a barbarian and removes that specific barbarian from a specific city
      */
 	
-	public Barbarian removeBarbarian(FactionType factionType) {
-		for(int x = 0; x < barbarians.size(); x++) {
+	public void removeBarbarians(FactionType factionType, int amount) {
+		for (int x = 0; x < barbarians.size(); x++) {
 			Barbarian barbarian = barbarians.get(x);
-			
-			if (barbarian.getFactionType() == factionType) {
-				return barbarians.remove(x);
-			} 
+			for (int i = 0; i < amount; i++) {
+				if (barbarian.getFactionType() == factionType) {
+					barbarians.remove(x);
+				}
+			}
 		}
-		return null;
+
+		notifyObservers();
 	}
 
 	/**
@@ -172,8 +178,10 @@ public class City extends Tile {
 	 */
 	public void removeBarbarians(int amount) {
 		for (int i = 0; i < amount; i++) {
-			if (!barbarians.empty()) barbarians.pop();
+			if (barbarians.size() > 0) barbarians.remove(0);
 		}
+
+		notifyObservers();
 	}
 
     /**
@@ -183,8 +191,10 @@ public class City extends Tile {
 	
 	public void removeLegions(int amount) {
 		for (int i = 0; i < amount; i++) {
-			if (!legions.empty()) legions.pop();
+			if (legions.size() > 0) legions.remove(0);
 		}
+
+		notifyObservers();
 	}
 	
     /**
@@ -192,6 +202,7 @@ public class City extends Tile {
      */
 	public void placeFort() {
 		this.fort = true;
+		notifyObservers();
 	}
 	
     /**
