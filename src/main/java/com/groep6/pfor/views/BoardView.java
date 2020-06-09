@@ -139,10 +139,10 @@ public class BoardView extends View implements IObserver {
         }
     };
 
-    EventHandler<MouseEvent> goToFortBuildView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> buildFort = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-
+            boardController.buildFort();
         }
     };
 
@@ -239,7 +239,7 @@ public class BoardView extends View implements IObserver {
 
         buildButton = new UIButton("FORT BOUWEN");
         buildButton.setPrefSize(150, 75);
-        buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
+        buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, buildFort);
         buildButton.setDisable(true);
         actionButtonLayout.add(buildButton, 0, 3);
 
@@ -366,8 +366,8 @@ public class BoardView extends View implements IObserver {
                 conspireButton.setDisable(false);
                 battleButton.setDisable(false);
                 allianceButton.setDisable(false);
-                buildButton.setDisable(false);
 
+                buildButton.setDisable(!boardController.canBuildFort());
                 recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
                 recruitButton.setDisable(!boardController.canRecruitLegions());
             } else {
