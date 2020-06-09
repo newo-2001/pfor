@@ -19,15 +19,14 @@ public class CityCard extends Card {
      * @param city
      * @param faction
      */
-    public CityCard(String name, City city, Faction faction) {
-        this.name = name;
+    public CityCard(City city, Faction faction) {
         this.city = city;
         this.faction = faction;
     }
 
     @Override
     public String getName() {
-        return name;
+        return city.getName();
     }
 
     /**

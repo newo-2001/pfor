@@ -1,7 +1,8 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
+import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * @author Bastiaan Jansen
  */
-public class Game extends Observable {
+public class Game extends Observable implements IObserver {
 
     private static Game SINGLE_INSTANCE = new Game();
 
@@ -20,20 +21,22 @@ public class Game extends Observable {
     private final int MAX_DECAY_LEVEL = 8;
     private int invasionLevel = 0;
     private final int MAX_INVASION_LEVEL = 7;
-    private Deck tradeDeck = new Deck();
-    private Deck invasionDeck = new Deck();
-    private Deck cityDeck = new Deck();
-    private Deck invasionDiscardPile = new Deck();
-    private Deck cityDiscardPile = new Deck();
+    private Deck tradeCardsDeck = new Deck();
+    private Deck invasionCardsDeck = new Deck();
+    private Deck cityCardsDeck;
+    private Deck invasionCardsDiscardPile = new Deck();
+    private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
-    private Player localPlayer;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
     }
 
     private Game() {
+        cityCardsDeck = CityCardFactory.getInstance().getCityCardDeck();
+        cityCardsDeck.shuffle();
+
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
             die[i] = new Dice();
@@ -47,11 +50,11 @@ public class Game extends Observable {
         this.friendlyFactions = friendlyFactions;
         this.decayLevel = decayLevel;
         this.invasionLevel = invasionLevel;
-        this.tradeDeck = tradeDeck;
-        this.invasionDeck = invasionDeck;
-        this.cityDeck = cityDeck;
-        this.invasionDiscardPile = invasionDiscardPile;
-        this.cityDiscardPile = cityDiscardPile;
+        this.tradeCardsDeck = tradeDeck;
+        //this.invasionCardsDeck = invasionDeck;
+        this.cityCardsDeck = cityDeck;
+        this.invasionCardsDiscardPile = invasionDiscardPile;
+        this.cityCardsDiscardPile = cityDiscardPile;
 
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
@@ -74,23 +77,19 @@ public class Game extends Observable {
         client.board = remote.board;
         client.decayLevel = remote.decayLevel;
         client.invasionLevel = remote.invasionLevel;
-        client.invasionDeck = remote.invasionDeck;
-        client.invasionDiscardPile = remote.invasionDiscardPile;
-        client.cityDeck = remote.cityDeck;
-        client.cityDiscardPile = remote.cityDiscardPile;
-        client.tradeDeck = remote.tradeDeck;
+        client.invasionCardsDeck = remote.invasionCardsDeck;
+        client.invasionCardsDiscardPile = remote.invasionCardsDiscardPile;
+        client.cityCardsDeck = remote.cityCardsDeck;
+        client.cityCardsDiscardPile = remote.cityCardsDiscardPile;
+        client.tradeCardsDeck = remote.tradeCardsDeck;
     }
 
     public Player nextTurn() {
+        if (players.size() <= 0) return null;
+
         // Get current turn player
         Player currentPlayer = getPlayerTurn();
         Player nextPlayer;
-
-        if (currentPlayer == null) {
-            nextPlayer = players.get(0);
-            nextPlayer.setTurn();
-            return nextPlayer;
-        }
 
         int index = players.indexOf(currentPlayer);
 
@@ -100,6 +99,8 @@ public class Game extends Observable {
         currentPlayer.notTurn();
         nextPlayer.setTurn();
 
+        notifyObservers();
+
         return nextPlayer;
     }
 
@@ -108,7 +109,11 @@ public class Game extends Observable {
      * @param lobbyPlayers
      */
     public void addPlayers(LobbyPlayer... lobbyPlayers) {
-        for (LobbyPlayer player: lobbyPlayers) players.add(new Player(player));
+        for (LobbyPlayer lobbyPlayer: lobbyPlayers) {
+            Player player = new Player(lobbyPlayer);
+            player.registerObserver(this);
+            players.add(player);
+        }
         notifyObservers();
     }
 
@@ -148,16 +153,16 @@ public class Game extends Observable {
     /**
      * @return invasion deck
      */
-    public Deck getInvasionDeck() {
-        return invasionDeck;
+    public Deck getInvasionCardsDeck() {
+        return invasionCardsDeck;
     }
 
     public int getInvasionLevel() {
         return invasionLevel;
     }
 
-    public Deck getTradeDeck() {
-    	return tradeDeck;
+    public Deck getTradeCardsDeck() {
+    	return tradeCardsDeck;
     }
 
     /**
@@ -189,16 +194,16 @@ public class Game extends Observable {
         notifyObservers();
     }
 
-    public Deck getCityDeck() {
-        return cityDeck;
+    public Deck getPlayerCardsDeck() {
+        return cityCardsDeck;
     }
 
-    public Deck getInvasionDiscardPile() {
-        return invasionDiscardPile;
+    public Deck getInvasionCardsDiscardPile() {
+        return invasionCardsDiscardPile;
     }
 
-    public Deck getCityDiscardPile() {
-        return cityDiscardPile;
+    public Deck getCityCardsDiscardPile() {
+        return cityCardsDiscardPile;
     }
 
     public Dice[] getDie() {
@@ -211,10 +216,19 @@ public class Game extends Observable {
     }
 
     public Player getLocalPlayer() {
-        return localPlayer;
+        for (Player player: players) {
+            if (player.isLocal()) return player;
+        }
+
+        return null;
     }
 
-    public void setLocalPlayer(Player localPlayer) {
-        this.localPlayer = localPlayer;
+    public void setLocalPlayer(Player player) {
+        for (Player p : getAllPlayers()) if (player.equals(p)) p.setLocal(true);
+    }
+
+    @Override
+    public void update() {
+        notifyObservers();
     }
 }

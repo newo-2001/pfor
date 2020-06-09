@@ -1,10 +1,9 @@
 package com.groep6.pfor.models;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Stack;
 
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.util.Observable;
 
 /**
  * @author Bastiaan Jansen
@@ -16,7 +15,8 @@ public class Player extends Observable {
     private City city;
     private String username;
     private boolean turn = false;
-    private int actionsRemaining = 0;
+    private int actionsRemaining = 4;
+    private boolean isLocal;
 
     /**
      * The Player constructor clones all necessary the information from LobbyPlayer to Player
@@ -25,12 +25,22 @@ public class Player extends Observable {
     public Player(LobbyPlayer player) {
         roleCard = player.getRoleCard();
         username = player.getUsername();
+        isLocal = player.isLocal();
+
+        // Add starting cards to hand
+        Game game = Game.getInstance();
+
+        int cardAmount = 3;
+        for (int i = 0; i < cardAmount; i++) {
+            hand.addCards(game.getPlayerCardsDeck().draw());
+        }
     }
 
-    public Player(String username, City city, RoleCard roleCard, boolean turn) {
+    public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
         this.roleCard = roleCard;
         this.city = city;
         this.username = username;
+        this.isLocal = isLocal;
         if (turn) setTurn();
     }
     
@@ -54,6 +64,7 @@ public class Player extends Observable {
     public void decreaseActionsRemaining() {
         if (actionsRemaining <= 0) return;
         actionsRemaining--;
+        notifyObservers();
     }
 
     public Hand getHand() {
@@ -107,6 +118,10 @@ public class Player extends Observable {
         notifyObservers();
     }
 
+    public void setLocal(boolean local) {
+        this.isLocal = local;
+    }
+
     public City getCity() {
         return city;
     }
@@ -114,5 +129,14 @@ public class Player extends Observable {
     public void notTurn() {
         turn = false;
     }
-    
+
+    public boolean isLocal() {
+        return isLocal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Player)) return false;
+        return ((Player) o).username.equals(username);
+    }
 }

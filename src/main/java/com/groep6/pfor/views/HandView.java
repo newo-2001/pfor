@@ -66,6 +66,7 @@ public class HandView extends View implements IObserver {
         discardCardButton = new UIButton("Kaart verwijderen");
         discardCardButton.setDisable(true);
         discardCardButton.setPrefWidth(150);
+        if (handController.getLocalPlayer().getActionsRemaining() <= 0) discardCardButton.setDisable(true);
         discardCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, discardCard);
 
         playCardButton = new UIButton("Speel kaart");
@@ -125,14 +126,15 @@ public class HandView extends View implements IObserver {
     };
     
     
-    EventHandler<javafx.scene.input.MouseEvent> discardCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> discardCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             handController.removeSelectedCard();
+            discardCardButton.setDisable(true);
         }
     };
     
-    EventHandler<javafx.scene.input.MouseEvent> playCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> playCard = new EventHandler<javafx.scene.input.MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             handController.playCard();
@@ -148,13 +150,9 @@ public class HandView extends View implements IObserver {
             source.select();
             handController.selectCard(source.getCard());
             discardCardButton.setDisable(false);
-            depositCardButton.setDisable(false);
+            if (handController.getLocalPlayer().getActionsRemaining() > 0) depositCardButton.setDisable(false);
 
-            if (source instanceof UIEventCard) {
-                playCardButton.setDisable(false);
-            } else {
-                playCardButton.setDisable(true);
-            }
+            playCardButton.setDisable(!(source instanceof UIEventCard));
         }
     };
     
@@ -162,6 +160,7 @@ public class HandView extends View implements IObserver {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
         	handController.depositCard();
+            if (handController.getLocalPlayer().getActionsRemaining() <= 0) depositCardButton.setDisable(true);
         }
     };
 
@@ -172,11 +171,7 @@ public class HandView extends View implements IObserver {
     }
     
     public void handleCardLimit() {
-        if(cards.size() > 7) {
-        	goBackButton.setDisable(true);
-        } else {
-        	goBackButton.setDisable(false);
-        }
+        goBackButton.setDisable(cards.size() > 7);
     }
    
     @Override

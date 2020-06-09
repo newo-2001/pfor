@@ -19,7 +19,7 @@ public class FaberFortunaeAction implements IAction {
 	 * Draws a citycard for the player and adds it to his hand.
 	 */
 	public void execute() {
-		Deck cityDeck = game.getCityDeck();
+		Deck cityDeck = game.getPlayerCardsDeck();
 		CityCard card = (CityCard) cityDeck.draw();
 		Player player = game.getPlayerTurn();
 		player.getHand().addCards(card);

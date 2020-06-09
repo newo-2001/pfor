@@ -41,6 +41,6 @@ public class PlayerDTO extends DTO {
      */
     public Player toModel() {
         return new Player(username, CityFactory.getInstance().getCityByName(city),
-                RoleCardFactory.getInstance().getCardByName(role), turn);
+                RoleCardFactory.getInstance().getCardByName(role), turn, false);
     }
 }

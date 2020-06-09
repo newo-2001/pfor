@@ -1,7 +1,6 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.factories.FactionFactory;
-import com.groep6.pfor.factories.RoleCardFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
@@ -21,16 +20,6 @@ public class HandController extends Controller {
     private Card selectedCard;
 
     public HandController() {
-        game.setLocalPlayer(new Player(new LobbyPlayer("Bastiaan", RoleCardFactory.getInstance().pickRandomRoleCard(), true, true, "")));
-        Player localPlayer = game.getLocalPlayer();
-        Faction[] factionTypes = new Faction[] {};
-        FactionFactory factionFactory = FactionFactory.getInstance();
-        localPlayer.getHand().addCards(new CityCard("Card 1", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.ANGLO_SAXSONS_FRANKS)));
-        localPlayer.getHand().addCards(new CityCard("Card 2", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.OSTROGOTHS)));
-        localPlayer.getHand().addCards(new CityCard("Card 3", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
-        localPlayer.getHand().addCards(new CityCard("Card 4", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.HUNS)));
-        localPlayer.getHand().addCards(new CityCard("Card 5", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VANDALS)));
-        localPlayer.getHand().addCards(new CityCard("Card 6", new City("City 1", false, new Vector2f(), factionTypes), factionFactory.getFaction(FactionType.VISIGOTHS)));
     
         viewController.showView(new HandView(this));
     }
@@ -54,9 +43,9 @@ public class HandController extends Controller {
         game.getLocalPlayer().getHand().removeCard(selectedCard);
         
         if (selectedCard instanceof CityCard) {
-        	game.getCityDiscardPile().addCards(selectedCard);
+        	game.getCityCardsDiscardPile().addCards(selectedCard);
         } else if (selectedCard instanceof EventCard) {
-        	game.getInvasionDiscardPile().addCards(selectedCard);
+        	game.getInvasionCardsDiscardPile().addCards(selectedCard);
         }
 
         SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
@@ -67,7 +56,7 @@ public class HandController extends Controller {
 
         if (selectedCard instanceof EventCard) {
             game.getLocalPlayer().getHand().removeCard(selectedCard);
-        	game.getInvasionDiscardPile().addCards(selectedCard);
+        	game.getInvasionCardsDiscardPile().addCards(selectedCard);
         	((EventCard) selectedCard).executeEvent();
         }
 
@@ -83,7 +72,16 @@ public class HandController extends Controller {
     }
 
 	public void depositCard() {
+        Player player = game.getPlayerTurn();
+
+        if (player.getActionsRemaining() <= 0) return;
+
         game.getLocalPlayer().getHand().removeCard(selectedCard);
-		game.getTradeDeck().addCards(selectedCard);
+		game.getTradeCardsDeck().addCards(selectedCard);
+        player.decreaseActionsRemaining();
 	}
+
+	public Player getLocalPlayer() {
+        return game.getLocalPlayer();
+    }
 }

@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
@@ -12,6 +13,9 @@ import com.groep6.pfor.views.components.UIPlayerInfo;
 
 import com.groep6.pfor.views.components.UIText;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -47,14 +51,26 @@ import java.util.TimerTask;
  * The view that shows the board
  * @author Bastiaan Jansen
  * @author Mitchell van Rijswijk
- * 
+ *
  */
 public class BoardView extends View implements IObserver {
     
 	private BoardController boardController;
 	private BorderPane root;
 	private static final Vector2f CANVAS_SIZE = new Vector2f(842, 617);
-	private static final float CIRCLE_RADIUS = 15f;
+	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
+
+	private UIText actionCount;
+
+    private Button conspireButton;
+    private Button battleButton;
+    private Button allianceButton;
+    private Button recruitBarbarianButton;
+    private Button buildButton;
+    private Button recruitButton;
+    private Button showHandButton;
+    private Button helpButton;
+    private Button nextTurnButton;
 
     public BoardView(BoardController controller) {
         boardController = controller;
@@ -68,86 +84,90 @@ public class BoardView extends View implements IObserver {
     /**
      * Creates JavaFX Scene for the board. This is in the state where the game has
      * started. Buttons navigate to different actions a player can perform.
-     * 
+     *
      */
     public void createView() {
         root = new BorderPane();
 
-        // Top - players
-        HBox playerList = createPlayerList();
-        root.setTop(playerList);
-        
         // Center - board
         Canvas boardCanvas = createBoard();
         root.setCenter(boardCanvas);
-        
+
         // Right - action buttons
         GridPane actionButtonLayout = createActionButtons();
         root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         root.setRight(actionButtonLayout);
+
+        // Change listeners
+        root.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(newValue);
+            }
+        });
     }
 
     EventHandler<MouseEvent> goToTradeView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	new TradeController();
-            
+            new TradeController();
+
         }
     };
-    
+
     EventHandler<MouseEvent> goToBattleView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	boardController.goToBattleView();
+            boardController.goToBattleView();
         }
     };
-    
+
     EventHandler<MouseEvent> goToAllianceView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+
         }
     };
-    
+
     EventHandler<MouseEvent> goToRecruitBarbarianView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             new RecruitBarbarianController();
         }
     };
-    
+
     EventHandler<MouseEvent> goToFortBuildView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+
         }
     };
-    
+
     EventHandler<MouseEvent> goToRecruitLegionView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	new RecruitLegionController();
+            new RecruitLegionController();
         }
     };
-    
+
     EventHandler<MouseEvent> goToHandView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             new HandController();
         }
     };
-    
+
     EventHandler<MouseEvent> goToInstructionView = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             boardController.goToInstructionView();
         }
     };
-    
+
     EventHandler<MouseEvent> nextTurn = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-            
+
         }
     };
 
@@ -161,85 +181,92 @@ public class BoardView extends View implements IObserver {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 Vector2f mouse = new Vector2f((float) event.getX(), (float) event.getY());
-                if (pos.distance(mouse) < CIRCLE_RADIUS) {
+                if (pos.distance(mouse) < CIRCLE_RADIUS * CANVAS_SIZE.y) {
                     boardController.cityPressed(city);
                     break;
                 }
             }
         }
     };
-    
+
     /**
      * Creates a GridPane with the ActionButtons of the game.
      * @return GridPane layout of ActionButtons.
-     * 
+     *
      */
     private GridPane createActionButtons() {
-    	GridPane actionButtonLayout = new GridPane();
-    	
-    	actionButtonLayout.setHgap(12);
+        GridPane actionButtonLayout = new GridPane();
+
+        actionButtonLayout.setHgap(12);
         actionButtonLayout.setVgap(12);
         actionButtonLayout.setAlignment(Pos.CENTER);
         actionButtonLayout.setPadding(new Insets(20, 20, 20, 20));
         actionButtonLayout.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-    	
-    	UIText actionCount = new UIText("<X> Actions left");
-    	actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
-    	actionButtonLayout.add(actionCount, 0, 0, 2, 1);
-        
-        Button conspireButton = new UIButton("RUILEN");
+
+        actionCount = new UIText();
+        actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
+        actionButtonLayout.add(actionCount, 0, 0, 2, 1);
+
+        conspireButton = new UIButton("RUILEN");
         conspireButton.setPrefSize(150, 60);
-        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);  
+        conspireButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToTradeView);
+        conspireButton.setDisable(true);
         actionButtonLayout.add(conspireButton, 0, 1);
-        
-        Button battleButton = new UIButton("VECHTEN");
+
+        battleButton = new UIButton("VECHTEN");
         battleButton.setPrefSize(150, 60);
-        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);  
+        battleButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToBattleView);
+        battleButton.setDisable(true);
         actionButtonLayout.add(battleButton, 1, 1);
-        
-        Button allianceButton = new UIButton("ALLIANTIE SLUITEN");
+
+        allianceButton = new UIButton("ALLIANTIE SLUITEN");
         allianceButton.setPrefSize(150, 60);
-        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView); 
+        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView);
+        allianceButton.setDisable(true);
         actionButtonLayout.add(allianceButton, 0, 2);
-        
-        Button recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
+
+        recruitBarbarianButton = new UIButton("BARBAREN INHUREN");
         recruitBarbarianButton.setPrefSize(150, 60);
         recruitBarbarianButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitBarbarianView);
+        recruitBarbarianButton.setDisable(true);
         actionButtonLayout.add(recruitBarbarianButton, 1, 2);
-        
-        Button buildButton = new UIButton("FORT BOUWEN");
+
+        buildButton = new UIButton("FORT BOUWEN");
         buildButton.setPrefSize(150, 60);
         buildButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToFortBuildView);
+        buildButton.setDisable(true);
         actionButtonLayout.add(buildButton, 0, 3);
-        
-        Button recruitButton = new UIButton("LEGIOEN REKRUTEREN");
+
+        recruitButton = new UIButton("LEGIOEN REKRUTEREN");
         recruitButton.setPrefSize(150, 60);
         recruitButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToRecruitLegionView);
+        recruitButton.setDisable(true);
         actionButtonLayout.add(recruitButton, 1, 3);
-        
-        Button showHandButton = new UIButton("BEKIJK HAND");
+
+        showHandButton = new UIButton("BEKIJK HAND");
         showHandButton.setPrefSize(150, 60);
         showHandButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToHandView);
         actionButtonLayout.add(showHandButton, 0, 8);
-        
-        Button helpButton = new UIButton("HELP");
+
+        helpButton = new UIButton("HELP");
         helpButton.setPrefSize(150, 60);
         helpButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
         actionButtonLayout.add(helpButton, 1, 8);
-        
-        Button nextTurnButton = new UIButton("VOLGENDE BEURT");
+
+        nextTurnButton = new UIButton("VOLGENDE BEURT");
         nextTurnButton.setPrefSize((2 * helpButton.getPrefWidth()) + actionButtonLayout.getHgap(), 60);
         nextTurnButton.addEventFilter(MouseEvent.MOUSE_CLICKED, nextTurn);
         nextTurnButton.setBackground(new Background(new BackgroundFill(Color.web("#57b932"), CornerRadii.EMPTY, Insets.EMPTY)));
+        nextTurnButton.setDisable(true);
         actionButtonLayout.add(nextTurnButton, 0, 9, 2, 1);
-        
+
         return actionButtonLayout;
     }
-    
+
     /**
      * Creates the image of the board.
      * @return Pane layout of the board.
-     * 
+     *
      */
     private Canvas createBoard() {
         Canvas canvas = new Canvas(CANVAS_SIZE.x, CANVAS_SIZE.y);
@@ -248,60 +275,83 @@ public class BoardView extends View implements IObserver {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, CANVAS_SIZE.x, CANVAS_SIZE.y);
 
-        updateCanvas.start();
-
         return canvas;
     }
 
     /**
      * Creates the list of players, shown on the top of the game screen.
      * @return HBox layout of the players.
-     * 
+     *
      */
-    
+
     private HBox createPlayerList() {
-    	HBox playerList = new HBox();
+        HBox playerList = new HBox();
 
-    	List<Player> players = boardController.getPlayers();
+        List<Player> players = boardController.getPlayers();
 
-    	for (int i = 0; i < players.size(); i++) {
+        for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
 
-            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), ++i, player.getUsername(), player.getRoleCard().getName());
+            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), ++i, player.getUsername(), player.getRoleCard().getName(), player.isTurn());
             playerList.getChildren().add(uiPlayerInfo);
         }
 
-    	playerList.setAlignment(Pos.CENTER);
-    	playerList.setPadding(new Insets(20, 20, 20, 20));
-    	playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        
-    	return playerList;
+        playerList.setAlignment(Pos.CENTER);
+        playerList.setPadding(new Insets(20, 20, 20, 20));
+        playerList.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        root.setTop(playerList);
+
+        return playerList;
     }
 
     private Canvas getCanvas() {
         return (Canvas) root.getCenter();
     }
 
-    private AnimationTimer updateCanvas = new AnimationTimer() {
-        @Override
-        public void handle(long time) {
-            GraphicsContext gc = getCanvas().getGraphicsContext2D();
+    public void updateCanvas() {
+        GraphicsContext gc = getCanvas().getGraphicsContext2D();
 
-            // Draw city circles
-            gc.setFill(Color.RED);
-            for (Tile tile : boardController.getTiles()) {
-                if (tile instanceof City) {
-                    City city = (City) tile;
-                    Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
-                    gc.fillOval(pos.x - CIRCLE_RADIUS, pos.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
-                }
+        // Draw city circles
+        gc.setFill(Color.RED);
+        for (Tile tile : boardController.getTiles()) {
+            if (tile instanceof City) {
+                City city = (City) tile;
+                Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
+                float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
+                gc.fillOval(pos.x - r, pos.y - r, r * 2, r * 2);
             }
         }
-    };
+    }
 
     @Override
     public void update() {
-    	
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                actionCount.setText(boardController.getPlayerTurn().getActionsRemaining() + " actions left");
+                updateCanvas();
+                createPlayerList();
+            }
+        });
+
+        if (boardController.getLocalPlayer() != null && boardController.getLocalPlayer().isTurn()) {
+            conspireButton.setDisable(false);
+            battleButton.setDisable(false);
+            allianceButton.setDisable(false);
+            buildButton.setDisable(false);
+            recruitButton.setDisable(false);
+            recruitBarbarianButton.setDisable(false);
+            nextTurnButton.setDisable(false);
+        } else {
+            conspireButton.setDisable(true);
+            battleButton.setDisable(true);
+            allianceButton.setDisable(true);
+            buildButton.setDisable(true);
+            recruitButton.setDisable(true);
+            recruitBarbarianButton.setDisable(true);
+            nextTurnButton.setDisable(true);
+        }
     }
 
     @Override

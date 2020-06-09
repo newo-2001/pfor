@@ -1,6 +1,9 @@
 package com.groep6.pfor.util.parsers.templates;
 
+import com.groep6.pfor.factories.CityCardFactory;
+import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.cards.*;
+import com.groep6.pfor.models.factions.FactionType;
 
 /**
  * The representation of a card in Firebase
@@ -35,6 +38,11 @@ public class CardDTO extends DTO {
     }
 
     public Card toModel() {
+        switch (type) {
+            case "city":
+                return CityCardFactory.getInstance().getCardByName(name, FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
+        }
+        return null;
         // TODO cast card from the database to correct model
     }
 
