@@ -74,7 +74,6 @@ public class BoardView extends View implements IObserver {
         boardController.registerObserver(this);
 
         createView();
-        System.out.println(CIRCLE_RADIUS);
         update();
     }
 
