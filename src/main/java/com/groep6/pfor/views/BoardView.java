@@ -288,7 +288,7 @@ public class BoardView extends View implements IObserver {
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
 
-            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), i + 1, player.getUsername(), player.getRoleCard().getName(), player.isTurn());
+            UIPlayerInfo uiPlayerInfo = new UIPlayerInfo(player.getRoleCard().getColor(), i + 1, player.getUsername(), player.getRoleCard().getName(), player.isTurn(), player.getActionsRemaining());
             playerList.getChildren().add(uiPlayerInfo);
         }
 
@@ -334,7 +334,7 @@ public class BoardView extends View implements IObserver {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                actionCount.setText(boardController.getPlayerTurn().getActionsRemaining() + " actions left");
+                actionCount.setText(boardController.getLocalPlayer().getActionsRemaining() + " actions left");
                 updateCanvas();
                 createPlayerList();
             }
