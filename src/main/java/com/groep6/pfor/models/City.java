@@ -9,9 +9,11 @@ import java.util.Stack;
  * @author Nils van der Velden
  */
 
+import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
+import com.groep6.pfor.util.parsers.templates.CityDTO;
 import com.groep6.pfor.util.parsers.templates.FactionDTO;
 import java.util.List;
 
@@ -33,6 +35,31 @@ public class City extends Tile {
 		super(position, factions);
 		this.name = name;
 		this.harbour = harbour;
+	}
+
+	/**
+	 * Constructs a new city with data from a city from the remote server
+	 * @param name The name of the city
+	 * @param legions The legions in this city
+	 * @param barbarians The barbarians in this city
+	 * @param fort whether this city has a fort in it
+	 * @return A new city instance
+	 */
+	public City(String name, Stack<Legion> legions, Stack<Barbarian> barbarians, boolean fort) {
+		super(CityFactory.getInstance().getCityByName(name).position, CityFactory.getInstance().getCityByName(name).getFactions());
+		this.legions = legions;
+		this.barbarians = barbarians;
+		this.fort = fort;
+	}
+
+	/**
+	 * Updates this model with data from a city from the remote server
+	 * @param city The city to copy the data from
+	 */
+	public void updateCity(City city) {
+		this.barbarians = city.barbarians;
+		this.legions = city.legions;
+		this.fort = city.fort;
 	}
 
     /**

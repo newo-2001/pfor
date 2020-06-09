@@ -30,6 +30,7 @@ public class Game extends Observable implements IObserver {
     private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
+    private String code;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
@@ -52,6 +53,55 @@ public class Game extends Observable implements IObserver {
             Faction[] factions = city.getFactions();
             city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), rand.nextInt(3));
         }
+    }
+
+    public Game(Board board, List<Player> players, List<Faction> friendlyFactions, int decayLevel, int invasionLevel,
+                Deck tradeDeck, Deck invasionDeck, Deck cityDeck, Deck invasionDiscardPile, Deck cityDiscardPile) {
+        this.board = board;
+        this.players = players;
+        this.friendlyFactions = friendlyFactions;
+        this.decayLevel = decayLevel;
+        this.invasionLevel = invasionLevel;
+        this.tradeCardsDeck = tradeDeck;
+        //this.invasionCardsDeck = invasionDeck;
+        this.cityCardsDeck = cityDeck;
+        this.invasionCardsDiscardPile = invasionDiscardPile;
+        this.cityCardsDiscardPile = cityDiscardPile;
+
+        // Create new dice instances
+        for (int i = 0; i < die.length; i++) {
+            die[i] = new Dice();
+        }
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    /**
+     * Update the local game with the data from the remote version
+     * @param remote The remote version of the game
+     */
+    public void updateGame(Game remote) {
+        Game client = getInstance();
+        Player local = client.getLocalPlayer();
+        getInstance().players = remote.getAllPlayers();
+        for (Player player : client.getAllPlayers()) {
+            if (player.equals(local)) client.setLocalPlayer(local);
+        }
+
+        client.board = remote.board;
+        client.decayLevel = remote.decayLevel;
+        client.invasionLevel = remote.invasionLevel;
+        client.invasionCardsDeck = remote.invasionCardsDeck;
+        client.invasionCardsDiscardPile = remote.invasionCardsDiscardPile;
+        client.cityCardsDeck = remote.cityCardsDeck;
+        client.cityCardsDiscardPile = remote.cityCardsDiscardPile;
+        client.tradeCardsDeck = remote.tradeCardsDeck;
     }
 
     public Player nextTurn() {
@@ -126,9 +176,17 @@ public class Game extends Observable implements IObserver {
     public Deck getInvasionCardsDeck() {
         return invasionCardsDeck;
     }
-    
+
+    public int getInvasionLevel() {
+        return invasionLevel;
+    }
+
     public Deck getTradeCardsDeck() {
     	return tradeCardsDeck;
+    }
+
+    public Deck getCityCardsDeck() {
+        return cityCardsDeck;
     }
 
     /**
@@ -177,8 +235,7 @@ public class Game extends Observable implements IObserver {
     }
 
     public boolean isFriendlyFaction(Faction faction) {
-        if (friendlyFactions.contains(faction)) return true;
-        return false;
+        return friendlyFactions.contains(faction);
     }
 
     public Player getLocalPlayer() {
@@ -187,6 +244,10 @@ public class Game extends Observable implements IObserver {
         }
 
         return null;
+    }
+
+    public void setLocalPlayer(Player player) {
+        for (Player p : getAllPlayers()) if (player.equals(p)) p.setLocal(true);
     }
 
     @Override

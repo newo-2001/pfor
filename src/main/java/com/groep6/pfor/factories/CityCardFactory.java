@@ -2,12 +2,15 @@ package com.groep6.pfor.factories;
 
 import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.CityCard;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 
 /**
  *
  * @author Nils van der Velden
  */
+
+import java.util.function.Predicate;
 
 public class CityCardFactory {
 	
@@ -67,6 +70,11 @@ public class CityCardFactory {
 		cityCardDeck.addCards(new CityCard(cityFactory.getCityByName("Burdigala"), factionFactory.getFaction(FactionType.VANDALS)));		
 		cityCardDeck.addCards(new CityCard(cityFactory.getCityByName("Syracusae"), factionFactory.getFaction(FactionType.VANDALS)));
 		cityCardDeck.addCards(new CityCard(cityFactory.getCityByName("Tingi"), factionFactory.getFaction(FactionType.VANDALS)));
+	}
+
+	public CityCard getCardByName(String name, Faction faction) {
+		// Yes, java 8 streams are beautiful
+		return (CityCard) cityCardDeck.getCards().stream().filter(card -> card.getName().equals(name) && ((CityCard) card).getFaction().equals(faction)).toArray()[0];
 	}
 
 	public static CityCardFactory getInstance() {

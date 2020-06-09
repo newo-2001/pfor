@@ -2,9 +2,7 @@ package com.groep6.pfor.util.parsers.templates;
 
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.RoleCardFactory;
-import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
-import com.groep6.pfor.models.cards.RoleCard;
 
 /**
  * The Data Transfer Object that represents a Player in Firebase
@@ -24,20 +22,17 @@ public class PlayerDTO extends DTO {
     /** The name of the rolecard this player has */
     public String role;
 
-    /**
-     * Obtains the rolecard that belongs to this player
-     * @return The rolecard that belongs to this player
-     */
-    public RoleCard getRoleCard() {
-        return RoleCardFactory.getInstance().getCardByName(role);
+    public PlayerDTO() {}
+
+    public PlayerDTO(String username, boolean turn, String city, String role) {
+        this.username = username;
+        this.turn = turn;
+        this.city = city;
+        this.role = role;
     }
 
-    /**
-     * Gets the city the player is currently in
-     * @return The city the player is in
-     */
-    public City getCity() {
-        return CityFactory.getInstance().getCityByName(city);
+    public static PlayerDTO fromModel(Player player) {
+        return new PlayerDTO(player.getUsername(), player.isTurn(), player.getCity().getName(), player.getRoleCard().getName());
     }
 
     /**
@@ -45,6 +40,7 @@ public class PlayerDTO extends DTO {
      * @return The model representation of this data object
      */
     public Player toModel() {
-        return new Player(username, getCity(), getRoleCard(), turn, false);
+        return new Player(username, CityFactory.getInstance().getCityByName(city),
+                RoleCardFactory.getInstance().getCardByName(role), turn, false);
     }
 }

@@ -4,12 +4,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.firestore.*;
 import com.groep6.pfor.exceptions.NoDocumentException;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.ServerEvent;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,9 @@ import java.util.Map;
 public class LobbyService {
     /** This event is fired when a lobby is changed */
     public static ServerEvent lobbyChangeEvent = new ServerEvent();
+    public static ServerEvent gameStartEvent = new ServerEvent();
+    private static ListenerRegistration listener;
+    private static Lobby cache;
 
     /**
      * Obtain the list of players in a lobby
@@ -38,6 +42,7 @@ public class LobbyService {
      * @throws NoDocumentException If the query had no results
      */
     public Lobby get(String code) throws NoDocumentException {
+        if (cache != null) return cache;
         return Firebase.requestDocument("lobbies/" + code).toObject(LobbyDTO.class).toModel();
     }
 
@@ -97,7 +102,7 @@ public class LobbyService {
      *               in the player instance.
      */
     public void join(LobbyPlayer player) {
-        Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
+        if (listener == null) listener = Firebase.registerListener("lobbies/" + player.getLobby(), onLobbyChange);
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> kv = mapper.convertValue(LobbyPlayerDTO.fromModel(player), new TypeReference<Map<String, Object>>() {});
@@ -112,15 +117,38 @@ public class LobbyService {
     public void leave(LobbyPlayer player) {
         DocumentReference doc = Firebase.docRefFromPath("lobbies/" + player.getLobby());
         doc.update(FieldPath.of("players", player.getUsername()), FieldValue.delete());
+        removeListener();
+        GameService.removeListener();
+        cache = null;
     }
 
-    private EventListener<DocumentSnapshot> onLobbyChange = new EventListener<DocumentSnapshot>() {
-        @Override
-        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirestoreException e) {
-            if (e != null) e.printStackTrace();
-            else LobbyService.lobbyChangeEvent.fire(documentSnapshot.toObject(LobbyDTO.class).toModel());
+    public static void removeListener() {
+        if (listener == null) return;
+        listener.remove();
+        listener = null;
+    }
 
-            System.out.println("Updating...");
+    private static EventListener<DocumentSnapshot> onLobbyChange = (documentSnapshot, e) -> {
+        if (e != null) e.printStackTrace();
+        else {
+            LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
+            if (dto.started == true) {
+                GameService.listener = Firebase.registerListener("games/" + dto.code, GameService.onGameChange);
+                try {
+                    gameStartEvent.fire(new GameService().getGame(dto.code));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+                removeListener();
+            } else {
+                cache = dto.toModel();
+                LobbyService.lobbyChangeEvent.fire(cache);
+            }
         }
+
+        System.out.println("LOBBY_CHANGE_EVENT");
     };
+
+
 }

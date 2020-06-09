@@ -12,12 +12,17 @@ public enum FactionType {
 
     private String name;
 
+    /**
+     * @param name
+     */
     FactionType(String name) {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
+    /**
+     * @return Dutch name of faction
+     */
+    public String getName() {
         return name;
     }
 }

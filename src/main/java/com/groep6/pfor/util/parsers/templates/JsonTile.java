@@ -8,7 +8,7 @@ import com.groep6.pfor.models.factions.FactionType;
  *
  * @author Owen Elderbroek
  */
-public class TileDTO extends DTO {
+public class JsonTile extends DTO {
     /** The position of the tile on the board in its DTO form */
     @SerializedName("position")
     private Vector2fDTO position;

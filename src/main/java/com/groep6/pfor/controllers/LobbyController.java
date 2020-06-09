@@ -1,11 +1,13 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.models.*;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IEventCallback;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import com.groep6.pfor.views.RoleCardInfoView;
+import javafx.application.Platform;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,7 +27,21 @@ public class LobbyController extends Controller {
         this.lobby = lobby;
         LobbyService.lobbyChangeEvent.subscribe(onLobbyChange);
         viewController.showView(new LobbyView(this));
+
+        LobbyService.gameStartEvent.subscribe(eventData -> {
+            System.out.println("On Lobby Start");
+
+            Game.getInstance().addPlayers(lobby.getLocalPlayer());
+            onGameChange.onEvent(eventData);
+            GameService.gameChangeEvent.subscribe(onGameChange);
+            Platform.runLater(() -> new BoardController());
+        });
     }
+
+    private IEventCallback onGameChange = eventData -> {
+        Game game = (Game) eventData[0];
+        Game.getInstance().updateGame(game);
+    };
 
     /**
      * @return lobby code
@@ -72,15 +88,17 @@ public class LobbyController extends Controller {
     }
 
     public void startGame() {
-
         List<LobbyPlayer> players = lobby.getPlayers();
         Collections.shuffle(players);
 
+        game.setCode(getLobbyCode());
         game.addPlayers(players.toArray(new LobbyPlayer[0]));
         game.getAllPlayers().get(0).setTurn();
 
-        new BoardController();
+        GameService gameService = new GameService();
+        gameService.create(game);
 
+        new BoardController();
     }
 
     /**

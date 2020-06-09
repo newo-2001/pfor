@@ -1,43 +1,63 @@
 package com.groep6.pfor.util.parsers.templates;
 
-import com.google.gson.annotations.SerializedName;
 import com.groep6.pfor.factories.FactionFactory;
+import com.groep6.pfor.models.Barbarian;
 import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Legion;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 /**
- * The Data Transfer Object that represents a City in json
+ * Represents a City in Firebase
  *
- * @author Owen Elderbroek
+ * @author OwenElderbroek
  */
 public class CityDTO extends DTO {
-    /** The tile that this city is based on, in its DTO form */
-    @SerializedName("tile")
-    private TileDTO tile;
+    public String name;
+    public boolean fort;
+    public int legions;
+    public int barbarians;
 
-    /** The name of city */
-    @SerializedName("name")
-    private String name;
+    public CityDTO() {}
 
-    /** Whether the city has a harbour */
-    @SerializedName("harbour")
-    private boolean harbour;
+    private CityDTO(String name, boolean fort, int legions, int barbarians) {
+        this.name = name;
+        this.fort = fort;
+        this.legions = legions;
+        this.barbarians = barbarians;
+    }
 
-    /**
-     * Gets the model that is represented by this Data Transfer Object
-     * @return The city that this object represents
-     */
+    public static CityDTO fromModel(City city) {
+        Map<String, Integer> barbarians = new HashMap<>();
+        for (Faction faction : FactionFactory.getInstance().getFactions()) barbarians.put(faction.getFactionType().toString(), 0);
+        for (Barbarian barbarian : city.getBarbarians())
+            barbarians.put(barbarian.getFactionType().toString(), barbarians.get(barbarian.getFactionType().toString()) + 1);
+
+        int barbs = barbarians.get(FactionType.VISIGOTHS.toString());
+        barbs |= barbarians.get(FactionType.VANDALS.toString()) * 64;
+        barbs |= (int) (barbarians.get(FactionType.ANGLO_SAXSONS_FRANKS.toString()) * Math.pow(64, 2));
+        barbs |= (int) (barbarians.get(FactionType.HUNS.toString()) * Math.pow(64, 3));
+        barbs |= (int) (barbarians.get(FactionType.OSTROGOTHS.toString()) * Math.pow(64, 4));
+        return new CityDTO(city.getName(), city.hasFort(), city.getLegionCount(), barbs);
+    }
+
     public City toModel() {
-        Faction[] factions = new Faction[this.tile.getFactions().length];
-        for (int i = 0; i < this.tile.getFactions().length; i++) factions[i] = FactionFactory.getInstance().getFaction(this.tile.getFactions()[i]);
-        return new City(name, harbour, tile.getPosition().toModel(), factions);
+        Stack<Legion> legions = new Stack<>();
+        for (int i = 0; i < this.legions; i++) legions.push(new Legion());
+        Stack<Barbarian> barbarians = new Stack<>();
+        addBarbarians(FactionType.VISIGOTHS, this.barbarians & 63, barbarians);
+        addBarbarians(FactionType.VANDALS, this.barbarians & (63 << 6) >> 6, barbarians);
+        addBarbarians(FactionType.ANGLO_SAXSONS_FRANKS, this.barbarians & (63 << 12) >> 12, barbarians);
+        addBarbarians(FactionType.HUNS, this.barbarians & (63 << 18) >> 18, barbarians);
+        addBarbarians(FactionType.OSTROGOTHS, this.barbarians & (63 << 24) >> 24, barbarians);
+        return new City(name, legions, barbarians, fort);
     }
 
-    public String[] getNeighbours() {
-        return tile.getNeighbours();
-    }
-
-    public String getName() {
-        return name;
+    private void addBarbarians(FactionType faction, int count, Stack<Barbarian> stack) {
+        for (int i = 0; i < count; i++) stack.push(new Barbarian(faction));
     }
 }

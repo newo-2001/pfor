@@ -135,6 +135,10 @@ public class Player extends Observable implements IObserver {
         notifyObservers();
     }
 
+    public void setLocal(boolean local) {
+        this.isLocal = local;
+    }
+
     public City getCity() {
         return city;
     }
@@ -148,6 +152,11 @@ public class Player extends Observable implements IObserver {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Player)) return false;
+        return ((Player) o).username.equals(username);
+    }
+
     public void update() {
         System.out.println("Legions: " + city.getLegions());
         System.out.println("Barbarians: " + city.getBarbarians());

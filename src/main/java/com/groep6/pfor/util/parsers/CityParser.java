@@ -5,7 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.groep6.pfor.models.City;
-import com.groep6.pfor.util.parsers.templates.CityDTO;
+import com.groep6.pfor.util.parsers.templates.JsonCity;
 
 import java.text.ParseException;
 import java.util.*;
@@ -21,13 +21,13 @@ public class CityParser extends JsonParser {
         Map<String, City> cities = new HashMap<String, City>();
         for (Iterator<JsonElement> it = json.iterator(); it.hasNext();) {
             JsonObject cityField = (JsonObject) it.next();
-            City city = new Gson().fromJson(cityField, CityDTO.class).toModel();
+            City city = new Gson().fromJson(cityField, JsonCity.class).toModel();
             cities.put(city.getName().toUpperCase(), city);
         }
 
         for (Iterator<JsonElement> it = json.iterator(); it.hasNext();) {
             JsonObject cityField = (JsonObject) it.next();
-            CityDTO dto = new Gson().fromJson(cityField, CityDTO.class);
+            JsonCity dto = new Gson().fromJson(cityField, JsonCity.class);
             for (String neighbourName : dto.getNeighbours()) {
                 City neighbour = cities.get(neighbourName.toUpperCase());
                 cities.get(dto.getName().toUpperCase()).addNeighbour(neighbour);
