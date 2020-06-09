@@ -312,7 +312,7 @@ public class BoardView extends View implements IObserver {
         // Draw city circles
         
         for (Tile tile : boardController.getTiles()) {
-        	gc.setFill(Color.TRANSPARENT);
+        	gc.setFill(Color.RED);
             if (tile instanceof City) {
                 City city = (City) tile;
                 Vector2f pos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
