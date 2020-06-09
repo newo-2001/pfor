@@ -44,7 +44,11 @@ public class BoardView extends View implements IObserver {
     
 	private BoardController boardController;
 	private BorderPane root;
-	private static final Vector2f CANVAS_SIZE = new Vector2f(842, 617);
+	
+	private static int canvasX = (int) (0.65 * ViewController.getInstance().getPrimaryStage().getWidth());
+	private static int canvasY = Math.round(canvasX * (880f / 1200f));
+	
+	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
 	private static final float CIRCLE_RADIUS = 20f / CANVAS_SIZE.y;
 
 	private UIText actionCount;
@@ -89,7 +93,14 @@ public class BoardView extends View implements IObserver {
         root.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println(newValue);
+            	updateCanvasSize();
+            }
+        });
+        
+        root.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            	updateCanvasSize();
             }
         });
     }
@@ -295,6 +306,7 @@ public class BoardView extends View implements IObserver {
 
     public void updateCanvas() {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
+        gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
 
         // Draw city circles
         gc.setFill(Color.RED);
@@ -336,6 +348,16 @@ public class BoardView extends View implements IObserver {
             recruitBarbarianButton.setDisable(true);
             nextTurnButton.setDisable(true);
         }
+    }
+    
+    public void updateCanvasSize() {
+    	canvasX = (int) (0.65 * ViewController.getInstance().getPrimaryStage().getWidth());
+    	canvasY = Math.round(canvasX * (880f / 1200f));
+    	CANVAS_SIZE.x = canvasX;
+    	CANVAS_SIZE.y = canvasY;
+        getCanvas().setWidth(CANVAS_SIZE.x);
+        getCanvas().setHeight(CANVAS_SIZE.y);
+        updateCanvas();
     }
 
     @Override
