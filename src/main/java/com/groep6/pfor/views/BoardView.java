@@ -355,7 +355,7 @@ public class BoardView extends View implements IObserver {
             	final float BARB_SIZE = 5; // The size of a barbarian piece, measured from the center to an edge.
             	final float PIECE_SPREAD = r * 0.9f; // The radius around the center of the city the barbarians are allowed to spread to.
             	final float OVERLAP = 0.1f; // The percentage overlap barbarians are allowed to have, between 0-1.
-            	final float MAX_ITERATIONS = 1000; // The max amount of random position to try before giving up.
+            	final int MAX_ITERATIONS = 1000; // The max amount of random position to try before giving up.
             	List<Vector2f> barbpos = new ArrayList<>();
             	for (Barbarian barbarian : city.getBarbarians()) {
                     Vector2f pos = null;
@@ -408,6 +408,11 @@ public class BoardView extends View implements IObserver {
 
                 if (city.hasFort()) {
                     gc.drawImage(new Image("images/Fort.png"), cityPos.x - r, cityPos.y + r / 2f, r, r / 1.35f);
+                }
+                {
+                    Vector2f size = new Vector2f(0.033f, 0.045f).mul(CANVAS_SIZE);
+                    Vector2f decay = new Vector2f(0.0208f, 0.2893f + 0.5435f * boardController.getDecayLevel()).mul(CANVAS_SIZE);
+                    gc.drawImage(new Image("images/decay.png"), decay.x, decay.y, size.x, size.y);
                 }
             }
         }
