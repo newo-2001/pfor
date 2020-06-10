@@ -53,6 +53,7 @@ public class HandController extends Controller {
     
     public void playCard() {
         if (selectedCard == null) return;
+        if (!game.getLocalPlayer().isTurn()) return;
 
         if (selectedCard instanceof EventCard) {
             game.getLocalPlayer().getHand().removeCard(selectedCard);

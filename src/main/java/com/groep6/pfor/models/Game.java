@@ -2,6 +2,7 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
+import com.groep6.pfor.factories.EventCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
@@ -9,9 +10,6 @@ import com.groep6.pfor.util.Observable;
 
 import java.util.*;
 
-/**
- * @author Bastiaan Jansen
- */
 public class Game extends Observable implements IObserver {
 
     private static Game SINGLE_INSTANCE = new Game();
@@ -38,6 +36,7 @@ public class Game extends Observable implements IObserver {
     private Game() {
         Random rand = new Random();
         cityCardsDeck = CityCardFactory.getInstance().getCityCardDeck();
+        cityCardsDeck.merge(EventCardFactory.getInstance().getEventCardDeck());
         cityCardsDeck.shuffle();
 
         // Create new dice instances
@@ -103,9 +102,10 @@ public class Game extends Observable implements IObserver {
 
         for (Player player : getAllPlayers()) {
             if (player.equals(local)) {
-                System.out.println(player);
                 setLocalPlayer(local);
             }
+
+            System.out.println(player.getUsername() + " : " + player.isTurn());
         }
 
         board.updateBoard(remote.board);
@@ -122,8 +122,8 @@ public class Game extends Observable implements IObserver {
         this.players.addAll(Arrays.asList(players));
     }
 
-    public Player nextTurn() {
-        if (players.size() <= 0) return null;
+    public void nextTurn() {
+        if (players.size() <= 0) return;
 
         // Get current turn player
         Player currentPlayer = getPlayerTurn();
@@ -138,8 +138,6 @@ public class Game extends Observable implements IObserver {
         nextPlayer.setTurn();
 
         notifyObservers();
-
-        return nextPlayer;
     }
 
     /**
