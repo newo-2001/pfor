@@ -128,9 +128,10 @@ public class BoardController extends Controller {
     }
 
     public void formAlliance() {
-        // TODO Get faction
-        FactionFactory factionFactory = FactionFactory.getInstance();
-        int success = getLocalPlayer().formAlliance(factionFactory.getFaction(FactionType.VANDALS));
-        System.out.println(success);
+        getLocalPlayer().formAlliance(getLocalPlayer().formableAlliances().get(0));
+    }
+
+    public boolean canFormAlliance() {
+        return getLocalPlayer().formableAlliances().size() > 0;
     }
 }

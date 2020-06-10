@@ -435,6 +435,7 @@ public class BoardView extends View implements IObserver {
                 buildButton.setDisable(!boardController.canBuildFort());
                 recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
                 recruitButton.setDisable(!boardController.canRecruitLegions());
+                allianceButton.setDisable(!boardController.canFormAlliance());
             } else {
                 conspireButton.setDisable(true);
                 battleButton.setDisable(true);

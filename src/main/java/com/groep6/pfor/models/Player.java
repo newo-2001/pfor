@@ -3,6 +3,7 @@ package com.groep6.pfor.models;
 import java.util.*;
 
 import com.groep6.pfor.factories.CityFactory;
+import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.RoleCard;
@@ -168,33 +169,45 @@ public class Player extends Observable implements IObserver {
         notifyObservers();
     }
 
+    public List<Faction> formableAlliances() {
+        FactionFactory factionFactory = FactionFactory.getInstance();
+        List<Faction> factions = factionFactory.getFactions();
+        List<Card> cards = getHand().getCards();
+        List<Faction> formableAlliances = new ArrayList<>();
 
-    public int formAlliance(Faction faction) {
-        City city = getCity();
+        for (Faction faction : factions) {
+            int cardCount = 0;
+            for (Card card : cards) {
+                if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) {
+                    cardCount++;
+                }
+            }
+            if (cardCount >= faction.getCardCountForAlliance()) formableAlliances.add(faction);
+        }
+        return formableAlliances;
+    }
+
+    public List<Card> getCitycardsWithFaction(Faction faction) {
         List<Card> cards = getHand().getCards();
         List<Card> factionCards = new ArrayList<>();
-
         for (Card card : cards) {
             if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) {
                 factionCards.add(card);
             }
         }
+        return factionCards;
+    }
 
-        // City has no faction of this type
-        if (!city.hasFaction(faction)) return -2;
-
-        // Player has not enough cards of this faction
-        if (factionCards.size() < faction.getCardCountForAlliance()) return -1;
+    public void formAlliance(Faction faction) {
+        if (!formableAlliances().contains(faction)) return;
 
         // Ally this faction
         faction.ally();
 
         // Remove cards
-        getHand().removeCards(factionCards.toArray(new Card[factionCards.size()]));
+        List<Card> cardsToDiscard = getCitycardsWithFaction(faction);
+        getHand().removeCards(cardsToDiscard.toArray(new Card[cardsToDiscard.size()]));
 
-
-        // Barbaren worden legions
-
-        return 1;
+        // TODO: visualize alliance
     }
 }
