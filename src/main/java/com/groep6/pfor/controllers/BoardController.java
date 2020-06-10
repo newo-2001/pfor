@@ -92,9 +92,6 @@ public class BoardController extends Controller {
         City city = player.getCity();
         city.placeFort();
         player.decreaseActionsRemaining();
-
-        GameService gameService = new GameService();
-        gameService.setGame(game);
     }
 
     public boolean canRecruitBarbarians() {

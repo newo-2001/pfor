@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -80,6 +81,10 @@ public class Player extends Observable implements IObserver {
         if (actionsRemaining <= 0) return;
         actionsRemaining--;
         notifyObservers();
+
+        // Sync with server
+        GameService gameService = new GameService();
+        gameService.setGame(Game.getInstance());
     }
 
     public Hand getHand() {
