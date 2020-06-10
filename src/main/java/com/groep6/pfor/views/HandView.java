@@ -74,6 +74,7 @@ public class HandView extends View implements IObserver {
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
+        if (!handController.getLocalPlayer().isTurn()) playCardButton.setDisable(true);
         
         goBackButton = new UIButton("Ga terug");
         goBackButton.setDisable(false);
@@ -128,7 +129,7 @@ public class HandView extends View implements IObserver {
     
     EventHandler<MouseEvent> discardCard = new EventHandler<MouseEvent>() {
         @Override
-        public void handle(javafx.scene.input.MouseEvent e) {
+        public void handle(MouseEvent e) {
             handController.removeSelectedCard();
             discardCardButton.setDisable(true);
         }
@@ -136,7 +137,7 @@ public class HandView extends View implements IObserver {
     
     EventHandler<MouseEvent> playCard = new EventHandler<MouseEvent>() {
         @Override
-        public void handle(javafx.scene.input.MouseEvent e) {
+        public void handle(MouseEvent e) {
             handController.playCard();
             playCardButton.setDisable(true);
         }
@@ -145,7 +146,7 @@ public class HandView extends View implements IObserver {
     // Select a card
     EventHandler<MouseEvent> selectCard = new EventHandler<MouseEvent>() {
         @Override
-        public void handle(javafx.scene.input.MouseEvent e) {
+        public void handle(MouseEvent e) {
             deselectAllCards();
             UICard source = (UICard) e.getSource();
             source.select();
@@ -159,7 +160,7 @@ public class HandView extends View implements IObserver {
     
     EventHandler<MouseEvent> depositCard = new EventHandler<MouseEvent>() {
         @Override
-        public void handle(javafx.scene.input.MouseEvent e) {
+        public void handle(MouseEvent e) {
         	handController.depositCard();
             if (handController.getLocalPlayer().getActionsRemaining() <= 0) depositCardButton.setDisable(true);
         }
