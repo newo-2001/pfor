@@ -35,7 +35,7 @@ public class Game extends Observable implements IObserver {
 
     private Game() {
         Random rand = new Random();
-        cityCardsDeck = CityCardFactory.getInstance().getCityCardDeck();
+        cityCardsDeck = new Deck(CityCardFactory.getInstance().getCityCardDeck().getCards().toArray(new Card[0]));
         cityCardsDeck.merge(EventCardFactory.getInstance().getEventCardDeck());
         cityCardsDeck.shuffle();
 
