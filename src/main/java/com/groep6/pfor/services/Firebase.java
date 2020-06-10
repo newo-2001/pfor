@@ -83,7 +83,7 @@ public class Firebase {
      *             document Id
      * @param data The data that should form a document entry
      */
-    protected static void addDocument(String path, DTO data) {
+    protected static void addDocument(String path, Object data) {
         CollectionReference collRef = collRefFromPath(path);
         collRef.add(data);
     }
