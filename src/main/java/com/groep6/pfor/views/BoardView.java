@@ -1,5 +1,6 @@
 package com.groep6.pfor.views;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.groep6.pfor.controllers.BoardController;
@@ -12,6 +13,8 @@ import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
+import com.groep6.pfor.factories.FactionFactory;
+import com.groep6.pfor.models.*;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
@@ -319,14 +322,13 @@ public class BoardView extends View implements IObserver {
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
         List<Player> players = Game.getInstance().getAllPlayers();
 
-        // Draw city circles
         for (Tile tile : boardController.getTiles()) {
-        	gc.setFill(Color.TRANSPARENT);
             if (tile instanceof City) {
                 City city = (City) tile;
                 Vector2f cityPos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
-                
+                List<Vector2f> positions = new ArrayList<>();
+
                 // Draw players
             	for (Player player: players) {
             		if (player.getCity().equals(city)) {
@@ -334,8 +336,52 @@ public class BoardView extends View implements IObserver {
 	                	gc.strokeOval(cityPos.x - r, cityPos.y - r, r / 1.35, r / 1.35);
 	                	gc.fillOval(cityPos.x - r, cityPos.y - r, r / 1.35, r / 1.35);
 	                	gc.setFill(Color.TRANSPARENT);
+
+	                	positions.add(new Vector2f(cityPos.x - r + r / 1.35f / 2f, cityPos.y - r + r / 1.35f / 2f));
             		}
             	}
+
+            	if (city.hasFort()) positions.add(new Vector2f(cityPos.x - r / 2f, cityPos.y + r / 2f + r / 1.35f / 2f));
+
+            	// Calculate random valid positions for barbarians
+            	final float BARB_SIZE = 5; // The size of a barbarian piece, measured from the center to an edge.
+            	final float PIECE_SPREAD = r * 0.9f; // The radius around the center of the city the barbarians are allowed to spread to.
+            	final float OVERLAP = 0.1f; // The percentage overlap barbarians are allowed to have, between 0-1.
+            	final float MAX_ITERATIONS = 1000; // The max amount of random position to try before giving up.
+            	List<Vector2f> barbpos = new ArrayList<>();
+            	for (Barbarian barbarian : city.getBarbarians()) {
+                    Vector2f pos = null;
+                    int size = barbpos.size();
+                    for (int i = 0; i < MAX_ITERATIONS; i++) {
+                        pos = new Vector2f((float) Math.random() * PIECE_SPREAD * 2 - PIECE_SPREAD, (float) Math.random() * PIECE_SPREAD * 2 - PIECE_SPREAD).add(cityPos);
+                        boolean valid = true;
+                        for (Vector2f p : positions) {
+                            if (pos.distance(p) < BARB_SIZE * 2 * (1f - OVERLAP)) {
+                                valid = false;
+                                break;
+                            }
+                        }
+                        if (valid) {
+                            positions.add(pos);
+                            barbpos.add(pos);
+                            break;
+                        }
+                    }
+                    // Add the piece on a random pos anyway if it couldn't find a valid spot
+                    if (size == barbpos.size()) {
+                        barbpos.add(pos);
+                        positions.add(pos);
+                    }
+                }
+
+            	// Render the barbarians
+            	for (int i = 0; i < city.getTotalBarbarianCount(); i++) {
+            	    Barbarian barbarian = city.getBarbarians().get(i);
+            	    gc.setFill(FactionFactory.getInstance().getFaction(barbarian.getFactionType()).getColor());
+            	    Vector2f pos = barbpos.get(i);
+            	    gc.fillRect(pos.x - BARB_SIZE, pos.y - BARB_SIZE, BARB_SIZE * 2, BARB_SIZE * 2);
+            	    gc.strokeRect(pos.x - BARB_SIZE, pos.y - BARB_SIZE, BARB_SIZE * 2, BARB_SIZE * 2);
+                }
             	
             	// Draw legions
             	if (city.getLegions().size() > 0) {
@@ -351,19 +397,10 @@ public class BoardView extends View implements IObserver {
                 	gc.setFill(Color.TRANSPARENT);
             		
             	}
-            	
-            	if (city.getBarbarians().size() > 0) {
-            		gc.setFill(Color.CYAN);
-            		gc.fillText(Integer.toString(city.getTotalBarbarianCount()), cityPos.x - r/100, cityPos.y - r/100);
-            		
-                	gc.setFill(Color.TRANSPARENT);
-            	}
-            	
 
-            	if (city.hasFort()) {
-            		gc.drawImage(new Image("images/Fort.png"), cityPos.x - r, cityPos.y + r / 2, r, r / 1.35);
-            	}
-                gc.fillOval(cityPos.x - r, cityPos.y - r, r * 2, r * 2);
+                if (city.hasFort()) {
+                    gc.drawImage(new Image("images/Fort.png"), cityPos.x - r, cityPos.y + r / 2f, r, r / 1.35f);
+                }
             }
         }
     }
