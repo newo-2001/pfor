@@ -89,7 +89,7 @@ public class BoardController extends Controller {
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
 
-        invadeCities();
+//        invadeCities();
 
         // Next turn
         game.nextTurn();
@@ -99,13 +99,14 @@ public class BoardController extends Controller {
 
     private void invadeCities() {
         int cardAmount = 3;
+        Card[] usedCards = new Card[cardAmount];
         Deck invasionCardsDeck = game.getInvasionCardsDeck();
         for (int i = 0; i < cardAmount; i++) {
-            Card card = invasionCardsDeck.draw();
-            System.out.println(card);
-//            invadeCity(card);
-            invasionCardsDeck.addCards(card);
+            InvasionCard card = (InvasionCard) invasionCardsDeck.draw();
+            invadeCity(card);
+            usedCards[i] = card;
         }
+        invasionCardsDeck.addCards(usedCards);
         invasionCardsDeck.shuffle();
     }
 
@@ -114,10 +115,16 @@ public class BoardController extends Controller {
 
         for (int i = 0; i < route.size(); i++) {
             City city = route.get(i);
-            City previousCity = route.get(i - 1);
+            City previousCity = null;
 
-            if (city.getTotalBarbarianCount() > 0 || previousCity.getTotalBarbarianCount() > 0) {
+            if (route.size() > i + 1) {
+                previousCity = route.get(i + 1);
+            }
+
+            if (city.getTotalBarbarianCount() > 0 || (previousCity != null && previousCity.getTotalBarbarianCount() > 0)) {
+                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
                 city.addBarbarians(card.getFaction().getFactionType(), 1);
+                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
                 break;
             }
         }

@@ -80,7 +80,7 @@ public class Game extends Observable implements IObserver {
         this.decayLevel = decayLevel;
         this.invasionLevel = invasionLevel;
         this.tradeCardsDeck = tradeDeck;
-        //this.invasionCardsDeck = invasionDeck;
+        this.invasionCardsDeck = invasionDeck;
         this.playerCardsDeck = cityDeck;
         this.invasionCardsDiscardPile = invasionDiscardPile;
         this.cityCardsDiscardPile = cityDiscardPile;
