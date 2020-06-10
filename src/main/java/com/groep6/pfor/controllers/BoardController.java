@@ -134,4 +134,8 @@ public class BoardController extends Controller {
     public boolean canFormAlliance() {
         return getLocalPlayer().formableAlliances().size() > 0;
     }
+
+    public List<Faction> getFriendlyFactions() {
+        return Game.getInstance().getFriendlyFactions();
+    }
 }

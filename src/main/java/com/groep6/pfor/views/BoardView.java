@@ -15,6 +15,7 @@ import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.*;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
@@ -321,6 +322,13 @@ public class BoardView extends View implements IObserver {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
         List<Player> players = Game.getInstance().getAllPlayers();
+
+        for (Faction faction : boardController.getFriendlyFactions()) {
+            Vector2f pos = new Vector2f(faction.getPosition()).mul(CANVAS_SIZE);
+            float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
+            gc.setFill(faction.getColor());
+            gc.fillOval(pos.x - r, pos.y - r, r / 1.35, r / 1.35);
+        }
 
         for (Tile tile : boardController.getTiles()) {
             if (tile instanceof City) {

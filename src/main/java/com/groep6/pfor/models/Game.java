@@ -285,4 +285,8 @@ public class Game extends Observable implements IObserver {
             notifyObservers();
         }
     }
+
+    public List<Faction> getFriendlyFactions() {
+        return friendlyFactions;
+    }
 }

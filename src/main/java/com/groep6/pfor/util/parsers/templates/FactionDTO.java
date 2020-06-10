@@ -3,6 +3,7 @@ package com.groep6.pfor.util.parsers.templates;
 import com.google.gson.annotations.SerializedName;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
+import com.groep6.pfor.util.Vector2f;
 import javafx.scene.paint.Color;
 
 /**
@@ -40,6 +41,6 @@ public class FactionDTO {
     }
 
     public Faction toModel() {
-        return new Faction(type, color, cardCountForAlliance);
+        return new Faction(type, color, cardCountForAlliance, new Vector2f());
     }
 }
