@@ -22,17 +22,21 @@ public class PlayerDTO extends DTO {
     /** The name of the rolecard this player has */
     public String role;
 
+    /** The amount of actions remaining for this player */
+    public int actions;
+
     public PlayerDTO() {}
 
-    public PlayerDTO(String username, boolean turn, String city, String role) {
+    public PlayerDTO(String username, boolean turn, String city, String role, int actions) {
         this.username = username;
         this.turn = turn;
         this.city = city;
         this.role = role;
+        this.actions = actions;
     }
 
     public static PlayerDTO fromModel(Player player) {
-        return new PlayerDTO(player.getUsername(), player.isTurn(), player.getCity().getName(), player.getRoleCard().getName());
+        return new PlayerDTO(player.getUsername(), player.isTurn(), player.getCity().getName(), player.getRoleCard().getName(), player.getActionsRemaining());
     }
 
     /**
@@ -41,6 +45,6 @@ public class PlayerDTO extends DTO {
      */
     public Player toModel() {
         return new Player(username, CityFactory.getInstance().getCityByName(city),
-                RoleCardFactory.getInstance().getCardByName(role), turn, false);
+                RoleCardFactory.getInstance().getCardByName(role), turn, false, actions);
     }
 }

@@ -51,7 +51,7 @@ public class Player extends Observable implements IObserver {
         city.addLegions(2);
     }
 
-    public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
+    public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal, int actionsRemaining) {
         this.roleCard = roleCard;
         this.city = city;
         this.username = username;
