@@ -80,17 +80,17 @@ public class BoardController extends Controller {
     }
 
     public void nextTurn() {
+        // Next turn
+        game.nextTurn();
+        GameService gameService = new GameService();
+        gameService.setGame(game);
+
         // Draw 2 cards from game deck
         Player player = game.getLocalPlayer();
         player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
 
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
-
-        // Next turn
-        game.nextTurn();
-        GameService gameService = new GameService();
-        gameService.setGame(game);
     }
 
     public void buildFort() {

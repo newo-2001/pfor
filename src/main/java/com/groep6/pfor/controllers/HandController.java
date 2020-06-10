@@ -41,9 +41,10 @@ public class HandController extends Controller {
     
     public void removeSelectedCard() {
         if (selectedCard == null) return;
+        Player localPlayer = game.getLocalPlayer();
 
-        game.getLocalPlayer().getHand().removeCard(selectedCard);
-        
+        localPlayer.getHand().removeCard(selectedCard);
+
         if (selectedCard instanceof CityCard) {
         	game.getCityCardsDiscardPile().addCards(selectedCard);
         } else if (selectedCard instanceof EventCard) {
