@@ -10,6 +10,7 @@ import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.TradeView;
@@ -45,6 +46,9 @@ public class TradeController extends Controller {
         game.getTradeCardsDeck().removeCard(selectedCard);
         game.getLocalPlayer().getHand().addCards(selectedCard);
     	player.decreaseActionsRemaining();
+
+        GameService gameService = new GameService();
+        gameService.setGame(game);
     }
     
     public Card getCard(Card card) {
