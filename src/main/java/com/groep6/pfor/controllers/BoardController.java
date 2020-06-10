@@ -6,6 +6,7 @@ import java.util.List;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.*;
+import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
@@ -100,8 +101,9 @@ public class BoardController extends Controller {
         int cardAmount = 3;
         Deck invasionCardsDeck = game.getInvasionCardsDeck();
         for (int i = 0; i < cardAmount; i++) {
-            InvasionCard card = (InvasionCard) invasionCardsDeck.draw();
-            invadeCity(card);
+            Card card = invasionCardsDeck.draw();
+            System.out.println(card);
+//            invadeCity(card);
             invasionCardsDeck.addCards(card);
         }
         invasionCardsDeck.shuffle();

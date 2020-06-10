@@ -105,14 +105,10 @@ public class LobbyController extends Controller {
 
         GameService gameService = new GameService();
 
-        try {
-            gameService.create(game);
-            GameService.gameChangeEvent.subscribe(onGameChange);
+        gameService.create(game);
+        GameService.gameChangeEvent.subscribe(onGameChange);
 
-            new BoardController();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        new BoardController();
     }
 
     /**
