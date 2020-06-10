@@ -97,11 +97,11 @@
     "faction": "OSTROGOTHS"
   },  {
     "name": "Sinope",
-    "route": ["Tyras", "Sinope"],
+    "route": ["Chersonesus", "Sinope"],
     "faction": "OSTROGOTHS"
   },  {
     "name": "Constantinopolis",
-    "route": ["Tyras", "Sinope", "Constantinopolis"],
+    "route": ["Chersonesus", "Sinope", "Constantinopolis"],
     "faction": "OSTROGOTHS"
   },  {
     "name": "Iuvavum",

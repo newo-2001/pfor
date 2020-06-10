@@ -1,6 +1,7 @@
 package com.groep6.pfor.controllers;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.groep6.pfor.factories.FactionFactory;
@@ -89,7 +90,7 @@ public class BoardController extends Controller {
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
 
-//        invadeCities();
+        invadeCities();
 
         // Next turn
         game.nextTurn();
@@ -113,20 +114,32 @@ public class BoardController extends Controller {
     private void invadeCity(InvasionCard card) {
         List<City> route = card.getRoute();
 
+//        Collections.reverse(route);
+
+        System.out.println("");
+        System.out.println(card.getName());
+        System.out.println("---");
+
         for (int i = 0; i < route.size(); i++) {
             City city = route.get(i);
             City previousCity = null;
+            System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
 
-            if (route.size() > i + 1) {
-                previousCity = route.get(i + 1);
+            if (i > 0) {
+                previousCity = route.get(i - 1);
             }
 
-            if (city.getTotalBarbarianCount() > 0 || (previousCity != null && previousCity.getTotalBarbarianCount() > 0)) {
-                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
-                city.addBarbarians(card.getFaction().getFactionType(), 1);
-                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
-                break;
+            System.out.println(route.get(0).getBarbarianCount(card.getFaction().getFactionType()));
+            if (route.get(0).getBarbarianCount(card.getFaction().getFactionType()) <= 1) {
+                route.get(0).addBarbarians(card.getFaction().getFactionType(), 1);
             }
+
+//            if ((previousCity != null && previousCity.getTotalBarbarianCount() > 0)) {
+////                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
+//                city.addBarbarians(card.getFaction().getFactionType(), 1);
+////                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
+//                break;
+//            }
         }
     }
 
