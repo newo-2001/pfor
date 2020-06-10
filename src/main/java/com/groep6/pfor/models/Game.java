@@ -116,6 +116,8 @@ public class Game extends Observable implements IObserver {
         playerCardsDeck = remote.playerCardsDeck;
         cityCardsDiscardPile = remote.cityCardsDiscardPile;
         tradeCardsDeck = remote.tradeCardsDeck;
+
+        notifyObservers();
     }
 
     public void addPlayers(Player... players) {
