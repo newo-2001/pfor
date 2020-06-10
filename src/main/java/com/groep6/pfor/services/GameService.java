@@ -67,11 +67,11 @@ public class GameService {
      * Create a game on the server.
      * @param game The game to be created
      */
-    public void create(Game game) throws ExecutionException {
+    public void create(Game game) {
         ApiFuture<WriteResult> res = Firebase.setDocument("games/" + game.getCode(), GameDTO.fromModel(game));
         try {
             res.get();
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
