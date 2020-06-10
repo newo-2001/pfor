@@ -3,6 +3,7 @@ package com.groep6.pfor.util.parsers.templates;
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.EventCardFactory;
 import com.groep6.pfor.factories.FactionFactory;
+import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.*;
 import com.groep6.pfor.models.factions.FactionType;
 
@@ -44,6 +45,8 @@ public class CardDTO {
                 return CityCardFactory.getInstance().getCardByName(name, FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
             case "event":
                 return EventCardFactory.getInstance().getCardByName(name);
+            case "invasion":
+                return InvasionCardFactory.getInstance().getInvasionCardByName(name, FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
         }
         return null;
         // TODO cast card from the database to correct model
