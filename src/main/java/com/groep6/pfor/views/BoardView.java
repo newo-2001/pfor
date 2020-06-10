@@ -375,7 +375,7 @@ public class BoardView extends View implements IObserver {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                actionCount.setText(boardController.getLocalPlayer().getActionsRemaining() + " actions left");
+                actionCount.setText(boardController.getLocalPlayer().getActionsRemaining() + " acties over");
                 updateCanvas();
                 createPlayerList();
             }
