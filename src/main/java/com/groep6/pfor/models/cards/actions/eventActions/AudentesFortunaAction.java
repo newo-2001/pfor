@@ -1,7 +1,9 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
+import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.actions.IAction;
 import javafx.application.Platform;
 
@@ -17,10 +19,16 @@ public class AudentesFortunaAction implements IAction {
 	 */
 	public void execute() {
 		Game game = Game.getInstance();
+		
+		Deck cityDeck = game.getPlayerCardsDeck();
+		
+		CityCard card1 = (CityCard) cityDeck.draw();
+		
+		CityCard card2 = (CityCard) cityDeck.draw();
 
-        Player player = game.getLocalPlayer();
+		Player player = game.getPlayerTurn();
 
-		player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
+		player.getHand().addCards(card1 , card2);
 	}
 
 	/**

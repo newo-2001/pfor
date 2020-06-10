@@ -32,8 +32,7 @@ public class EventCardFactory {
 
 		//eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
 
-		//1eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
-		//1eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
+		eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
 
 		//eventCardDeck.addCards(new EventCard("Hic Manebimus Optime", new HicManebimusOptimeAction()));
 
@@ -56,6 +55,10 @@ public class EventCardFactory {
 		//eventCardDeck.addCards(new EventCard("Si Vis Pacem, Para Bellum", new ParaBellumAction()));
 
 		eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
+		eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
+		eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
+		eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
+		
 		//eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
 
 		//1eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
