@@ -162,6 +162,8 @@ public class City extends Tile {
 		for (int i = 0; i < amount; i++) {
 			legions.add(new Legion());
 		}
+
+		notifyObservers();
 	}
 	
     /**

@@ -29,7 +29,6 @@ public class MoveView extends View implements IObserver {
 
     public MoveView(MoveController moveController) {
         this.moveController = moveController;
-        moveController.registerObserver(this);
 
         createView();
         update();
@@ -57,16 +56,22 @@ public class MoveView extends View implements IObserver {
         HBox buttonBox = new HBox(30);
         buttonBox.setAlignment(Pos.CENTER);
 
+        Button recruitZero = new UIButton("0");
+        recruitZero.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitZeroClicked);
+
         Button recruitOne = new UIButton("1");
         recruitOne.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitOneClicked);
+        if (moveController.getAmountOfLegionsInCurrentCity() < 1) recruitOne.setDisable(true);
 
         Button recruitTwo = new UIButton("2");
         recruitTwo.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitTwoClicked);
+        if (moveController.getAmountOfLegionsInCurrentCity() < 2) recruitTwo.setDisable(true);
 
         Button recruitThree = new UIButton("3");
         recruitThree.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitThreeClicked);
+        if (moveController.getAmountOfLegionsInCurrentCity() < 3) recruitThree.setDisable(true);
 
-        buttonBox.getChildren().addAll(recruitOne, recruitTwo, recruitThree);
+        buttonBox.getChildren().addAll(recruitZero, recruitOne, recruitTwo, recruitThree);
 
         box.getChildren().addAll(text, buttonBox, backButton);
 
@@ -79,6 +84,13 @@ public class MoveView extends View implements IObserver {
         @Override
         public void handle(MouseEvent e) {
             moveController.goBack();
+        }
+    };
+
+    EventHandler<MouseEvent> recruitZeroClicked = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            moveController.moveLegions(0);
         }
     };
 
@@ -104,11 +116,7 @@ public class MoveView extends View implements IObserver {
     };
 
     @Override
-    public void update() {
-        // TODO Auto-generated method stub
-
-    }
-
+    public void update() {}
 
     @Override
     public Pane getRoot() {

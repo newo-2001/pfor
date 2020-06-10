@@ -126,13 +126,10 @@ public class Player extends Observable implements IObserver {
     }
     
     public void move(City city) {
-    	// if city in neighboring cities
-    	if (this.city.neighbouringCities.contains(city) && actionsRemaining > 0 && isTurn()) {
-        	if (this.city.getLegionCount() > 0) {
-        		new MoveController(city, this);
-        	}
-        	this.city = city;
-    	}
+    	if (!this.city.neighbouringCities.contains(city)) return;
+        this.city = city;
+
+    	decreaseActionsRemaining();
     }
 
     public boolean isHost() {

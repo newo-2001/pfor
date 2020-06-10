@@ -12,8 +12,7 @@ import com.groep6.pfor.views.MoveView;
  */
 
 public class MoveController extends Controller {
-	
-	private Game game = Game.getInstance();
+
 	private City destination;
 	private Player player;
 	
@@ -21,19 +20,22 @@ public class MoveController extends Controller {
     	this.destination = destination;
     	this.player = player;
 
-        SoundEffectManager.play("src/main/resources/sounds/effects/MarchSound.mp3");
         viewController.showView(new MoveView(this));
     };
     
     public void moveLegions(int amount) {
     	player.getCity().removeLegions(amount);
     	destination.addLegions(amount);
-    	System.out.println(player.getCity() + ": " + player.getCity().getLegionCount() + " - " + destination + ": " + destination.getLegionCount());
+
+		SoundEffectManager.play("src/main/resources/sounds/effects/MarchSound.mp3");
+		player.move(destination);
     	goBack();
     }
 
-	@Override
-	public void registerObserver(IObserver view) {
-		game.registerObserver(view);
+    public int getAmountOfLegionsInCurrentCity() {
+    	return player.getCity().getLegions().size();
 	}
+
+	@Override
+	public void registerObserver(IObserver view) {}
 }
