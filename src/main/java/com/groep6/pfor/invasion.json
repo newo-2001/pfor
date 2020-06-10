@@ -1,0 +1,173 @@
+[
+  {
+    "name": "Narona",
+    "route": ["Philippopolis", "Narona"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Corduba",
+    "route": ["Philippopolis", "Narona", "Aquileia", "Ravenna", "Genua", "Narbo", "Nova Carthago", "Corduba"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Patrae",
+    "route": ["Philippopolis", "Tyras", "Constantinopolis", "Athenae", "Patrae"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Constantinopolis",
+    "route": ["Tyras", "Constantinopolis"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Nova Carthago",
+    "route": ["Philippopolis", "Narona", "Aquileia", "Ravenna", "Genua", "Narbo", "Nova Carthago"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Aquileia",
+    "route": ["Philippopolis", "Narona", "Aquileia"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Athenae",
+    "route": ["Tyras", "Constantinopolis", "Athenae"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Genua",
+    "route": ["Philippopolis", "Narona", "Aquileia", "Ravenna", "Genua"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Ravenna",
+    "route": ["Philippopolis", "Narona", "Aquileia", "Ravenna"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Narbo",
+    "route": ["Philippopolis", "Narona", "Aquileia", "Ravenna", "Genua", "Narbo"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Roma",
+    "route": ["Philippopolis", "Narona", "Aquileia", "Ravenna", "Genua", "Narbo", "Roma"],
+    "faction": ["VISIGOTHS"]
+  },  {
+    "name": "Lugdunum",
+    "route": ["Mogontiacum", "Lugdunum"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Burdigala",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Caesaraugusta",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Corduba",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Tingi",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Cesarea",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi", "Cesarea"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Carthago",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi", "Cesarea", "Carthago"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Syracusae",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi", "Cesarea", "Carthago", "Syracusae"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Athenae",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi", "Cesarea", "Carthago", "Syracusae", "Athenae"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Constantinopolis",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi", "Cesarea", "Carthago", "Syracusae", "Athenae", "Constantinopolis"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Roma",
+    "route": ["Mogontiacum", "Lugdunum", "Burdigala", "Caesaraugusta", "Corduba", "Tingi", "Cesarea", "Carthago", "Syracusae", "Athenae", "Constantinopolis", "Roma"],
+    "faction": ["VANDALS"]
+  },  {
+    "name": "Aquileia",
+    "route": ["Carnuntum", "Aquileia"],
+    "faction": ["OSTROGOTHS"]
+  },  {
+    "name": "Roma",
+    "route": ["Carnuntum", "Aquileia", "Roma"],
+    "faction": ["OSTROGOTHS"]
+  },  {
+    "name": "Sinope",
+    "route": ["Tyras", "Sinope"],
+    "faction": ["OSTROGOTHS"]
+  },  {
+    "name": "Constantinopolis",
+    "route": ["Tyras", "Sinope", "Constantinopolis"],
+    "faction": ["OSTROGOTHS"]
+  },  {
+    "name": "Iuvavum",
+    "route": ["Carnuntum", "Iuvavum"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Mediolanum",
+    "route": ["Carnuntum", "Iuvavum", "Mediolanum"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Lugdunum",
+    "route": ["Carnuntum", "Iuvavum", "Mediolanum", "Lugdunum"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Lutetia",
+    "route": ["Carnuntum", "Iuvavum", "Mediolanum", "Lugdunum", "Lutetia"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Patrae",
+    "route": ["Philippopolis", "Patrae"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Brundisium",
+    "route": ["Philippopolis", "Patrae", "Brundisium"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Roma",
+    "route": ["Philippopolis", "Patrae", "Brundisium", "Roma"],
+    "faction": ["HUNS"]
+  },  {
+    "name": "Londinium",
+    "route": ["Gesoriacum", "Londinium"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },  {
+    "name": "Eburacum",
+    "route": ["Gesoriacum", "Londinium", "Eburacum"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },  {
+    "name": "Lutetia",
+    "route": ["Mogontiacum", "Lutetia"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },  {
+    "name": "Burdigala",
+    "route": ["Mogontiacum", "Lutetia", "Burdigala"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },  {
+    "name": "Narbo",
+    "route": ["Mogontiacum", "Lutetia", "Burdigala", "Narbo"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },  {
+    "name": "Genua",
+    "route": ["Mogontiacum", "Lutetia", "Burdigala", "Narbo", "Genua"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },  {
+    "name": "Roma",
+    "route": ["Mogontiacum", "Lutetia", "Burdigala", "Narbo", "Genua", "Roma"],
+    "faction": ["ANGLO_SAXSONS_FRANKS"]
+  },
+
+
+
+
+
+
+
+]
+
+
+
