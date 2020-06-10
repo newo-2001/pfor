@@ -6,7 +6,10 @@ import java.util.Stack;
 import java.util.List;
 
 import com.groep6.pfor.factories.CityFactory;
+import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -167,5 +170,31 @@ public class Player extends Observable implements IObserver {
         System.out.println("Legions: " + city.getLegions());
         System.out.println("Barbarians: " + city.getBarbarians());
         notifyObservers();
+    }
+
+
+    public int formAlliance(Faction faction) {
+        City city = getCity();
+        List<Card> cards = getHand().getCards();
+
+        // Get city card count with this faction
+        int cardCount = 0;
+        for (Card card : cards) {
+            if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) cardCount++;
+        }
+
+        // City has no faction of this type
+        if (!city.hasFaction(faction)) return -2;
+
+        // Player has not enough cards of this faction
+        if (cardCount < faction.getCardCountForAlliance()) return -1;
+
+        // Ally this faction
+        faction.ally();
+
+
+        // Barbaren worden legions
+
+        return 1;
     }
 }

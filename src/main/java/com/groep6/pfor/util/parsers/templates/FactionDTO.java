@@ -19,6 +19,10 @@ public class FactionDTO {
     @SerializedName("color")
     private Color color;
 
+    /** The color this faction has whilst displaying */
+    @SerializedName("cardCountForAlliance")
+    private int cardCountForAlliance;
+
     /**
      * Get the color of this faction
      * @return The color of this faction
@@ -36,6 +40,6 @@ public class FactionDTO {
     }
 
     public Faction toModel() {
-        return new Faction(type, color);
+        return new Faction(type, color, cardCountForAlliance);
     }
 }

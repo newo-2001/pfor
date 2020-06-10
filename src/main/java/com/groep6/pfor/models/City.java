@@ -134,6 +134,18 @@ public class City extends Tile {
 	public boolean hasHarbour() {
 		return harbour;
 	}
+
+	/**
+	 * Check if a city has a specific faction (barbarian) in it
+	 * @param faction The faction you want to check for
+	 * @return Whether the faction is in it or not
+	 */
+	public boolean hasFaction(Faction faction) {
+		for (Barbarian barbarian : barbarians) {
+			if (faction.getFactionType().equals(barbarian.getFactionType())) return true;
+		}
+		return false;
+	}
 	
     /**
      * adds a barbarian to a specific city

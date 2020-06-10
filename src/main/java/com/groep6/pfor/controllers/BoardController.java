@@ -2,11 +2,13 @@ package com.groep6.pfor.controllers;
 
 import java.util.List;
 
+import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.MusicManager;
@@ -122,5 +124,12 @@ public class BoardController extends Controller {
     @Override
     public void registerObserver(IObserver view) {
         game.registerObserver(view);
+    }
+
+    public void formAlliance() {
+        // TODO Get faction
+        FactionFactory factionFactory = FactionFactory.getInstance();
+        int success = getLocalPlayer().formAlliance(factionFactory.getFaction(FactionType.VANDALS));
+        System.out.println(success);
     }
 }

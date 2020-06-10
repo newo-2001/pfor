@@ -1,6 +1,5 @@
 package com.groep6.pfor.views;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.groep6.pfor.controllers.BoardController;
@@ -11,7 +10,6 @@ import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Legion;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.util.IObserver;
@@ -128,10 +126,10 @@ public class BoardView extends View implements IObserver {
         }
     };
 
-    EventHandler<MouseEvent> goToAllianceView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> formAlliance = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-
+            boardController.formAlliance();
         }
     };
 
@@ -231,7 +229,7 @@ public class BoardView extends View implements IObserver {
 
         allianceButton = new UIButton("ALLIANTIE SLUITEN");
         allianceButton.setPrefSize(150, 75);
-        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView);
+        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, formAlliance);
         allianceButton.setDisable(true);
         actionButtonLayout.add(allianceButton, 0, 2);
 

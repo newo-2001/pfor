@@ -272,4 +272,11 @@ public class Game extends Observable implements IObserver {
     public void update() {
         notifyObservers();
     }
+
+    public void addFriendlyFaction(Faction faction) {
+        if (!friendlyFactions.contains(faction)) {
+            friendlyFactions.add(faction);
+            notifyObservers();
+        }
+    }
 }

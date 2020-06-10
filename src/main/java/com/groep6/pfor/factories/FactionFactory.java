@@ -14,11 +14,11 @@ public class FactionFactory {
     List<Faction> factions = new ArrayList<>();
 
     private FactionFactory() {
-        factions.add(new Faction(FactionType.ANGLO_SAXSONS_FRANKS, Color.ORANGE));
-        factions.add(new Faction(FactionType.VANDALS, Color.PURPLE));
-        factions.add(new Faction(FactionType.HUNS, Color.GREEN));
-        factions.add(new Faction(FactionType.VISIGOTHS, Color.WHITE));
-        factions.add(new Faction(FactionType.OSTROGOTHS, Color.BLUE));
+        factions.add(new Faction(FactionType.ANGLO_SAXSONS_FRANKS, Color.ORANGE, 4));
+        factions.add(new Faction(FactionType.VANDALS, Color.PURPLE, 5));
+        factions.add(new Faction(FactionType.HUNS, Color.GREEN, 4));
+        factions.add(new Faction(FactionType.VISIGOTHS, Color.WHITE, 5));
+        factions.add(new Faction(FactionType.OSTROGOTHS, Color.BLUE, 3));
     }
 
     public static FactionFactory getInstance() {
