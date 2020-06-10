@@ -18,6 +18,7 @@ import com.groep6.pfor.util.parsers.templates.FactionDTO;
 import java.util.List;
 
 public class City extends Tile {
+	private static int fortAmount = 0;
 	private List<Barbarian> barbarians = new ArrayList<>();
 	private List<Legion> legions = new ArrayList<>();
 	private boolean fort = false;
@@ -151,15 +152,17 @@ public class City extends Tile {
      * adds a barbarian to a specific city
      * @param factionType
      */
-	
 	public void addBarbarians(FactionType factionType, int amount) {
-		if (barbarians.size() >= 4) {
-			Game.getInstance().increaseDecayLevel(1);
-			return;
-		}
-
 		for (int i = 0; i < amount; i++) {
 			barbarians.add(new Barbarian(factionType));
+		}
+		
+		if (barbarians.size() >= 4) {
+			Game.getInstance().increaseDecayLevel(1);
+			for (City city: neighbouringCities) {
+				city.addBarbarians(factionType, 1);
+			}
+			return;
 		}
 	}
 	
@@ -220,8 +223,11 @@ public class City extends Tile {
      * places a fort in a specific city
      */
 	public void placeFort() {
-		this.fort = true;
-		notifyObservers();
+		if (fortAmount < 6) {
+			this.fort = true;
+			fortAmount++;
+			notifyObservers();
+		}
 	}
 	
     /**

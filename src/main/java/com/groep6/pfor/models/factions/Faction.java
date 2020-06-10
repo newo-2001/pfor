@@ -1,6 +1,7 @@
 package com.groep6.pfor.models.factions;
 
 import com.groep6.pfor.models.Game;
+import com.groep6.pfor.Config;
 import javafx.scene.paint.Color;
 
 public class Faction {
@@ -39,7 +40,10 @@ public class Faction {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Faction)) return false;
+        if (!(o instanceof Faction)) {
+            if (Config.DEBUG) System.out.println("[WARNING] Faction compare failed, because types were incompatible");
+            return false;
+        }
         return ((Faction) o).factionType == factionType;
     }
 }

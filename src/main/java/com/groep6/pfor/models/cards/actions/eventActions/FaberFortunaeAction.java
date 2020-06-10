@@ -13,12 +13,12 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class FaberFortunaeAction implements IAction {
 
-	private Game game = Game.getInstance();
 
 	/**
 	 * Draws a citycard for the player and adds it to his hand.
 	 */
 	public void execute() {
+		Game game = Game.getInstance();
 		Deck cityDeck = game.getPlayerCardsDeck();
 		CityCard card = (CityCard) cityDeck.draw();
 		Player player = game.getPlayerTurn();

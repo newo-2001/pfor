@@ -45,6 +45,10 @@ public class Deck extends Observable{
         return removedCard;
     }
 
+    public void merge(Deck deck) {
+        cards.addAll(deck.getCards());
+    }
+
     /**
      * Shuffles deck
      */
@@ -57,6 +61,8 @@ public class Deck extends Observable{
      * @return Card
      */
     public Card draw() {
+        if (cards.size() <= 0) return null;
+
         int index = cards.size() - 1;
         Card card = cards.get(index);
         cards.remove(index);

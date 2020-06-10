@@ -126,7 +126,7 @@ public class HandView extends View implements IObserver {
     };
     
     
-    EventHandler<MouseEvent> discardCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> discardCard = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             handController.removeSelectedCard();
@@ -134,15 +134,16 @@ public class HandView extends View implements IObserver {
         }
     };
     
-    EventHandler<MouseEvent> playCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> playCard = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             handController.playCard();
+            playCardButton.setDisable(true);
         }
     };
 
     // Select a card
-    EventHandler<MouseEvent> selectCard = new EventHandler<javafx.scene.input.MouseEvent>() {
+    EventHandler<MouseEvent> selectCard = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
             deselectAllCards();

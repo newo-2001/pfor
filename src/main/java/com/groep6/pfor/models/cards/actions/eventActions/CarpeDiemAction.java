@@ -10,12 +10,11 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class CarpeDiemAction implements IAction {
 
-	private Game game = Game.getInstance();
-
 	/**
 	 * Gives the player 2 extra actions in his turn.
 	 */
 	public void execute() {
+		Game game = Game.getInstance();
 		game.getPlayerTurn().addActions(2);
 	}
 
