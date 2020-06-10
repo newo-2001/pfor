@@ -3,6 +3,7 @@ package com.groep6.pfor.models;
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.EventCardFactory;
+import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
@@ -39,6 +40,9 @@ public class Game extends Observable implements IObserver {
         playerCardsDeck = new Deck(CityCardFactory.getInstance().getCityCardDeck().getCards().toArray(new Card[0]));
         playerCardsDeck.merge(EventCardFactory.getInstance().getEventCardDeck());
         playerCardsDeck.shuffle();
+
+        invasionCardsDeck = new Deck(InvasionCardFactory.getInstance().getAllInvasionCards());
+        invasionCardsDeck.shuffle();
 
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
