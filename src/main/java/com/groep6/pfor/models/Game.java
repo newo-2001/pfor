@@ -131,7 +131,7 @@ public class Game extends Observable implements IObserver {
 
         int index = players.indexOf(currentPlayer);
 
-        if (players.size() > index)  nextPlayer = players.get(index + 1);
+        if (players.size() > index + 1) nextPlayer = players.get(index + 1);
         else nextPlayer = players.get(0);
 
         currentPlayer.notTurn();

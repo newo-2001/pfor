@@ -162,8 +162,6 @@ public class Player extends Observable implements IObserver {
     }
 
     public void update() {
-        System.out.println("Legions: " + city.getLegions());
-        System.out.println("Barbarians: " + city.getBarbarians());
         notifyObservers();
     }
 }
