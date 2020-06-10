@@ -95,7 +95,7 @@ public class Firebase {
      * @param path The location to write the object to
      * @param data The object to write
      */
-    protected static void setDocument(String path, DTO data) {
+    protected static void setDocument(String path, Object data) {
         DocumentReference docRef = docRefFromPath(path);
         docRef.set(data);
     }
