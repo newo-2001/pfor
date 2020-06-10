@@ -372,6 +372,7 @@ public class BoardView extends View implements IObserver {
 
     @Override
     public void update() {
+        System.out.println("Updating board view...");
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
