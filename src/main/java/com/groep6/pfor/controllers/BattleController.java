@@ -33,6 +33,9 @@ public class BattleController extends Controller {
 		Player player = game.getPlayerTurn();
 		DiceFace[] battleResults = player.battle();
 
+		int legionCount = player.getCity().getLegionCount();
+		int barbarianCount = player.getCity().getTotalBarbarianCount();
+
 		int legionsLost = 0;
 		int barbariansLost = 0;
 
@@ -41,8 +44,8 @@ public class BattleController extends Controller {
 			barbariansLost += battleResult.getBarbarianCount();
 		}
 
-		legionsLost = Math.min(player.getCity().getLegionCount(), legionsLost);
-		barbariansLost = Math.min(player.getCity().getTotalBarbarianCount(), barbariansLost);
+		legionsLost = Math.min(legionCount, legionsLost);
+		barbariansLost = Math.min(barbarianCount, barbariansLost);
 
 		viewController.showView(new BattleView(this, legionsLost, barbariansLost));
 		SoundEffectManager.play("src/main/resources/sounds/effects/BattleSound.mp3");

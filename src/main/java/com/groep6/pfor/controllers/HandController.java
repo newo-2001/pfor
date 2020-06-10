@@ -7,6 +7,7 @@ import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.util.Vector2f;
@@ -40,9 +41,10 @@ public class HandController extends Controller {
     
     public void removeSelectedCard() {
         if (selectedCard == null) return;
+        Player localPlayer = game.getLocalPlayer();
 
-        game.getLocalPlayer().getHand().removeCard(selectedCard);
-        
+        localPlayer.getHand().removeCard(selectedCard);
+
         if (selectedCard instanceof CityCard) {
         	game.getCityCardsDiscardPile().addCards(selectedCard);
         } else if (selectedCard instanceof EventCard) {

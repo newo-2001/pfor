@@ -9,8 +9,13 @@ import com.groep6.pfor.controllers.RecruitBarbarianController;
 import com.groep6.pfor.controllers.RecruitLegionController;
 import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.controllers.ViewController;
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.*;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
@@ -125,10 +130,10 @@ public class BoardView extends View implements IObserver {
         }
     };
 
-    EventHandler<MouseEvent> goToAllianceView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> formAlliance = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-
+            boardController.formAlliance();
         }
     };
 
@@ -227,7 +232,7 @@ public class BoardView extends View implements IObserver {
 
         allianceButton = new UIButton("ALLIANTIE SLUITEN");
         allianceButton.setPrefSize(150, 75);
-        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToAllianceView);
+        allianceButton.addEventFilter(MouseEvent.MOUSE_CLICKED, formAlliance);
         allianceButton.setDisable(true);
         actionButtonLayout.add(allianceButton, 0, 2);
 
@@ -316,6 +321,13 @@ public class BoardView extends View implements IObserver {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
         gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
         List<Player> players = Game.getInstance().getAllPlayers();
+
+        for (Faction faction : boardController.getFriendlyFactions()) {
+            Vector2f pos = new Vector2f(faction.getPosition()).mul(CANVAS_SIZE);
+            float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
+            gc.setFill(faction.getColor());
+            gc.fillOval(pos.x - r, pos.y - r, r / 1.35, r / 1.35);
+        }
 
         for (Tile tile : boardController.getTiles()) {
             if (tile instanceof City) {
@@ -435,6 +447,7 @@ public class BoardView extends View implements IObserver {
                 buildButton.setDisable(!boardController.canBuildFort());
                 recruitBarbarianButton.setDisable(!boardController.canRecruitBarbarians());
                 recruitButton.setDisable(!boardController.canRecruitLegions());
+                allianceButton.setDisable(!boardController.canFormAlliance());
             } else {
                 conspireButton.setDisable(true);
                 battleButton.setDisable(true);
