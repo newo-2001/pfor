@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class LobbyController extends Controller {
 
@@ -103,10 +104,15 @@ public class LobbyController extends Controller {
         game.getAllPlayers().get(0).setTurn();
 
         GameService gameService = new GameService();
-        gameService.create(game);
-        GameService.gameChangeEvent.subscribe(onGameChange);
 
-        new BoardController();
+        try {
+            gameService.create(game);
+            GameService.gameChangeEvent.subscribe(onGameChange);
+
+            new BoardController();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
