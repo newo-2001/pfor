@@ -133,6 +133,7 @@ public class LobbyService {
         else {
             LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
             if (dto.started == true) {
+                System.out.println("GAME_START_EVENT");
                 GameService.listener = Firebase.registerListener("games/" + dto.code, GameService.onGameChange);
                 try {
                     gameStartEvent.fire(new GameService().getGame(dto.code));

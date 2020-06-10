@@ -80,8 +80,12 @@ public class GameService {
     public static EventListener<DocumentSnapshot> onGameChange = (documentSnapshot, e) -> {
         if (e != null) e.printStackTrace();
         else {
-            cache = documentSnapshot.toObject(GameDTO.class).toModel();
-            GameService.gameChangeEvent.fire(cache);
+            try {
+                cache = documentSnapshot.toObject(GameDTO.class).toModel();
+                GameService.gameChangeEvent.fire(cache);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
 
         System.out.println("GAME_CHANGE_EVENT");

@@ -15,13 +15,13 @@ public class CityCard extends Card {
     private Faction faction;
 
     /**
-     * @param name
      * @param city
      * @param faction
      */
     public CityCard(City city, Faction faction) {
         this.city = city;
         this.faction = faction;
+        this.name = this.city.getName();
     }
 
     @Override
