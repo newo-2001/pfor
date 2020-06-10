@@ -1,5 +1,7 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -8,15 +10,16 @@ import com.groep6.pfor.models.cards.actions.IAction;
  *
  */
 public class AudentesFortunaAction implements IAction {
+	
+    private Game game = Game.getInstance();
 
 	/**
 	 * Allows player to draw 2 extra cards during drawPlayerCards phase.
 	 */
 	public void execute() {
-		/*
-		 * if (game.getState().equals(drawPlayerCards))
-		 * 		draw(2);
-		 */
+        Player player = game.getLocalPlayer();
+		player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
+		
 	}
 
 	/**
