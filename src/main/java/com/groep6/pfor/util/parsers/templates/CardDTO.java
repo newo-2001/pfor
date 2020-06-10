@@ -11,7 +11,7 @@ import com.groep6.pfor.models.factions.FactionType;
  *
  * @author Owen Elderbroek
  */
-public class CardDTO extends DTO {
+public class CardDTO {
     public String type;
     public String name;
     public String city;

@@ -8,10 +8,10 @@ import com.groep6.pfor.models.factions.FactionType;
  *
  * @author Owen Elderbroek
  */
-public class JsonTile extends DTO {
+public class JsonTile {
     /** The position of the tile on the board in its DTO form */
     @SerializedName("position")
-    private Vector2fDTO position;
+    private JsonVector2f position;
 
     /** The names of the neighbouring cities */
     @SerializedName("neighbours")
@@ -25,7 +25,7 @@ public class JsonTile extends DTO {
      * Obtain the position vector of this city in its DTO form
      * @return The position Data Transfer Object
      */
-    public Vector2fDTO getPosition() {
+    public JsonVector2f getPosition() {
         return position;
     }
 

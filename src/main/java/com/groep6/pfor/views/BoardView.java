@@ -194,7 +194,6 @@ public class BoardView extends View implements IObserver {
                 	// Move player on right click
                 	boardController.move(city);
                     boardController.cityPressed(city);
-                    update();
                     break;
                 }
             }

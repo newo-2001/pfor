@@ -1,13 +1,16 @@
 package com.groep6.pfor.models;
 
 import java.util.*;
-
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -21,7 +24,7 @@ public class Player extends Observable implements IObserver {
     private City city;
     private String username;
     private boolean turn = false;
-    private int actionsRemaining = 0;
+    private int actionsRemaining = 4;
     private boolean isLocal;
 
     /**
@@ -57,7 +60,8 @@ public class Player extends Observable implements IObserver {
         this.city = city;
         this.username = username;
         this.isLocal = isLocal;
-        if (turn) setTurn();
+        this.actionsRemaining = actionsRemaining;
+        this.turn = turn;
     }
     
     public boolean isTurn() {
@@ -83,8 +87,12 @@ public class Player extends Observable implements IObserver {
         notifyObservers();
 
         // Sync with server
-//        GameService gameService = new GameService();
-//        gameService.setGame(Game.getInstance());
+        GameService gameService = new GameService();
+        gameService.setGame(Game.getInstance());
+    }
+
+    public void setActionsRemaining(int actionsRemaining) {
+        this.actionsRemaining = actionsRemaining;
     }
 
     public Hand getHand() {
@@ -124,10 +132,11 @@ public class Player extends Observable implements IObserver {
     }
     
     public void move(City city) {
-    	// if city in neighboring cities
-    	if (this.city.neighbouringCities.contains(city) && actionsRemaining > 0 && isTurn()) {
-        	this.city = city;
-    	}
+    	if (!this.city.neighbouringCities.contains(city)) return;
+        this.city = city;
+
+    	decreaseActionsRemaining();
+    	notifyObservers();
     }
 
     public boolean isHost() {
@@ -141,6 +150,9 @@ public class Player extends Observable implements IObserver {
     public void addActions(int amount) {
         actionsRemaining += amount;
         notifyObservers();
+
+        GameService gameService = new GameService();
+        gameService.setGame(Game.getInstance());
     }
 
     public void setLocal(boolean local) {
@@ -207,7 +219,5 @@ public class Player extends Observable implements IObserver {
         // Remove cards
         List<Card> cardsToDiscard = getCitycardsWithFaction(faction);
         getHand().removeCards(cardsToDiscard.toArray(new Card[cardsToDiscard.size()]));
-
-        // TODO: visualize alliance
     }
 }

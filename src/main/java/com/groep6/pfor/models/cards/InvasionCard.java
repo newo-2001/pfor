@@ -22,7 +22,7 @@ public class InvasionCard extends Card {
      * @param faction
      * @param route
      */
-    public InvasionCard(String name, Faction faction, ArrayList<City> route) {
+    public InvasionCard(String name, Faction faction, List<City> route) {
         this.name = name;
         this.route = route;
         this.faction = faction;

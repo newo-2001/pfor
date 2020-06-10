@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author OwenElderbroek
  */
-public class BoardDTO extends DTO {
+public class BoardDTO {
     public Map<String, CityDTO> cities = new HashMap<>();
     public Map<String, Integer> barbarianBases = new HashMap();
     public int legionBase;

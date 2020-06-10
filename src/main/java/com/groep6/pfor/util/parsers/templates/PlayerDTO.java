@@ -9,7 +9,7 @@ import com.groep6.pfor.models.Player;
  *
  * @author Owen Elderbroek
  */
-public class PlayerDTO extends DTO {
+public class PlayerDTO {
     /** The username of the player */
     public String username;
 
