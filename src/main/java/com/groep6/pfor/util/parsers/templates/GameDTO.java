@@ -48,7 +48,7 @@ public class GameDTO extends DTO {
         for (Faction faction : FactionFactory.getInstance().getFactions()) factions.put(faction.getFactionType().toString(), game.isFriendlyFaction(faction));
 
         return new GameDTO(board, players, factions, game.getDecayLevel(), game.getInvasionLevel(),
-                createList(game.getTradeCardsDeck()), createList(game.getInvasionCardsDeck()), createList(game.getCityCardsDeck()),
+                createList(game.getTradeCardsDeck()), createList(game.getInvasionCardsDeck()), createList(game.getPlayerCardsDeck()),
                 createList(game.getInvasionCardsDiscardPile()), createList(game.getCityCardsDiscardPile()));
     }
 
