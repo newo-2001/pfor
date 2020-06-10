@@ -58,9 +58,6 @@ public class MoveView extends View implements IObserver {
         HBox buttonBox = new HBox(30);
         buttonBox.setAlignment(Pos.CENTER);
         
-        Button takeZero = new UIButton("0");
-        takeZero.addEventFilter(MouseEvent.MOUSE_CLICKED, takeZeroClicked);
-        
         Button takeOne = new UIButton("1");
         takeOne.addEventFilter(MouseEvent.MOUSE_CLICKED, takeOneClicked);
         
@@ -70,7 +67,7 @@ public class MoveView extends View implements IObserver {
         Button TakeThree = new UIButton("3");
         TakeThree.addEventFilter(MouseEvent.MOUSE_CLICKED, takeThreeClicked);
         
-        buttonBox.getChildren().addAll(takeZero, takeOne, TakeTwo, TakeThree);
+        buttonBox.getChildren().addAll(takeOne, TakeTwo, TakeThree);
         
         BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
         root.setBottom(buttonBox);
@@ -83,31 +80,24 @@ public class MoveView extends View implements IObserver {
         }
     };
     
-    EventHandler<MouseEvent> takeZeroClicked = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent e) {
-        	moveController.takeZero();
-        }
-    };
-    
     EventHandler<MouseEvent> takeOneClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	moveController.takeOne();
+        	moveController.moveLegions(1);
         }
     };
     
     EventHandler<MouseEvent> takeTwoClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	moveController.takeTwo();
+        	moveController.moveLegions(2);
         }
     };
     
     EventHandler<MouseEvent> takeThreeClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
-        	moveController.takeThree();
+        	moveController.moveLegions(3);
         }
     };
 
