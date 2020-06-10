@@ -122,7 +122,6 @@ public class Player extends Observable implements IObserver {
     	// if city in neighboring cities
     	if (this.city.neighbouringCities.contains(city) && actionsRemaining > 0 && isTurn()) {
         	this.city = city;
-        	actionsRemaining--;
     	}
     }
 
