@@ -36,6 +36,10 @@ public class Faction {
         game.addFriendlyFaction(this);
     }
 
+    /**
+     * Get position of the faction on the map (lower left)
+     * @return A Vector2f object
+     */
     public Vector2f getPosition() {
         return position;
     }

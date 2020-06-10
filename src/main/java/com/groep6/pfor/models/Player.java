@@ -181,6 +181,10 @@ public class Player extends Observable implements IObserver {
         notifyObservers();
     }
 
+    /**
+     * Get list of factions that an alliance can be formed with.
+     * @return List of factions
+     */
     public List<Faction> formableAlliances() {
         FactionFactory factionFactory = FactionFactory.getInstance();
         List<Faction> factions = factionFactory.getFactions();
@@ -199,6 +203,11 @@ public class Player extends Observable implements IObserver {
         return formableAlliances;
     }
 
+    /**
+     * Get the cityCards that this player holds with the type of faction that you give as parameter
+     * @param faction The faction you want the cards from
+     * @return A list of cards
+     */
     public List<Card> getCitycardsWithFaction(Faction faction) {
         List<Card> cards = getHand().getCards();
         List<Card> factionCards = new ArrayList<>();
@@ -210,6 +219,10 @@ public class Player extends Observable implements IObserver {
         return factionCards;
     }
 
+    /**
+     * Form an alliance with a faction, and discard the cards of this faction from this players hand
+     * @param faction The faction to form an alliance with
+     */
     public void formAlliance(Faction faction) {
         if (!formableAlliances().contains(faction)) return;
 
