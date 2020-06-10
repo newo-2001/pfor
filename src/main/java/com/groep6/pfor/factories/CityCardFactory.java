@@ -77,8 +77,10 @@ public class CityCardFactory {
 //		return (CityCard) cityCardDeck.getCards().stream().filter(card -> card.getName().equals(name) && ((CityCard) card).getFaction().equals(faction)).toArray()[0];
 
 		for (Card card: cityCardDeck.getCards()) {
-			CityCard cityCard = (CityCard) card;
-			if (cityCard.getName().equals(name) && cityCard.getFaction().equals(faction)) return cityCard;
+			if (card instanceof CityCard) {
+				CityCard cityCard = (CityCard) card;
+				if (cityCard.getName().equals(name) && cityCard.getFaction().equals(faction)) return cityCard;
+			} else System.out.println("[ERROR] " + card.getClass() + " is not a Citycard");
 		}
 
 		System.out.println("[ERROR] No city card found");
