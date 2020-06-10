@@ -69,6 +69,7 @@ public class BoardController extends Controller {
     
     public void move(City city) {
         Player player = Game.getInstance().getLocalPlayer();
+        player.decreaseActionsRemaining();
     	player.move(city);
     }
 
