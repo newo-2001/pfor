@@ -7,7 +7,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.groep6.pfor.exceptions.NoDocumentException;
-import com.groep6.pfor.util.parsers.templates.DTO;
 
 import javax.swing.text.Document;
 import java.io.FileInputStream;
@@ -83,7 +82,7 @@ public class Firebase {
      *             document Id
      * @param data The data that should form a document entry
      */
-    protected static void addDocument(String path, DTO data) {
+    protected static void addDocument(String path, Object data) {
         CollectionReference collRef = collRefFromPath(path);
         collRef.add(data);
     }
@@ -95,7 +94,7 @@ public class Firebase {
      * @param path The location to write the object to
      * @param data The object to write
      */
-    protected static void setDocument(String path, DTO data) {
+    protected static void setDocument(String path, Object data) {
         DocumentReference docRef = docRefFromPath(path);
         docRef.set(data);
     }
