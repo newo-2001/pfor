@@ -19,7 +19,6 @@ public class AudentesFortunaAction implements IAction {
 	public void execute() {
         Player player = game.getLocalPlayer();
 		player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
-		
 	}
 
 	/**
@@ -37,7 +36,7 @@ public class AudentesFortunaAction implements IAction {
 	 * 
 	 */
 	public String getDescription() {
-		return "De speler mag 2 extra speelkaarten trekken.";
+		return "De speler trekt 2 speelkaarten.";
 	}
 
 }
