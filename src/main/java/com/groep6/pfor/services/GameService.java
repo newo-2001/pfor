@@ -1,14 +1,15 @@
 package com.groep6.pfor.services;
 
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.groep6.pfor.exceptions.NoDocumentException;
-import com.groep6.pfor.models.DiceFace;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.ServerEvent;
 import com.groep6.pfor.util.parsers.templates.GameDTO;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The GameService class acts as a gateway to Firebase for all Game related actions
@@ -66,8 +67,14 @@ public class GameService {
      * Create a game on the server.
      * @param game The game to be created
      */
-    public void create(Game game) {
-        Firebase.setDocument("games/" + game.getCode(), GameDTO.fromModel(game));
+    public void create(Game game) throws ExecutionException {
+        ApiFuture<WriteResult> res = Firebase.setDocument("games/" + game.getCode(), GameDTO.fromModel(game));
+        try {
+            res.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Firebase.docRefFromPath("lobbies/" + game.getCode()).update("started", true);
     }
 
