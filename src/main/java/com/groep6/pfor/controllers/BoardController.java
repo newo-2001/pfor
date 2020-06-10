@@ -61,7 +61,7 @@ public class BoardController extends Controller {
     }
 
     public void cityPressed(City city) {
-        System.out.println(city);
+
     }
 
     public Player getLocalPlayer() {
@@ -70,6 +70,7 @@ public class BoardController extends Controller {
     
     public void move(City city) {
         Player player = Game.getInstance().getLocalPlayer();
+        if (player.getActionsRemaining() <= 0) return;
         if (!Arrays.asList(player.getCity().getNeighbouringCities()).contains(city)) return;
 
         if (player.getCity().getLegions().size() > 0) {

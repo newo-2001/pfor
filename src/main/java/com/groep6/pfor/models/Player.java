@@ -130,6 +130,7 @@ public class Player extends Observable implements IObserver {
         this.city = city;
 
     	decreaseActionsRemaining();
+    	notifyObservers();
     }
 
     public boolean isHost() {
