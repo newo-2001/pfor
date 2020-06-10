@@ -39,21 +39,6 @@ public class HandController extends Controller {
     	this.selectedCard = card;
     }
     
-    public void removeSelectedCard() {
-        if (selectedCard == null) return;
-        Player localPlayer = game.getLocalPlayer();
-
-        localPlayer.getHand().removeCard(selectedCard);
-
-        if (selectedCard instanceof CityCard) {
-        	game.getCityCardsDiscardPile().addCards(selectedCard);
-        } else if (selectedCard instanceof EventCard) {
-        	game.getInvasionCardsDiscardPile().addCards(selectedCard);
-        }
-
-        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
-    }
-    
     public void playCard() {
         if (selectedCard == null) return;
         if (!game.getLocalPlayer().isTurn()) return;
@@ -76,14 +61,44 @@ public class HandController extends Controller {
     }
 
 	public void depositCard() {
+        if (selectedCard == null) return;
+        
+        Player localPlayer = game.getLocalPlayer();
+        Deck tradeDeck = game.getTradeCardsDeck();
         Player player = game.getPlayerTurn();
 
         if (player.getActionsRemaining() <= 0) return;
 
-        game.getLocalPlayer().getHand().removeCard(selectedCard);
-		game.getTradeCardsDeck().addCards(selectedCard);
+        localPlayer.getHand().removeCard(selectedCard);
+		tradeDeck.addCards(selectedCard);
+		
         player.decreaseActionsRemaining();
+        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+        
+        new HandController();
+        
 	}
+	
+    public void removeSelectedCard() {
+        if (selectedCard == null) return;
+        Player localPlayer = game.getLocalPlayer();
+
+        localPlayer.getHand().removeCard(selectedCard);
+
+        if (selectedCard instanceof CityCard) {
+        	game.getCityCardsDiscardPile().addCards(selectedCard);
+        } else if (selectedCard instanceof EventCard) {
+        	game.getInvasionCardsDiscardPile().addCards(selectedCard);
+        }
+
+        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+        
+        new HandController();
+    }
+    
+    public void goToBoard() {
+    	new BoardController();
+    }
 
 	public Player getLocalPlayer() {
         return game.getLocalPlayer();
