@@ -3,6 +3,7 @@ package com.groep6.pfor.models.cards.actions.eventActions;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
+import javafx.application.Platform;
 
 /**
  * Implements (the first) action on Audentes Fortuna Iuvat event card
@@ -10,14 +11,15 @@ import com.groep6.pfor.models.cards.actions.IAction;
  *
  */
 public class AudentesFortunaAction implements IAction {
-	
 
 	/**
 	 * Allows player to draw 2 extra cards during drawPlayerCards phase.
 	 */
 	public void execute() {
 		Game game = Game.getInstance();
+
         Player player = game.getLocalPlayer();
+
 		player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
 	}
 

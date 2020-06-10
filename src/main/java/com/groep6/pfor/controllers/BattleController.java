@@ -44,9 +44,6 @@ public class BattleController extends Controller {
 		legionsLost = Math.min(player.getCity().getLegionCount(), legionsLost);
 		barbariansLost = Math.min(player.getCity().getTotalBarbarianCount(), barbariansLost);
 
-		GameService gameService = new GameService();
-		gameService.setGame(game);
-
 		viewController.showView(new BattleView(this, legionsLost, barbariansLost));
 		SoundEffectManager.play("src/main/resources/sounds/effects/BattleSound.mp3");
 	}

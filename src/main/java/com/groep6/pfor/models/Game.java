@@ -104,8 +104,6 @@ public class Game extends Observable implements IObserver {
             if (player.equals(local)) {
                 setLocalPlayer(local);
             }
-
-            System.out.println(player.getUsername() + " : " + player.isTurn());
         }
 
         board.updateBoard(remote.board);

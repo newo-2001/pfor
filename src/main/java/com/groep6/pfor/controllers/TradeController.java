@@ -46,9 +46,6 @@ public class TradeController extends Controller {
         game.getTradeCardsDeck().removeCard(selectedCard);
         game.getLocalPlayer().getHand().addCards(selectedCard);
     	player.decreaseActionsRemaining();
-
-        GameService gameService = new GameService();
-        gameService.setGame(game);
     }
     
     public Card getCard(Card card) {

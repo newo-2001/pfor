@@ -29,9 +29,6 @@ public class RecruitLegionController extends Controller {
 		if (city.hasFort()) city.addLegions(amount);
 		player.decreaseActionsRemaining();
 		new BoardController();
-
-		GameService gameService = new GameService();
-		gameService.setGame(game);
 	}
 
 	@Override
