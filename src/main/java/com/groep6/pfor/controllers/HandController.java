@@ -7,6 +7,7 @@ import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.util.Vector2f;
@@ -80,6 +81,9 @@ public class HandController extends Controller {
         game.getLocalPlayer().getHand().removeCard(selectedCard);
 		game.getTradeCardsDeck().addCards(selectedCard);
         player.decreaseActionsRemaining();
+
+        GameService gameService = new GameService();
+        gameService.setGame(game);
 	}
 
 	public Player getLocalPlayer() {

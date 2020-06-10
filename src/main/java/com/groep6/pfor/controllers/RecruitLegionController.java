@@ -5,6 +5,7 @@ import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.RecruitLegionView;
 
@@ -28,6 +29,9 @@ public class RecruitLegionController extends Controller {
 		if (city.hasFort()) city.addLegions(amount);
 		player.decreaseActionsRemaining();
 		new BoardController();
+
+		GameService gameService = new GameService();
+		gameService.setGame(game);
 	}
 
 	@Override

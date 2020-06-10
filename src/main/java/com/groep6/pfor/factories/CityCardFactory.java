@@ -73,9 +73,6 @@ public class CityCardFactory {
 	}
 
 	public CityCard getCardByName(String name, Faction faction) {
-		// Yes, java 8 streams are beautiful
-//		return (CityCard) cityCardDeck.getCards().stream().filter(card -> card.getName().equals(name) && ((CityCard) card).getFaction().equals(faction)).toArray()[0];
-
 		for (Card card: cityCardDeck.getCards()) {
 			if (card instanceof CityCard) {
 				CityCard cityCard = (CityCard) card;
