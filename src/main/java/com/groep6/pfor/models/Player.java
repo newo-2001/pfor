@@ -149,6 +149,9 @@ public class Player extends Observable implements IObserver {
     public void addActions(int amount) {
         actionsRemaining += amount;
         notifyObservers();
+
+        GameService gameService = new GameService();
+        gameService.setGame(Game.getInstance());
     }
 
     public void setLocal(boolean local) {

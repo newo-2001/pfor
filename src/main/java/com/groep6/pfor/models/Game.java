@@ -16,7 +16,7 @@ public class Game extends Observable implements IObserver {
 
     private Board board = new Board();
     private List<Player> players = new ArrayList<>();
-    private List<String> invadedCities = new ArrayList<>();
+    private List<City> invadedCities = new ArrayList<>();
     private int decayLevel = 0;
     private final int MAX_DECAY_LEVEL = 8;
     private int invasionLevel = 0;
@@ -45,28 +45,26 @@ public class Game extends Observable implements IObserver {
             die[i] = new Dice();
         }
 
-        // Add barbarians to 9 cities
-        int cityAmount = 9;
-        for (int i = 0; i < cityAmount; i++) {
+        // Add barbarians to 10 cities
+        for (int i = 0; i < 10; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
-            City city = cities[rand.nextInt(cities.length - 1)];
-            if (city.getName().equals("Roma")) {
+            City city = cities[rand.nextInt(cities.length)];
+
+            if (invadedCities.contains(city) || city.getName().equals("Roma")) {
                 i--;
                 continue;
             }
-            for(int x = 0; x < invadedCities.size(); x++) {
-            	if(invadedCities.get(x) == city.getName()) {
-            		
-            		city.removeBarbarians(city.getBarbarians().size());
-            		
-                    i--;
-                    continue;
-            	}
+
+            int barbariansCount = rand.nextInt(4);
+
+            if (city.getTotalBarbarianCount() > 3) {
+                invadedCities.add(city);
+                barbariansCount = 3;
+                i--;
             }
             
             Faction[] factions = city.getFactions();
-            city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), rand.nextInt(3));
-            invadedCities.add(city.getName());
+            city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), barbariansCount);
         }
     }
 
