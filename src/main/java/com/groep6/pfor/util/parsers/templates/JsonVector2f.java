@@ -8,7 +8,7 @@ import com.groep6.pfor.util.Vector2f;
  *
  * @author Owen Elderbroek
  */
-public class Vector2fDTO extends DTO {
+public class JsonVector2f {
     /** The x-component of this vector */
     @SerializedName("x")
     private float x;

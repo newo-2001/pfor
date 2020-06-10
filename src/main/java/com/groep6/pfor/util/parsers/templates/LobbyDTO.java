@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author Owen Elderbroek
  */
-public class LobbyDTO extends DTO {
+public class LobbyDTO {
     /** The lobby code that is required to join a lobby */
     public String code;
 

@@ -1,33 +1,24 @@
 package com.groep6.pfor.util.parsers.templates;
 
 import com.groep6.pfor.factories.RoleCardFactory;
-import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
-import com.groep6.pfor.models.cards.RoleCard;
 
 /**
  * The Data Transfer Object that represents a LobbyPlayer in Firebase
  *
  * @author Owen Elderbroek
  */
-public class LobbyPlayerDTO extends DTO {
-    /**
-     * This player's username
-     */
+public class LobbyPlayerDTO {
+    /** This player's username */
     public String username;
 
-    /**
-     * The name of the rolecard the player has
-     */
+    /** The name of the rolecard the player has */
     public String role;
 
-    /**
-     * Whether this player is the host of lobby
-     */
+    /** Whether this player is the host of lobby */
     public boolean host;
 
-    public LobbyPlayerDTO() {
-    }
+    public LobbyPlayerDTO() {}
 
     /**
      * Make A Data Transfer Object with the specified fields

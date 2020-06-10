@@ -16,7 +16,7 @@ import java.util.Stack;
  *
  * @author OwenElderbroek
  */
-public class CityDTO extends DTO {
+public class CityDTO {
     public String name;
     public boolean fort;
     public int legions;
