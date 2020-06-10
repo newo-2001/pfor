@@ -12,16 +12,19 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class VitaMeaAction implements IAction {
 
-	private Game game = Game.getInstance();
-
 	/**
 	 * Replace 1 barbarian with 1 legion in the current city.
 	 */
 	public void execute() {
+		Game game = Game.getInstance();
 		Player player = game.getPlayerTurn();
 		City city = player.getCity();
-		city.removeBarbarians(1);
-		city.addLegions(1);
+		if(city.getBarbarians().size() > 0) {
+			city.removeBarbarians(1);
+			city.addLegions(1);
+		} else {
+			System.out.println("Geen barbaren in deze stad pik");
+		}
 	}
 
 	/**

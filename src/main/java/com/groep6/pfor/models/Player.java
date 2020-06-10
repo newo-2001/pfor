@@ -8,6 +8,7 @@ import com.groep6.pfor.controllers.MoveController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.cards.RoleCard;
+import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.views.MoveView;
@@ -53,7 +54,7 @@ public class Player extends Observable implements IObserver {
         city.addLegions(2);
     }
 
-    public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
+    public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal, int actionsRemaining) {
         this.roleCard = roleCard;
         this.city = city;
         this.username = username;
@@ -82,6 +83,10 @@ public class Player extends Observable implements IObserver {
         if (actionsRemaining <= 0) return;
         actionsRemaining--;
         notifyObservers();
+
+        // Sync with server
+//        GameService gameService = new GameService();
+//        gameService.setGame(Game.getInstance());
     }
 
     public Hand getHand() {

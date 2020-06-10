@@ -22,7 +22,7 @@ public class Game extends Observable implements IObserver {
     private final int MAX_INVASION_LEVEL = 7;
     private Deck tradeCardsDeck = new Deck();
     private Deck invasionCardsDeck = new Deck();
-    private Deck cityCardsDeck;
+    private Deck playerCardsDeck;
     private Deck invasionCardsDiscardPile = new Deck();
     private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
@@ -35,9 +35,9 @@ public class Game extends Observable implements IObserver {
 
     private Game() {
         Random rand = new Random();
-        cityCardsDeck = CityCardFactory.getInstance().getCityCardDeck();
-        cityCardsDeck.merge(EventCardFactory.getInstance().getEventCardDeck());
-        cityCardsDeck.shuffle();
+        playerCardsDeck = new Deck(CityCardFactory.getInstance().getCityCardDeck().getCards().toArray(new Card[0]));
+        playerCardsDeck.merge(EventCardFactory.getInstance().getEventCardDeck());
+        playerCardsDeck.shuffle();
 
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
@@ -67,7 +67,7 @@ public class Game extends Observable implements IObserver {
         this.invasionLevel = invasionLevel;
         this.tradeCardsDeck = tradeDeck;
         //this.invasionCardsDeck = invasionDeck;
-        this.cityCardsDeck = cityDeck;
+        this.playerCardsDeck = cityDeck;
         this.invasionCardsDiscardPile = invasionDiscardPile;
         this.cityCardsDiscardPile = cityDiscardPile;
 
@@ -104,8 +104,6 @@ public class Game extends Observable implements IObserver {
             if (player.equals(local)) {
                 setLocalPlayer(local);
             }
-
-            System.out.println(player.getUsername() + " : " + player.isTurn());
         }
 
         board.updateBoard(remote.board);
@@ -113,9 +111,11 @@ public class Game extends Observable implements IObserver {
         invasionLevel = remote.invasionLevel;
         invasionCardsDeck = remote.invasionCardsDeck;
         invasionCardsDiscardPile = remote.invasionCardsDiscardPile;
-        cityCardsDeck = remote.cityCardsDeck;
+        playerCardsDeck = remote.playerCardsDeck;
         cityCardsDiscardPile = remote.cityCardsDiscardPile;
         tradeCardsDeck = remote.tradeCardsDeck;
+
+        notifyObservers();
     }
 
     public void addPlayers(Player... players) {
@@ -201,10 +201,6 @@ public class Game extends Observable implements IObserver {
     	return tradeCardsDeck;
     }
 
-    public Deck getCityCardsDeck() {
-        return cityCardsDeck;
-    }
-
     /**
      * @return decay level
      */
@@ -235,7 +231,7 @@ public class Game extends Observable implements IObserver {
     }
 
     public Deck getPlayerCardsDeck() {
-        return cityCardsDeck;
+        return playerCardsDeck;
     }
 
     public Deck getInvasionCardsDiscardPile() {
