@@ -11,6 +11,7 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
+import javafx.application.Platform;
 
 import java.util.List;
 

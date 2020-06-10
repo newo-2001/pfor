@@ -83,8 +83,8 @@ public class Player extends Observable implements IObserver {
         notifyObservers();
 
         // Sync with server
-        GameService gameService = new GameService();
-        gameService.setGame(Game.getInstance());
+//        GameService gameService = new GameService();
+//        gameService.setGame(Game.getInstance());
     }
 
     public Hand getHand() {

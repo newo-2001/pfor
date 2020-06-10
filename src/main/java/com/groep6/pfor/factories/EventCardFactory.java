@@ -29,22 +29,36 @@ public class EventCardFactory {
 	
 	private EventCardFactory() {
 		//eventCardDeck.addCards(new EventCard("Mortui Non Mordent", new MortuiNonMordentAction()));
-		eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
-		eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
+		//1eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
+		//1eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));
 		//eventCardDeck.addCards(new EventCard("Hic Manebimus Optime", new HicManebimusOptimeAction()));
-		eventCardDeck.addCards(new EventCard("Homo Faber Fortunae Suae", new FaberFortunaeAction()));
-		eventCardDeck.addCards(new EventCard("Homo Faber Fortunae Suae", new FaberFortunaeAction()));
+		//1eventCardDeck.addCards(new EventCard("Homo Faber Fortunae Suae", new FaberFortunaeAction()));
+		//1eventCardDeck.addCards(new EventCard("Homo Faber Fortunae Suae", new FaberFortunaeAction()));
 		//eventCardDeck.addCards(new EventCard("Do Ut Des", new DoUtDesAction()));
 		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
 		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+		eventCardDeck.addCards(new EventCard("Audentes Fortuna Iuvat", new AudentesFortunaAction()));
+
 		//eventCardDeck.addCards(new EventCard("Vae Victis", new VaeVictisAction()));
 		//eventCardDeck.addCards(new EventCard("Alea Iactua Est", new AleaIactaEstAction()));
 		//eventCardDeck.addCards(new EventCard("Abundans Cautela Non Nocet", new AbundansCautelaAction()));
 		//eventCardDeck.addCards(new EventCard("Melius Cavere Quam Pavere", new MeliusCavereAction()));
 		//eventCardDeck.addCards(new EventCard("Festina Lente", new FestinaLenteAction()));
 		//eventCardDeck.addCards(new EventCard("Si Vis Pacem, Para Bellum", new ParaBellumAction()));
-		eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
-		eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
+		//1eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
+		//1eventCardDeck.addCards(new EventCard("Carpe Diem", new CarpeDiemAction()));
 		//eventCardDeck.addCards(new EventCard("Veni Vidi Vici", new VeniVidiViciAction()));
 	}
 	
