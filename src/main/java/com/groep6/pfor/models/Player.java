@@ -59,7 +59,8 @@ public class Player extends Observable implements IObserver {
         this.city = city;
         this.username = username;
         this.isLocal = isLocal;
-        if (turn) setTurn();
+        this.actionsRemaining = actionsRemaining;
+        this.turn = turn;
     }
     
     public boolean isTurn() {
