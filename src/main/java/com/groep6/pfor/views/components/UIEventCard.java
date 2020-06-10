@@ -6,6 +6,7 @@ import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 public class UIEventCard extends UICard {
 
@@ -22,7 +23,13 @@ public class UIEventCard extends UICard {
     private void createView() {
         UIText nameText = new UIText(card.getName());
         nameText.setWeight(FontWeight.BOLD).setSize(18).setColor(Color.web("#D5544F"));
+
+        UIText descriptionText = new UIText(card.getEvent().getDescription());
+        descriptionText.setAlignment(TextAlignment.CENTER);
+        descriptionText.setWrappingWidth(super.getMaxWidth() - super.getPadding().getRight() * 2);
+
         setCenter(nameText);
+        setBottom(descriptionText);
     }
 
     @Override

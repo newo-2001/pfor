@@ -80,7 +80,7 @@ public class CityCardFactory {
 			if (card instanceof CityCard) {
 				CityCard cityCard = (CityCard) card;
 				if (cityCard.getName().equals(name) && cityCard.getFaction().equals(faction)) return cityCard;
-			} else System.out.println("[ERROR] " + card.getClass().getName() + " is not a Citycard");
+			}
 		}
 
 		System.out.println("[ERROR] No city card found");

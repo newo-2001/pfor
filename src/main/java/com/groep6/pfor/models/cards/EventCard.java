@@ -21,6 +21,11 @@ public class EventCard extends Card {
         return name;
     }
 
+    public IAction getEvent() {
+        return event;
+    }
+
+
     /**
      * Executes an IAction event
      */
