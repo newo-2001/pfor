@@ -1,6 +1,8 @@
 package com.groep6.pfor.factories;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.models.Deck;
+import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.EventCard;
 import com.groep6.pfor.models.cards.actions.eventActions.AbundansCautelaAction;
 import com.groep6.pfor.models.cards.actions.eventActions.AleaIactaEstAction;
@@ -48,5 +50,13 @@ public class EventCardFactory {
 
 	public Deck getEventCardDeck() {
 		return eventCardDeck;
+	}
+
+	public EventCard getCardByName(String name) {
+		for (Card card : eventCardDeck.getCards()) {
+			if (card.getName().equals(name)) return (EventCard) card;
+		}
+		if (Config.DEBUG) System.out.printf("[WARNING] Event card with name %s not found!\n", name);
+		return null;
 	}
 }

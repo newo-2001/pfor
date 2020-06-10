@@ -28,20 +28,24 @@ public class LobbyController extends Controller {
         LobbyService.lobbyChangeEvent.subscribe(onLobbyChange);
         viewController.showView(new LobbyView(this));
 
-        LobbyService.gameStartEvent.subscribe(eventData -> {
-            System.out.println("Server update...");
-            Game game = Game.getInstance();
-            if (game.getLocalPlayer() != null && game.getLocalPlayer().isHost()) return;
+        IEventCallback gameStartEvent = new IEventCallback() {
+            @Override
+            public void onEvent(Object... eventData) {
+                Game game = Game.getInstance();
+                if (game.getLocalPlayer() != null && game.getLocalPlayer().isHost()) return;
 
-            game.addPlayers(lobby.getLocalPlayer());
-            game.setCode(lobby.getCode());
-            onGameChange.onEvent(eventData);
-            GameService.gameChangeEvent.subscribe(onGameChange);
-            Platform.runLater(BoardController::new);
-        });
+                game.addPlayers(lobby.getLocalPlayer());
+                game.setCode(lobby.getCode());
+                onGameChange.onEvent(eventData);
+                GameService.gameChangeEvent.subscribe(onGameChange);
+                Platform.runLater(BoardController::new);
+            }
+        };
+        LobbyService.gameStartEvent.subscribe(gameStartEvent);
     }
 
     private final IEventCallback onGameChange = eventData -> {
+        System.out.println("Server update...");
         Game game = (Game) eventData[0];
         Game.getInstance().updateGame(game);
     };
@@ -100,6 +104,7 @@ public class LobbyController extends Controller {
 
         GameService gameService = new GameService();
         gameService.create(game);
+        GameService.gameChangeEvent.subscribe(onGameChange);
 
         new BoardController();
     }

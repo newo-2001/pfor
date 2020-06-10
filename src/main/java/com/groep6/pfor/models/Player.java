@@ -49,8 +49,6 @@ public class Player extends Observable implements IObserver {
 
         // Add two legions to start city
         city.addLegions(2);
-
-        System.out.println("Player: " + username);
     }
 
     public Player(String username, City city, RoleCard roleCard, boolean turn, boolean isLocal) {
@@ -124,7 +122,6 @@ public class Player extends Observable implements IObserver {
     	// if city in neighboring cities
     	if (this.city.neighbouringCities.contains(city) && actionsRemaining > 0 && isTurn()) {
         	this.city = city;
-        	actionsRemaining--;
     	}
     }
 
@@ -164,8 +161,6 @@ public class Player extends Observable implements IObserver {
     }
 
     public void update() {
-        System.out.println("Legions: " + city.getLegions());
-        System.out.println("Barbarians: " + city.getBarbarians());
         notifyObservers();
     }
 }
