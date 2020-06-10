@@ -1,5 +1,6 @@
 package com.groep6.pfor.controllers;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.groep6.pfor.models.City;
@@ -60,7 +61,7 @@ public class BoardController extends Controller {
     }
 
     public void cityPressed(City city) {
-        System.out.println(city);
+
     }
 
     public Player getLocalPlayer() {
@@ -69,8 +70,13 @@ public class BoardController extends Controller {
     
     public void move(City city) {
         Player player = Game.getInstance().getLocalPlayer();
-    	player.move(city);
-        player.decreaseActionsRemaining();
+
+        if (player.getActionsRemaining() <= 0) return;
+        if (!Arrays.asList(player.getCity().getNeighbouringCities()).contains(city)) return;
+
+        if (player.getCity().getLegions().size() > 0) {
+            new MoveController(city, player);
+        } else player.move(city);
     }
 
     public void nextTurn() {

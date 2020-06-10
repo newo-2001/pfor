@@ -137,20 +137,20 @@ public class City extends Tile {
 	}
 	
     /**
-     * adds a barbarian to a specific city
+     * adds barbarians to a specific city
      * @param factionType
      */
 	public void addBarbarians(FactionType factionType, int amount) {
-		for (int i = 0; i < amount; i++) {
-			barbarians.add(new Barbarian(factionType));
-		}
-		
 		if (barbarians.size() >= 4) {
 			Game.getInstance().increaseDecayLevel(1);
 			for (City city: neighbouringCities) {
 				city.addBarbarians(factionType, 1);
 			}
 			return;
+		}
+		
+		for (int i = 0; i < amount; i++) {
+			barbarians.add(new Barbarian(factionType));
 		}
 	}
 	
@@ -162,6 +162,8 @@ public class City extends Tile {
 		for (int i = 0; i < amount; i++) {
 			legions.add(new Legion());
 		}
+
+		notifyObservers();
 	}
 	
     /**
@@ -196,7 +198,6 @@ public class City extends Tile {
 
     /**
 	 * @param amount
-     * @return a legion and removes that specific legion from a city
      */
 	
 	public void removeLegions(int amount) {

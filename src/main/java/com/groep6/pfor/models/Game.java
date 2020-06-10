@@ -131,7 +131,10 @@ public class Game extends Observable implements IObserver {
     }
 
     public void addPlayers(Player... players) {
-        this.players.addAll(Arrays.asList(players));
+        for (Player player: players) {
+            this.players.add(player);
+            player.registerObserver(this);
+        }
     }
 
     public void nextTurn() {

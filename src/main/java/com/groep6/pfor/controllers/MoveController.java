@@ -1,8 +1,9 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.views.MoveView;
 
@@ -11,33 +12,30 @@ import com.groep6.pfor.views.MoveView;
  */
 
 public class MoveController extends Controller {
-	
-	private Game game = Game.getInstance();
-	
-    public MoveController() {
 
-        SoundEffectManager.play("src/main/resources/sounds/effects/MarchSound.mp3");
+	private City destination;
+	private Player player;
+	
+    public MoveController(City destination, Player player) {
+    	this.destination = destination;
+    	this.player = player;
+
         viewController.showView(new MoveView(this));
     };
     
-    public int takeZero() {
-    	return 0;
-    }
-    
-    public int takeOne() {
-    	return 1;
-    }
-    
-    public int takeTwo() {
-    	return 2;
-    }
-    
-    public int takeThree() {
-    	return 3;
+    public void moveLegions(int amount) {
+    	player.getCity().removeLegions(amount);
+    	destination.addLegions(amount);
+
+		SoundEffectManager.play("src/main/resources/sounds/effects/MarchSound.mp3");
+		player.move(destination);
+    	goBack();
     }
 
-	@Override
-	public void registerObserver(IObserver view) {
-		game.registerObserver(view);
+    public int getAmountOfLegionsInCurrentCity() {
+    	return player.getCity().getLegions().size();
 	}
+
+	@Override
+	public void registerObserver(IObserver view) {}
 }

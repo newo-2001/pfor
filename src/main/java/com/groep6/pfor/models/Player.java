@@ -1,15 +1,17 @@
 package com.groep6.pfor.models;
 
 import java.util.Arrays;
-import java.util.Random;
-import java.util.Stack;
 import java.util.List;
+import java.util.Random;
 
+import com.groep6.pfor.controllers.MoveController;
+import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
+import com.groep6.pfor.views.MoveView;
 
 /**
  * @author Bastiaan Jansen
@@ -124,10 +126,11 @@ public class Player extends Observable implements IObserver {
     }
     
     public void move(City city) {
-    	// if city in neighboring cities
-    	if (this.city.neighbouringCities.contains(city) && actionsRemaining > 0 && isTurn()) {
-        	this.city = city;
-    	}
+    	if (!this.city.neighbouringCities.contains(city)) return;
+        this.city = city;
+
+    	decreaseActionsRemaining();
+    	notifyObservers();
     }
 
     public boolean isHost() {
