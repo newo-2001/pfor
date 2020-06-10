@@ -122,7 +122,7 @@ public class HandView extends View implements IObserver {
     EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-        	handController.goBack();
+        	handController.goToBoard();
         }
     };
     
@@ -132,6 +132,15 @@ public class HandView extends View implements IObserver {
         public void handle(MouseEvent e) {
             handController.removeSelectedCard();
             discardCardButton.setDisable(true);
+            goBackButton.setDisable(false);
+        }
+    };
+    
+    EventHandler<MouseEvent> depositCard = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+        	handController.depositCard();
+            if (handController.getLocalPlayer().getActionsRemaining() <= 0) depositCardButton.setDisable(true);
         }
     };
     
@@ -155,14 +164,6 @@ public class HandView extends View implements IObserver {
             if (handController.getLocalPlayer().getActionsRemaining() > 0) depositCardButton.setDisable(false);
 
             playCardButton.setDisable(!(source instanceof UIEventCard));
-        }
-    };
-    
-    EventHandler<MouseEvent> depositCard = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent e) {
-        	handController.depositCard();
-            if (handController.getLocalPlayer().getActionsRemaining() <= 0) depositCardButton.setDisable(true);
         }
     };
 
