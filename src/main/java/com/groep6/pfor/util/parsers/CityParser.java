@@ -10,12 +10,28 @@ import com.groep6.pfor.util.parsers.templates.JsonCity;
 import java.text.ParseException;
 import java.util.*;
 
+/**
+ * A parser that parses cities from a Json file
+ *
+ * @author Owen Elderbroek
+ */
 public class CityParser extends JsonParser {
+    /**
+     * Parse a file of json cities
+     * @param path The path to the json file
+     * @return A list of cities that were parsed
+     * @throws ParseException If the json was invalid
+     */
     @Override
     public City[] parseFile(String path) throws ParseException {
         return (City[]) super.parseFile(path);
     }
 
+    /**
+     * Parses a gson Json array of cities
+     * @param json The json array
+     * @return An array of parsed cities
+     */
     @Override
     public Object[] parse(JsonArray json) {
         Map<String, City> cities = new HashMap<String, City>();

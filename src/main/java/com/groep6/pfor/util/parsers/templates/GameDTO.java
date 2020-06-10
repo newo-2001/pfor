@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author Owen ELderbroek
  */
-public class GameDTO extends DTO {
+public class GameDTO {
     public BoardDTO board;
     public Map<String, PlayerDTO> players;
     public int decayLevel;

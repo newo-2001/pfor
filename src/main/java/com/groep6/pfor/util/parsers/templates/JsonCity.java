@@ -10,7 +10,7 @@ import com.groep6.pfor.models.factions.Faction;
  *
  * @author Owen Elderbroek
  */
-public class JsonCity extends DTO {
+public class JsonCity {
     /** The tile that this city is based on, in its DTO form */
     @SerializedName("tile")
     private JsonTile tile;
