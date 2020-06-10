@@ -46,7 +46,7 @@ public class CardDTO {
             case "event":
                 return EventCardFactory.getInstance().getCardByName(name);
             case "invasion":
-                return InvasionCardFactory.getInstance().getInvasionCardByName(name);
+                return InvasionCardFactory.getInstance().getInvasionCardByName(name, FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
         }
         return null;
         // TODO cast card from the database to correct model
