@@ -102,11 +102,14 @@ public class LobbyController extends Controller {
         game.getAllPlayers().get(0).setTurn();
 
         GameService gameService = new GameService();
+        LobbyService lobbyService = new LobbyService();
 
         gameService.create(game);
         GameService.gameChangeEvent.subscribe(onGameChange);
 
         new BoardController();
+        lobbyService.remove(lobby);
+
     }
 
     /**
