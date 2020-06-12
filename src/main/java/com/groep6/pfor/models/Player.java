@@ -194,8 +194,14 @@ public class Player extends Observable implements IObserver {
         List<Card> cards = getHand().getCards();
         List<Faction> formableAlliances = new ArrayList<>();
 
+        // Loop through all factions
         for (Faction faction : factions) {
+            // If current city does not have this faction, continue
+            if (!city.hasFaction(faction)) continue;
+
             int cardCount = 0;
+
+            // Check if player has required card count to form alliance
             for (Card card : cards) {
                 if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) {
                     cardCount++;

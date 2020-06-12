@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * With the ViewController it is easy to switch to different Views
@@ -26,8 +27,7 @@ public class ViewController {
     private static final ViewController INSTANCE = new ViewController();
     public static ViewController getInstance() { return INSTANCE; }
 
-    private List<View> visitedViews = new ArrayList<>();
-    private List<Controller> controllers = new ArrayList<>();
+    private Stack<View> visitedViews = new Stack<>();
     private Stage stage;
 
     private ViewController() {}
@@ -47,13 +47,13 @@ public class ViewController {
      * Show a specific view
      * @param view
      */
-    public void showView(View view) {
+    public void showView(View view, boolean preventPush) {
 
         double width = stage.getWidth();
         double height = stage.getHeight();
         boolean isFullScreen = stage.isFullScreen();
 
-        visitedViews.add(view);
+        if (!preventPush) visitedViews.push(view);
         Pane root = view.getRoot();
 
         Scene scene = stage.getScene();
@@ -75,6 +75,10 @@ public class ViewController {
         stage.show();
     }
 
+    public void showView(View view) {
+        showView(view, false);
+    }
+
     /**
      * @return primaryStage
      */
@@ -86,8 +90,9 @@ public class ViewController {
      * Show previous view
      */
     public void showPreviousView() {
-        if (visitedViews.size() < 2) return;
-        showView(visitedViews.get(visitedViews.size() - 2));
+        if (visitedViews.size() <= 1) return;
+        visitedViews.pop();
+        showView(visitedViews.peek(), true);
     }
 
     public void setWidth(int width) {
