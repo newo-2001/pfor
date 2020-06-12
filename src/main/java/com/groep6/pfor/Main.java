@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 
 public class Main extends Application {
+	
+	public static MusicManager musicManager;
 
     public static void main(String[] args) {
         launch();
@@ -34,7 +36,7 @@ public class Main extends Application {
         playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
         playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
 
-        MusicManager musicManager = new MusicManager(playlist);
+        musicManager = new MusicManager(playlist);
         musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.3, true);
   
         // Set default view
