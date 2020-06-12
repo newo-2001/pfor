@@ -89,7 +89,8 @@ public class LobbyController extends Controller {
             }
         }
 
-        new MenuController();
+        goBack();
+        goBack();
     }
 
     public void startGame() {

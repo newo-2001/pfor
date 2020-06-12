@@ -6,6 +6,7 @@ import com.groep6.pfor.factories.EventCardFactory;
 import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -45,12 +46,10 @@ public class Game extends Observable implements IObserver {
         invasionCardsDeck.shuffle();
 
         // Create new dice instances
-        for (int i = 0; i < die.length; i++) {
-            die[i] = new Dice();
-        }
+        for (int i = 0; i < die.length; i++) die[i] = new Dice();
 
-        // Add barbarians to 10 cities
-        for (int i = 0; i < 10; i++) {
+        // Add barbarians to cities
+        for (int i = 0; i < 15; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
             City city = cities[rand.nextInt(cities.length)];
 
@@ -59,14 +58,14 @@ public class Game extends Observable implements IObserver {
                 continue;
             }
 
-            int barbariansCount = rand.nextInt(4);
+            int barbariansCount = rand.nextInt((4 - 1 + 1)) + 1;
 
             if (city.getTotalBarbarianCount() > 3) {
                 invadedCities.add(city);
                 barbariansCount = 3;
                 i--;
             }
-            
+
             Faction[] factions = city.getFactions();
             city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), barbariansCount);
         }
@@ -123,6 +122,7 @@ public class Game extends Observable implements IObserver {
         playerCardsDeck = remote.playerCardsDeck;
         cityCardsDiscardPile = remote.cityCardsDiscardPile;
         tradeCardsDeck = remote.tradeCardsDeck;
+        friendlyFactions = remote.friendlyFactions;
 
         notifyObservers();
     }
@@ -237,6 +237,8 @@ public class Game extends Observable implements IObserver {
      */
     public void increaseInvasionLevel(int amount) {
         if (invasionLevel + amount >= MAX_INVASION_LEVEL) return;
+
+        System.out.println("Increasing invasion level");
 
         invasionLevel += amount;
         notifyObservers();

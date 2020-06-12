@@ -74,8 +74,10 @@ public class HandController extends Controller {
 		
         player.decreaseActionsRemaining();
         SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+
+        refresh();
         
-        new HandController();
+        //new HandController();
         
 	}
 	
@@ -93,11 +95,16 @@ public class HandController extends Controller {
 
         SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
         
-        new HandController();
+        refresh();
     }
     
     public void goToBoard() {
-    	new BoardController();
+    	goBack();
+    }
+    
+    public void refresh() {
+    	goBack();
+    	new HandController();
     }
 
 	public Player getLocalPlayer() {

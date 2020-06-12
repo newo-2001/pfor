@@ -194,8 +194,14 @@ public class Player extends Observable implements IObserver {
         List<Card> cards = getHand().getCards();
         List<Faction> formableAlliances = new ArrayList<>();
 
+        // Loop through all factions
         for (Faction faction : factions) {
+            // If current city does not have this faction, continue
+            if (!city.hasFaction(faction)) continue;
+
             int cardCount = 0;
+
+            // Check if player has required card count to form alliance
             for (Card card : cards) {
                 if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) {
                     cardCount++;
@@ -220,20 +226,5 @@ public class Player extends Observable implements IObserver {
             }
         }
         return factionCards;
-    }
-
-    /**
-     * Form an alliance with a faction, and discard the cards of this faction from this players hand
-     * @param faction The faction to form an alliance with
-     */
-    public void formAlliance(Faction faction) {
-        if (!formableAlliances().contains(faction)) return;
-
-        // Ally this faction
-        faction.ally();
-
-        // Remove cards
-        List<Card> cardsToDiscard = getCitycardsWithFaction(faction);
-        getHand().removeCards(cardsToDiscard.toArray(new Card[cardsToDiscard.size()]));
     }
 }

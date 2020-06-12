@@ -74,7 +74,7 @@ public class HandView extends View implements IObserver {
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
-        if (!handController.getLocalPlayer().isTurn()) playCardButton.setDisable(true);
+        if (handController.getLocalPlayer().isTurn()) playCardButton.setDisable(false);
         
         goBackButton = new UIButton("Ga terug");
         goBackButton.setDisable(false);
@@ -91,19 +91,20 @@ public class HandView extends View implements IObserver {
         buttonsPane.getChildren().addAll(depositCardButton, discardCardButton, playCardButton, goBackButton);
         buttonsPane.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        root.setCenter(scrollPane);
-        root.setRight(buttonsPane);
-    }
-
-    private void createCards() {
+        // Cards
         cardsPane = new FlowPane();
         setBackground(cardsPane, "images/background-4.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);
-
         scrollPane.setContent(cardsPane);
-        
+
+        root.setCenter(scrollPane);
+        root.setRight(buttonsPane);
+    }
+
+    private void createCards() {
+        cardsPane.getChildren().clear();
         for (Card card: cards) {
             UICard uiCard = null;
 
@@ -161,7 +162,7 @@ public class HandView extends View implements IObserver {
             source.select();
             handController.selectCard(source.getCard());
             discardCardButton.setDisable(false);
-            if (handController.getLocalPlayer().getActionsRemaining() > 0) depositCardButton.setDisable(false);
+            if (handController.getLocalPlayer().getActionsRemaining() > 0 && handController.getLocalPlayer().isTurn()) depositCardButton.setDisable(false);
 
             playCardButton.setDisable(!(source instanceof UIEventCard));
         }

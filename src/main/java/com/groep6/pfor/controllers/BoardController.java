@@ -99,7 +99,7 @@ public class BoardController extends Controller {
     }
 
     private void invadeCities() {
-        int cardAmount = 3;
+        int cardAmount = 4;
         Card[] usedCards = new Card[cardAmount];
         Deck invasionCardsDeck = game.getInvasionCardsDeck();
         for (int i = 0; i < cardAmount; i++) {
@@ -113,41 +113,29 @@ public class BoardController extends Controller {
 
     private void invadeCity(InvasionCard card) {
         List<City> route = card.getRoute();
-
-//        Collections.reverse(route);
-
-        System.out.println("");
-        System.out.println(card.getName());
-        System.out.println("---");
-
-        for (int i = 0; i < route.size(); i++) {
-            City city = route.get(i);
-            City previousCity = null;
-            System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
-
-            if (i > 0) {
-                previousCity = route.get(i - 1);
-            }
-
-            System.out.println(route.get(0).getBarbarianCount(card.getFaction().getFactionType()));
-            if (route.get(0).getBarbarianCount(card.getFaction().getFactionType()) <= 1) {
-                route.get(0).addBarbarians(card.getFaction().getFactionType(), 1);
-            }
-
-//            if ((previousCity != null && previousCity.getTotalBarbarianCount() > 0)) {
-////                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
-//                city.addBarbarians(card.getFaction().getFactionType(), 1);
-////                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
-//                break;
-//            }
+        
+        for(int i = 0; i < route.size(); i++) {
+        	if(route.get(i).getBarbarianCount(card.getFaction().getFactionType(), route.get(i).getBarbarians()) < 1) {
+                route.get(i).addBarbarians(card.getFaction().getFactionType(), 1);
+                break;
+        	}
         }
-    }
-
+        if (route.get(route.size() - 1).getBarbarianCount(card.getFaction().getFactionType(), route.get(route.size() - 1).getBarbarians()) >= 1){
+    		route.get(route.size() - 1).addBarbarians(card.getFaction().getFactionType(), 1);
+        }
+}
     public void buildFort() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
         city.placeFort();
         player.decreaseActionsRemaining();
+    }
+
+    public boolean canBattle() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+
+        return city.getTotalBarbarianCount() > 0;
     }
 
     public boolean canRecruitBarbarians() {
@@ -182,11 +170,23 @@ public class BoardController extends Controller {
     }
 
     public void formAlliance() {
-        getLocalPlayer().formAlliance(getLocalPlayer().formableAlliances().get(0));
+        Player player = getLocalPlayer();
+        Faction faction = player.formableAlliances().get(0);
+
+        // Ally this faction
+        faction.ally();
+
+        // Remove cards
+        List<Card> cardsToDiscard = player.getCitycardsWithFaction(faction);
+        player.getHand().removeCards(cardsToDiscard.toArray(new Card[0]));
+
+        player.decreaseActionsRemaining();
     }
 
     public boolean canFormAlliance() {
-        return getLocalPlayer().formableAlliances().size() > 0;
+        Player player = getLocalPlayer();
+
+        return player.formableAlliances().size() > 0;
     }
 
     public List<Faction> getFriendlyFactions() {
