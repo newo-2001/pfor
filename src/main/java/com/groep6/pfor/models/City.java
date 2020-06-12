@@ -155,13 +155,19 @@ public class City extends Tile {
 	public void addBarbarians(FactionType factionType, int amount) {
 		for (int i = 0; i < amount; i++) {
 			barbarians.add(new Barbarian(factionType));
+
+			if (barbarians.size() >= 4) {
+				barbarians.clear();
+				Game game = Game.getInstance();
+				if (game != null) game.increaseDecayLevel(1);
+				return;
+			}
 		}
 	}
 	
     /**
      * adds a legion to a specific city
      */
-	
 	public void addLegions(int amount) {
 		for (int i = 0; i < amount; i++) {
 			legions.add(new Legion());

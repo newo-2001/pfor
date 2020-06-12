@@ -1,5 +1,6 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.views.HostView;
 import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.View;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.swing.border.Border;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class ViewController {
     public static ViewController getInstance() { return INSTANCE; }
 
     private List<View> visitedViews = new ArrayList<>();
+    private List<Controller> controllers = new ArrayList<>();
     private Stage stage;
 
     private ViewController() {}

@@ -6,6 +6,7 @@ import com.groep6.pfor.factories.EventCardFactory;
 import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -66,7 +67,7 @@ public class Game extends Observable implements IObserver {
                 barbariansCount = 3;
                 i--;
             }
-            
+
             Faction[] factions = city.getFactions();
             city.addBarbarians(factions[rand.nextInt(factions.length)].getFactionType(), barbariansCount);
         }
@@ -237,6 +238,8 @@ public class Game extends Observable implements IObserver {
      */
     public void increaseInvasionLevel(int amount) {
         if (invasionLevel + amount >= MAX_INVASION_LEVEL) return;
+
+        System.out.println("Increasing invasion level");
 
         invasionLevel += amount;
         notifyObservers();
