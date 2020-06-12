@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 /**
@@ -53,7 +54,13 @@ public class ViewController {
         double height = stage.getHeight();
         boolean isFullScreen = stage.isFullScreen();
 
+        System.out.println("------------");
         if (!preventPush) visitedViews.push(view);
+        for (View newView: visitedViews) {
+        	System.out.println(newView.toString());
+        }
+        System.out.println("------------");
+        
         Pane root = view.getRoot();
 
         Scene scene = stage.getScene();
