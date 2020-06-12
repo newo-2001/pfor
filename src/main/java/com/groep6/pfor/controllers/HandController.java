@@ -98,6 +98,7 @@ public class HandController extends Controller {
     
     public void goToBoard() {
     	goBack();
+        goBack();
     }
 
 	public Player getLocalPlayer() {
