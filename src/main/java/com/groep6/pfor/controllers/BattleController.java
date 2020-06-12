@@ -31,10 +31,11 @@ public class BattleController extends Controller {
 	 */
 	public BattleController() {
 		Player player = game.getPlayerTurn();
-		DiceFace[] battleResults = player.battle();
 
 		int legionCount = player.getCity().getLegionCount();
 		int barbarianCount = player.getCity().getTotalBarbarianCount();
+
+		DiceFace[] battleResults = player.battle();
 
 		int legionsLost = 0;
 		int barbariansLost = 0;
