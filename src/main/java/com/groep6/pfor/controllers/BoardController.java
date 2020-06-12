@@ -124,7 +124,8 @@ public class BoardController extends Controller {
         if (route.get(route.size() - 1).getBarbarianCount(card.getFaction().getFactionType(), route.get(route.size() - 1).getBarbarians()) >= 1){
     		route.get(route.size() - 1).addBarbarians(card.getFaction().getFactionType(), 1);
         }
-}
+    }
+
     public void buildFort() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();

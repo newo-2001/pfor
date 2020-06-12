@@ -84,6 +84,4 @@ public enum DiceFace {
 	public abstract void execute(City city);
 	public abstract int getBarbarianCount();
 	public abstract int getLegionCount();
-
-	
 }

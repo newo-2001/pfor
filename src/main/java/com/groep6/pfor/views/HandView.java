@@ -74,7 +74,6 @@ public class HandView extends View implements IObserver {
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
-        if (handController.getLocalPlayer().isTurn()) playCardButton.setDisable(false);
         
         goBackButton = new UIButton("Ga terug");
         goBackButton.setDisable(false);
