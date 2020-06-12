@@ -58,12 +58,15 @@ public class RecruitBarbarianView extends View implements IObserver {
         
         Button recruitOne = new UIButton("1");
         recruitOne.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitOneClicked);
+        if (recruitBarbarianController.getAmountOfBarbariansInCurrentCity() < 1) recruitOne.setDisable(true);
         
         Button recruitTwo = new UIButton("2");
         recruitTwo.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitTwoClicked);
+        if (recruitBarbarianController.getAmountOfBarbariansInCurrentCity() < 2) recruitTwo.setDisable(true);
         
         Button recruitThree = new UIButton("3");
         recruitThree.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitThreeClicked);
+        if (recruitBarbarianController.getAmountOfBarbariansInCurrentCity() < 3) recruitThree.setDisable(true);
         
         buttonBox.getChildren().addAll(recruitOne, recruitTwo, recruitThree);
 
