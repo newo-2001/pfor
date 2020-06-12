@@ -178,7 +178,7 @@ public class BoardController extends Controller {
 
         // Remove cards
         List<Card> cardsToDiscard = player.getCitycardsWithFaction(faction);
-        player.getHand().removeCards(cardsToDiscard.toArray(new Card[cardsToDiscard.size()]));
+        player.getHand().removeCards(cardsToDiscard.toArray(new Card[0]));
 
         player.decreaseActionsRemaining();
     }
