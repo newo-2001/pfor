@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.util.parsers.templates.JsonInvasionCard;
 
