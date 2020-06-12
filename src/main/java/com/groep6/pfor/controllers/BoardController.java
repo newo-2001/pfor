@@ -131,6 +131,13 @@ public class BoardController extends Controller {
         player.decreaseActionsRemaining();
     }
 
+    public boolean canBattle() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+
+        return city.getTotalBarbarianCount() > 0;
+    }
+
     public boolean canRecruitBarbarians() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
