@@ -28,13 +28,13 @@ public class GameDTO {
     public List<CardDTO> cityDeck;
     public List<CardDTO> invasionDiscardPile;
     public List<CardDTO> cityDiscardPile;
-    public Map<String, Boolean> friendlyFactions;
+    public List<String> friendlyFactions;
 
     public Game toModel() {
         List<Player> players = new ArrayList<>();
         for (PlayerDTO player : this.players.values()) players.add(player.toModel());
         List<Faction> factions = new ArrayList<>();
-        for (String faction : this.friendlyFactions.keySet()) factions.add(FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
+        for (String faction : this.friendlyFactions) factions.add(FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
 
         return new Game(board.toModel(), players, factions, decayLevel, invasionLevel, createDeck(tradeDeck),
                 createDeck(invasionDeck), createDeck(cityDeck), createDeck(invasionDiscardPile), createDeck(cityDiscardPile));
@@ -44,8 +44,8 @@ public class GameDTO {
         BoardDTO board = BoardDTO.fromModel(game.getBoard());
         Map<String, PlayerDTO> players = new HashMap<>();
         for (Player player : game.getAllPlayers()) players.put(player.getUsername(), PlayerDTO.fromModel(player));
-        Map<String, Boolean> factions = new HashMap<>();
-        for (Faction faction : FactionFactory.getInstance().getFactions()) factions.put(faction.getFactionType().toString(), game.isFriendlyFaction(faction));
+        List<String> factions = new ArrayList<>();
+        for (Faction faction : game.getFriendlyFactions()) factions.add(faction.getFactionType().toString());
 
         return new GameDTO(board, players, factions, game.getDecayLevel(), game.getInvasionLevel(),
                 createList(game.getTradeCardsDeck()), createList(game.getInvasionCardsDeck()), createList(game.getPlayerCardsDeck()),
@@ -54,7 +54,7 @@ public class GameDTO {
 
     public GameDTO() {}
 
-    private GameDTO(BoardDTO board, Map<String, PlayerDTO> players, Map<String, Boolean> friendlyFactions, int decayLevel, int invasionLevel,
+    private GameDTO(BoardDTO board, Map<String, PlayerDTO> players, List<String> friendlyFactions, int decayLevel, int invasionLevel,
                 List<CardDTO> tradeDeck, List<CardDTO> invasionDeck, List<CardDTO> cityDeck, List<CardDTO> invasionDiscardPile, List<CardDTO> cityDiscardPile) {
         this.board = board;
         this.players = players;
