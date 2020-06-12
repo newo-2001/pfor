@@ -91,19 +91,20 @@ public class HandView extends View implements IObserver {
         buttonsPane.getChildren().addAll(depositCardButton, discardCardButton, playCardButton, goBackButton);
         buttonsPane.setBackground(new Background(new BackgroundFill(Color.web("#D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        root.setCenter(scrollPane);
-        root.setRight(buttonsPane);
-    }
-
-    private void createCards() {
+        // Cards
         cardsPane = new FlowPane();
         setBackground(cardsPane, "images/background-4.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);
-
         scrollPane.setContent(cardsPane);
-        
+
+        root.setCenter(scrollPane);
+        root.setRight(buttonsPane);
+    }
+
+    private void createCards() {
+        cardsPane.getChildren().clear();
         for (Card card: cards) {
             UICard uiCard = null;
 
