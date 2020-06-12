@@ -170,11 +170,16 @@ public class BoardController extends Controller {
     }
 
     public void formAlliance() {
-        getLocalPlayer().formAlliance(getLocalPlayer().formableAlliances().get(0));
+        Player player = getLocalPlayer();
+        Faction faction = player.formableAlliances().get(0);
+
+        player.formAlliance(faction);
     }
 
     public boolean canFormAlliance() {
-        return getLocalPlayer().formableAlliances().size() > 0;
+        Player player = getLocalPlayer();
+        
+        return player.formableAlliances().size() > 0;
     }
 
     public List<Faction> getFriendlyFactions() {
