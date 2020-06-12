@@ -53,4 +53,8 @@ public class InvasionCard extends Card {
     public City getDestination() {
         return route.get(route.size() - 1);
     }
+
+    public List<City> getRoute() {
+        return route;
+    }
 }

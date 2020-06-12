@@ -43,6 +43,6 @@ public class InvasionCardParser extends JsonParser {
             cards.add(card);
         }
 
-        return cards.toArray(new City[0]);
+        return cards.toArray(new InvasionCard[0]);
     }
 }

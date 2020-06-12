@@ -4,12 +4,15 @@ import java.util.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
@@ -181,6 +184,10 @@ public class Player extends Observable implements IObserver {
         notifyObservers();
     }
 
+    /**
+     * Get list of factions that an alliance can be formed with.
+     * @return List of factions
+     */
     public List<Faction> formableAlliances() {
         FactionFactory factionFactory = FactionFactory.getInstance();
         List<Faction> factions = factionFactory.getFactions();
@@ -199,6 +206,11 @@ public class Player extends Observable implements IObserver {
         return formableAlliances;
     }
 
+    /**
+     * Get the cityCards that this player holds with the type of faction that you give as parameter
+     * @param faction The faction you want the cards from
+     * @return A list of cards
+     */
     public List<Card> getCitycardsWithFaction(Faction faction) {
         List<Card> cards = getHand().getCards();
         List<Card> factionCards = new ArrayList<>();
@@ -210,6 +222,10 @@ public class Player extends Observable implements IObserver {
         return factionCards;
     }
 
+    /**
+     * Form an alliance with a faction, and discard the cards of this faction from this players hand
+     * @param faction The faction to form an alliance with
+     */
     public void formAlliance(Faction faction) {
         if (!formableAlliances().contains(faction)) return;
 

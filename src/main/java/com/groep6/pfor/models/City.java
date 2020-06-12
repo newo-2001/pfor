@@ -76,18 +76,6 @@ public class City extends Tile {
 	public String getName() {
 		return name;
 	}
-	
-    /**
-     * @param factionType The faction to count the barbarians of
-     * @returns the amount of barbarians in this city of the specified faction
-     */
-    public int getBarbarianCount(FactionType factionType) {
-		int count = 0;
-		for (Faction f : factions) {
-			if (f.getFactionType() == factionType) count++;
-		}
-		return count;
-	}
 
 	/**
 	 * @return The total amount of barbarians in this city of all factions combined
@@ -153,17 +141,24 @@ public class City extends Tile {
      * @param factionType
      */
 	public void addBarbarians(FactionType factionType, int amount) {
-		if (barbarians.size() >= 4) {
-			Game.getInstance().increaseDecayLevel(1);
-			for (City city: neighbouringCities) {
-				city.addBarbarians(factionType, 1);
-			}
-			return;
-		}
-		
 		for (int i = 0; i < amount; i++) {
 			barbarians.add(new Barbarian(factionType));
 		}
+	}
+	
+    /**
+     * @param factionType The faction to count the barbarians of
+     * @returns the amount of barbarians in this city of the specified faction
+     */
+	
+    public int getBarbarianCount(FactionType factionType, List<Barbarian> barbarians) {
+		int count = 0;
+		
+		for(int i = 0; i < barbarians.size(); i++) {
+			if (factionType == barbarians.get(i).getFactionType()) count++;			
+		}
+		
+		return count;
 	}
 	
     /**
