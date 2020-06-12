@@ -2,6 +2,7 @@ package com.groep6.pfor.factories;
 
 import com.groep6.pfor.Config;
 import com.groep6.pfor.models.cards.InvasionCard;
+import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.parsers.InvasionCardParser;
 
 import java.text.ParseException;
@@ -56,9 +57,9 @@ public class InvasionCardFactory {
      * @param name The name of the invasion card
      * @return The invasion card instance or null if not found
      */
-    public InvasionCard getInvasionCardByName(String name) {
+    public InvasionCard getInvasionCardByName(String name, Faction faction) {
         for (InvasionCard card : cards) {
-            if (card.getName().toUpperCase().equals(name.toUpperCase())) return card;
+            if (card.getName().toUpperCase().equals(name.toUpperCase()) && card.getFaction().equals(faction)) return card;
         }
         if (Config.DEBUG) System.out.printf("[WARNING] No InvasionCard was found with the name '%s'\n", name);
         return null;
