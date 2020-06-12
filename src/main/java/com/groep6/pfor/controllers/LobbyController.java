@@ -92,7 +92,7 @@ public class LobbyController extends Controller {
             }
         }
 
-        new MenuController();
+        ViewController.getInstance().showPreviousView();
     }
 
     public void startGame() {

@@ -50,7 +50,19 @@ public class ViewController {
         double height = stage.getHeight();
         boolean isFullScreen = stage.isFullScreen();
 
-        visitedViews.add(view);
+        if (visitedViews.contains(view)) {
+        	visitedViews.remove(visitedViews.size() - 1);
+        } else {
+            visitedViews.add(view);
+        }
+        
+        System.out.println(" ----------- ");
+        for (View newView: visitedViews) {
+        	System.out.println(newView.toString());
+        }
+        System.out.println(" ----------- ");
+        
+        
         Pane root = view.getRoot();
 
         Scene scene = stage.getScene();
