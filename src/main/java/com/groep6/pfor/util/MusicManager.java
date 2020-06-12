@@ -5,9 +5,6 @@ import java.nio.file.Paths;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Media controller to play, loop and stop audio files.
  * @author Mitchell van Rijswijk
@@ -22,27 +19,26 @@ public class MusicManager {
 		this.playlist = playlist;
 	}
 
-	public void play() {
+	public void playPlaylist() {
 		mediaPlayer = new MediaPlayer(playlist.next());
 		mediaPlayer.setVolume(volume);
-
-//		if (repeat) {
-//			mediaPlayer.setOnEndOfMedia(new Runnable() {
-//				@Override
-//				public void run() {
-//					mediaPlayer.seek(Duration.ZERO);
-//				}
-//			});
-//		}
 
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
 			@Override
 			public void run() {
-				play();
+				playPlaylist();
 			}
 		});
 
 		mediaPlayer.play();
+	}
+	
+	public void play(String trackURL, double volume, boolean repeat) {
+		Media media = new Media(Paths.get(trackURL).toUri().toString());
+		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setVolume(volume);
+		mediaPlayer.play();
+		if (repeat) mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 	}
 
 	
