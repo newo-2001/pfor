@@ -74,7 +74,7 @@ public class HandView extends View implements IObserver {
         playCardButton.setPrefWidth(150);
         playCardButton.setBackground(new Background(new BackgroundFill(Color.web("#28c946"), CornerRadii.EMPTY, Insets.EMPTY)));
         playCardButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playCard);
-        if (!handController.getLocalPlayer().isTurn()) playCardButton.setDisable(true);
+        if (handController.getLocalPlayer().isTurn()) playCardButton.setDisable(false);
         
         goBackButton = new UIButton("Ga terug");
         goBackButton.setDisable(false);
@@ -162,7 +162,7 @@ public class HandView extends View implements IObserver {
             source.select();
             handController.selectCard(source.getCard());
             discardCardButton.setDisable(false);
-            if (handController.getLocalPlayer().getActionsRemaining() > 0) depositCardButton.setDisable(false);
+            if (handController.getLocalPlayer().getActionsRemaining() > 0 && handController.getLocalPlayer().isTurn()) depositCardButton.setDisable(false);
 
             playCardButton.setDisable(!(source instanceof UIEventCard));
         }
