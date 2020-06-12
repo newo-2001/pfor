@@ -173,12 +173,19 @@ public class BoardController extends Controller {
         Player player = getLocalPlayer();
         Faction faction = player.formableAlliances().get(0);
 
-        player.formAlliance(faction);
+        // Ally this faction
+        faction.ally();
+
+        // Remove cards
+        List<Card> cardsToDiscard = player.getCitycardsWithFaction(faction);
+        player.getHand().removeCards(cardsToDiscard.toArray(new Card[cardsToDiscard.size()]));
+
+        player.decreaseActionsRemaining();
     }
 
     public boolean canFormAlliance() {
         Player player = getLocalPlayer();
-        
+
         return player.formableAlliances().size() > 0;
     }
 

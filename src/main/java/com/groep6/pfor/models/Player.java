@@ -227,19 +227,4 @@ public class Player extends Observable implements IObserver {
         }
         return factionCards;
     }
-
-    /**
-     * Form an alliance with a faction, and discard the cards of this faction from this players hand
-     * @param faction The faction to form an alliance with
-     */
-    public void formAlliance(Faction faction) {
-        if (!formableAlliances().contains(faction)) return;
-
-        // Ally this faction
-        faction.ally();
-
-        // Remove cards
-        List<Card> cardsToDiscard = getCitycardsWithFaction(faction);
-        getHand().removeCards(cardsToDiscard.toArray(new Card[cardsToDiscard.size()]));
-    }
 }
