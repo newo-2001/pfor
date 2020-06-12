@@ -1,13 +1,14 @@
 package com.groep6.pfor.controllers;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.groep6.pfor.factories.FactionFactory;
-import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Player;
-import com.groep6.pfor.models.Tile;
+import com.groep6.pfor.factories.InvasionCardFactory;
+import com.groep6.pfor.models.*;
+import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.services.GameService;
@@ -89,10 +90,57 @@ public class BoardController extends Controller {
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
 
+        invadeCities();
+
         // Next turn
         game.nextTurn();
         GameService gameService = new GameService();
         gameService.setGame(game);
+    }
+
+    private void invadeCities() {
+        int cardAmount = 3;
+        Card[] usedCards = new Card[cardAmount];
+        Deck invasionCardsDeck = game.getInvasionCardsDeck();
+        for (int i = 0; i < cardAmount; i++) {
+            InvasionCard card = (InvasionCard) invasionCardsDeck.draw();
+            invadeCity(card);
+            usedCards[i] = card;
+        }
+        invasionCardsDeck.addCards(usedCards);
+        invasionCardsDeck.shuffle();
+    }
+
+    private void invadeCity(InvasionCard card) {
+        List<City> route = card.getRoute();
+
+//        Collections.reverse(route);
+
+        System.out.println("");
+        System.out.println(card.getName());
+        System.out.println("---");
+
+        for (int i = 0; i < route.size(); i++) {
+            City city = route.get(i);
+            City previousCity = null;
+            System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
+
+            if (i > 0) {
+                previousCity = route.get(i - 1);
+            }
+
+            System.out.println(route.get(0).getBarbarianCount(card.getFaction().getFactionType()));
+            if (route.get(0).getBarbarianCount(card.getFaction().getFactionType()) <= 1) {
+                route.get(0).addBarbarians(card.getFaction().getFactionType(), 1);
+            }
+
+//            if ((previousCity != null && previousCity.getTotalBarbarianCount() > 0)) {
+////                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
+//                city.addBarbarians(card.getFaction().getFactionType(), 1);
+////                System.out.println(city.getName() + " : " + city.getTotalBarbarianCount());
+//                break;
+//            }
+        }
     }
 
     public void buildFort() {

@@ -37,12 +37,10 @@ public class Deck extends Observable{
         return cards;
     }
     
-    public Card removeCard(Card card) {
+    public void removeCard(Card card) {
         int index = cards.indexOf(card);
-        Card removedCard = cards.get(index);
         cards.remove(card);
         notifyObservers();
-        return removedCard;
     }
 
     public void merge(Deck deck) {

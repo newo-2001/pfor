@@ -134,6 +134,7 @@ public class BoardView extends View implements IObserver {
         @Override
         public void handle(MouseEvent e) {
             boardController.formAlliance();
+            allianceButton.setDisable(true);
         }
     };
 

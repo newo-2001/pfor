@@ -3,6 +3,7 @@ package com.groep6.pfor.models;
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.EventCardFactory;
+import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
@@ -40,6 +41,9 @@ public class Game extends Observable implements IObserver {
         playerCardsDeck.merge(EventCardFactory.getInstance().getEventCardDeck());
         playerCardsDeck.shuffle();
 
+        invasionCardsDeck = new Deck(InvasionCardFactory.getInstance().getAllInvasionCards());
+        invasionCardsDeck.shuffle();
+
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
             die[i] = new Dice();
@@ -76,7 +80,7 @@ public class Game extends Observable implements IObserver {
         this.decayLevel = decayLevel;
         this.invasionLevel = invasionLevel;
         this.tradeCardsDeck = tradeDeck;
-        //this.invasionCardsDeck = invasionDeck;
+        this.invasionCardsDeck = invasionDeck;
         this.playerCardsDeck = cityDeck;
         this.invasionCardsDiscardPile = invasionDiscardPile;
         this.cityCardsDiscardPile = cityDiscardPile;
