@@ -39,7 +39,7 @@ public class OptionsView extends View {
         createView();
     }
 
-    // Create optioon screen
+    // Create option screen
     public void createView() {
         root = new BorderPane();
 
@@ -52,12 +52,19 @@ public class OptionsView extends View {
         options.setAlignment(Pos.CENTER);
 
         Button fullscreenButton = new UIButton("Toggle Fullscreen");
+        fullscreenButton.setPrefSize(150, 75);
         fullscreenButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleFullscreen);
+        
         Button muteButton = new UIButton("Mute / Unmute");
+        muteButton.setPrefSize(150, 75);
         muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
+        
         Button backButton = new UIButton("Ga terug");
+        backButton.setPrefSize(150, 75);
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        
         Button exitGameButton = new UIButton("Exit Game");
+        exitGameButton.setPrefSize(150, 75);
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
 
