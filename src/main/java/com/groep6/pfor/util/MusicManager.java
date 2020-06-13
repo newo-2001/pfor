@@ -2,6 +2,8 @@ package com.groep6.pfor.util;
 
 import java.nio.file.Paths;
 
+import com.groep6.pfor.Main;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -56,9 +58,29 @@ public class MusicManager {
 	public void resume() {
 		mediaPlayer.play();
 	}
+	
+	public void toggleMute() {
+		if (!(getCurrentVolume() == 0)) {
+			changeVolume(0); 
+			return;
+		}
+		changeVolume(Main.musicManager.getVolume());
+	}
+	
+	public double getVolume() {
+		return volume;
+	}
+	
+	public double getCurrentVolume() {
+		return mediaPlayer.getVolume();
+	}
 
 	public void setVolume(double volume) {
 		this.volume = volume;
+	}
+	
+	public void changeVolume(double volume) {
+		mediaPlayer.setVolume(volume);
 	}
 
 }
