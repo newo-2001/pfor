@@ -53,7 +53,7 @@ public class OptionsView extends View {
 
         Button fullscreenButton = new UIButton("Toggle Fullscreen");
         fullscreenButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleFullscreen);
-        Button muteButton = new UIButton("Mute muziek");
+        Button muteButton = new UIButton("Mute / Unmute");
         muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
         Button backButton = new UIButton("Ga terug");
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
