@@ -17,7 +17,7 @@ public class VitaMeaAction implements IAction {
 	 */
 	public void execute() {
 		Game game = Game.getInstance();
-		Player player = game.getPlayerTurn();
+		Player player = game.getLocalPlayer();
 		player.decreaseActionsRemaining();
 		City city = player.getCity();
 		city.removeBarbarians(1);
