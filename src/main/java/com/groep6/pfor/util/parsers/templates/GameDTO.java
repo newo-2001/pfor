@@ -8,10 +8,7 @@ import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The Data Transfer Object that represents the state of a game in Firebase
@@ -29,6 +26,7 @@ public class GameDTO {
     public List<CardDTO> invasionDiscardPile;
     public List<CardDTO> cityDiscardPile;
     public List<String> friendlyFactions;
+    public Date updateTime;
 
     public Game toModel() {
         List<Player> players = new ArrayList<>();
@@ -66,6 +64,7 @@ public class GameDTO {
         this.cityDeck = cityDeck;
         this.invasionDiscardPile = invasionDiscardPile;
         this.cityDiscardPile = cityDiscardPile;
+        this.updateTime = new Date();
     }
 
     private Deck createDeck(List<CardDTO> cards) {
