@@ -61,7 +61,7 @@ public class Game extends Observable implements IObserver {
                 continue;
             }
 
-            int barbariansCount = rand.nextInt((4 - 1 + 1)) + 1;
+            int barbariansCount = rand.nextInt((3 - 1 + 1)) + 1;
 
             if (city.getTotalBarbarianCount() > 3) {
                 invadedCities.add(city);
