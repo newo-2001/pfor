@@ -103,6 +103,7 @@ public class LobbyController extends Controller {
         gameService.create(game);
         GameService.gameChangeEvent.subscribe(onGameChange);
 
+        Game.setGameState(GameState.GAME);
         new BoardController();
         lobbyService.remove(lobby);
 

@@ -1,6 +1,8 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.Main;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.WinView;
 
@@ -18,6 +20,7 @@ public class WinController extends Controller {
 
     public void goToMenuView() {
     	viewController.getVisitedViews().clear();
+    	Game.setGameState(GameState.MENU);
         new MenuController();
     }
     

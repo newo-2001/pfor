@@ -17,6 +17,7 @@ public class OptionController extends Controller {
 	
 	public void toMainMenu() {
 		viewController.getVisitedViews().clear();
+		Game.setGameState(GameState.MENU);
         new MenuController();
 	}
 	
