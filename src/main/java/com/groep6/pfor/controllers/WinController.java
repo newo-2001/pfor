@@ -17,6 +17,7 @@ public class WinController extends Controller {
     }
 
     public void goToMenuView() {
+    	viewController.getVisitedViews().clear();
         new MenuController();
     }
     

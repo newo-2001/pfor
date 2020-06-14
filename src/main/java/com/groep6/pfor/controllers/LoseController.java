@@ -1,6 +1,7 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.Main;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LoseView;
 
@@ -12,6 +13,7 @@ public class LoseController extends Controller {
     }
 
     public void goToMenuView() {
+    	viewController.getVisitedViews().clear();
         new MenuController();
     }
     
