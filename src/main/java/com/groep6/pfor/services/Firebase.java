@@ -7,8 +7,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.groep6.pfor.exceptions.NoDocumentException;
-
-import javax.swing.text.Document;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;

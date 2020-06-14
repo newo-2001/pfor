@@ -1,7 +1,6 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.MoveController;
-import com.groep6.pfor.controllers.RecruitBarbarianController;
 
 /**
  * The view where you can choose the amout of barbarians you want to recruit

@@ -2,16 +2,12 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.exceptions.EmptyFieldException;
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
-import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.HostView;
-import com.groep6.pfor.views.LobbyView;
 
 public class HostController extends Controller {
-
-    private Game game = Game.getInstance();
 
     public HostController() {
         viewController.showView(new HostView(this));

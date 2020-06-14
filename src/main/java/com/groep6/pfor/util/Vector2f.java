@@ -1,7 +1,5 @@
 package com.groep6.pfor.util;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Represents a vector in 2d space. Has mathematical applications
  * but is also useful to wrap two float together, mostly used for coordinates.

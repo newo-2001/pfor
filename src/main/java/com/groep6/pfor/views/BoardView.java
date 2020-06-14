@@ -21,7 +21,6 @@ import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

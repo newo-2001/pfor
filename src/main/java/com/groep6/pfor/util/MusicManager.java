@@ -1,9 +1,6 @@
 package com.groep6.pfor.util;
 
 import java.nio.file.Paths;
-
-import com.groep6.pfor.Main;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 

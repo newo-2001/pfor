@@ -1,18 +1,12 @@
 package com.groep6.pfor.controllers;
 
-import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
-import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
-import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.SoundEffectManager;
-import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.HandView;
-import javafx.application.Platform;
 
 import java.util.List;
 

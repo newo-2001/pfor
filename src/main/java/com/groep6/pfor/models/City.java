@@ -3,8 +3,6 @@ package com.groep6.pfor.models;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import com.groep6.pfor.controllers.LoseController;
-
 /**
  * Represents a city tile 
  *
@@ -15,8 +13,6 @@ import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
-import com.groep6.pfor.util.parsers.templates.CityDTO;
-import com.groep6.pfor.util.parsers.templates.FactionDTO;
 import java.util.List;
 
 public class City extends Tile {

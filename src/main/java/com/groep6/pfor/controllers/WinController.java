@@ -2,8 +2,6 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.Main;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.MusicManager;
-import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.WinView;
 
 /**
