@@ -23,8 +23,7 @@ public class MusicManager {
 
 	public void playPlaylist() {
 		mediaPlayer = new MediaPlayer(playlist.next());
-		mediaPlayer.setVolume(volume);
-
+		changeVolume((double) getCurrentVolume());
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
 			@Override
 			public void run() {
@@ -38,7 +37,7 @@ public class MusicManager {
 	public void play(String trackURL, double volume, boolean repeat) {
 		Media media = new Media(Paths.get(trackURL).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.setVolume(volume);
+		changeVolume(volume);
 		mediaPlayer.play();
 		if (repeat) mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 	}
