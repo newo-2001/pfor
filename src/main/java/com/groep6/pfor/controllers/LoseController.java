@@ -15,8 +15,14 @@ public class LoseController extends Controller {
 
     public void goToMenuView() {
     	viewController.getVisitedViews().clear();
+    	resetMusic();
     	Game.setGameState(GameState.MENU);
         new MenuController();
+    }
+    
+    public void resetMusic() {
+    	Main.musicManager.stop();
+    	Main.musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
     }
     
     public void changeMusic() {
