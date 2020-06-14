@@ -109,10 +109,7 @@ public class BoardController extends Controller {
     }
     
     public void checkWinConditions() {
-    	for (boolean wc : game.getWinConditions()) {
-    		if (!wc) return;
-    	}
-    	new WinController();
+    	if (getFriendlyFactions().size() == 5) new WinController();
     }
 
     private void invadeCities() {
