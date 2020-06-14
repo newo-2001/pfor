@@ -113,32 +113,32 @@ public class OptionsView extends View {
         root.setCenter(options);
     }
     
+    EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+           optionController.goBack();
+        }
+    };
+    
     EventHandler<MouseEvent> toggleFullscreen = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent e) {
-			ViewController.getInstance().toggleFullscreen();
+			optionController.handleFullscreen();
 		}
     };
     
     EventHandler<MouseEvent> toggleMute = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent e) {
-			Main.musicManager.toggleMute();
+			optionController.handleMute();
 		}
     };
     
     EventHandler<MouseEvent> goToInstructionView = new EventHandler<MouseEvent>() {
     	@Override
     	public void handle(MouseEvent e) {
-    		new InstructionController();
+    		optionController.goToInstructions();
     	}
-    };
-    
-    EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent e) {
-           optionController.goBack();
-        }
     };
     
     EventHandler<MouseEvent> goToMainMenu = new EventHandler<MouseEvent>() {

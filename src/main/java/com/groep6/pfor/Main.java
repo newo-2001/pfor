@@ -38,12 +38,8 @@ public class Main extends Application {
         ViewController viewController = ViewController.getInstance();
         viewController.setPrimaryStage(primaryStage);
 
-        // Start game music
-        Playlist playlist = new Playlist();
-        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
-        playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
-
-        musicManager = new MusicManager(playlist);
+        // Initialise music player and start menu music
+        musicManager = new MusicManager();
         musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
   
         // Set default view

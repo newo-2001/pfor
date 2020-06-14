@@ -1,5 +1,6 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.Main;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.util.IObserver;
@@ -19,6 +20,18 @@ public class OptionController extends Controller {
 		viewController.getVisitedViews().clear();
 		Game.setGameState(GameState.MENU);
         new MenuController();
+	}
+	
+	public void handleFullscreen() {
+		ViewController.getInstance().toggleFullscreen();
+	}
+	
+	public void handleMute() {
+		Main.musicManager.toggleMute();
+	}
+	
+	public void goToInstructions() {
+		new InstructionController();
 	}
 	
 	@Override
