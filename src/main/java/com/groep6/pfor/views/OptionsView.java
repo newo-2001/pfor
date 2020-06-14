@@ -39,7 +39,7 @@ public class OptionsView extends View {
     public void createView() {
         root = new BorderPane();
 
-        Text text = new UIBorderedText("Options", "#ffffff", 1, "white");
+        Text text = new UIBorderedText("Options", "red", 1, "white");
 
         text.setTextAlignment(TextAlignment.CENTER);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 60));
@@ -54,6 +54,9 @@ public class OptionsView extends View {
         Button muteButton = new UIButton("Mute / Unmute");
         muteButton.setPrefSize(150, 75);
         muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
+        
+        Button instructionButton = new UIButton("Help");
+//        instructionButton.addEventFilter(MouseEvent.MOUSE_CLICKED, );
         
         Button backButton = new UIButton("Ga terug");
         backButton.setPrefSize(150, 75);
