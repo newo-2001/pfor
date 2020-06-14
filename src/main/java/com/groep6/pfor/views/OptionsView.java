@@ -70,7 +70,8 @@ public class OptionsView extends View {
 
         options.getChildren().addAll(text, fullscreenButton, muteButton, backButton, exitGameButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));
-        root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+//        root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
+        setBackground(root, "images/background.jpg");
         root.setCenter(options);
     }
     
