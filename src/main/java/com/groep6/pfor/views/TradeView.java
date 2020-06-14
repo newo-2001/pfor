@@ -152,6 +152,7 @@ public class TradeView extends View implements IObserver {
 	@Override
 	public void update() {
         createCards();
+        
 	}
 
 	@Override

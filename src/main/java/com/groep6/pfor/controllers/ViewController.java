@@ -5,6 +5,7 @@ import com.groep6.pfor.views.MenuView;
 import com.groep6.pfor.views.View;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -49,6 +50,8 @@ public class ViewController {
      * @param view
      */
     public void showView(View view, boolean preventPush) {
+    	
+    	stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 
         double width = stage.getWidth();
         double height = stage.getHeight();
@@ -85,6 +88,14 @@ public class ViewController {
     public void showView(View view) {
         showView(view, false);
     }
+    
+    public void toggleFullscreen() {
+    	if (stage.isFullScreen()) {
+    		stage.setFullScreen(false);
+    		return;
+    	}
+    	stage.setFullScreen(true);
+    }
 
     /**
      * @return primaryStage
@@ -100,6 +111,10 @@ public class ViewController {
         if (visitedViews.size() <= 1) return;
         visitedViews.pop();
         showView(visitedViews.peek(), true);
+    }
+    
+    public Stack<View> getVisitedViews() {
+    	return visitedViews;
     }
 
     public void setWidth(int width) {
