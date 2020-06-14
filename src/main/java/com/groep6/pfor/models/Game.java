@@ -14,6 +14,7 @@ import java.util.*;
 public class Game extends Observable implements IObserver {
 
     private static Game SINGLE_INSTANCE = new Game();
+    private static GameState GAME_STATE = GameState.MENU;
 
     private Board board = new Board();
     private List<Player> players = new ArrayList<>();
@@ -33,6 +34,14 @@ public class Game extends Observable implements IObserver {
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
+    }
+    
+    public static GameState getGameState() {
+    	return GAME_STATE;
+    }
+    
+    public static void setGameState(GameState state) {
+    	GAME_STATE = state;
     }
 
     private Game() {
