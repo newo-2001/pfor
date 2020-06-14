@@ -48,7 +48,7 @@ public class Game extends Observable implements IObserver {
         for (int i = 0; i < die.length; i++) die[i] = new Dice();
 
         // Add barbarians to cities
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
             City city = cities[rand.nextInt(cities.length)];
 
@@ -57,11 +57,11 @@ public class Game extends Observable implements IObserver {
                 continue;
             }
 
-            int barbariansCount = rand.nextInt((3 - 1 + 1)) + 1;
+            int barbariansCount = rand.nextInt(2);
 
-            if (city.getTotalBarbarianCount() > 3) {
+            if (city.getTotalBarbarianCount() > 2) {
                 invadedCities.add(city);
-                barbariansCount = 3;
+                barbariansCount = 2;
                 i--;
             }
 
