@@ -1,5 +1,7 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.OptionsView;
 
@@ -10,7 +12,7 @@ public class OptionController extends Controller {
 	}
 	
 	public GameState checkGameState() {
-		return game.getGameState();
+		return Game.getGameState();
 	}
 	
 	@Override
