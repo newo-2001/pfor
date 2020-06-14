@@ -6,7 +6,6 @@ import com.groep6.pfor.factories.EventCardFactory;
 import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -29,6 +28,7 @@ public class Game extends Observable implements IObserver {
     private Deck invasionCardsDiscardPile = new Deck();
     private Deck cityCardsDiscardPile = new Deck();
     private Dice[] die = new Dice[3];
+    private boolean[] winConditions = new boolean[5];
     private List<Faction> friendlyFactions = new ArrayList<>();
     private String code;
 
@@ -47,6 +47,9 @@ public class Game extends Observable implements IObserver {
 
         // Create new dice instances
         for (int i = 0; i < die.length; i++) die[i] = new Dice();
+        
+        // Initialise win conditions
+        for (int i = 0; i < winConditions.length; i++) winConditions[i] = false;
 
         // Add barbarians to cities
         for (int i = 0; i < 15; i++) {
@@ -274,6 +277,17 @@ public class Game extends Observable implements IObserver {
         }
 
         return null;
+    }
+    
+    public boolean[] getWinConditions() {
+    	return winConditions;
+    }
+    
+    public void addToWinConditions() {
+    	for (boolean wc : winConditions) {
+    		if (!wc) wc = true;
+    		return;
+    	}
     }
 
     public void setLocalPlayer(Player player) {

@@ -99,11 +99,20 @@ public class BoardController extends Controller {
     	if(game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
     		new LoseController();
     	}
+    	
+    	checkWinConditions();
 
         // Next turn
         game.nextTurn();
         GameService gameService = new GameService();
         gameService.setGame(game);
+    }
+    
+    public void checkWinConditions() {
+    	for (boolean wc : game.getWinConditions()) {
+    		if (!wc) return;
+    	}
+    	new WinController();
     }
 
     private void invadeCities() {
@@ -191,6 +200,7 @@ public class BoardController extends Controller {
         player.getHand().removeCards(cardsToDiscard.toArray(new Card[0]));
 
         player.decreaseActionsRemaining();
+        game.addToWinConditions();
     }
     
     
