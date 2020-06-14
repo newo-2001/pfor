@@ -1,21 +1,20 @@
 package com.groep6.pfor.controllers;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import com.groep6.pfor.factories.FactionFactory;
-import com.groep6.pfor.factories.InvasionCardFactory;
-import com.groep6.pfor.models.*;
+import com.groep6.pfor.Main;
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Deck;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
+import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.views.BoardView;
-import com.groep6.pfor.views.HandView;
 
 /**
  * @author Bastiaan Jansen
@@ -25,6 +24,8 @@ public class BoardController extends Controller {
     private Game game = Game.getInstance();
 
     public BoardController() {
+    	Main.musicManager.stop();
+    	Main.musicManager.playPlaylist();
         viewController.showView(new BoardView(this));
     }
     
@@ -87,10 +88,17 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
 
+        // Go to lose screen when there are no more cards in players
+        if (game.getPlayerCardsDeck().getCards().size() <= 0) new LoseController();
+
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
 
         invadeCities();
+              
+    	if(game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
+    		new LoseController();
+    	}
 
         // Next turn
         game.nextTurn();
@@ -184,6 +192,8 @@ public class BoardController extends Controller {
 
         player.decreaseActionsRemaining();
     }
+    
+    
 
     public boolean canFormAlliance() {
         Player player = getLocalPlayer();

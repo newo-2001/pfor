@@ -188,6 +188,12 @@ public class HandView extends View implements IObserver {
         handleCardLimit();
         discardCardButton.setDisable(true);
         depositCardButton.setDisable(true);
+        
+        if (!handController.getLocalPlayer().isTurn()) {
+        	playCardButton.setDisable(true);
+        } else {
+        	playCardButton.setDisable(false);
+        }
     }
 }
 

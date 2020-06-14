@@ -46,6 +46,8 @@ public class TradeController extends Controller {
         game.getTradeCardsDeck().removeCard(selectedCard);
         game.getLocalPlayer().getHand().addCards(selectedCard);
     	player.decreaseActionsRemaining();
+    	
+    	refresh();
     }
     
     public Card getCard(Card card) {
@@ -54,5 +56,10 @@ public class TradeController extends Controller {
 
     public Player getLocalPlayer() {
         return game.getLocalPlayer();
+    }
+    
+    public void refresh() {
+    	goBack();
+    	new TradeController();
     }
 }

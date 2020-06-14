@@ -56,22 +56,22 @@ public class MoveView extends View implements IObserver {
         HBox buttonBox = new HBox(30);
         buttonBox.setAlignment(Pos.CENTER);
 
-        Button recruitZero = new UIButton("0");
-        recruitZero.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitZeroClicked);
+        Button moveZero = new UIButton("0");
+        moveZero.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitZeroClicked);
 
-        Button recruitOne = new UIButton("1");
-        recruitOne.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitOneClicked);
-        if (moveController.getAmountOfLegionsInCurrentCity() < 1) recruitOne.setDisable(true);
+        Button moveOne = new UIButton("1");
+        moveOne.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitOneClicked);
+        if (moveController.getAmountOfLegionsInCurrentCity() < 1) moveOne.setDisable(true);
 
-        Button recruitTwo = new UIButton("2");
-        recruitTwo.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitTwoClicked);
-        if (moveController.getAmountOfLegionsInCurrentCity() < 2) recruitTwo.setDisable(true);
+        Button moveTwo = new UIButton("2");
+        moveTwo.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitTwoClicked);
+        if (moveController.getAmountOfLegionsInCurrentCity() < 2) moveTwo.setDisable(true);
 
-        Button recruitThree = new UIButton("3");
-        recruitThree.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitThreeClicked);
-        if (moveController.getAmountOfLegionsInCurrentCity() < 3) recruitThree.setDisable(true);
+        Button moveThree = new UIButton("3");
+        moveThree.addEventFilter(MouseEvent.MOUSE_CLICKED, recruitThreeClicked);
+        if (moveController.getAmountOfLegionsInCurrentCity() < 3) moveThree.setDisable(true);
 
-        buttonBox.getChildren().addAll(recruitZero, recruitOne, recruitTwo, recruitThree);
+        buttonBox.getChildren().addAll(moveZero, moveOne, moveTwo, moveThree);
 
         box.getChildren().addAll(text, buttonBox, backButton);
 

@@ -18,7 +18,11 @@ public class RecruitBarbarianController extends Controller {
         player = game.getPlayerTurn();
         city = player.getCity();
         viewController.showView(new RecruitBarbarianView(this));
-    };
+    }
+    
+    public int getAmountOfBarbariansCurrently() {
+    	return city.getBarbarians().size();
+    }
     
     public void recruit(int amount) {
         Faction[] factions = city.getFactions();
