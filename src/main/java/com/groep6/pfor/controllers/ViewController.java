@@ -35,6 +35,11 @@ public class ViewController {
         stage.setFullScreen(true);
     }
 
+    public View getCurrentView() {
+        System.out.println(visitedViews.firstElement());
+        return visitedViews.firstElement();
+    }
+
     /**
      * Show a specific view
      * @param view
