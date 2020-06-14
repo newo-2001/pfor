@@ -219,6 +219,10 @@ public class Game extends Observable implements IObserver {
     public int getDecayLevel() {
         return decayLevel;
     }
+    
+   public int getMaxDecayLevel() {
+       return MAX_DECAY_LEVEL;
+   }
 
     /**
      * Increase decay level, when decay level. When reached the max, return.

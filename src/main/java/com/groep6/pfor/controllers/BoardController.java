@@ -92,8 +92,8 @@ public class BoardController extends Controller {
         if (player.getHand().getCards().size() > 7) new HandController();
 
         invadeCities();
-        
-    	if(game.getDecayLevel() >= 8) {
+              
+    	if(game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
     		new LoseController();
     	}
 
