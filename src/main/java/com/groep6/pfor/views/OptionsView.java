@@ -30,8 +30,8 @@ public class OptionsView extends View {
 
     private BorderPane root;
     private OptionController optionController;
-    private final int PREF_BUTTON_WIDTH = 150;
-    private final int PREF_BUTTON_HEIGHT = 75;
+    private final int PREF_BUTTON_WIDTH = 200;
+    private final int PREF_BUTTON_HEIGHT = 85;
 
     public OptionsView(OptionController optionController) {
     	this.optionController = optionController;
@@ -47,7 +47,7 @@ public class OptionsView extends View {
         text.setTextAlignment(TextAlignment.CENTER);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 60));
 
-        VBox options = new VBox(30);
+        VBox options = new VBox(20);
         options.setAlignment(Pos.CENTER);
 
         Button fullscreenButton = new UIButton("Toggle Fullscreen");
