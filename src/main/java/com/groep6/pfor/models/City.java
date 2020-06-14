@@ -147,7 +147,7 @@ public class City extends Tile {
 			barbarians.add(new Barbarian(factionType));
 
 			if (barbarians.size() >= 4) {
-				//barbarians.clear();
+				barbarians.clear();
 				Game game = Game.getInstance();
 				
 				if (game != null) game.increaseDecayLevel(1);
