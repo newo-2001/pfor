@@ -71,7 +71,7 @@ public class OptionsView extends View {
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
 
-        options.getChildren().addAll(text, fullscreenButton, muteButton, instructionButton, backButton, exitGameButton);
+        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton, exitGameButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));
         setBackground(root, "images/background.jpg");
         root.setCenter(options);
