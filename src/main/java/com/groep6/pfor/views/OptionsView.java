@@ -35,11 +35,11 @@ public class OptionsView extends View {
 
     public OptionsView(OptionController optionController) {
     	this.optionController = optionController;
-        createView();
+        createMenuOptionView();
     }
 
-    // Create option screen
-    public void createView() {
+    // Create option screen for menu's 
+    public void createMenuOptionView() {
         root = new BorderPane();
 
         Text text = new UIBorderedText("Options", "red", 1, "white");
@@ -70,6 +70,44 @@ public class OptionsView extends View {
         exitGameButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
+
+        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton, exitGameButton);
+        BorderPane.setMargin(options, new Insets(12,12,100,12));
+        setBackground(root, "images/background.jpg");
+        root.setCenter(options);
+    }
+    
+    // Create option screen
+    public void createGameOptionView() {
+        root = new BorderPane();
+
+        Text text = new UIBorderedText("Options", "red", 1, "white");
+
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 60));
+
+        VBox options = new VBox(20);
+        options.setAlignment(Pos.CENTER);
+
+        Button fullscreenButton = new UIButton("Toggle Fullscreen");
+        fullscreenButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        fullscreenButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleFullscreen);
+        
+        Button muteButton = new UIButton("Mute / Unmute");
+        muteButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
+        
+        Button instructionButton = new UIButton("Help");
+        instructionButton.setPrefSize(PREF_BUTTON_WIDTH,  PREF_BUTTON_HEIGHT);
+        instructionButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
+        
+        Button backButton = new UIButton("Hervatten");
+        backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        
+        Button exitGameButton = new UIButton("Exit Game");
+        exitGameButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
         options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton, exitGameButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));

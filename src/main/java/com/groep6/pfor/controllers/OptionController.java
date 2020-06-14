@@ -9,6 +9,10 @@ public class OptionController extends Controller {
 		viewController.showView(new OptionsView(this));
 	}
 	
+	public GameState checkGameState() {
+		return game.getGameState();
+	}
+	
 	@Override
 	public void registerObserver(IObserver view) {
 		game.registerObserver(view);
