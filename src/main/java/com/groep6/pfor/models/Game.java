@@ -20,7 +20,7 @@ public class Game extends Observable implements IObserver {
     private List<Player> players = new ArrayList<>();
     private List<City> invadedCities = new ArrayList<>();
     private int decayLevel = 0;
-    private final int MAX_DECAY_LEVEL = 8;
+    private final int MAX_DECAY_LEVEL = 9;
     private int invasionLevel = 0;
     private final int MAX_INVASION_LEVEL = 7;
     private Deck tradeCardsDeck = new Deck();

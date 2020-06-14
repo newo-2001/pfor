@@ -3,6 +3,8 @@ package com.groep6.pfor.models;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import com.groep6.pfor.controllers.LoseController;
+
 /**
  * Represents a city tile 
  *
@@ -147,7 +149,12 @@ public class City extends Tile {
 			if (barbarians.size() >= 4) {
 				barbarians.clear();
 				Game game = Game.getInstance();
-				if (game != null) game.increaseDecayLevel(1);
+				if (game != null) {
+					game.increaseDecayLevel(1);
+					if(game.getDecayLevel() >= 9) {
+						new LoseController();
+					}
+				}
 				return;
 			}
 		}

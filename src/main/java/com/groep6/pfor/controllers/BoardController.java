@@ -92,6 +92,10 @@ public class BoardController extends Controller {
         if (player.getHand().getCards().size() > 7) new HandController();
 
         invadeCities();
+        
+    	if(game.getDecayLevel() >= 8) {
+    		new LoseController();
+    	}
 
         // Next turn
         game.nextTurn();
@@ -185,6 +189,8 @@ public class BoardController extends Controller {
 
         player.decreaseActionsRemaining();
     }
+    
+    
 
     public boolean canFormAlliance() {
         Player player = getLocalPlayer();
