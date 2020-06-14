@@ -51,6 +51,7 @@ public class BoardController extends Controller {
         game.increaseDecayLevel(amount);
     }
 
+    
     public int getDecayLevel() {
         return game.getDecayLevel();
     }
@@ -115,7 +116,7 @@ public class BoardController extends Controller {
     }
 
     private void invadeCities() {
-        int cardAmount = 4;
+        int cardAmount = 3;
         Card[] usedCards = new Card[cardAmount];
         Deck invasionCardsDeck = game.getInvasionCardsDeck();
         for (int i = 0; i < cardAmount; i++) {
