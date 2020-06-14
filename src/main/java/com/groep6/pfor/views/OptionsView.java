@@ -1,6 +1,7 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.Main;
+import com.groep6.pfor.controllers.InstructionController;
 import com.groep6.pfor.controllers.OptionController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.views.components.UIBorderedText;
@@ -29,6 +30,8 @@ public class OptionsView extends View {
 
     private BorderPane root;
     private OptionController optionController;
+    private final int PREF_BUTTON_WIDTH = 150;
+    private final int PREF_BUTTON_HEIGHT = 75;
 
     public OptionsView(OptionController optionController) {
     	this.optionController = optionController;
@@ -39,7 +42,7 @@ public class OptionsView extends View {
     public void createView() {
         root = new BorderPane();
 
-        Text text = new UIBorderedText("Options", "#ffffff", 1, "white");
+        Text text = new UIBorderedText("Options", "red", 1, "white");
 
         text.setTextAlignment(TextAlignment.CENTER);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 60));
@@ -48,25 +51,28 @@ public class OptionsView extends View {
         options.setAlignment(Pos.CENTER);
 
         Button fullscreenButton = new UIButton("Toggle Fullscreen");
-        fullscreenButton.setPrefSize(150, 75);
+        fullscreenButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         fullscreenButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleFullscreen);
         
         Button muteButton = new UIButton("Mute / Unmute");
-        muteButton.setPrefSize(150, 75);
+        muteButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
         
-        Button backButton = new UIButton("Ga terug");
-        backButton.setPrefSize(150, 75);
+        Button instructionButton = new UIButton("Help");
+        instructionButton.setPrefSize(PREF_BUTTON_WIDTH,  PREF_BUTTON_HEIGHT);
+        instructionButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
+        
+        Button backButton = new UIButton("Hervatten");
+        backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
         
         Button exitGameButton = new UIButton("Exit Game");
-        exitGameButton.setPrefSize(150, 75);
+        exitGameButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
 
-        options.getChildren().addAll(text, fullscreenButton, muteButton, backButton, exitGameButton);
+        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton, exitGameButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));
-//        root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         setBackground(root, "images/background.jpg");
         root.setCenter(options);
     }
@@ -83,6 +89,13 @@ public class OptionsView extends View {
 		public void handle(MouseEvent e) {
 			Main.musicManager.toggleMute();
 		}
+    };
+    
+    EventHandler<MouseEvent> goToInstructionView = new EventHandler<MouseEvent>() {
+    	@Override
+    	public void handle(MouseEvent e) {
+    		new InstructionController();
+    	}
     };
     
     EventHandler<MouseEvent> goBack = new EventHandler<MouseEvent>() {
