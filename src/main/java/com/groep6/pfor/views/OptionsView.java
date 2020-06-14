@@ -62,7 +62,7 @@ public class OptionsView extends View {
         instructionButton.setPrefSize(PREF_BUTTON_WIDTH,  PREF_BUTTON_HEIGHT);
         instructionButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
         
-        Button backButton = new UIButton("Ga terug");
+        Button backButton = new UIButton("Hervatten");
         backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
         
