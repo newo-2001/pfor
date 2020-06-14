@@ -17,15 +17,11 @@ public class VitaMeaAction implements IAction {
 	 */
 	public void execute() {
 		Game game = Game.getInstance();
-		game.getPlayerTurn().decreaseActionsRemaining();
 		Player player = game.getPlayerTurn();
+		player.decreaseActionsRemaining();
 		City city = player.getCity();
-		if(city.getBarbarians().size() > 0) {
-			city.removeBarbarians(1);
-			city.addLegions(1);
-		} else {
-			System.out.println("Geen barbaren in deze stad pik");
-		}
+		city.removeBarbarians(1);
+		city.addLegions(1);
 	}
 
 	/**
