@@ -197,7 +197,6 @@ public class BoardController extends Controller {
         player.getHand().removeCards(cardsToDiscard.toArray(new Card[0]));
 
         player.decreaseActionsRemaining();
-        game.addToWinConditions();
     }
     
     public void changeMusic() {
