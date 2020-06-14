@@ -399,7 +399,6 @@ public class BoardView extends View implements IObserver {
                 	gc.fillText(Integer.toString(city.getLegionCount()), cityPos.x - r/5, cityPos.y - r/5);
             		
                 	gc.setFill(Color.TRANSPARENT);
-            		
             	}
 
                 if (city.hasFort()) {

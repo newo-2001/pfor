@@ -28,6 +28,7 @@ public class RecruitBarbarianController extends Controller {
 
         for (Faction faction: factions) {
             if (game.isFriendlyFaction(faction)) {
+                if (city.getTotalBarbarianCount() <= 0) return;
                 city.removeBarbarians(faction.getFactionType(), amount);
                 city.addLegions(amount);
                 player.decreaseActionsRemaining();
