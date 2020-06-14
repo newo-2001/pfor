@@ -50,6 +50,8 @@ public class HandController extends Controller {
         }
 
         SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+        
+        refresh();
     }
 
     public Card getSelectedCard() {
