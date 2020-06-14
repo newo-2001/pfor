@@ -116,7 +116,7 @@ public class BoardController extends Controller {
     }
 
     private void invadeCities() {
-        int cardAmount = 3;
+        int cardAmount = 1;
         Card[] usedCards = new Card[cardAmount];
         Deck invasionCardsDeck = game.getInvasionCardsDeck();
         for (int i = 0; i < cardAmount; i++) {
