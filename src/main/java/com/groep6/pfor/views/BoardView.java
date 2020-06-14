@@ -395,10 +395,6 @@ public class BoardView extends View implements IObserver {
             	// Draw legions
             	if (city.getLegions().size() > 0) {
             		gc.setFill(Color.WHITE);
-                	//gc.strokeRect(cityPos.x - r/2.5, cityPos.y - r/2.5, r / 1.35, r / 1.35);
-            		//gc.fillRect(cityPos.x - r/2.5, cityPos.y - r/2.5, r / 1.35, r / 1.35);
-                	//gc.setFill(Color.WHITE);
-            		//gc.strokeText(Integer.toString(city.getLegionCount()), cityPos.x - r/5, cityPos.y - r/5);
             		gc.setFont(new Font("Arial", 20));
             		gc.setFill(Color.RED);
                 	gc.fillText(Integer.toString(city.getLegionCount()), cityPos.x - r/5, cityPos.y - r/5);
@@ -412,7 +408,7 @@ public class BoardView extends View implements IObserver {
                 }
                 {
                     Vector2f size = new Vector2f(0.033f, 0.045f).mul(CANVAS_SIZE);
-                    Vector2f decay = new Vector2f(0.0208f, 0.2893f + 0.5435f * boardController.getDecayLevel()).mul(CANVAS_SIZE);
+                    Vector2f decay = new Vector2f(0.0208f, 0.2893f + 0.05435f * boardController.getDecayLevel()).mul(CANVAS_SIZE);
                     gc.drawImage(new Image("images/decay.png"), decay.x, decay.y, size.x, size.y);
                 }
             }
