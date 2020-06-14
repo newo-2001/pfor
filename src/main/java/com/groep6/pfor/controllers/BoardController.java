@@ -24,8 +24,7 @@ public class BoardController extends Controller {
     private Game game = Game.getInstance();
 
     public BoardController() {
-    	Main.musicManager.stop();
-    	Main.musicManager.playPlaylist();
+    	changeMusic();
         viewController.showView(new BoardView(this));
     }
     
@@ -203,7 +202,10 @@ public class BoardController extends Controller {
         game.addToWinConditions();
     }
     
-    
+    public void changeMusic() {
+    	Main.musicManager.stop();
+    	Main.musicManager.playPlaylist();
+    }
 
     public boolean canFormAlliance() {
         Player player = getLocalPlayer();

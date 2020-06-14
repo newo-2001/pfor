@@ -14,12 +14,17 @@ import com.groep6.pfor.views.WinView;
 public class WinController extends Controller {
 
     public WinController() {
-    	Main.musicManager.play("src/main/resources/sounds/music/To_fight_another_day.mp3", 0.2, false);
+    	changeMusic();
         viewController.showView(new WinView(this));
     }
 
     public void goToMenuView() {
         new MenuController();
+    }
+    
+    public void changeMusic() {
+    	Main.musicManager.stop();
+    	Main.musicManager.play("src/main/resources/sounds/music/To_fight_another_day.mp3", 0.2, false);
     }
 
     @Override
