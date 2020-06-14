@@ -15,6 +15,11 @@ public class OptionController extends Controller {
 		return Game.getGameState();
 	}
 	
+	public void toMainMenu() {
+		viewController.getVisitedViews().clear();
+        new MenuController();
+	}
+	
 	@Override
 	public void registerObserver(IObserver view) {
 		game.registerObserver(view);

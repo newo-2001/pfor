@@ -2,8 +2,10 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.Main;
 import com.groep6.pfor.controllers.InstructionController;
+import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.OptionController;
 import com.groep6.pfor.controllers.ViewController;
+import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.views.components.UIBorderedText;
 import com.groep6.pfor.views.components.UIButton;
 
@@ -35,7 +37,8 @@ public class OptionsView extends View {
 
     public OptionsView(OptionController optionController) {
     	this.optionController = optionController;
-        createMenuOptionView();
+    	if (optionController.checkGameState().equals(GameState.MENU)) createMenuOptionView();
+    	if (optionController.checkGameState().equals(GameState.GAME)) createGameOptionView(); 
     }
 
     // Create option screen for menu's 
@@ -50,6 +53,10 @@ public class OptionsView extends View {
         VBox options = new VBox(20);
         options.setAlignment(Pos.CENTER);
 
+        Button backButton = new UIButton("Hervatten");
+        backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        
         Button fullscreenButton = new UIButton("Toggle Fullscreen");
         fullscreenButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         fullscreenButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleFullscreen);
@@ -61,17 +68,8 @@ public class OptionsView extends View {
         Button instructionButton = new UIButton("Help");
         instructionButton.setPrefSize(PREF_BUTTON_WIDTH,  PREF_BUTTON_HEIGHT);
         instructionButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
-        
-        Button backButton = new UIButton("Hervatten");
-        backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
-        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
-        
-        Button exitGameButton = new UIButton("Exit Game");
-        exitGameButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
-        exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
-
-        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton, exitGameButton);
+        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));
         setBackground(root, "images/background.jpg");
         root.setCenter(options);
@@ -89,6 +87,10 @@ public class OptionsView extends View {
         VBox options = new VBox(20);
         options.setAlignment(Pos.CENTER);
 
+        Button backButton = new UIButton("Hervatten");
+        backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        
         Button fullscreenButton = new UIButton("Toggle Fullscreen");
         fullscreenButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         fullscreenButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleFullscreen);
@@ -97,19 +99,15 @@ public class OptionsView extends View {
         muteButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
         
-        Button instructionButton = new UIButton("Help");
-        instructionButton.setPrefSize(PREF_BUTTON_WIDTH,  PREF_BUTTON_HEIGHT);
-        instructionButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToInstructionView);
-        
-        Button backButton = new UIButton("Hervatten");
-        backButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
-        backButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
+        Button mainMenuButton = new UIButton("Naar hoofdmenu");
+        mainMenuButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
+        mainMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMainMenu);
         
         Button exitGameButton = new UIButton("Exit Game");
         exitGameButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
-        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, instructionButton, exitGameButton);
+        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, exitGameButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));
         setBackground(root, "images/background.jpg");
         root.setCenter(options);
@@ -141,6 +139,13 @@ public class OptionsView extends View {
         public void handle(MouseEvent e) {
            optionController.goBack();
         }
+    };
+    
+    EventHandler<MouseEvent> goToMainMenu = new EventHandler<MouseEvent>() {
+    	@Override
+    	public void handle(MouseEvent e) {
+    		optionController.toMainMenu();
+    	}
     };
 
     EventHandler<MouseEvent> exitGame = new EventHandler<MouseEvent>() {
