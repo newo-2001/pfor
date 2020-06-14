@@ -44,7 +44,7 @@ public class Main extends Application {
         playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
 
         musicManager = new MusicManager(playlist);
-        musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.1, true);
+        musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
   
         // Set default view
         new MenuController();
@@ -55,8 +55,6 @@ public class Main extends Application {
 		@Override
 		public void handle(KeyEvent e) {
 			if (e.getCode() == KeyCode.ESCAPE && !viewController.getVisitedViews().contains(options)) viewController.showView(options);
-			if (e.getCode() == KeyCode.F) viewController.toggleFullscreen(); 
-			if (e.getCode() == KeyCode.M) Main.musicManager.toggleMute(); 
 		}
     };
     
