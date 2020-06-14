@@ -44,7 +44,7 @@ public class Main extends Application {
         playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
 
         musicManager = new MusicManager(playlist);
-        musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.1, true);
+        musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
   
         // Set default view
         new MenuController();
