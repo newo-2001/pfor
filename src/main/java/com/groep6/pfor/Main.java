@@ -54,7 +54,7 @@ public class Main extends Application {
     EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
 		@Override
 		public void handle(KeyEvent e) {
-			if (e.getCode() == KeyCode.ESCAPE && !viewController.getVisitedViews().contains(options)) viewController.showView(options);
+			if (e.getCode() == KeyCode.ESCAPE && !viewController.getVisitedViews().contains(options)) new OptionController();
 		}
     };
     
