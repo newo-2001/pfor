@@ -88,6 +88,9 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
 
+        // Go to lose screen when there are no more cards in players
+        if (game.getPlayerCardsDeck().getCards().size() <= 0) new LoseController();
+
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
 
