@@ -148,7 +148,7 @@ public class City extends Tile {
 				barbarians.clear();
 				Game game = Game.getInstance();
 				if (game != null) game.increaseDecayLevel(1);
-				return;
+				return; 
 			}
 		}
 	}
