@@ -1,6 +1,5 @@
 package com.groep6.pfor.util;
 
-import java.nio.file.Paths;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -21,8 +20,8 @@ public class MusicManager {
 	
 	public void createPlayList() {
 		playlist = new Playlist();
-        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
-        playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
+        playlist.add("/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
+        playlist.add("/sounds/music/Carpe_Diem.mp3");		// In-game background music
 	}
 
 	public void playPlaylist() {
@@ -40,7 +39,7 @@ public class MusicManager {
 	}
 	
 	public void play(String trackURL, double volume, boolean repeat) {
-		Media media = new Media(Paths.get(trackURL).toUri().toString());
+		Media media = new Media(MusicManager.class.getResource(trackURL).toString());
 		mediaPlayer = new MediaPlayer(media);
 		setVolume(volume);
 		mediaPlayer.play();

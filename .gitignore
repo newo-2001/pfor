@@ -12,7 +12,7 @@ hs_err_pid*
 ##############################
 ## Firebase
 ##############################
-src/main/java/ServiceAccountKey.json
+src/main/resources/ServiceAccountKey.json
 
 ##############################
 ## Maven

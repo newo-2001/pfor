@@ -32,7 +32,7 @@ public class Playlist {
      * @param path
      */
     public void add(String path) {
-        Media media = new Media(Paths.get(path).toUri().toString());
+        Media media = new Media(Playlist.class.getResource(path).toString());
         songs.add(media);
         if (shuffle) Collections.shuffle(songs);
     }

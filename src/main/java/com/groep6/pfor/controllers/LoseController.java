@@ -22,12 +22,12 @@ public class LoseController extends Controller {
     
     public void resetMusic() {
     	Main.musicManager.stop();
-    	Main.musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
+    	Main.musicManager.play("/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
     }
     
     public void changeMusic() {
     	Main.musicManager.stop();
-    	Main.musicManager.play("src/main/resources/sounds/music/The_End_of_an_Era.mp3", 0.2, false);
+    	Main.musicManager.play("/sounds/music/The_End_of_an_Era.mp3", 0.2, false);
     }
 
     @Override

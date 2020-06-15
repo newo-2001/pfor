@@ -22,7 +22,7 @@ public class InvasionCardFactory {
     /** Creates the InvasionCardFactory instance */
     private InvasionCardFactory() {
         try {
-            cards = new InvasionCardParser().parseFile("invasions.json");
+            cards = new InvasionCardParser().parseFile("/invasions.json");
         } catch (ParseException e) {
             e.printStackTrace();
         }

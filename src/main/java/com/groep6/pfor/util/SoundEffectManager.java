@@ -18,7 +18,7 @@ public class SoundEffectManager {
     }
 
     public static Media getMedia(String filePath) {
-        return new Media(Paths.get(filePath).toUri().toString());
+        return new Media(SoundEffectManager.class.getResource(filePath).toString());
     }
 
     public static void setVolume(double volume) {

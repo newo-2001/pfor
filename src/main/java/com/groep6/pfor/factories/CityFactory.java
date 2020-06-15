@@ -17,7 +17,7 @@ public class CityFactory {
     /** Creates the CityFactory instance */
     private CityFactory() {
         try {
-            cities = new CityParser().parseFile("cities.json");
+            cities = new CityParser().parseFile("/cities.json");
         } catch (ParseException e) {
             e.printStackTrace();
         }

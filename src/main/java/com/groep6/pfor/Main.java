@@ -40,7 +40,7 @@ public class Main extends Application {
 
         // Initialise music player and start menu music
         musicManager = new MusicManager();
-        musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
+        musicManager.play("/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
   
         // Set default view
         new MenuController();

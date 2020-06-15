@@ -47,7 +47,7 @@ public class BattleController extends Controller {
 		barbariansLost = Math.min(barbarianCount, barbariansLost);
 
 		viewController.showView(new BattleView(this, legionsLost, barbariansLost));
-		SoundEffectManager.play("src/main/resources/sounds/effects/BattleSound.mp3");
+		SoundEffectManager.play("/sounds/effects/BattleSound.mp3");
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class Firebase {
      */
     public static void initialize() {
         try {
-            InputStream serviceAccount = new FileInputStream("src/main/java/ServiceAccountKey.json");
+            InputStream serviceAccount = Firebase.class.getResourceAsStream("/ServiceAccountKey.json");
             GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
 
             FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(credentials).build();

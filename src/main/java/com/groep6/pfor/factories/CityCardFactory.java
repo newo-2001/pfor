@@ -33,7 +33,7 @@ public class CityCardFactory {
 	private CityCardFactory() {
 		CityCardParser parser = new CityCardParser();
 		try {
-			cityCardDeck.addCards(parser.parseFile("citycards.json"));
+			cityCardDeck.addCards(parser.parseFile("/citycards.json"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

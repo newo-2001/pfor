@@ -43,7 +43,7 @@ public class HandController extends Controller {
         	((EventCard) selectedCard).executeEvent();
         }
 
-        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+        SoundEffectManager.play("/sounds/effects/DrawCardSound.mp3");
         
         refresh();
     }

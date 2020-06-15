@@ -3,13 +3,9 @@ package com.groep6.pfor.util;
 import java.io.*;
 
 public class FileReader {
-    private static final String ROOT = "src/main/java/com/groep6/pfor/";
-
-    public String read(String path) {
-        path = ROOT + path;
-
+    public String read(InputStream stream) {
         try {
-             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))));
+             BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
              StringBuffer buffer = new StringBuffer();
              String str;
              while ((str = reader.readLine()) != null) {
