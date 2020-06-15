@@ -1,0 +1,16 @@
+com.groep6.pfor
+com.groep6.pfor.controllers
+com.groep6.pfor.exceptions
+com.groep6.pfor.factories
+com.groep6.pfor.models
+com.groep6.pfor.models.cards
+com.groep6.pfor.models.cards.actions
+com.groep6.pfor.models.cards.actions.eventActions
+com.groep6.pfor.models.cards.actions.roleActions
+com.groep6.pfor.models.factions
+com.groep6.pfor.services
+com.groep6.pfor.util
+com.groep6.pfor.util.parsers
+com.groep6.pfor.util.parsers.templates
+com.groep6.pfor.views
+com.groep6.pfor.views.components
