@@ -9,6 +9,11 @@ import org.junit.Test;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.City;
 
+/**
+ * Tests the placement of forts in a city.
+ * @author Mitchell van Rijswijk
+ *
+ */
 public class FortTest {
 	
 	private City city;
