@@ -6,7 +6,6 @@ import com.groep6.pfor.views.components.UIButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -44,11 +43,6 @@ public class WinView extends View {
         winText.setFont(Font.font("Verdana", 60));
         root.setCenter(winText);
 
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/win_background.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                backgroundSize);
-
         Button backToMenuButton = new UIButton("Hoofdmenu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
         backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenuView);
@@ -58,7 +52,7 @@ public class WinView extends View {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
-        root.setBackground(new Background(backgroundImage));
+        setBackground(root, "/images/win_background.jpg");
     }
 
     EventHandler<MouseEvent> goToMenuView = new EventHandler<MouseEvent>() {

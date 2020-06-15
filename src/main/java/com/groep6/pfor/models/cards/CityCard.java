@@ -2,7 +2,7 @@ package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
+
 
 /**
  * Represents a city card

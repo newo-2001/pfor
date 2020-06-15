@@ -1,7 +1,6 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.MoveController;
-import com.groep6.pfor.controllers.RecruitBarbarianController;
 
 /**
  * The view where you can choose the amout of barbarians you want to recruit
@@ -77,7 +76,7 @@ public class MoveView extends View implements IObserver {
 
         root.getChildren().add(box);
 
-        setBackground(root, "images/background-2.jpg");
+        setBackground(root, "/images/background-2.jpg");
     }
 
     EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {

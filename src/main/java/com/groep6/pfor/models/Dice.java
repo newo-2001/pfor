@@ -1,7 +1,6 @@
 package com.groep6.pfor.models;
 
 import java.util.Random;
-import java.util.Stack;
 
 /**
  * Dice for Pandemic: Fall of Rome. Each face on this dice represents an outcome

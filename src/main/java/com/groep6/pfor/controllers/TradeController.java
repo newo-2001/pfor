@@ -2,17 +2,10 @@ package com.groep6.pfor.controllers;
 
 import java.util.List;
 
-import com.groep6.pfor.factories.FactionFactory;
-import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.Player;
-import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.cards.Card;
-import com.groep6.pfor.models.cards.CityCard;
-import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.TradeView;
 
 public class TradeController extends Controller {

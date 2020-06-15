@@ -1,9 +1,6 @@
 package com.groep6.pfor.util;
 
 import java.nio.file.Paths;
-
-import com.groep6.pfor.Main;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -18,8 +15,14 @@ public class MusicManager {
 	private double volume = 0.1;
 	private Playlist playlist;
 
-	public MusicManager(Playlist playlist) {
-		this.playlist = playlist;
+	public MusicManager() {
+		createPlayList();
+	}
+	
+	public void createPlayList() {
+		playlist = new Playlist();
+        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
+        playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
 	}
 
 	public void playPlaylist() {

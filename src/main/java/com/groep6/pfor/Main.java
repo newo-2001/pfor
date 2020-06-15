@@ -10,6 +10,7 @@ import com.groep6.pfor.services.Firebase;
 import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.util.Playlist;
 import com.groep6.pfor.views.OptionsView;
+import com.groep6.pfor.views.View;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -21,7 +22,6 @@ public class Main extends Application {
 	
 	public static MusicManager musicManager;
 	public ViewController viewController = ViewController.getInstance();
-	public OptionsView options = new OptionsView(new OptionController());
 
     public static void main(String[] args) {
         launch();
@@ -38,12 +38,8 @@ public class Main extends Application {
         ViewController viewController = ViewController.getInstance();
         viewController.setPrimaryStage(primaryStage);
 
-        // Start game music
-        Playlist playlist = new Playlist();
-        playlist.add("src/main/resources/sounds/music/Seeds_of_the_Past.mp3");		// In-game background music
-        playlist.add("src/main/resources/sounds/music/Carpe_Diem.mp3");		// In-game background music
-
-        musicManager = new MusicManager(playlist);
+        // Initialise music player and start menu music
+        musicManager = new MusicManager();
         musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
   
         // Set default view
@@ -54,7 +50,12 @@ public class Main extends Application {
     EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
 		@Override
 		public void handle(KeyEvent e) {
-			if (e.getCode() == KeyCode.ESCAPE && !viewController.getVisitedViews().contains(options)) viewController.showView(options);
+			if (e.getCode() == KeyCode.ESCAPE) {
+				for (View view : viewController.getVisitedViews()) {
+					if (view instanceof OptionsView) return;
+				}
+				new OptionController();
+			}
 		}
     };
     

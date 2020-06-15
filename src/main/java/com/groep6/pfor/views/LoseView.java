@@ -40,11 +40,6 @@ public class LoseView extends View {
         loseText.setFont(Font.font("Verdana", 60));
         root.setCenter(loseText);
 
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/background-6.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                backgroundSize);
-
         Button backToMenuButton = new UIButton("Hoofdmenu");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
         backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenuView);
@@ -54,7 +49,7 @@ public class LoseView extends View {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         buttonBox.setPadding(new Insets(20));
         root.setBottom(buttonBox);
-        root.setBackground(new Background(backgroundImage));
+        setBackground(root, "/images/background-6.jpg");
     }
 
     EventHandler<MouseEvent> goToMenuView = new EventHandler<MouseEvent>() {

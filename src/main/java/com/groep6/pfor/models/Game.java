@@ -6,7 +6,6 @@ import com.groep6.pfor.factories.EventCardFactory;
 import com.groep6.pfor.factories.InvasionCardFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
@@ -15,6 +14,7 @@ import java.util.*;
 public class Game extends Observable implements IObserver {
 
     private static Game SINGLE_INSTANCE = new Game();
+    private static GameState GAME_STATE = GameState.MENU;
 
     private Board board = new Board();
     private List<Player> players = new ArrayList<>();
@@ -35,6 +35,14 @@ public class Game extends Observable implements IObserver {
     public static Game getInstance() {
         return SINGLE_INSTANCE;
     }
+    
+    public static GameState getGameState() {
+    	return GAME_STATE;
+    }
+    
+    public static void setGameState(GameState state) {
+    	GAME_STATE = state;
+    }
 
     private Game() {
         Random rand = new Random();
@@ -49,7 +57,7 @@ public class Game extends Observable implements IObserver {
         for (int i = 0; i < die.length; i++) die[i] = new Dice();
 
         // Add barbarians to cities
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             City[] cities = CityFactory.getInstance().getAllCities();
             City city = cities[rand.nextInt(cities.length)];
 
@@ -58,11 +66,11 @@ public class Game extends Observable implements IObserver {
                 continue;
             }
 
-            int barbariansCount = rand.nextInt((4 - 1 + 1)) + 1;
+            int barbariansCount = rand.nextInt(2);
 
-            if (city.getTotalBarbarianCount() > 3) {
+            if (city.getTotalBarbarianCount() > 2) {
                 invadedCities.add(city);
-                barbariansCount = 3;
+                barbariansCount = 2;
                 i--;
             }
 
@@ -275,7 +283,7 @@ public class Game extends Observable implements IObserver {
 
         return null;
     }
-
+    
     public void setLocalPlayer(Player player) {
         for (Player p : getAllPlayers()) if (player.equals(p)) p.setLocal(true);
     }

@@ -7,12 +7,9 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 /**
@@ -53,7 +50,7 @@ public class MenuView extends View {
         buttonBox.getChildren().addAll(hostGameButton, joinGameButton, exitGameButton);
         BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
 
-        setBackground(root, "images/win_background.jpg");
+        setBackground(root, "/images/win_background.jpg");
         root.setBottom(buttonBox);
     }
 

@@ -4,19 +4,9 @@ import com.groep6.pfor.Config;
 import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.EventCard;
-import com.groep6.pfor.models.cards.actions.eventActions.AbundansCautelaAction;
-import com.groep6.pfor.models.cards.actions.eventActions.AleaIactaEstAction;
 import com.groep6.pfor.models.cards.actions.eventActions.AudentesFortunaAction;
 import com.groep6.pfor.models.cards.actions.eventActions.CarpeDiemAction;
-import com.groep6.pfor.models.cards.actions.eventActions.DoUtDesAction;
 import com.groep6.pfor.models.cards.actions.eventActions.FaberFortunaeAction;
-import com.groep6.pfor.models.cards.actions.eventActions.FestinaLenteAction;
-import com.groep6.pfor.models.cards.actions.eventActions.HicManebimusOptimeAction;
-import com.groep6.pfor.models.cards.actions.eventActions.MeliusCavereAction;
-import com.groep6.pfor.models.cards.actions.eventActions.MortuiNonMordentAction;
-import com.groep6.pfor.models.cards.actions.eventActions.ParaBellumAction;
-import com.groep6.pfor.models.cards.actions.eventActions.VaeVictisAction;
-import com.groep6.pfor.models.cards.actions.eventActions.VeniVidiViciAction;
 import com.groep6.pfor.models.cards.actions.eventActions.VitaMeaAction;
 
 /**

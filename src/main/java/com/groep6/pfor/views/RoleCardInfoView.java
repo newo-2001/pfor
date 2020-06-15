@@ -51,7 +51,7 @@ public class RoleCardInfoView extends View {
         
         /** FlowPane that represents the individual cards */
         FlowPane cardsPane = new FlowPane();
-        setBackground(cardsPane, "images/background-4.jpg");
+        setBackground(cardsPane, "/images/background-4.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);

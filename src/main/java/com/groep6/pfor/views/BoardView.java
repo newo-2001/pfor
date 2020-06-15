@@ -21,7 +21,6 @@ import com.groep6.pfor.util.Vector2f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -286,7 +285,7 @@ public class BoardView extends View implements IObserver {
         canvas.setOnMouseClicked(onCanvasClick);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(new Image("images/board.jpg"), 0, 0, CANVAS_SIZE.x, CANVAS_SIZE.y);
+        gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/board.jpg"))), 0, 0, CANVAS_SIZE.x, CANVAS_SIZE.y);
 
         return canvas;
     }
@@ -321,7 +320,7 @@ public class BoardView extends View implements IObserver {
 
     public void updateCanvas() {
         GraphicsContext gc = getCanvas().getGraphicsContext2D();
-        gc.drawImage(new Image("images/board.jpg"), 0, 0, canvasX, canvasY);
+        gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/board.jpg"))), 0, 0, canvasX, canvasY);
         List<Player> players = Game.getInstance().getAllPlayers();
 
         for (Faction faction : boardController.getFriendlyFactions()) {
@@ -400,16 +399,15 @@ public class BoardView extends View implements IObserver {
                 	gc.fillText(Integer.toString(city.getLegionCount()), cityPos.x - r/5, cityPos.y - r/5);
             		
                 	gc.setFill(Color.TRANSPARENT);
-            		
             	}
 
                 if (city.hasFort()) {
-                    gc.drawImage(new Image("images/Fort.png"), cityPos.x - r, cityPos.y + r / 2f, r, r / 1.35f);
+                    gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/Fort.png"))), cityPos.x - r, cityPos.y + r / 2f, r, r / 1.35f);
                 }
                 {
                     Vector2f size = new Vector2f(0.033f, 0.045f).mul(CANVAS_SIZE);
                     Vector2f decay = new Vector2f(0.0208f, 0.2893f + 0.05435f * boardController.getDecayLevel()).mul(CANVAS_SIZE);
-                    gc.drawImage(new Image("images/decay.png"), decay.x, decay.y, size.x, size.y);
+                    gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/decay.png"))), decay.x, decay.y, size.x, size.y);
                 }
             }
         }

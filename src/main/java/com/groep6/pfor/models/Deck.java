@@ -14,7 +14,7 @@ import java.util.List;
  * @author Bastiaan
  * @author Nils van der Velden
  */
-public class Deck extends Observable{
+public class Deck extends Observable {
 
     private List<Card> cards = new ArrayList<>();
 

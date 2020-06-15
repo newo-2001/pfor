@@ -24,8 +24,7 @@ public class BoardController extends Controller {
     private Game game = Game.getInstance();
 
     public BoardController() {
-    	Main.musicManager.stop();
-    	Main.musicManager.playPlaylist();
+    	changeMusic();
         viewController.showView(new BoardView(this));
     }
     
@@ -48,10 +47,12 @@ public class BoardController extends Controller {
     /**
      * @param amount
      */
+    
     public void increaseDecayLevel(int amount) {
         game.increaseDecayLevel(amount);
     }
 
+    
     public int getDecayLevel() {
         return game.getDecayLevel();
     }
@@ -65,7 +66,6 @@ public class BoardController extends Controller {
     }
 
     public void cityPressed(City city) {
-
     }
 
     public Player getLocalPlayer() {
@@ -99,15 +99,21 @@ public class BoardController extends Controller {
     	if(game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
     		new LoseController();
     	}
+    	
+    	checkWinConditions();
 
         // Next turn
         game.nextTurn();
         GameService gameService = new GameService();
         gameService.setGame(game);
     }
+    
+    public void checkWinConditions() {
+    	if (getFriendlyFactions().size() == 5) new WinController();
+    }
 
     private void invadeCities() {
-        int cardAmount = 4;
+        int cardAmount = 2;
         Card[] usedCards = new Card[cardAmount];
         Deck invasionCardsDeck = game.getInvasionCardsDeck();
         for (int i = 0; i < cardAmount; i++) {
@@ -154,7 +160,7 @@ public class BoardController extends Controller {
         Faction[] factions = city.getFactions();
 
         for (Faction faction: factions) {
-            if (game.isFriendlyFaction(faction)) return true;
+            if (game.isFriendlyFaction(faction) && city.getTotalBarbarianCount() > 0) return true;
         }
 
         return false;
@@ -193,7 +199,10 @@ public class BoardController extends Controller {
         player.decreaseActionsRemaining();
     }
     
-    
+    public void changeMusic() {
+    	Main.musicManager.stop();
+    	Main.musicManager.playPlaylist();
+    }
 
     public boolean canFormAlliance() {
         Player player = getLocalPlayer();

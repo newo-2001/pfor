@@ -92,7 +92,7 @@ public class HandView extends View implements IObserver {
 
         // Cards
         cardsPane = new FlowPane();
-        setBackground(cardsPane, "images/background-4.jpg");
+        setBackground(cardsPane, "/images/background-4.jpg");
         cardsPane.setPadding(new Insets(20, 20, 20, 20));
         cardsPane.setVgap(50);
         cardsPane.setHgap(50);

@@ -4,8 +4,6 @@ import com.groep6.pfor.Config;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.*;
 import javafx.scene.paint.Color;
-
-import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

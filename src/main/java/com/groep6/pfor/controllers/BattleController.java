@@ -4,9 +4,7 @@ import java.util.Stack;
 
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.factions.FactionType;
-import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.MusicManager;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.views.BattleView;
 

@@ -4,13 +4,7 @@ import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.Vector2f;
-import com.groep6.pfor.util.parsers.CityParser;
-
-import java.lang.reflect.Array;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

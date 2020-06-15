@@ -48,11 +48,7 @@ public class InstructionView extends View {
         content.setFitToHeight(true);
         content.setFitToWidth(true);
 
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("images/paper_background.jpg"),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, true));
         mdfxNode.setPadding(new Insets(50, 200, 50, 200));
-        mdfxNode.setBackground(new Background(backgroundImage));
 
         Button goBackButton = new UIButton("Ga terug");
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
@@ -60,6 +56,8 @@ public class InstructionView extends View {
         HBox buttonPane = new HBox(12, goBackButton);
         buttonPane.setAlignment(Pos.BOTTOM_RIGHT);
         mdfxNode.getChildren().add(0, buttonPane);
+
+        setBackground(mdfxNode, "/images/paper_background.jpg");
 
         root.setPrefWidth(300);
         root.setCenter(content);

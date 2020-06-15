@@ -2,11 +2,9 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.factories.RoleCardFactory;
-import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 import com.groep6.pfor.util.PasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;

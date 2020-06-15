@@ -6,13 +6,9 @@ import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IEventCallback;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
-import com.groep6.pfor.views.RoleCardInfoView;
 import javafx.application.Platform;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class LobbyController extends Controller {
 
@@ -107,6 +103,7 @@ public class LobbyController extends Controller {
         gameService.create(game);
         GameService.gameChangeEvent.subscribe(onGameChange);
 
+        Game.setGameState(GameState.GAME);
         new BoardController();
         lobbyService.remove(lobby);
 

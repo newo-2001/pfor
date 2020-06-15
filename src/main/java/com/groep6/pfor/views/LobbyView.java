@@ -12,7 +12,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -76,7 +75,7 @@ public class LobbyView extends View implements IObserver {
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
         bottomButtomBox.getChildren().add(goBackButton);
 
-        setBackground(root, "images/background-5.jpg");
+        setBackground(root, "/images/background-5.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
         root.getChildren().add(codeText);
