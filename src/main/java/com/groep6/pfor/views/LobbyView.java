@@ -75,7 +75,7 @@ public class LobbyView extends View implements IObserver {
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenu);
         bottomButtomBox.getChildren().add(goBackButton);
 
-        setBackground(root, "images/background-5.jpg");
+        setBackground(root, "/images/background-5.jpg");
         root.setTop(topBox);
         root.setBottom(bottomButtomBox);
         root.getChildren().add(codeText);

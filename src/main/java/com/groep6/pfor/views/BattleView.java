@@ -63,7 +63,7 @@ public class BattleView extends View implements IObserver {
     	log.setPadding(new Insets(50));
     	log.setSpacing(24);
 
-        setBackground(root, "images/background-3.jpg");
+        setBackground(root, "/images/background-3.jpg");
     	root.getChildren().add(log);
     }
     

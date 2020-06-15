@@ -74,7 +74,7 @@ public class RecruitBarbarianView extends View implements IObserver {
 
         root.getChildren().add(box);
 
-        setBackground(root, "images/background-2.jpg");
+        setBackground(root, "/images/background-2.jpg");
     }
     
     EventHandler<MouseEvent> menuButtonClicked = new EventHandler<MouseEvent>() {

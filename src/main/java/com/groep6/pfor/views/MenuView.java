@@ -50,7 +50,7 @@ public class MenuView extends View {
         buttonBox.getChildren().addAll(hostGameButton, joinGameButton, exitGameButton);
         BorderPane.setMargin(buttonBox, new Insets(12,12,100,12)); // optional
 
-        setBackground(root, "images/win_background.jpg");
+        setBackground(root, "/images/win_background.jpg");
         root.setBottom(buttonBox);
     }
 
