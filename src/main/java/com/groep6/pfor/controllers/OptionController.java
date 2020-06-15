@@ -16,13 +16,6 @@ public class OptionController extends Controller {
 		return Game.getGameState();
 	}
 	
-	public void toMainMenu() {
-		viewController.getVisitedViews().clear();
-		changeMusic();
-		Game.setGameState(GameState.MENU);
-        new MenuController();
-	}
-	
 	public void handleFullscreen() {
 		ViewController.getInstance().toggleFullscreen();
 	}
@@ -34,11 +27,6 @@ public class OptionController extends Controller {
 	public void goToInstructions() {
 		new InstructionController();
 	}
-	
-	public void changeMusic() {
-    	Main.musicManager.stop();
-    	Main.musicManager.play("src/main/resources/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
-    }
 	
 	@Override
 	public void registerObserver(IObserver view) {
