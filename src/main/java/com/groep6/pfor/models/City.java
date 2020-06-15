@@ -16,7 +16,7 @@ import com.groep6.pfor.util.Vector2f;
 import java.util.List;
 
 public class City extends Tile {
-	private static int fortAmount = 0;
+	
 	private List<Barbarian> barbarians = new ArrayList<>();
 	private List<Legion> legions = new ArrayList<>();
 	private boolean fort = false;
@@ -159,11 +159,21 @@ public class City extends Tile {
 	
     public int getBarbarianCount(FactionType factionType, List<Barbarian> barbarians) {
 		int count = 0;
-		
-		for(int i = 0; i < barbarians.size(); i++) {
-			if (factionType == barbarians.get(i).getFactionType()) count++;			
+
+		for (Barbarian barbarian : barbarians) {
+			if (factionType == barbarian.getFactionType()) count++;
 		}
 		
+		return count;
+	}
+
+	public int getBarbarianCount(FactionType factionType) {
+		int count = 0;
+
+		for (Barbarian barbarian : barbarians) {
+			if (factionType == barbarian.getFactionType()) count++;
+		}
+
 		return count;
 	}
 	
@@ -224,11 +234,8 @@ public class City extends Tile {
      * places a fort in a specific city
      */
 	public void placeFort() {
-		if (fortAmount < 6) {
-			this.fort = true;
-			fortAmount++;
-			notifyObservers();
-		}
+		this.fort = true;
+		notifyObservers();
 	}
 	
     /**

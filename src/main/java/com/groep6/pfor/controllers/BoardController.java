@@ -23,6 +23,7 @@ import com.groep6.pfor.views.BoardView;
 public class BoardController extends Controller {
 
     private Game game = Game.getInstance();
+	private int fortAmount = 0;
 
     public BoardController() {
     	changeMusic();
@@ -146,17 +147,15 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
         city.placeFort();
+        fortAmount++;
         player.decreaseActionsRemaining();
     }
 
     public boolean canBattle() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
-        
-        if(city.getTotalBarbarianCount() > 0 && city.getLegionCount() > 0) {
-        	return true;
-        }
-		return false;
+
+        return city.getTotalBarbarianCount() > 0 && city.getLegionCount() > 0;
     }
 
     public boolean canRecruitBarbarians() {
@@ -165,7 +164,7 @@ public class BoardController extends Controller {
         Faction[] factions = city.getFactions();
 
         for (Faction faction: factions) {
-            if (game.isFriendlyFaction(faction) && city.getTotalBarbarianCount() > 0) return true;
+            if (game.isFriendlyFaction(faction) && city.getBarbarianCount(faction.getFactionType()) > 0) return true;
         }
 
         return false;
@@ -182,7 +181,7 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
 
-        return !city.hasFort();
+        return (!city.hasFort() && fortAmount < 6);
     }
 
     @Override

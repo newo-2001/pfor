@@ -1,4 +1,4 @@
-package com.groep6.pfor;
+package com.groep6.pfor.models;
 
 import java.util.List;
 import com.groep6.pfor.factories.CityCardFactory;

@@ -1,4 +1,4 @@
-package com.groep6.pfor;
+package com.groep6.pfor.models;
 
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.models.Lobby;
