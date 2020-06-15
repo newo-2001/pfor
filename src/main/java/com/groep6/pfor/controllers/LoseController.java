@@ -5,6 +5,7 @@ import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LoseView;
+import javafx.application.Platform;
 
 public class LoseController extends Controller {
 
@@ -28,6 +29,11 @@ public class LoseController extends Controller {
     public void changeMusic() {
     	Main.musicManager.stop();
     	Main.musicManager.play("src/main/resources/sounds/music/The_End_of_an_Era.mp3", 0.2, false);
+    }
+
+    public void exitGame() {
+        Platform.exit();
+        System.exit(0);
     }
 
     @Override

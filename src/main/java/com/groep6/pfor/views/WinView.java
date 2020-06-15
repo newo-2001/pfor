@@ -43,9 +43,9 @@ public class WinView extends View {
         winText.setFont(Font.font("Verdana", 60));
         root.setCenter(winText);
 
-        Button backToMenuButton = new UIButton("Hoofdmenu");
+        Button backToMenuButton = new UIButton("Sluit game");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
-        backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenuView);
+        backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
         HBox buttonBox = new HBox();
         buttonBox.getChildren().add(backToMenuButton);
@@ -55,10 +55,10 @@ public class WinView extends View {
         setBackground(root, "/images/win_background.jpg");
     }
 
-    EventHandler<MouseEvent> goToMenuView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> exitGame = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-            winController.goToMenuView();
+            winController.exitGame();
         }
     };
 

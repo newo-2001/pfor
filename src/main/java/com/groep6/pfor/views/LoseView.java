@@ -40,9 +40,9 @@ public class LoseView extends View {
         loseText.setFont(Font.font("Verdana", 60));
         root.setCenter(loseText);
 
-        Button backToMenuButton = new UIButton("Hoofdmenu");
+        Button backToMenuButton = new UIButton("Sluit game");
         backToMenuButton.setBackground(new Background(new BackgroundFill(Color.web("#7A787E"), CornerRadii.EMPTY, Insets.EMPTY)));
-        backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMenuView);
+        backToMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
         HBox buttonBox = new HBox();
         buttonBox.getChildren().add(backToMenuButton);
@@ -52,10 +52,10 @@ public class LoseView extends View {
         setBackground(root, "/images/background-6.jpg");
     }
 
-    EventHandler<MouseEvent> goToMenuView = new EventHandler<MouseEvent>() {
+    EventHandler<MouseEvent> exitGame = new EventHandler<MouseEvent>() {
         @Override
         public void handle(javafx.scene.input.MouseEvent e) {
-            loseController.goToMenuView();
+            loseController.exitGame();
         }
     };
 

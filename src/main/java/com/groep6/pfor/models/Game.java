@@ -9,6 +9,7 @@ import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
+import javax.swing.*;
 import java.util.*;
 
 public class Game extends Observable implements IObserver {
