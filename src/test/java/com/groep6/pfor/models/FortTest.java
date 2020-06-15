@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.City;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the placement of forts in a city.
@@ -18,21 +20,21 @@ public class FortTest {
 	
 	private City city;
 
-	@Before
-	public void setUp() throws Exception {
+	@BeforeEach
+	void setUp(){
 		CityFactory cityFactory = CityFactory.getInstance();
 		city = cityFactory.getCityByName("Roma");
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterEach
+	void tearDown() {
 		city = null;
 	}
 
 	@Test
-	public void test() {
+	void placeFort() {
 		city.placeFort();
-		assertEquals(true, city.hasFort());
+		assertTrue(city.hasFort());
 	}
 
 }
