@@ -37,7 +37,7 @@ public abstract class UICard extends BorderPane {
     }
 
     private void createView() {
-        BackgroundImage backgroundImage = new BackgroundImage(new Image(String.valueOf(UICard.class.getResource("/images/paper.jpg"))),
+        BackgroundImage backgroundImage = new BackgroundImage(new Image(UICard.class.getResourceAsStream("/images/paper.jpg")),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, false));
         setBackground(new Background(backgroundImage));
