@@ -165,7 +165,7 @@ public class BoardController extends Controller {
         Faction[] factions = city.getFactions();
 
         for (Faction faction: factions) {
-            if (game.isFriendlyFaction(faction) && city.getTotalBarbarianCount() > 0) return true;
+            if (game.isFriendlyFaction(faction) && city.getBarbarianCount(faction.getFactionType()) > 0) return true;
         }
 
         return false;
