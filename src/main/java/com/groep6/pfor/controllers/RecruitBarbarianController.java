@@ -38,6 +38,17 @@ public class RecruitBarbarianController extends Controller {
         }
     }
 
+    public int getAmountOfBarbariansInFaction() {
+        Player player = game.getLocalPlayer();
+        City city = player.getCity();
+        for (Faction faction: city.getFactions()) {
+            boolean isFriendlyFaction = game.isFriendlyFaction(faction);
+            if (isFriendlyFaction) return city.getBarbarianCount(faction.getFactionType());
+        }
+
+        return 0;
+    }
+
 	@Override
 	public void registerObserver(IObserver view) {
 		

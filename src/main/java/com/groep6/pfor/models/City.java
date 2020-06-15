@@ -159,11 +159,21 @@ public class City extends Tile {
 	
     public int getBarbarianCount(FactionType factionType, List<Barbarian> barbarians) {
 		int count = 0;
-		
-		for(int i = 0; i < barbarians.size(); i++) {
-			if (factionType == barbarians.get(i).getFactionType()) count++;			
+
+		for (Barbarian barbarian : barbarians) {
+			if (factionType == barbarian.getFactionType()) count++;
 		}
 		
+		return count;
+	}
+
+	public int getBarbarianCount(FactionType factionType) {
+		int count = 0;
+
+		for (Barbarian barbarian : barbarians) {
+			if (factionType == barbarian.getFactionType()) count++;
+		}
+
 		return count;
 	}
 	
