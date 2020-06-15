@@ -46,14 +46,18 @@ public class Hand extends Observable {
     }
 
     public void removeCard(Card card) {
-        int index = cards.indexOf(card);
-        Card removedCard = cards.get(index);
+        //int index = cards.indexOf(card);
+        //Card removedCard = cards.get(index);
         cards.remove(card);
         notifyObservers();
     }
 
     public Card getCard(int index) {
         return cards.get(index);
+    }
+    
+    public int getCardCount() {
+        return cards.size();
     }
 }
 
