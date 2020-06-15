@@ -113,17 +113,14 @@ public class BoardController extends Controller {
     public void checkLoseConditions() {
         // Go to lose screen when there are no more cards in players
         if (game.getPlayerCardsDeck().getCards().size() <= 0) {
-            new LoseController();
             game.setLost(true);
         } else if (game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
-            new LoseController();
             game.setLost(true);
         }
     }
     
     public void checkWinConditions() {
     	if (getFriendlyFactions().size() == 5) {
-            new WinController();
             game.setWon(true);
         }
     }
