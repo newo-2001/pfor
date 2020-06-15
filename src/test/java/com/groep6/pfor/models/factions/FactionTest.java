@@ -1,4 +1,4 @@
-package com.groep6.pfor.factions;
+package com.groep6.pfor.models.factions;
 
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.factions.Faction;
