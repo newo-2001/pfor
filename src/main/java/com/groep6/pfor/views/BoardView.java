@@ -147,6 +147,7 @@ public class BoardView extends View implements IObserver {
     EventHandler<MouseEvent> buildFort = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
+        	if (!boardController.canBuildFort()) return;
             boardController.buildFort();
             update();
         }
