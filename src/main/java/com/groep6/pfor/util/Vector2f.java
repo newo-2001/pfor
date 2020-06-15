@@ -1,7 +1,5 @@
 package com.groep6.pfor.util;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Represents a vector in 2d space. Has mathematical applications
  * but is also useful to wrap two float together, mostly used for coordinates.
@@ -214,4 +212,12 @@ public class Vector2f {
     public String toString() {
         return String.format("%s, %s", x, y);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Vector2f)) return false;
+        Vector2f v = (Vector2f) o;
+        return v.x == x && v.y == y;
+    }
+
 }
