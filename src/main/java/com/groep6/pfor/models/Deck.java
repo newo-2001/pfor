@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Represents a Deck with cards
- * @author Bastiaan
+ * @author Bastiaan Jansen
  * @author Nils van der Velden
  */
 public class Deck extends Observable {

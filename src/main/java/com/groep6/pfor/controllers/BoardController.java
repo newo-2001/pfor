@@ -126,7 +126,16 @@ public class BoardController extends Controller {
     }
 
     public int getFortAmount() {
-        return fortAmount;
+        int amount = 0;
+
+        for (Tile tile: game.getBoard().getTiles()) {
+            if (tile instanceof City) {
+                City city = (City) tile;
+                if (city.hasFort()) amount++;
+            }
+        }
+
+        return amount;
     }
 
     private void invadeCities() {
