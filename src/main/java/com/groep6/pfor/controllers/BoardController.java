@@ -154,11 +154,8 @@ public class BoardController extends Controller {
     public boolean canBattle() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
-        
-        if(city.getTotalBarbarianCount() > 0 && city.getLegionCount() > 0) {
-        	return true;
-        }
-		return false;
+
+        return city.getTotalBarbarianCount() > 0 && city.getLegionCount() > 0;
     }
 
     public boolean canRecruitBarbarians() {
