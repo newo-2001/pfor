@@ -16,7 +16,7 @@ import com.groep6.pfor.util.Vector2f;
 import java.util.List;
 
 public class City extends Tile {
-	private static int fortAmount = 0;
+	
 	private List<Barbarian> barbarians = new ArrayList<>();
 	private List<Legion> legions = new ArrayList<>();
 	private boolean fort = false;
@@ -234,11 +234,8 @@ public class City extends Tile {
      * places a fort in a specific city
      */
 	public void placeFort() {
-		if (fortAmount < 6) {
-			this.fort = true;
-			fortAmount++;
-			notifyObservers();
-		}
+		this.fort = true;
+		notifyObservers();
 	}
 	
     /**
