@@ -33,5 +33,4 @@ public class FortTest {
 		city.placeFort();
 		assertTrue(city.hasFort());
 	}
-
 }
