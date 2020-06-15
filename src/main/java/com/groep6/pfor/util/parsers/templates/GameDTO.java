@@ -27,6 +27,8 @@ public class GameDTO {
     public List<CardDTO> cityDiscardPile;
     public List<String> friendlyFactions;
     public Date updateTime;
+    public boolean lost = false;
+    public boolean won = false;
 
     public Game toModel() {
         List<Player> players = new ArrayList<>();
@@ -35,7 +37,7 @@ public class GameDTO {
         for (String faction : this.friendlyFactions) factions.add(FactionFactory.getInstance().getFaction(FactionType.valueOf(faction)));
 
         return new Game(board.toModel(), players, factions, decayLevel, invasionLevel, createDeck(tradeDeck),
-                createDeck(invasionDeck), createDeck(cityDeck), createDeck(invasionDiscardPile), createDeck(cityDiscardPile));
+                createDeck(invasionDeck), createDeck(cityDeck), createDeck(invasionDiscardPile), createDeck(cityDiscardPile), lost, won);
     }
 
     public static GameDTO fromModel(Game game) {
@@ -47,13 +49,13 @@ public class GameDTO {
 
         return new GameDTO(board, players, factions, game.getDecayLevel(), game.getInvasionLevel(),
                 createList(game.getTradeCardsDeck()), createList(game.getInvasionCardsDeck()), createList(game.getPlayerCardsDeck()),
-                createList(game.getInvasionCardsDiscardPile()), createList(game.getCityCardsDiscardPile()));
+                createList(game.getInvasionCardsDiscardPile()), createList(game.getCityCardsDiscardPile()), game.isLost(), game.isWon());
     }
 
     public GameDTO() {}
 
     private GameDTO(BoardDTO board, Map<String, PlayerDTO> players, List<String> friendlyFactions, int decayLevel, int invasionLevel,
-                List<CardDTO> tradeDeck, List<CardDTO> invasionDeck, List<CardDTO> cityDeck, List<CardDTO> invasionDiscardPile, List<CardDTO> cityDiscardPile) {
+                List<CardDTO> tradeDeck, List<CardDTO> invasionDeck, List<CardDTO> cityDeck, List<CardDTO> invasionDiscardPile, List<CardDTO> cityDiscardPile, boolean lost, boolean won) {
         this.board = board;
         this.players = players;
         this.friendlyFactions = friendlyFactions;
@@ -65,6 +67,8 @@ public class GameDTO {
         this.invasionDiscardPile = invasionDiscardPile;
         this.cityDiscardPile = cityDiscardPile;
         this.updateTime = new Date();
+        this.lost = lost;
+        this.won = won;
     }
 
     private Deck createDeck(List<CardDTO> cards) {

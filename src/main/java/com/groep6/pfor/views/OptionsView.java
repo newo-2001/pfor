@@ -98,16 +98,12 @@ public class OptionsView extends View {
         Button muteButton = new UIButton("Mute / Unmute");
         muteButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         muteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, toggleMute);
-
-        Button mainMenuButton = new UIButton("Naar hoofdmenu");
-        mainMenuButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
-        mainMenuButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goToMainMenu);
-
+        
         Button exitGameButton = new UIButton("Exit Game");
         exitGameButton.setPrefSize(PREF_BUTTON_WIDTH, PREF_BUTTON_HEIGHT);
         exitGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, exitGame);
 
-        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, mainMenuButton, exitGameButton);
+        options.getChildren().addAll(text, backButton, fullscreenButton, muteButton, exitGameButton);
         BorderPane.setMargin(options, new Insets(12,12,100,12));
         setBackground(root, "/images/background.jpg");
         root.setCenter(options);
@@ -138,13 +134,6 @@ public class OptionsView extends View {
     	@Override
     	public void handle(MouseEvent e) {
     		optionController.goToInstructions();
-    	}
-    };
-    
-    EventHandler<MouseEvent> goToMainMenu = new EventHandler<MouseEvent>() {
-    	@Override
-    	public void handle(MouseEvent e) {
-    		optionController.toMainMenu();
     	}
     };
 

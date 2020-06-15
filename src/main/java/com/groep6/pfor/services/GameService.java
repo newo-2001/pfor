@@ -2,6 +2,7 @@ package com.groep6.pfor.services;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import com.groep6.pfor.controllers.LoseController;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;

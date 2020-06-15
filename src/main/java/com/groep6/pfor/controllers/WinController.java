@@ -5,6 +5,7 @@ import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.WinView;
+import javafx.application.Platform;
 
 /**
  * 
@@ -33,6 +34,11 @@ public class WinController extends Controller {
     public void changeMusic() {
     	Main.musicManager.stop();
     	Main.musicManager.play("src/main/resources/sounds/music/To_fight_another_day.mp3", 0.2, false);
+    }
+
+    public void exitGame() {
+        Platform.exit();
+        System.exit(0);
     }
 
     @Override

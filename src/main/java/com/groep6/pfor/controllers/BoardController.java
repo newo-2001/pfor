@@ -90,8 +90,7 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
 
-        // Go to lose screen when there are no more cards in players
-        if (game.getPlayerCardsDeck().getCards().size() <= 0) new LoseController();
+        checkLoseConditions();
 
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
@@ -100,6 +99,7 @@ public class BoardController extends Controller {
               
     	if(game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
     		new LoseController();
+    		game.setLost(true);
     	}
     	
     	checkWinConditions();
@@ -109,9 +109,24 @@ public class BoardController extends Controller {
         GameService gameService = new GameService();
         gameService.setGame(game);
     }
+
+    public void checkLoseConditions() {
+        // Go to lose screen when there are no more cards in players
+        if (game.getPlayerCardsDeck().getCards().size() <= 0) {
+            game.setLost(true);
+        } else if (game.getDecayLevel() >= game.getMaxDecayLevel() - 1) {
+            game.setLost(true);
+        }
+    }
     
     public void checkWinConditions() {
-    	if (getFriendlyFactions().size() == 5) new WinController();
+    	if (getFriendlyFactions().size() == 5) {
+            game.setWon(true);
+        }
+    }
+
+    public int getFortAmount() {
+        return fortAmount;
     }
 
     private void invadeCities() {
