@@ -2,9 +2,6 @@ package com.groep6.pfor.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
-import org.junit.Before;
-
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.City;
 import org.junit.jupiter.api.AfterEach;
