@@ -126,6 +126,7 @@ public class Vector2f {
      * @return Itself for chaining.
      */
     public Vector2f div(Vector2f vec) {
+        if (vec.x == 0 || vec.y == 0) throw new ArithmeticException("Divide by 0 exception");
         this.x /= vec.x;
         this.y /= vec.y;
         return this;
@@ -217,7 +218,18 @@ public class Vector2f {
     public boolean equals(Object o) {
         if (!(o instanceof Vector2f)) return false;
         Vector2f v = (Vector2f) o;
+        v.round();
+        round();
         return v.x == x && v.y == y;
+    }
+
+    private void round() {
+        x *= 10000f;
+        y *= 10000f;
+        x = (float) Math.round(x);
+        y = (float) Math.round(y);
+        x /= 10000f;
+        y /= 10000f;
     }
 
 }

@@ -18,6 +18,7 @@ import com.groep6.pfor.views.BoardView;
 
 /**
  * @author Bastiaan Jansen
+ * @author Nils van der Velden
  */
 public class BoardController extends Controller {
 
@@ -125,6 +126,7 @@ public class BoardController extends Controller {
         invasionCardsDeck.shuffle();
     }
 
+    
     private void invadeCity(InvasionCard card) {
         List<City> route = card.getRoute();
 
@@ -150,8 +152,11 @@ public class BoardController extends Controller {
     public boolean canBattle() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
-
-        return city.getTotalBarbarianCount() > 0;
+        
+        if(city.getTotalBarbarianCount() > 0 && city.getLegionCount() > 0) {
+        	return true;
+        }
+		return false;
     }
 
     public boolean canRecruitBarbarians() {
