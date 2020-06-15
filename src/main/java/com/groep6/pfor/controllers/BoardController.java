@@ -125,6 +125,10 @@ public class BoardController extends Controller {
         }
     }
 
+    public int getFortAmount() {
+        return fortAmount;
+    }
+
     private void invadeCities() {
         int cardAmount = 2;
         Card[] usedCards = new Card[cardAmount];

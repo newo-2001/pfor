@@ -32,7 +32,6 @@ public class WinView extends View {
         createView();
     }
 
-
     /**
      * Create and fill the view with text and a background image
      */

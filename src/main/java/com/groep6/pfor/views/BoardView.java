@@ -33,13 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -62,6 +56,7 @@ public class BoardView extends View implements IObserver {
 	private static final float CIRCLE_RADIUS = ((20f / 833f) * canvasX) / CANVAS_SIZE.y;
 
 	private UIText actionCount;
+	private UIText fortCount;
 
     private Button conspireButton;
     private Button battleButton;
@@ -217,7 +212,13 @@ public class BoardView extends View implements IObserver {
 
         actionCount = new UIText();
         actionCount.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
-        actionButtonLayout.add(actionCount, 0, 0, 2, 1);
+
+        fortCount = new UIText();
+        fortCount.setWeight(FontWeight.BOLD).setSize(20).setColor(Color.WHITE);
+
+        VBox textBox = new VBox(5);
+        textBox.getChildren().addAll(actionCount, fortCount);
+        actionButtonLayout.add(textBox, 0, 0, 2, 1);
 
         conspireButton = new UIButton("RUILEN");
         conspireButton.setPrefSize(150, 75);
@@ -420,6 +421,7 @@ public class BoardView extends View implements IObserver {
             @Override
             public void run() {
                 actionCount.setText(boardController.getLocalPlayer().getActionsRemaining() + " acties over");
+                fortCount.setText(6 - boardController.getFortAmount() + " resterende forten");
                 updateCanvas();
                 createPlayerList();
             }
