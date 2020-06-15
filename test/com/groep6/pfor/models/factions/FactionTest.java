@@ -3,40 +3,53 @@ package com.groep6.pfor.models.factions;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.Vector2f;
 import javafx.scene.paint.Color;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Bastiaan Jansen
  */
-public class FactionTest extends TestCase {
+class FactionTest {
 
     private Faction faction;
-    private Game game;
 
-    public void setUp() throws Exception {
-        super.setUp();
+    @BeforeEach
+    void setUp() {
         this.faction = new Faction(FactionType.VISIGOTHS, Color.ORANGE, 3, new Vector2f(10, 20));
-        this.game = Game.getInstance();
     }
 
-    public void tearDown() throws Exception {
+    @AfterEach
+    void tearDown() {
         this.faction = null;
     }
 
-    public void testGetFactionType() {
+    @Test
+    void getFactionType() {
         assertEquals(FactionType.VISIGOTHS, faction.getFactionType());
     }
 
-    public void testGetColor() {
+    @Test
+    void getColor() {
         assertEquals(Color.ORANGE, faction.getColor());
     }
 
-    public void testGetCardCountForAlliance() {
+    @Test
+    void getCardCountForAlliance() {
         assertEquals(3, faction.getCardCountForAlliance());
     }
 
-    public void testAlly() {
+    @Test
+    void ally() {
+        Game game = Game.getInstance();
         faction.ally();
         assertEquals(faction, game.getFriendlyFactions().get(0));
+    }
+
+    @Test
+    void getPosition() {
+        assertEquals(new Vector2f(10, 20), faction.getPosition());
     }
 }
