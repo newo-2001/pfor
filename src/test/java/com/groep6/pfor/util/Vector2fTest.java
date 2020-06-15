@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.ArithmeticException;
 
+/**
+ * @author Owen Elderbroek
+ */
 public class Vector2fTest {
     @Test
     public void testEquals() {
