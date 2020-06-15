@@ -15,18 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class FactionTest {
 
     private Faction faction;
-    private Game game;
 
     @BeforeEach
     void setUp() {
         this.faction = new Faction(FactionType.VISIGOTHS, Color.ORANGE, 3, new Vector2f(10, 20));
-        this.game = Game.getInstance();
     }
 
     @AfterEach
     void tearDown() {
         this.faction = null;
-        this.game = null;
     }
 
     @Test
@@ -46,6 +43,7 @@ class FactionTest {
 
     @Test
     void ally() {
+        Game game = Game.getInstance();
         faction.ally();
         assertEquals(faction, game.getFriendlyFactions().get(0));
     }
