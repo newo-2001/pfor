@@ -1,23 +1,28 @@
-package com.groep6.pfor.models;
+package com.groep6.pfor;
 
 import java.util.List;
 import com.groep6.pfor.factories.CityCardFactory;
+import com.groep6.pfor.models.Deck;
+import com.groep6.pfor.models.Hand;
 import com.groep6.pfor.models.cards.Card;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Nils van der Velden
  */
 
-public class HandTest extends TestCase {
-	
+public class HandTest {
+
 	private Hand hand;
 	private Card card1;
 	private Card card2;
 
-    public void setUp() throws Exception {
-        super.setUp();
-        this.hand = new Hand();
+    @BeforeEach
+    void setUp() {
         CityCardFactory cityCardFactory = CityCardFactory.getInstance();
         List<Card> cards = cityCardFactory.getCityCardDeck().getCards();
         this.card1 = cards.get(0);
@@ -26,14 +31,16 @@ public class HandTest extends TestCase {
         hand.addCards(card1, card2);
     }
 
-    public void tearDown() throws Exception {
+    @AfterEach
+    void tearDown() {
         this.hand = null;
         this.card1 = null;
         this.card2 = null;
     }
 
-    public void testRemoveCards() {
-    	hand.removeCard(card1);
+    @Test
+    void removeCards() {
+        hand.removeCard(card1);
         assertEquals(1, hand.getCardCount());
     }
 }

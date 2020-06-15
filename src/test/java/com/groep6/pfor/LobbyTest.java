@@ -1,6 +1,8 @@
-package com.groep6.pfor.models;
+package com.groep6.pfor;
 
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
+import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.ConsulAction;
 import javafx.scene.paint.Color;

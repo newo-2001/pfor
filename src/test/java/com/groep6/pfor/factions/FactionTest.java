@@ -1,6 +1,8 @@
-package com.groep6.pfor.models.factions;
+package com.groep6.pfor.factions;
 
 import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.factions.Faction;
+import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.AfterEach;

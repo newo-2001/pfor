@@ -1,6 +1,7 @@
-package com.groep6.pfor.models;
+package com.groep6.pfor;
 
 import com.groep6.pfor.factories.CityCardFactory;
+import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.Card;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
