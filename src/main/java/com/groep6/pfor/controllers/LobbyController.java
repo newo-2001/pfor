@@ -43,6 +43,9 @@ public class LobbyController extends Controller {
         System.out.println("Server update...");
         Game game = (Game) eventData[0];
         Game.getInstance().updateGame(game);
+
+        if (game.isLost()) new LoseController();
+        else if (game.isWon()) new WinController();
     };
 
     /**

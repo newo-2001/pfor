@@ -31,6 +31,8 @@ public class Game extends Observable implements IObserver {
     private Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
     private String code;
+    private boolean lost = false;
+    private boolean won = false;
 
     public static Game getInstance() {
         return SINGLE_INSTANCE;
@@ -80,7 +82,7 @@ public class Game extends Observable implements IObserver {
     }
 
     public Game(Board board, List<Player> players, List<Faction> friendlyFactions, int decayLevel, int invasionLevel,
-                Deck tradeDeck, Deck invasionDeck, Deck cityDeck, Deck invasionDiscardPile, Deck cityDiscardPile) {
+                Deck tradeDeck, Deck invasionDeck, Deck cityDeck, Deck invasionDiscardPile, Deck cityDiscardPile, boolean lost, boolean won) {
         this.board = board;
         this.players = players;
         this.friendlyFactions = friendlyFactions;
@@ -91,6 +93,8 @@ public class Game extends Observable implements IObserver {
         this.playerCardsDeck = cityDeck;
         this.invasionCardsDiscardPile = invasionDiscardPile;
         this.cityCardsDiscardPile = cityDiscardPile;
+        this.lost = lost;
+        this.won = won;
 
         // Create new dice instances
         for (int i = 0; i < die.length; i++) {
@@ -302,5 +306,21 @@ public class Game extends Observable implements IObserver {
 
     public List<Faction> getFriendlyFactions() {
         return friendlyFactions;
+    }
+
+    public boolean isWon() {
+        return won;
+    }
+
+    public boolean isLost() {
+        return lost;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
+    }
+
+    public void setLost(boolean lost) {
+        this.lost = lost;
     }
 }
