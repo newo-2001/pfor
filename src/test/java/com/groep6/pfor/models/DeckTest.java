@@ -1,4 +1,4 @@
-package com.groep6.pfor;
+package com.groep6.pfor.models;
 
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.models.Deck;
