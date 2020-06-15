@@ -77,7 +77,7 @@ public class BoardController extends Controller {
     public void move(City city) {
         Player player = Game.getInstance().getLocalPlayer();
 
-        if (player.getActionsRemaining() <= 0) return;
+        if (player.getActionsRemaining() <= 0 || !player.isTurn()) return;
         if (!Arrays.asList(player.getCity().getNeighbouringCities()).contains(city)) return;
 
         if (player.getCity().getLegions().size() > 0) {
