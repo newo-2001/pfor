@@ -2,7 +2,6 @@ package com.groep6.pfor;
 
 import java.util.List;
 import com.groep6.pfor.factories.CityCardFactory;
-import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.Hand;
 import com.groep6.pfor.models.cards.Card;
 import org.junit.jupiter.api.AfterEach;
