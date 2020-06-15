@@ -32,6 +32,7 @@ public class LobbyController extends Controller {
             game.addPlayers(lobby.getLocalPlayer());
             game.setCode(lobby.getCode());
             onGameChange.onEvent(eventData);
+            Game.setGameState(GameState.GAME);
             GameService.gameChangeEvent.subscribe(onGameChange);
             Platform.runLater(BoardController::new);
         };
