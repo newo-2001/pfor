@@ -8,12 +8,12 @@ import com.groep6.pfor.controllers.OptionController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.services.Firebase;
 import com.groep6.pfor.util.MusicManager;
-import com.groep6.pfor.util.Playlist;
 import com.groep6.pfor.views.OptionsView;
 import com.groep6.pfor.views.View;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -32,6 +32,10 @@ public class Main extends Application {
         // Setup logger
         Logger logger = LoggerFactory.getLogger(Main.class);
         Firebase.initialize();
+        
+        // Set icon
+        Image icon = new Image(String.valueOf(getClass().getResource("/images/PFOR_icon.png")));
+        primaryStage.getIcons().add(icon);
 
         // Get ViewController instance and set primaryStage
         primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, keyListener);
