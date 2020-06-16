@@ -130,10 +130,6 @@ public class LobbyView extends View implements IObserver {
     @Override
     public void update() {
         createPlayers();
-
-        if (startGameButton != null) {
-            startGameButton.setDisable(players.size() < LobbyController.MIN_PLAYERS && !Config.DEBUG);
-        }
     }
 
     @Override
