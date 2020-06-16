@@ -1,6 +1,5 @@
 package com.groep6.pfor.views.components;
 
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class UIBorderedText extends Text {

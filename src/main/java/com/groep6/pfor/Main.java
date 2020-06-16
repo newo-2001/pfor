@@ -1,22 +1,19 @@
 package com.groep6.pfor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.OptionController;
 import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.services.Firebase;
 import com.groep6.pfor.util.MusicManager;
-import com.groep6.pfor.util.Playlist;
 import com.groep6.pfor.views.OptionsView;
 import com.groep6.pfor.views.View;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main extends Application {
 	

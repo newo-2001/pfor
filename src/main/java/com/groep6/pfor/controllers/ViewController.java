@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import java.util.Stack;
 
 /**
@@ -20,7 +21,7 @@ public class ViewController {
     private static final ViewController INSTANCE = new ViewController();
     public static ViewController getInstance() { return INSTANCE; }
 
-    private Stack<View> visitedViews = new Stack<>();
+    private final Stack<View> visitedViews = new Stack<>();
     private Stage stage;
 
     private ViewController() {}

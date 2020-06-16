@@ -1,6 +1,8 @@
 package com.groep6.pfor.controllers;
 
-import com.groep6.pfor.models.*;
+import com.groep6.pfor.models.Deck;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class HandController extends Controller {
 
-    private Game game = Game.getInstance();
+    private final Game game = Game.getInstance();
     private Card selectedCard;
 
     public HandController() {

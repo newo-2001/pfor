@@ -3,7 +3,6 @@ package com.groep6.pfor.views;
 import com.groep6.pfor.controllers.BattleController;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
-
 import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,7 +19,7 @@ import javafx.scene.paint.Color;
  */
 public class BattleView extends View implements IObserver {
     /** The battleController */
-    private BattleController battleController;
+    private final BattleController battleController;
     private StackPane root;
     private int legionsLost = 0;
     private int barbariansLost = 0;

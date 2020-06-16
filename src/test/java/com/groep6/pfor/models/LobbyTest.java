@@ -1,8 +1,6 @@
 package com.groep6.pfor.models;
 
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
-import com.groep6.pfor.models.Lobby;
-import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.ConsulAction;
 import javafx.scene.paint.Color;
@@ -10,10 +8,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Bastiaan Jansen

@@ -3,6 +3,7 @@ package com.groep6.pfor.factories;
 import com.groep6.pfor.Config;
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.util.parsers.CityParser;
+
 import java.text.ParseException;
 
 /**

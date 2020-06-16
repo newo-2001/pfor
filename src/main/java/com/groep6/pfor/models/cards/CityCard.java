@@ -10,9 +10,9 @@ import com.groep6.pfor.models.factions.Faction;
  */
 public class CityCard extends Card {
 
-    private String name;
-    private City city;
-    private Faction faction;
+    private final String name;
+    private final City city;
+    private final Faction faction;
 
     /**
      * @param city

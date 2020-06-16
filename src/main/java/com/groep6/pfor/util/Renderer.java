@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  */
 public class Renderer {
     /** The stage that this renderer will render on. */
-    private Stage stage;
+    private final Stage stage;
 
     /**
      * Constructs a renderer that will render on the given stage.

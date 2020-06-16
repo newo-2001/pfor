@@ -10,11 +10,11 @@ import com.groep6.pfor.util.Observable;
 
 public class LobbyPlayer extends Observable {
 
-    private String username;
+    private final String username;
     private RoleCard roleCard;
-    private boolean isHost;
+    private final boolean isHost;
     private boolean isLocal;
-    private String lobby;
+    private final String lobby;
 
     /**
      * @param username

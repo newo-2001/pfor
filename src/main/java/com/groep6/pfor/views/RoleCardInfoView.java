@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,10 @@ import java.util.List;
 public class RoleCardInfoView extends View {
 
     /** The RoleCardInfo controller  */
-    private RoleCardInfoController roleCardInfoController;
+    private final RoleCardInfoController roleCardInfoController;
 
     private BorderPane root;
-    private List<UICard> uiCards = new ArrayList<>();
+    private final List<UICard> uiCards = new ArrayList<>();
     
     /**
      * Initializes the RoleCardInfoView

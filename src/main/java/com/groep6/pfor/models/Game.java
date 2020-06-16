@@ -10,17 +10,18 @@ import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
 
-import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Game extends Observable implements IObserver {
 
-    private static Game SINGLE_INSTANCE = new Game();
+    private static final Game SINGLE_INSTANCE = new Game();
     private static GameState GAME_STATE = GameState.MENU;
 
     private Board board = new Board();
     private List<Player> players = new ArrayList<>();
-    private List<City> invadedCities = new ArrayList<>();
+    private final List<City> invadedCities = new ArrayList<>();
     private int decayLevel = 0;
     private final int MAX_DECAY_LEVEL = 9;
     private int invasionLevel = 0;
@@ -30,7 +31,7 @@ public class Game extends Observable implements IObserver {
     private Deck playerCardsDeck;
     private Deck invasionCardsDiscardPile = new Deck();
     private Deck cityCardsDiscardPile = new Deck();
-    private Dice[] die = new Dice[3];
+    private final Dice[] die = new Dice[3];
     private List<Faction> friendlyFactions = new ArrayList<>();
     private String code;
     private boolean lost = false;

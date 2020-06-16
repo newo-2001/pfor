@@ -4,13 +4,14 @@ import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CardType;
 import com.groep6.pfor.models.cards.RoleCard;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 public class UIRoleCard extends UICard {
 
     private static final CardType CARD_TYPE = CardType.ROLE;
 
-    private RoleCard card;
+    private final RoleCard card;
 
     public UIRoleCard(RoleCard card) {
         super(CARD_TYPE);

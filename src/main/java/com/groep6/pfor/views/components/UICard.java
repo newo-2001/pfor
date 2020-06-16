@@ -2,17 +2,14 @@ package com.groep6.pfor.views.components;
 
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CardType;
-import javafx.animation.ScaleTransition;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-import javafx.util.Duration;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 public abstract class UICard extends BorderPane {
 

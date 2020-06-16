@@ -2,6 +2,7 @@ package com.groep6.pfor.models;
 
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.Vector2f;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -1,12 +1,11 @@
 package com.groep6.pfor.models;
 
 import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.groep6.pfor.util.Observable;
 
 /**
  * @author Bastiaan Jansen
@@ -14,7 +13,7 @@ import com.groep6.pfor.util.Observable;
  */
 public class Hand extends Observable {
 
-    private List<Card> cards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
 
     public Hand(Card... cards) {
         addCards(cards);

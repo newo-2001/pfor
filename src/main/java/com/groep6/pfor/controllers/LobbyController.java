@@ -1,13 +1,17 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.Config;
-import com.groep6.pfor.models.*;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.GameState;
+import com.groep6.pfor.models.Lobby;
+import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IEventCallback;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.LobbyView;
 import javafx.application.Platform;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -15,8 +19,8 @@ public class LobbyController extends Controller {
 
     public static final int MIN_PLAYERS = 3;
 
-    private Game game = Game.getInstance();
-    private Lobby lobby;
+    private final Game game = Game.getInstance();
+    private final Lobby lobby;
 
     /**
      * @param lobby
@@ -137,7 +141,7 @@ public class LobbyController extends Controller {
     /**
      * Run code every time the server sends an update
      */
-    private IEventCallback onLobbyChange = new IEventCallback() {
+    private final IEventCallback onLobbyChange = new IEventCallback() {
         @Override
         public void onEvent(Object... eventData) {
             Lobby serverLobby = (Lobby) eventData[0];

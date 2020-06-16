@@ -2,7 +2,6 @@ package com.groep6.pfor.util;
 
 import javafx.scene.media.Media;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public class Playlist {
 
-    private List<Media> songs = new ArrayList<>();
+    private final List<Media> songs = new ArrayList<>();
     private boolean shuffle = true;
     private boolean repeat = true;
     private int currentIndex = 0;

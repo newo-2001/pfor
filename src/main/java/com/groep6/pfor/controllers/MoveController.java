@@ -12,17 +12,17 @@ import com.groep6.pfor.views.MoveView;
 
 public class MoveController extends Controller {
 
-	private City destination;
-	private Player player;
+	private final City destination;
+	private final Player player;
 	
     public MoveController(City destination, Player player) {
     	this.destination = destination;
     	this.player = player;
 
         viewController.showView(new MoveView(this));
-    };
-    
-    public void moveLegions(int amount) {
+    }
+
+	public void moveLegions(int amount) {
     	player.getCity().removeLegions(amount);
     	destination.addLegions(amount);
 

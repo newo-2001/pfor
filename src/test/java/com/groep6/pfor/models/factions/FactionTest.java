@@ -1,15 +1,13 @@
 package com.groep6.pfor.models.factions;
 
 import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Bastiaan Jansen

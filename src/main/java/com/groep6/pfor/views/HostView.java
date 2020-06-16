@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
+import javafx.scene.text.FontWeight;
 
 /**
  * The view that show's the screen to create a lobby as a host
@@ -22,11 +22,11 @@ import javafx.scene.text.*;
  */
 public class HostView extends View implements IObserver {
 
-    private HostController hostController;
+    private final HostController hostController;
 
-    private StackPane root;
-    private UITextField usernameTextField;
-    private UITextField passwordTextField;
+    private final StackPane root;
+    private final UITextField usernameTextField;
+    private final UITextField passwordTextField;
 
     public HostView(HostController hostController) {
         this.hostController = hostController;

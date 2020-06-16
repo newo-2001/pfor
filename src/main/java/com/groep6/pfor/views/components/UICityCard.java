@@ -13,7 +13,7 @@ import javafx.scene.text.FontWeight;
 public class UICityCard extends UICard {
 
     private static final CardType CARD_TYPE = CardType.CITY;
-    private CityCard card;
+    private final CityCard card;
 
     public UICityCard(CityCard card) {
         super(CARD_TYPE);

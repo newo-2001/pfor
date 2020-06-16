@@ -12,7 +12,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class PraefectusClassisAction implements IAction {
 
-	private Game game = Game.getInstance();
+	private final Game game = Game.getInstance();
 
 	/**
 	 * Checks if the current city is a port city. If it is, removes a

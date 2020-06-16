@@ -2,6 +2,7 @@ package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.City;
 import com.groep6.pfor.models.factions.Faction;
+
 import java.util.List;
 
 /**
@@ -10,9 +11,9 @@ import java.util.List;
  */
 public class InvasionCard extends Card {
 
-    private String name;
-    private List<City> route;
-    private Faction faction;
+    private final String name;
+    private final List<City> route;
+    private final Faction faction;
 
     /**
      * @param name

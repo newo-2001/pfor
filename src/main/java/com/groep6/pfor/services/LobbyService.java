@@ -10,6 +10,7 @@ import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.util.ServerEvent;
 import com.groep6.pfor.util.parsers.templates.LobbyDTO;
 import com.groep6.pfor.util.parsers.templates.LobbyPlayerDTO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -127,7 +128,7 @@ public class LobbyService {
         listener = null;
     }
 
-    private static EventListener<DocumentSnapshot> onLobbyChange = (documentSnapshot, e) -> {
+    private static final EventListener<DocumentSnapshot> onLobbyChange = (documentSnapshot, e) -> {
         if (e != null) e.printStackTrace();
         else {
             LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);

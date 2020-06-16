@@ -10,7 +10,7 @@ public enum FactionType {
     VISIGOTHS("Visigoten"),
     OSTROGOTHS("Ostrogoten");
 
-    private String name;
+    private final String name;
 
     /**
      * @param name

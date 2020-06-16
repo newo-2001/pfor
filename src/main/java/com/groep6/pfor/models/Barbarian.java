@@ -9,7 +9,7 @@ import com.groep6.pfor.models.factions.FactionType;
  */
 
 public class Barbarian extends Piece {
-	private FactionType factionType;
+	private final FactionType factionType;
 	
     /**
      * Initializes a new Barbarian with the given components.

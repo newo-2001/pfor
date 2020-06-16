@@ -9,7 +9,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.*;
 
 /**
@@ -18,7 +20,7 @@ import javafx.scene.text.*;
  */
 public class MenuView extends View {
 
-    private MenuController menuController;
+    private final MenuController menuController;
 
     private BorderPane root;
 

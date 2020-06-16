@@ -2,21 +2,21 @@ package com.groep6.pfor.views.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.*;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextFlow;
 
 public class UIPlayerInfo extends HBox {
 
-	private Color playerColor;
-	private int playerNumber;
-	private String username;
-	private String playerRole;
-	private boolean isTurn;
-	private int actionCount;
+	private final Color playerColor;
+	private final int playerNumber;
+	private final String username;
+	private final String playerRole;
+	private final boolean isTurn;
+	private final int actionCount;
 	
 	public UIPlayerInfo(Color playerColor, int playerNumber, String username, String playerRole, boolean isTurn, int actionCount) {
 		this.playerColor = playerColor;

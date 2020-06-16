@@ -1,16 +1,16 @@
 package com.groep6.pfor.models.factions;
 
-import com.groep6.pfor.models.Game;
 import com.groep6.pfor.Config;
+import com.groep6.pfor.models.Game;
 import com.groep6.pfor.util.Vector2f;
 import javafx.scene.paint.Color;
 
 public class Faction {
 
-    private FactionType factionType;
-    private Color color;
-    private int cardCountForAlliance;
-    private Vector2f position;
+    private final FactionType factionType;
+    private final Color color;
+    private final int cardCountForAlliance;
+    private final Vector2f position;
 
     public Faction(FactionType factionType, Color color, int cardCountForAlliance, Vector2f position) {
         this.factionType = factionType;

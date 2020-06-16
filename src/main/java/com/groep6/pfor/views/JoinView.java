@@ -8,7 +8,6 @@ import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPasswordField;
 import com.groep6.pfor.views.components.UIText;
 import com.groep6.pfor.views.components.UITextField;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,16 +24,16 @@ import javafx.scene.text.FontWeight;
 public class JoinView extends View implements IObserver {
 
     /** The join controller  */
-    private JoinController joinController;
+    private final JoinController joinController;
 
-    private StackPane root;
-    private UITextField codeTextField;
+    private final StackPane root;
+    private final UITextField codeTextField;
     
     /** The text field used that allows the pick a username  */
-    private UITextField usernameTextField;
+    private final UITextField usernameTextField;
     
     /** The text field that allows the user to put in a password if required  */
-    private UITextField passwordTextField;
+    private final UITextField passwordTextField;
     
     /**
      * Initializes the JoinView

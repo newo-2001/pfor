@@ -12,7 +12,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class PraefectusFabrumAction implements IAction {
 
-	private Game game = Game.getInstance();
+	private final Game game = Game.getInstance();
 
 	/**
 	 * Checks if the current city has a fort. If it has, removes 2

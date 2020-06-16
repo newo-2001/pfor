@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServerEvent {
-    private List<IEventCallback> listeners = new ArrayList<IEventCallback>();
+    private final List<IEventCallback> listeners = new ArrayList<IEventCallback>();
 
     public void subscribe(IEventCallback listener) {
         listeners.add(listener);

@@ -7,7 +7,7 @@ import com.groep6.pfor.models.factions.FactionType;
 public class PlayerCardFactory {
 	
 	private static final PlayerCardFactory INSTANCE = new PlayerCardFactory();
-	private Deck playerCardDeck = new Deck();
+	private final Deck playerCardDeck = new Deck();
 	
 	private PlayerCardFactory() {
         FactionFactory factionFactory = FactionFactory.getInstance();

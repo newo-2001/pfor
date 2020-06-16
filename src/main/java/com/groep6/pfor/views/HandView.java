@@ -27,7 +27,7 @@ import java.util.List;
  * @author Nils van der Velden
  */
 public class HandView extends View implements IObserver {
-    private HandController handController;
+    private final HandController handController;
 
     /** The list of cards that the player has, as CardView's */
     private List<Card> cards = new ArrayList<>();
@@ -39,7 +39,7 @@ public class HandView extends View implements IObserver {
     private Button depositCardButton;
     private ScrollPane scrollPane;
     private FlowPane cardsPane;
-    private List<UICard> uiCards = new ArrayList<>();
+    private final List<UICard> uiCards = new ArrayList<>();
 
     public HandView(HandController handController) {
         this.handController = handController;
@@ -188,12 +188,8 @@ public class HandView extends View implements IObserver {
         handleCardLimit();
         discardCardButton.setDisable(true);
         depositCardButton.setDisable(true);
-        
-        if (!handController.getLocalPlayer().isTurn()) {
-        	playCardButton.setDisable(true);
-        } else {
-        	playCardButton.setDisable(false);
-        }
+
+        playCardButton.setDisable(!handController.getLocalPlayer().isTurn());
     }
 }
 

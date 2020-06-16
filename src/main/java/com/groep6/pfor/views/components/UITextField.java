@@ -1,10 +1,7 @@
 package com.groep6.pfor.views.components;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -13,7 +10,7 @@ import javafx.scene.layout.VBox;
  */
 public class UITextField extends VBox {
 
-    private Label label;
+    private final Label label;
     protected TextField textField;
 
     public UITextField(String labelText) {

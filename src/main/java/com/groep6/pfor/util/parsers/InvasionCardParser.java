@@ -8,7 +8,9 @@ import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.util.parsers.templates.JsonInvasionCard;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * A Json parser for invasion cards

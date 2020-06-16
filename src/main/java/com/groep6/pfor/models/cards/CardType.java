@@ -8,7 +8,7 @@ public enum CardType {
     REVOLT("Opstandskaart"),
     INVASION("Invasiekaart");
 
-    private String name;
+    private final String name;
 
     CardType(String name) {
         this.name = name;

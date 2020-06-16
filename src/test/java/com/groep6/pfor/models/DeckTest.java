@@ -1,7 +1,6 @@
 package com.groep6.pfor.models;
 
 import com.groep6.pfor.factories.CityCardFactory;
-import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.Card;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Bastiaan Jansen

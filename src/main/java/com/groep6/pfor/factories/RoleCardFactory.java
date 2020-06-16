@@ -4,6 +4,7 @@ import com.groep6.pfor.Config;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.cards.actions.roleActions.*;
 import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +15,7 @@ import java.util.Random;
 public class RoleCardFactory {
 
     private static final RoleCardFactory SINGLE_INSTANCE = new RoleCardFactory();
-    private List<RoleCard> roleCards = new ArrayList<>();
+    private final List<RoleCard> roleCards = new ArrayList<>();
 
     /**
      * Constructs a RoleCardFactory with all role cards

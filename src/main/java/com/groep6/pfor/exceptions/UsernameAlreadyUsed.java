@@ -6,7 +6,7 @@ package com.groep6.pfor.exceptions;
  */
 public class UsernameAlreadyUsed extends Exception {
 
-    private String message;
+    private final String message;
 
     /**
      * @param message

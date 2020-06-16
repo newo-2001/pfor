@@ -12,9 +12,9 @@ import com.groep6.pfor.views.RecruitLegionView;
 
 public class RecruitLegionController extends Controller {
 	
-	private Game game = Game.getInstance();
-	private Player player;
-	private City city;
+	private final Game game = Game.getInstance();
+	private final Player player;
+	private final City city;
 	
     public RecruitLegionController() {
     	player = game.getPlayerTurn();
