@@ -23,7 +23,6 @@ import com.groep6.pfor.views.BoardView;
 public class BoardController extends Controller {
 
     private Game game = Game.getInstance();
-	private int fortAmount = 0;
 
     public BoardController() {
     	changeMusic();
@@ -171,7 +170,6 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
         city.placeFort();
-        fortAmount++;
         player.decreaseActionsRemaining();
     }
 
