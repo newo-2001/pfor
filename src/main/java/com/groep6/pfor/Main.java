@@ -51,7 +51,6 @@ public class Main extends Application {
         new MenuController();
     }
     
-    // TODO iemand help met if hel?
     EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
 		@Override
 		public void handle(KeyEvent e) {
