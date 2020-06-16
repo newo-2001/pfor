@@ -2,6 +2,7 @@ package com.groep6.pfor.services;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import com.groep6.pfor.Config;
 import com.groep6.pfor.controllers.LoseController;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Game;
@@ -96,6 +97,6 @@ public class GameService {
             }
         }
 
-        System.out.println("GAME_CHANGE_EVENT");
+        if (Config.DEBUG) System.out.println("GAME_CHANGE_EVENT");
     };
 }

@@ -3,6 +3,7 @@ package com.groep6.pfor.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.firestore.*;
+import com.groep6.pfor.Config;
 import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
@@ -130,8 +131,8 @@ public class LobbyService {
         if (e != null) e.printStackTrace();
         else {
             LobbyDTO dto = documentSnapshot.toObject(LobbyDTO.class);
-            if (dto.started == true) {
-                System.out.println("GAME_START_EVENT");
+            if (dto.started) {
+                if (Config.DEBUG) System.out.println("GAME_START_EVENT");
                 GameService.listener = Firebase.registerListener("games/" + dto.code, GameService.onGameChange);
                 try {
                     gameStartEvent.fire(new GameService().getGame(dto.code));
@@ -146,7 +147,7 @@ public class LobbyService {
             }
         }
 
-        System.out.println("LOBBY_CHANGE_EVENT");
+        if (Config.DEBUG) System.out.println("LOBBY_CHANGE_EVENT");
     };
 
 

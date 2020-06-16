@@ -1,5 +1,6 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.views.View;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
@@ -52,12 +53,14 @@ public class ViewController {
         double height = stage.getHeight();
         boolean isFullScreen = stage.isFullScreen();
 
-        System.out.println("------------");
         if (!preventPush) visitedViews.push(view);
-        for (View newView: visitedViews) {
-        	System.out.println(newView.toString());
+
+        if (Config.DEBUG) {
+            for (View newView: visitedViews) {
+                System.out.println(newView.toString());
+            }
+            System.out.println("------------");
         }
-        System.out.println("------------");
         
         Pane root = view.getRoot();
 
