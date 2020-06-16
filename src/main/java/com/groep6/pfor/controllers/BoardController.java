@@ -205,7 +205,7 @@ public class BoardController extends Controller {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
 
-        return (!city.hasFort() && fortAmount < 6);
+        return (!city.hasFort() && fortAmount < 6 && fortAmount > 0);
     }
 
     @Override
