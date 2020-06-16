@@ -122,6 +122,20 @@ public class Vector4f {
         return this;
     }
 
+    public Vector4f mul(Matrix4f m) {
+        Vector4f v = new Vector4f(
+                x * m.get(0,0) + y * m.get(0,1) + z * m.get(0,2) + w * m.get(0,3),
+                x * m.get(1,0) + y * m.get(1,1) + z * m.get(1,2) + w * m.get(1,3),
+                x * m.get(2,0) + y * m.get(2,1) + z * m.get(2,2) + w * m.get(2,3),
+                x * m.get(3,0) + y * m.get(3,1) + z * m.get(3,2) + w * m.get(3,3)
+        );
+        x = v.x;
+        y = v.y;
+        z = v.z;
+        w = v.w;
+        return this;
+    }
+
     /**
      * Divide both components of this vector by a scalar.
      * @param scalar The amount to be divided by.
