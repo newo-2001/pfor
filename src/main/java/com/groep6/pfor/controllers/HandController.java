@@ -69,7 +69,7 @@ public class HandController extends Controller {
 		tradeDeck.addCards(selectedCard);
 		
         player.decreaseActionsRemaining();
-        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+        SoundEffectManager.play("/sounds/effects/DrawCardSound.mp3");
 
         refresh();
         
@@ -89,7 +89,7 @@ public class HandController extends Controller {
         	game.getInvasionCardsDiscardPile().addCards(selectedCard);
         }
 
-        SoundEffectManager.play("src/main/resources/sounds/effects/DrawCardSound.mp3");
+        SoundEffectManager.play("/sounds/effects/DrawCardSound.mp3");
         
         refresh();
     }

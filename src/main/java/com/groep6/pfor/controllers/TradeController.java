@@ -6,6 +6,7 @@ import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.util.IObserver;
+import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.views.TradeView;
 
 public class TradeController extends Controller {
@@ -39,6 +40,8 @@ public class TradeController extends Controller {
         game.getTradeCardsDeck().removeCard(selectedCard);
         game.getLocalPlayer().getHand().addCards(selectedCard);
     	player.decreaseActionsRemaining();
+
+        SoundEffectManager.play("/sounds/effects/DrawCardSound.mp3");
     	
     	refresh();
     }
