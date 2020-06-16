@@ -17,7 +17,7 @@ import java.util.List;
 
 public class LobbyController extends Controller {
 
-    public static final int MIN_PLAYERS = 3;
+    public static final int MIN_PLAYERS = 0;
 
     private final Game game = Game.getInstance();
     private final Lobby lobby;
