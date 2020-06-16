@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * The view where the game's instructions are shown
@@ -35,13 +36,7 @@ public class InstructionView extends View {
 
         root = new BorderPane();
 
-        String markdown = "";
-        try {
-            markdown = new String(Files.readAllBytes(Paths.get(getClass().getResource("/misc/game_rules.md").toURI())));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-
+        String markdown = new Scanner(InstructionView.class.getResourceAsStream("/misc/game_rules.md"), "UTF-8").useDelimiter("\\A").next();
         MDFXNode mdfxNode = new MDFXNode(markdown);
         mdfxNode.getStylesheets().add("/stylesheets/game_rules.css");
         ScrollPane content = new ScrollPane(mdfxNode);
