@@ -33,7 +33,8 @@ public class Main extends Application {
         Logger logger = LoggerFactory.getLogger(Main.class);
         Firebase.initialize();
         
-        // Set icon
+        // Set icon and title
+        primaryStage.setTitle("Pandemic: Fall of Rome");
         Image icon = new Image(String.valueOf(getClass().getResource("/images/PFOR_icon.png")));
         primaryStage.getIcons().add(icon);
 
