@@ -1,5 +1,8 @@
 package com.groep6.pfor.models.cards.actions.roleActions;
 
+import com.groep6.pfor.models.City;
+import com.groep6.pfor.models.Game;
+import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**
@@ -8,18 +11,18 @@ import com.groep6.pfor.models.cards.actions.IAction;
  *
  */
 public class ReginaFoederataAction implements IAction {
+	
+	private Game game = Game.getInstance();
 
 	/**
 	 * Gets the battle result. If the current city still has barbarians after the battle,
 	 * 1 extra barbarian gets deleted. The legion count in the city is incremented. 
 	 */
 	public void execute() {
-		/* 
-		 * get battle result
-		 * if (currentCity.getBarbarians() - fallenBarbarians > 0)
-		 * 		fallenBarbarians--;
-		 * currentCity.addLegions(1);
-		 */ 
+		Player player = game.getLocalPlayer();
+		City city = player.getCity();
+		city.removeBarbarians(1);
+		city.addLegions(1);
 	}
 
 	/**
