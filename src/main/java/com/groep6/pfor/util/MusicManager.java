@@ -1,5 +1,6 @@
 package com.groep6.pfor.util;
 
+import com.groep6.pfor.Config;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -65,7 +66,7 @@ public class MusicManager {
 	public void toggleMute() {
 		if (!(getCurrentVolume() == 0)) {
 			setBaseVolume(getCurrentVolume());
-			System.out.println(baseVolume);
+			if (Config.DEBUG) System.out.println(baseVolume);
 			setVolume(0); 
 			return;
 		}

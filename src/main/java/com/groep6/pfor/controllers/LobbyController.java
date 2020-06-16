@@ -1,5 +1,6 @@
 package com.groep6.pfor.controllers;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.services.LobbyService;
@@ -40,7 +41,7 @@ public class LobbyController extends Controller {
     }
 
     private final IEventCallback onGameChange = eventData -> {
-        System.out.println("Server update...");
+        if (Config.DEBUG) System.out.println("Server update...");
         Game game = (Game) eventData[0];
         Game.getInstance().updateGame(game);
 

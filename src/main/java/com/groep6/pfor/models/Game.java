@@ -1,5 +1,6 @@
 package com.groep6.pfor.models;
 
+import com.groep6.pfor.Config;
 import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.EventCardFactory;
@@ -255,7 +256,7 @@ public class Game extends Observable implements IObserver {
     public void increaseInvasionLevel(int amount) {
         if (invasionLevel + amount >= MAX_INVASION_LEVEL) return;
 
-        System.out.println("Increasing invasion level");
+        if (Config.DEBUG) System.out.println("Increasing invasion level");
 
         invasionLevel += amount;
         notifyObservers();
