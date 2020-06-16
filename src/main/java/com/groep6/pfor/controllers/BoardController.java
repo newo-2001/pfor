@@ -170,9 +170,11 @@ public class BoardController extends Controller {
     public void buildFort() {
         Player player = game.getLocalPlayer();
         City city = player.getCity();
-        city.placeFort();
-        fortAmount++;
-        player.decreaseActionsRemaining();
+        if(fortAmount < 6) {
+	        city.placeFort();
+	        fortAmount++;
+	        player.decreaseActionsRemaining();
+        }
     }
 
     public boolean canBattle() {
