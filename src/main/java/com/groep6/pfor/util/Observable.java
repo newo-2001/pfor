@@ -10,7 +10,7 @@ import java.util.List;
  */
 public abstract class Observable {
     /** A list of observers observing this object. */
-    private List<IObserver> observers = new ArrayList<>();
+    private final List<IObserver> observers = new ArrayList<>();
 
     /**
      * Registers an observer to be notified once this object's state changes.

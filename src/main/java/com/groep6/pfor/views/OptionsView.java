@@ -1,14 +1,9 @@
 package com.groep6.pfor.views;
 
-import com.groep6.pfor.Main;
-import com.groep6.pfor.controllers.InstructionController;
-import com.groep6.pfor.controllers.MenuController;
 import com.groep6.pfor.controllers.OptionController;
-import com.groep6.pfor.controllers.ViewController;
 import com.groep6.pfor.models.GameState;
 import com.groep6.pfor.views.components.UIBorderedText;
 import com.groep6.pfor.views.components.UIButton;
-
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -18,11 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
+import javafx.scene.text.*;
 
 /**
  * Option screen to turn off music, switch to fullscreen and exit the game.
@@ -31,7 +22,7 @@ import javafx.scene.text.TextAlignment;
 public class OptionsView extends View {
 
     private BorderPane root;
-    private OptionController optionController;
+    private final OptionController optionController;
     private final int PREF_BUTTON_WIDTH = 200;
     private final int PREF_BUTTON_HEIGHT = 85;
 

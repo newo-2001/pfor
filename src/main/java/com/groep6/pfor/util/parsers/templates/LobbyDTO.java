@@ -3,7 +3,10 @@ package com.groep6.pfor.util.parsers.templates;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The Data Transfer Object that represents a Lobby in Firebase.

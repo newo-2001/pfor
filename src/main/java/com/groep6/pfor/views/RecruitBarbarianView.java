@@ -1,15 +1,8 @@
 package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.RecruitBarbarianController;
-
-/**
- * The view where you can choose the amout of barbarians you want to recruit
- * @author Nils van der Velden
- */
-
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
-
 import com.groep6.pfor.views.components.UIText;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,9 +13,15 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 
+/**
+ * The view where you can choose the amout of barbarians you want to recruit
+ *
+ * @author Nils van der Velden
+ */
+
 public class RecruitBarbarianView extends View implements IObserver {
     /** The recruitLegionController */
-    private RecruitBarbarianController recruitBarbarianController;
+    private final RecruitBarbarianController recruitBarbarianController;
 
     private StackPane root;
     

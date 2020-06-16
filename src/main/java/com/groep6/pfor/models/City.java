@@ -1,19 +1,19 @@
 package com.groep6.pfor.models;
 
-import java.util.ArrayList;
-import java.util.Stack;
-
-/**
- * Represents a city tile 
- *
- * @author Nils van der Velden
- */
-
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.Vector2f;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
+/**
+ * Represents a city tile
+ *
+ * @author Nils van der Velden
+ */
 
 public class City extends Tile {
 	

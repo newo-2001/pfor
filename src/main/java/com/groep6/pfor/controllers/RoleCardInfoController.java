@@ -7,12 +7,13 @@ import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.services.LobbyService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.RoleCardInfoView;
+
 import java.util.List;
 
 public class RoleCardInfoController extends Controller {
 
-    private Lobby lobby;
-    private RoleCard currentlySelectedRoleCard;
+    private final Lobby lobby;
+    private final RoleCard currentlySelectedRoleCard;
 
     public RoleCardInfoController(Lobby lobby) {
         this.lobby = lobby;

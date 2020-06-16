@@ -1,7 +1,6 @@
 package com.groep6.pfor.models;
 
 import com.groep6.pfor.models.cards.Card;
-
 import com.groep6.pfor.util.Observable;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public class Deck extends Observable {
 
-    private List<Card> cards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
 
     /**
      * @param cards

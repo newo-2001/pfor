@@ -5,7 +5,7 @@ package com.groep6.pfor.exceptions;
  */
 public class EmptyFieldException extends Exception {
 
-    private String message;
+    private final String message;
 
     /**
      * @param message

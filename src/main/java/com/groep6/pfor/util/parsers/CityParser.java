@@ -8,7 +8,9 @@ import com.groep6.pfor.models.City;
 import com.groep6.pfor.util.parsers.templates.JsonCity;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * A parser that parses cities from a Json file

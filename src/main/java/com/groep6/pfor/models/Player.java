@@ -1,31 +1,29 @@
 package com.groep6.pfor.models;
 
-import java.util.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import com.groep6.pfor.factories.CityCardFactory;
 import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.RoleCard;
 import com.groep6.pfor.models.factions.Faction;
-import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.Observable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 /**
  * @author Bastiaan Jansen
  */
 public class Player extends Observable implements IObserver {
 
-    private Hand hand = new Hand();
-    private RoleCard roleCard;
+    private final Hand hand = new Hand();
+    private final RoleCard roleCard;
     private City city;
-    private String username;
+    private final String username;
     private boolean turn = false;
     private int actionsRemaining = 4;
     private boolean isLocal;

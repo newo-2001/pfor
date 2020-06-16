@@ -17,9 +17,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 
-import java.util.List;
-
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The view that show's the lobby with players, before the game is started
@@ -27,7 +26,7 @@ import java.util.ArrayList;
  */
 public class LobbyView extends View implements IObserver {
 
-    private LobbyController lobbyController;
+    private final LobbyController lobbyController;
 
     private BorderPane root;
     private Button startGameButton;
@@ -133,8 +132,7 @@ public class LobbyView extends View implements IObserver {
         createPlayers();
 
         if (startGameButton != null) {
-            if (players.size() >= LobbyController.MIN_PLAYERS || Config.DEBUG) startGameButton.setDisable(false);
-            else startGameButton.setDisable(true);
+            startGameButton.setDisable(players.size() < LobbyController.MIN_PLAYERS && !Config.DEBUG);
         }
     }
 

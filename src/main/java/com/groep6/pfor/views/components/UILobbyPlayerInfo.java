@@ -6,14 +6,15 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.*;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 public class UILobbyPlayerInfo extends VBox {
 
-    private int playerNumber;
-    private String username;
-    private RoleCard roleCard;
-    private boolean isHost;
+    private final int playerNumber;
+    private final String username;
+    private final RoleCard roleCard;
+    private final boolean isHost;
 
     public UILobbyPlayerInfo(int playerNumber, String username, RoleCard roleCard, boolean isHost) {
         this.playerNumber = playerNumber;

@@ -4,6 +4,7 @@ import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.Vector2f;
+
 import java.util.HashMap;
 import java.util.Map;
 

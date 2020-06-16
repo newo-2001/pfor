@@ -9,8 +9,8 @@ package com.groep6.pfor.models;
 import com.groep6.pfor.util.Vector3f;
 
 public class Color {
-	private Vector3f rgb;
-	private String name;
+	private final Vector3f rgb;
+	private final String name;
 
 	/**
 	 * Initializes a new Color with the given components.

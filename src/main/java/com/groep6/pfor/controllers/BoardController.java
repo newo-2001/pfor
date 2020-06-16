@@ -1,14 +1,7 @@
 package com.groep6.pfor.controllers;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.groep6.pfor.Main;
-import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Deck;
-import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Player;
-import com.groep6.pfor.models.Tile;
+import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.models.factions.Faction;
@@ -16,13 +9,16 @@ import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.BoardView;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author Bastiaan Jansen
  * @author Nils van der Velden
  */
 public class BoardController extends Controller {
 
-    private Game game = Game.getInstance();
+    private final Game game = Game.getInstance();
 
     public BoardController() {
     	changeMusic();

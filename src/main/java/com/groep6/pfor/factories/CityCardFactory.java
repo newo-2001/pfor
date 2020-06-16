@@ -7,12 +7,11 @@ import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.parsers.CityCardParser;
 
+import java.text.ParseException;
+
 /**
- *
  * @author Nils van der Velden
  */
-
-import java.text.ParseException;
 
 /**
  * Creates CityCards
@@ -24,7 +23,7 @@ public class CityCardFactory {
 	private static final CityCardFactory INSTANCE = new CityCardFactory();
 
 	/** The list of available city cards */
-	private Deck cityCardDeck = new Deck();
+	private final Deck cityCardDeck = new Deck();
 
 	/**
 	 * Creates the CityCardFactory instance

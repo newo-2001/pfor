@@ -9,5 +9,5 @@ package com.groep6.pfor.models;
  */
 public enum GameState {
 	MENU,
-	GAME;
+	GAME
 }

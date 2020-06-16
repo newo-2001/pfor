@@ -12,7 +12,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class MercatorAction implements IAction {
 
-	private Game game = Game.getInstance();
+	private final Game game = Game.getInstance();
 
 	/**
 	 * Deletes 1 barbarian from the current city.

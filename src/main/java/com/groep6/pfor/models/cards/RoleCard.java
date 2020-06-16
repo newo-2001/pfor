@@ -1,16 +1,16 @@
 package com.groep6.pfor.models.cards;
 
 import com.groep6.pfor.models.cards.actions.IAction;
-import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 
 /**
  * @author Bastiaan Jansen
  */
 public class RoleCard extends Card {
 
-    private String name;
-    private Color color;
-    private IAction ability;
+    private final String name;
+    private final Color color;
+    private final IAction ability;
 
     /**
      * @param name

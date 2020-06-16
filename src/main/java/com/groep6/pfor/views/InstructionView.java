@@ -8,14 +8,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-
 import javafx.scene.input.MouseEvent;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+
 import java.util.Scanner;
 
 /**
@@ -24,8 +21,8 @@ import java.util.Scanner;
  */
 public class InstructionView extends View {
     /** The instructionController */
-    private InstructionController instructionController;
-    private BorderPane root;
+    private final InstructionController instructionController;
+    private final BorderPane root;
 
     /**
      * The constructor

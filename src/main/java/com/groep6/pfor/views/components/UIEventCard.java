@@ -2,7 +2,6 @@ package com.groep6.pfor.views.components;
 
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CardType;
-import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.EventCard;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
@@ -11,7 +10,7 @@ import javafx.scene.text.TextAlignment;
 public class UIEventCard extends UICard {
 
     private static final CardType CARD_TYPE = CardType.EVENT;
-    private EventCard card;
+    private final EventCard card;
 
     public UIEventCard(EventCard card) {
         super(CARD_TYPE);

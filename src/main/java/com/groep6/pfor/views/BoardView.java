@@ -1,18 +1,6 @@
 package com.groep6.pfor.views;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.groep6.pfor.controllers.BoardController;
-import com.groep6.pfor.controllers.HandController;
-import com.groep6.pfor.controllers.RecruitBarbarianController;
-import com.groep6.pfor.controllers.RecruitLegionController;
-import com.groep6.pfor.controllers.TradeController;
-import com.groep6.pfor.controllers.ViewController;
-import com.groep6.pfor.models.City;
-import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Player;
-import com.groep6.pfor.models.Tile;
+import com.groep6.pfor.controllers.*;
 import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.factions.Faction;
@@ -38,6 +26,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The view that shows the board
  * @author Bastiaan Jansen
@@ -46,13 +37,13 @@ import javafx.scene.text.FontWeight;
  */
 public class BoardView extends View implements IObserver {
     
-	private BoardController boardController;
+	private final BoardController boardController;
 	private BorderPane root;
 	
 	private static int canvasX = (int) (0.65 * ViewController.getInstance().getPrimaryStage().getWidth());
 	private static int canvasY = Math.round(canvasX * (880f / 1200f));
 	
-	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
+	private static final Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
 	private static final float CIRCLE_RADIUS = ((20f / 833f) * canvasX) / CANVAS_SIZE.y;
 
 	private UIText actionCount;

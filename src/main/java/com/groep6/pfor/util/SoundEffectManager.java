@@ -3,8 +3,6 @@ package com.groep6.pfor.util;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.nio.file.Paths;
-
 public class SoundEffectManager {
 
     private static MediaPlayer mediaPlayer;

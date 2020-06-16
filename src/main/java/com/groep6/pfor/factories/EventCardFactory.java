@@ -15,7 +15,7 @@ import com.groep6.pfor.models.cards.actions.eventActions.VitaMeaAction;
 
 public class EventCardFactory {
 	private static final EventCardFactory SINGLE_INSTANCE = new EventCardFactory();
-	private Deck eventCardDeck =  new Deck();
+	private final Deck eventCardDeck =  new Deck();
 	
 	private EventCardFactory() {
 		eventCardDeck.addCards(new EventCard("Mors Tua, Vita Mea", new VitaMeaAction()));

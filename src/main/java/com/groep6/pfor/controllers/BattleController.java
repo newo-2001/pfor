@@ -1,12 +1,12 @@
 package com.groep6.pfor.controllers;
 
-import java.util.Stack;
-
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.factions.FactionType;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.views.BattleView;
+
+import java.util.Stack;
 
 /**
  * Controller for the battle system. Gets information from the current city and performs a battle.
@@ -16,7 +16,7 @@ import com.groep6.pfor.views.BattleView;
  */
 public class BattleController extends Controller {
 
-	private Game game = Game.getInstance();
+	private final Game game = Game.getInstance();
 
 	// ArrayList simulation of barbarians and legions in a city.
 	// TODO implement data acquisition from the current players current city.

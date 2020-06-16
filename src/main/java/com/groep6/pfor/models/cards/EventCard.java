@@ -8,8 +8,8 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class EventCard extends Card {
 
-    private String name;
-    private IAction event;
+    private final String name;
+    private final IAction event;
 
     public EventCard(String name, IAction event) {
         this.name = name;

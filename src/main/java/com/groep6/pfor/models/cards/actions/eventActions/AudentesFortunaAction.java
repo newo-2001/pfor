@@ -5,7 +5,6 @@ import com.groep6.pfor.models.Game;
 import com.groep6.pfor.models.Player;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.actions.IAction;
-import javafx.application.Platform;
 
 /**
  * Implements (the first) action on Audentes Fortuna Iuvat event card

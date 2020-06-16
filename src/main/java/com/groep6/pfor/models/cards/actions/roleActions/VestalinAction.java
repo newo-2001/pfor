@@ -12,7 +12,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class VestalinAction implements IAction {
 
-	private Game game = Game.getInstance();
+	private final Game game = Game.getInstance();
 
 	/**
 	 * Decreases the amount of legions in the current city by 1.

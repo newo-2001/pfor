@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public class Lobby extends Observable implements IObserver {
 
-    private String code;
+    private final String code;
     private String passwordHash;
     private List<LobbyPlayer> players = new ArrayList<>();
 

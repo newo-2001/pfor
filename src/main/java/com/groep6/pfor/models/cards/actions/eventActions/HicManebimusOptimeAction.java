@@ -1,10 +1,5 @@
 package com.groep6.pfor.models.cards.actions.eventActions;
 
-import java.util.List;
-
-import com.groep6.pfor.models.Game;
-import com.groep6.pfor.models.Player;
-import com.groep6.pfor.models.Tile;
 import com.groep6.pfor.models.cards.actions.IAction;
 
 /**

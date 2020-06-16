@@ -12,7 +12,7 @@ import com.groep6.pfor.models.cards.actions.IAction;
  */
 public class ReginaFoederataAction implements IAction {
 	
-	private Game game = Game.getInstance();
+	private final Game game = Game.getInstance();
 
 	/**
 	 * Gets the battle result. If the current city still has barbarians after the battle,

@@ -8,9 +8,9 @@ import com.groep6.pfor.models.factions.FactionType;
  * @author Bastiaan Jansen
  */
 public class RevoltCard extends Card {
-    private String name;
-    private City location;
-    private FactionType factionType;
+    private final String name;
+    private final City location;
+    private final FactionType factionType;
 
     /**
      * @param name

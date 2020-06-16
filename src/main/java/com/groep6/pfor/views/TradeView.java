@@ -1,8 +1,5 @@
 package com.groep6.pfor.views;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.groep6.pfor.controllers.TradeController;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.CityCard;
@@ -12,21 +9,17 @@ import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UICard;
 import com.groep6.pfor.views.components.UICityCard;
 import com.groep6.pfor.views.components.UIEventCard;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The view where you can trade cards with the trade deck
@@ -34,7 +27,7 @@ import javafx.scene.paint.Color;
  */
 public class TradeView extends View implements IObserver {
     /** The tradeController */
-    private TradeController tradeController;
+    private final TradeController tradeController;
     
     private List<Card> cards = new ArrayList<>();
     
@@ -43,7 +36,7 @@ public class TradeView extends View implements IObserver {
     private Button goBackButton;
     private ScrollPane scrollPane;
     private FlowPane cardsPane;
-    private List<UICard> uiCards = new ArrayList<>();
+    private final List<UICard> uiCards = new ArrayList<>();
 
     /**
      * The constructor

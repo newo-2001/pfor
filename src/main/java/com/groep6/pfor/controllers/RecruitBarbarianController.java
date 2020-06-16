@@ -9,9 +9,9 @@ import com.groep6.pfor.views.RecruitBarbarianView;
 
 public class RecruitBarbarianController extends Controller {
 
-    private Game game = Game.getInstance();
-    private Player player;
-    private City city;
+    private final Game game = Game.getInstance();
+    private final Player player;
+    private final City city;
 	
     public RecruitBarbarianController() {
         player = game.getPlayerTurn();
