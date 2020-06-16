@@ -8,6 +8,7 @@ package com.groep6.pfor.controllers;
 import com.groep6.pfor.exceptions.EmptyFieldException;
 import com.groep6.pfor.exceptions.IncorrentPasswordException;
 import com.groep6.pfor.exceptions.NoDocumentException;
+import com.groep6.pfor.exceptions.UsernameAlreadyUsed;
 import com.groep6.pfor.models.Lobby;
 import com.groep6.pfor.models.LobbyPlayer;
 import com.groep6.pfor.services.LobbyService;
@@ -20,7 +21,7 @@ public class JoinController extends Controller {
         viewController.showView(new JoinView(this));
     }
     
-    public void joinLobby(String code, String username, String password) throws EmptyFieldException {
+    public void joinLobby(String code, String username, String password) throws EmptyFieldException, UsernameAlreadyUsed {
         if (username.isEmpty()) throw new EmptyFieldException("Username cannot be empty");
         else if (code.isEmpty()) throw new EmptyFieldException("Unique code cannot be empty");
         
@@ -28,6 +29,11 @@ public class JoinController extends Controller {
 
             LobbyService lobbyService = new LobbyService();
             Lobby lobby = lobbyService.get(code);
+
+            for (LobbyPlayer player: lobby.getPlayers()) {
+                if (player.getUsername().equals(username)) throw new UsernameAlreadyUsed();
+            }
+
             LobbyPlayer player = lobby.join(code, username, password, true);
             lobbyService.join(player);
 

@@ -2,6 +2,7 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.JoinController;
 import com.groep6.pfor.exceptions.EmptyFieldException;
+import com.groep6.pfor.exceptions.UsernameAlreadyUsed;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPasswordField;
@@ -104,7 +105,7 @@ public class JoinView extends View implements IObserver {
 
             try {
                 joinController.joinLobby(code, username, password);
-            } catch (EmptyFieldException error) {
+            } catch (EmptyFieldException | UsernameAlreadyUsed error) {
                 System.out.println(error.getMessage());
             }
 
