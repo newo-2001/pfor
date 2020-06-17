@@ -23,6 +23,7 @@ public class City extends Tile {
 	private boolean harbour;
 	private String name;
 	private boolean isRaided = false;
+	private boolean isInvaded = false;
 
 	/**
 	 * Initializes a new City with the given components.
@@ -75,6 +76,14 @@ public class City extends Tile {
 	
 	public void setRaided(boolean isRaided) {
 		this.isRaided = isRaided;
+	}
+	
+	public boolean isInvaded() {
+		return isInvaded;
+	}
+	
+	public void setInvaded(boolean isInvaded) {
+		this.isInvaded = isInvaded;
 	}
 
 	/**
@@ -150,6 +159,7 @@ public class City extends Tile {
 	public void addBarbarians(FactionType factionType, int amount) {
 		for (int i = 0; i < amount; i++) {
 			barbarians.add(new Barbarian(factionType));
+			isInvaded = true;
 
 			if (barbarians.size() >= 4) {
 				isRaided = true;

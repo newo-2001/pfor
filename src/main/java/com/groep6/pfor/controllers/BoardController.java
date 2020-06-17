@@ -92,7 +92,10 @@ public class BoardController extends Controller {
         for(City city: CityFactory.getInstance().getAllCities()) {
         	if(city.isRaided()) {
         		city.setRaided(false);
-        	} 
+        	}
+        	if(city.isInvaded()) {
+        		city.setInvaded(false);
+        	}
         }
 
         // Open hand when there are more than 7 cards in hand

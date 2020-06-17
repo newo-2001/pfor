@@ -407,11 +407,19 @@ public class BoardView extends View implements IObserver {
                 }
                 
                 if(city.isRaided()) {
-                	gc.setFill(Color.DARKRED);
-                	gc.fillRect(cityPos.x + r, cityPos.y - r / 2f, 10, 10);
-                	System.out.println("test");
+                	//gc.setFill(Color.DARKRED);
+                	//gc.fillRect(cityPos.x + r, cityPos.y - r / 2f, 10, 10);
+                	gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/raidedCity.png"))), cityPos.x + r, cityPos.y - r / 2f, r, r/1.35f);
+                	//System.out.println("test");
                 }
-            } 
+                
+                if(city.isInvaded()) {
+                	gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/bloody-sword.png"))), cityPos.x + r, cityPos.y + r / 2f, r, r/1.35f);
+                	//gc.setFill(Color.BLUE);
+                	//gc.fillRect(cityPos.x + r, cityPos.y + r / 2f, 10, 10);
+                	//System.out.println("test");
+                }
+            }
         }
     }
 
