@@ -21,7 +21,7 @@ public class JoinController extends Controller {
         viewController.showView(new JoinView(this));
     }
     
-    public void joinLobby(String code, String username, String password) throws EmptyFieldException, UsernameAlreadyUsed {
+    public void joinLobby(String code, String username, String password) throws EmptyFieldException, UsernameAlreadyUsed, NoDocumentException {
         if (username.isEmpty()) throw new EmptyFieldException("Username cannot be empty");
         else if (code.isEmpty()) throw new EmptyFieldException("Unique code cannot be empty");
         
@@ -41,9 +41,9 @@ public class JoinController extends Controller {
 
             new LobbyController(lobby);
         	
-        } catch (IncorrentPasswordException | NoDocumentException error) {
+        } catch (IncorrentPasswordException error) {
             System.out.println("Error: " + error.getMessage());
-        } 
+        }
     }
 
     @Override

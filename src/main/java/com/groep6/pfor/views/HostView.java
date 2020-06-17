@@ -38,9 +38,9 @@ public class HostView extends View implements IObserver {
         UIText text = new UIText("Host Game");
         text.setWeight(FontWeight.BOLD).setSize(30).setColor(Color.WHITE);
 
-        usernameTextField = new UITextField("Username");
+        usernameTextField = new UITextField("Gebruikersnaam");
         usernameTextField.getLabel().setTextFill(Color.WHITE);
-        passwordTextField = new UIPasswordField("Password");
+        passwordTextField = new UIPasswordField("Wachtwoord");
         passwordTextField.getLabel().setTextFill(Color.WHITE);
 
         HBox buttonBox = new HBox();

@@ -2,6 +2,7 @@ package com.groep6.pfor.views;
 
 import com.groep6.pfor.controllers.JoinController;
 import com.groep6.pfor.exceptions.EmptyFieldException;
+import com.groep6.pfor.exceptions.NoDocumentException;
 import com.groep6.pfor.exceptions.UsernameAlreadyUsed;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.components.UIButton;
@@ -16,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
+import sun.tools.jstat.Alignment;
 
 /**
  * The view where you can join a lobby using a code, username and a password if required
@@ -28,12 +31,14 @@ public class JoinView extends View implements IObserver {
 
     private final StackPane root;
     private final UITextField codeTextField;
+
+    private UIText errorText;
     
     /** The text field used that allows the pick a username  */
-    private final UITextField usernameTextField;
+    private UITextField usernameTextField;
     
     /** The text field that allows the user to put in a password if required  */
-    private final UITextField passwordTextField;
+    private UITextField passwordTextField;
     
     /**
      * Initializes the JoinView
@@ -55,9 +60,11 @@ public class JoinView extends View implements IObserver {
         /** Creates the different user input fields  */
         codeTextField = new UITextField("Lobby code");
         codeTextField.getLabel().setTextFill(Color.WHITE);
-        usernameTextField = new UITextField("Username");
+
+        usernameTextField = new UITextField("Gebruikersnaam");
         usernameTextField.getLabel().setTextFill(Color.WHITE);
-        passwordTextField = new UIPasswordField("Password");
+
+        passwordTextField = new UIPasswordField("Wachtwoord");
         passwordTextField.getLabel().setTextFill(Color.WHITE);
         
         /** Creates a button box for the different buttons */
@@ -65,14 +72,14 @@ public class JoinView extends View implements IObserver {
         buttonBox.setPadding(new Insets(5, 0, 0, 0));
         buttonBox.setSpacing(10);
         
-        /** Creates the join game button */
+        /* Creates the join game button */
         Button joinGameButton = new UIButton("Join Game");
         joinGameButton.setPadding(new Insets(10));
         joinGameButton.setMinWidth(100);
         joinGameButton.setMaxWidth(100);
         joinGameButton.addEventFilter(MouseEvent.MOUSE_CLICKED, joinGame);
-        
-        /** Creates the go back button */
+
+        /* Creates the go back button */
         Button goBackButton = new UIButton("Ga terug");
         goBackButton.setPadding(new Insets(10));
         goBackButton.setMinWidth(100);
@@ -80,17 +87,23 @@ public class JoinView extends View implements IObserver {
         goBackButton.setBackground(new Background(new BackgroundFill(Color.web("#878787"), CornerRadii.EMPTY, Insets.EMPTY)));
         goBackButton.addEventFilter(MouseEvent.MOUSE_CLICKED, goBack);
         
-        /** Puts the buttons in the buttonBox */
+        /* Puts the buttons in the buttonBox */
         buttonBox.getChildren().addAll(joinGameButton, goBackButton);
+
+        VBox errorBox = new VBox();
+        errorText = new UIText();
+        errorText.setColor(Color.WHITE);
+        errorText.setVisible(false);
+        errorBox.getChildren().addAll(errorText);
         
-        /** Puts all elements in the VBox*/
-        form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, buttonBox);
+        /* Puts all elements in the VBox*/
+        form.getChildren().addAll(text, codeTextField, usernameTextField, passwordTextField, buttonBox, errorBox);
         form.setSpacing(10);
         form.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
         form.setPadding(new Insets(400));
         form.setAlignment(Pos.CENTER);
         
-        /** Puts the VBox in the pane */
+        /* Puts the VBox in the pane */
         root.getChildren().addAll(form);
     }
     
@@ -104,8 +117,16 @@ public class JoinView extends View implements IObserver {
 
             try {
                 joinController.joinLobby(code, username, password);
-            } catch (EmptyFieldException | UsernameAlreadyUsed error) {
-                System.out.println(error.getMessage());
+            } catch (EmptyFieldException error) {
+                if (codeTextField.getValue().isEmpty()) errorText.setText("De lobby code moet ingevuld worden");
+                else if (usernameTextField.getValue().isEmpty()) errorText.setText("De gebruikersnaam moet ingevuld worden");
+                errorText.setVisible(true);
+            } catch (UsernameAlreadyUsed error) {
+                errorText.setText("De gebruikersnaam " + usernameTextField.getValue() + " is al in gebruik, kies een andere gebruikersnaam");
+                errorText.setVisible(true);
+            } catch (NoDocumentException error) {
+                errorText.setText(codeTextField.getValue() + " is geen geldige code");
+                errorText.setVisible(true);
             }
 
         }
