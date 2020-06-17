@@ -1,6 +1,7 @@
 package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.Main;
+import com.groep6.pfor.factories.CityFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
 import com.groep6.pfor.models.cards.InvasionCard;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author Bastiaan Jansen
  * @author Nils van der Velden
  */
+
 public class BoardController extends Controller {
 
     private final Game game = Game.getInstance();
@@ -86,6 +88,12 @@ public class BoardController extends Controller {
         player.getHand().addCards(game.getPlayerCardsDeck().draw(), game.getPlayerCardsDeck().draw());
 
         checkLoseConditions();
+        
+        for(City city: CityFactory.getInstance().getAllCities()) {
+        	if(city.isRaided()) {
+        		city.setRaided(false);
+        	} 
+        }
 
         // Open hand when there are more than 7 cards in hand
         if (player.getHand().getCards().size() > 7) new HandController();
@@ -153,6 +161,9 @@ public class BoardController extends Controller {
         for (int i = 0; i < route.size(); i++) {
         	if(route.get(i).getBarbarianCount(card.getFaction().getFactionType(), route.get(i).getBarbarians()) < 1) {
                 route.get(i).addBarbarians(card.getFaction().getFactionType(), 1);
+                
+                route.get(i).getPosition();
+                
                 if (i > 0) route.get(i - 1).addBarbarians(card.getFaction().getFactionType(), 1);
                 break;
         	}

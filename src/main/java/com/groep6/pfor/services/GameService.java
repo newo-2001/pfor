@@ -42,6 +42,7 @@ public class GameService {
      * @param code The code of the game
      * @return The list of players in that game
      */
+    
     public List<Player> getPlayers(String code) throws NoDocumentException {
         return getGame(code).getAllPlayers();
     }

@@ -22,6 +22,7 @@ public class City extends Tile {
 	private boolean fort = false;
 	private boolean harbour;
 	private String name;
+	private boolean isRaided = false;
 
 	/**
 	 * Initializes a new City with the given components.
@@ -66,6 +67,14 @@ public class City extends Tile {
      */
 	public Faction[] getFactions() {
 		return factions;
+	}
+	
+	public boolean isRaided() {
+		return isRaided;
+	}
+	
+	public void setRaided(boolean isRaided) {
+		this.isRaided = isRaided;
 	}
 
 	/**
@@ -143,6 +152,7 @@ public class City extends Tile {
 			barbarians.add(new Barbarian(factionType));
 
 			if (barbarians.size() >= 4) {
+				isRaided = true;
 				barbarians.clear();
 				Game game = Game.getInstance();
 				

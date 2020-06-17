@@ -23,6 +23,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -329,6 +330,8 @@ public class BoardView extends View implements IObserver {
                 Vector2f cityPos = new Vector2f(city.getPosition()).mul(CANVAS_SIZE);
                 float r = CIRCLE_RADIUS * CANVAS_SIZE.y;
                 List<Vector2f> positions = new ArrayList<>();
+                
+
 
                 // Draw players
             	for (Player player: players) {
@@ -402,7 +405,13 @@ public class BoardView extends View implements IObserver {
                     Vector2f decay = new Vector2f(0.0208f, 0.2893f + 0.05435f * boardController.getDecayLevel()).mul(CANVAS_SIZE);
                     gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/decay.png"))), decay.x, decay.y, size.x, size.y);
                 }
-            }
+                
+                if(city.isRaided()) {
+                	gc.setFill(Color.DARKRED);
+                	gc.fillRect(cityPos.x + r, cityPos.y - r / 2f, 10, 10);
+                	System.out.println("test");
+                }
+            } 
         }
     }
 
