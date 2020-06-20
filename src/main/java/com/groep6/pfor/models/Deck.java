@@ -37,7 +37,6 @@ public class Deck extends Observable {
     }
     
     public void removeCard(Card card) {
-        int index = cards.indexOf(card);
         cards.remove(card);
         notifyObservers();
     }
