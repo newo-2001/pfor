@@ -4,6 +4,12 @@ import com.groep6.pfor.models.Deck;
 import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.factions.FactionType;
 
+/**
+ * The CityFactory constructs the list of cities from a json file
+ *
+ * @author Nils van der Velden
+ */
+
 public class PlayerCardFactory {
 	
 	private static final PlayerCardFactory INSTANCE = new PlayerCardFactory();

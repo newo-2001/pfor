@@ -7,6 +7,10 @@ import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.util.SoundEffectManager;
 import com.groep6.pfor.views.TradeView;
 
+/**
+ * @author Nils van der Velden
+ */
+
 import java.util.List;
 
 public class TradeController extends Controller {

@@ -10,13 +10,10 @@ import com.groep6.pfor.util.parsers.CityCardParser;
 import java.text.ParseException;
 
 /**
- * @author Nils van der Velden
- */
-
-/**
  * Creates CityCards
  *
  * @author Owen Elderbroek
+ * @author Nils van der Velden
  */
 public class CityCardFactory {
 	/** The instance of this singleton class */

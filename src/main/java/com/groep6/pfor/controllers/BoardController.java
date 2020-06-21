@@ -164,9 +164,7 @@ public class BoardController extends Controller {
         for (int i = 0; i < route.size(); i++) {
         	if(route.get(i).getBarbarianCount(card.getFaction().getFactionType(), route.get(i).getBarbarians()) < 1) {
                 route.get(i).addBarbarians(card.getFaction().getFactionType(), 1);
-                
-                route.get(i).getPosition();
-                
+                         
                 if (i > 0) route.get(i - 1).addBarbarians(card.getFaction().getFactionType(), 1);
                 break;
         	}
