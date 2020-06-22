@@ -17,8 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
-import sun.tools.jstat.Alignment;
+//import javafx.scene.text.TextAlignment;
+//import sun.tools.jstat.Alignment;
 
 /**
  * The view where you can join a lobby using a code, username and a password if required
