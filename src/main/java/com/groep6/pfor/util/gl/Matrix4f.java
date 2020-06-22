@@ -1,4 +1,4 @@
-package com.groep6.pfor.util;
+package com.groep6.pfor.util.gl;
 
 import com.groep6.pfor.Config;
 
@@ -24,13 +24,13 @@ public class Matrix4f {
         for (int i = 0; i < m.values.length; i++) values[i] = m.values[i];
     }
 
-    public static Matrix4f fromPerspective(float fov, float zNear, float zFar) {
+    public static Matrix4f fromPerspective(float a, float fov, float zNear, float zFar) {
         float s = 1f / (float) Math.tan((fov / 2f) *(Math.PI / 180f));
         return new Matrix4f(
-            s, 0, 0, 0,
+            a * s, 0, 0, 0,
                 0, s, 0 ,0,
-                0, 0, -(zFar / (zFar - zNear)), -1f,
-                0, 0, -((zFar * zNear) / (zFar - zNear)), 0
+                0, 0, -(zFar / (zFar - zNear)), -((zFar * zNear) / (zFar - zNear)),
+                0, 0, -1f, 0
         );
     }
 
@@ -92,8 +92,8 @@ public class Matrix4f {
         angle = toRadians(angle);
         return new Matrix4f(
             1f, 0, 0, 0,
-                0, (float) Math.cos(angle), (float) -Math.sin(angle), 0,
-                0, (float) Math.sin(angle), (float) Math.cos(angle), 0,
+                0, (float) Math.cos(angle), (float) Math.sin(angle), 0,
+                0, (float) -Math.sin(angle), (float) Math.cos(angle), 0,
                 0, 0, 0, 1
         );
     }
@@ -101,9 +101,9 @@ public class Matrix4f {
     public static Matrix4f fromRotationY(float angle) {
         angle = toRadians(angle);
         return new Matrix4f(
-                (float) Math.cos(angle), 0, (float) Math.sin(angle), 0,
+                (float) Math.cos(angle), 0, (float) -Math.sin(angle), 0,
                 0, 1f, 0, 0,
-                (float) -Math.sin(angle), 0, (float) Math.cos(angle),
+                (float) Math.sin(angle), 0, (float) Math.cos(angle),
                 0, 0, 0, 1f
         );
     }
@@ -111,8 +111,8 @@ public class Matrix4f {
     public static Matrix4f fromRotationZ(float angle) {
         angle = toRadians(angle);
         return new Matrix4f(
-                (float) Math.cos(angle), (float) -Math.sin(angle), 0, 0,
-                (float) Math.sin(angle), (float) Math.cos(angle), 0,0,
+                (float) Math.cos(angle), (float) Math.sin(angle), 0, 0,
+                (float) -Math.sin(angle), (float) Math.cos(angle), 0,0,
                 0, 0, 1, 0,
                 0, 0, 0, 1
         );
@@ -120,12 +120,22 @@ public class Matrix4f {
 
     public static Matrix4f fromTranslation(float dx, float dy, float dz) {
         return new Matrix4f(
-              1f, 0, 0, dx,
-                0, 1f, 0, dy,
-                0, 0, 1f, dz,
+              1f, 0, 0, 0,
+                0, 1f, 0, 0,
+                0, 0, 1f, 0,
+                dx, dy, dz, 1f
+        );
+    }
+
+    public static Matrix4f fromScale(float sx, float sy, float sz) {
+        return new Matrix4f(
+                sx, 0, 0, 0,
+                0, sy, 0, 0,
+                0, 0, sz, 0,
                 0, 0, 0, 1f
         );
     }
+
 
     public static Matrix4f fromRotation(float angleX, float angleY, float angleZ) {
         return fromRotationX(angleX).mul(fromRotationY(angleY).mul(fromRotationZ(angleZ)));

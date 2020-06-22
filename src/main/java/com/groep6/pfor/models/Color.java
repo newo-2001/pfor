@@ -6,7 +6,7 @@ package com.groep6.pfor.models;
  * @author Nils van der Velden
  */
 
-import com.groep6.pfor.util.Vector3f;
+import com.groep6.pfor.util.gl.Vector3f;
 
 public class Color {
 	private Vector3f rgb;

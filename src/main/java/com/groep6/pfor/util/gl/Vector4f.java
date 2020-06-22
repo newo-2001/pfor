@@ -1,4 +1,4 @@
-package com.groep6.pfor.util;
+package com.groep6.pfor.util.gl;
 
 /**
  * Represents a vector in 2d space. Has mathematical applications
@@ -34,6 +34,13 @@ public class Vector4f {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.w = w;
+    }
+
+    public Vector4f(Vector3f v, float w) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
         this.w = w;
     }
 

@@ -17,9 +17,8 @@ import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.util.IObserver;
-import com.groep6.pfor.util.Matrix4f;
+import com.groep6.pfor.util.gl.*;
 import com.groep6.pfor.util.Vector2f;
-import com.groep6.pfor.util.Vector4f;
 import com.groep6.pfor.views.components.UIButton;
 import com.groep6.pfor.views.components.UIPlayerInfo;
 import com.groep6.pfor.views.components.UIText;
@@ -57,6 +56,8 @@ public class BoardView extends View implements IObserver {
 	
 	private static Vector2f CANVAS_SIZE = new Vector2f(canvasX, canvasY);
 	private static final float CIRCLE_RADIUS = ((20f / 833f) * canvasX) / CANVAS_SIZE.y;
+	private static BasicShader shader;
+
 
 	private UIText actionCount;
 	private UIText fortCount;
@@ -98,12 +99,14 @@ public class BoardView extends View implements IObserver {
 
         // Center - board
         Canvas boardCanvas = createBoard();
+        shader = new BasicShader(boardCanvas.getGraphicsContext2D());
+        shader.setProjectionMatrix(Matrix4f.fromPerspective((float) boardCanvas.getHeight() / (float) boardCanvas.getWidth(),90f, 0.1f, 1000f));
         root.setCenter(boardCanvas);
 
         // Right - action buttons
-        GridPane actionButtonLayout = createActionButtons();
+        // GridPane actionButtonLayout = createActionButtons();
         root.setBackground(new Background(new BackgroundFill(Color.web("D5544F"), CornerRadii.EMPTY, Insets.EMPTY)));
-        root.setRight(actionButtonLayout);
+        //root.setRight(actionButtonLayout);
 
         // Change listeners
         root.widthProperty().addListener(new ChangeListener<Number>() {
@@ -428,100 +431,14 @@ public class BoardView extends View implements IObserver {
 
         // Test code
         angle += 1f;
-        Matrix4f perspective = Matrix4f.fromPerspective(45f, -1f, 1500f);
-        Matrix4f scale = new Matrix4f(
-                0.1f, 0, 0, 0,
-                0, 0.1f, 0, 0,
-                0, 0, 0.1f, 0,
-                0, 0, 0, 1f
-        );
-        Matrix4f rotate = Matrix4f.fromRotationX(angle);
-        Matrix4f translate = Matrix4f.fromTranslation(0f, 0f, 0f);
+        //Matrix4f rotate = Matrix4f.fromRotationX(angle);
+        //Matrix4f translate = Matrix4f.fromTranslation(0f, 0f, 0f);
+        //Matrix4f transform = translate.mul(rotate);
 
-        perspective.mul(translate.mul(rotate.mul(scale)));
-
-        // This is a cube lmao
-        Vector4f[] vertices = new Vector4f[] {
-                // Front Bottom
-                new Vector4f(0f, 0f, 0f, 1f),
-                new Vector4f(1f, 0f, 0f, 1f),
-                new Vector4f (1f, 1f, 0f, 1f),
-
-                // Front Top
-                new Vector4f(0f, 0f, 0f, 1f),
-                new Vector4f(1f, 1f, 0f, 1f),
-                new Vector4f(0f, 1f, 0f, 1f),
-
-
-                // Back Bottom
-                new Vector4f(0f, 0f, 1f, 1f),
-                new Vector4f(1f, 0f, 1f, 1f),
-                new Vector4f (1f, 1f, 1f, 1f),
-
-                // Back Top
-                new Vector4f(0f, 0f, 1f, 1f),
-                new Vector4f(1f, 1f, 1f, 1f),
-                new Vector4f(0f, 1f, 1f, 1f),
-
-
-                // Left Bottom
-                new Vector4f(0f, 0f, 1f, 1f),
-                new Vector4f(0f, 0f, 0f, 1f),
-                new Vector4f(0f, 1f, 0f, 1f),
-
-                // Left Top
-                new Vector4f(0f, 0f, 1f, 1f),
-                new Vector4f(0f, 1f, 0f, 1f),
-                new Vector4f(0f, 1f, 1f, 1f),
-
-
-                // Right Bottom
-                new Vector4f(1f, 0f, 1f, 1f),
-                new Vector4f(1f, 0f, 0f, 1f),
-                new Vector4f(1f, 1f, 0f, 1f),
-
-                // Right Top
-                new Vector4f(1f, 0f, 1f, 1f),
-                new Vector4f(1f, 1f, 0f, 1f),
-                new Vector4f(1f, 1f, 1f, 1f),
-
-
-                // Top Bottom
-                new Vector4f(0f, 1f, 0f, 1f),
-                new Vector4f(1f, 1f, 0f, 1f),
-                new Vector4f(1f, 1f, 1f, 1f),
-
-                // Top Top
-                new Vector4f(0f, 1f, 0f, 1f),
-                new Vector4f(1f, 1f, 1f, 1f),
-                new Vector4f(0f, 1f, 1f, 1f),
-
-
-                // Bottom Bottom
-                new Vector4f(0f, 0f, 0f, 1f),
-                new Vector4f(1f, 0f, 0f, 1f),
-                new Vector4f(1f, 0f, 1f, 1f),
-
-                // Bottom Top
-                new Vector4f(0f, 0f, 0f, 1f),
-                new Vector4f(1f, 0f, 1f, 1f),
-                new Vector4f(0f, 0f, 1f, 1f),
-        };
-
-        // Render the cube
-        //System.out.println(new Vector4f(2f, 3f, 5f, 8f).mul(Matrix4f.fromRotationZ(45.0f).mul(Matrix4f.fromTranslation(2f, 5f, 3f))));
-
-        for (int i = 0; i < vertices.length; i+=3) {
-            Vector4f[] tri = new Vector4f[] {vertices[i].mul(perspective), vertices[i+1].mul(perspective), vertices[i+2].mul(perspective)};
-            for (Vector4f v : tri) {
-                v.x = v.x * CANVAS_SIZE.x;
-                v.y = v.y * CANVAS_SIZE.x;
-            }
-            gc.strokeLine(tri[0].x, tri[0].y, tri[1].x, tri[1].y);
-            gc.strokeLine(tri[1].x, tri[1].y, tri[2].x, tri[2].y);
-            gc.strokeLine(tri[2].x, tri[2].y, tri[0].x, tri[0].y);
-            System.out.println(tri[0] + "; " + tri[1] + "; " + tri[2]);
-        }
+        Cube cube = new Cube();
+        Matrix4f model = Matrix4f.fromTranslation(0, 0, 5f).mul(Matrix4f.fromScale(0.1f, 0.1f, 0.1f));//.mul(Matrix4f.fromRotation(angle, 0f, angle * 1.5f).mul(Matrix4f.fromScale(0.5f, 0.5f, 0.5f)));
+        shader.setModelMatrix(model);
+        shader.render(cube);
     }
 
     @Override
@@ -529,14 +446,14 @@ public class BoardView extends View implements IObserver {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                actionCount.setText(boardController.getLocalPlayer().getActionsRemaining() + " acties over");
-                fortCount.setText(6 - boardController.getFortAmount() + " resterende forten");
+                //actionCount.setText(boardController.getLocalPlayer().getActionsRemaining() + " acties over");
+                //fortCount.setText(6 - boardController.getFortAmount() + " resterende forten");
                 updateCanvas();
-                createPlayerList();
+                //createPlayerList();
             }
         });
 
-        if (!boardController.getLocalPlayer().isTurn()) {
+        /*if (!boardController.getLocalPlayer().isTurn()) {
             conspireButton.setDisable(true);
             battleButton.setDisable(true);
             allianceButton.setDisable(true);
@@ -564,7 +481,7 @@ public class BoardView extends View implements IObserver {
                 recruitBarbarianButton.setDisable(true);
                 recruitButton.setDisable(true);
             }
-        }
+        }*/
     }
     
     public void updateCanvasSize() {

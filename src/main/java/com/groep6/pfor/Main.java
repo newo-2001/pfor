@@ -1,5 +1,6 @@
 package com.groep6.pfor;
 
+import com.groep6.pfor.controllers.BoardController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +44,7 @@ public class Main extends Application {
         musicManager.play("/sounds/music/Last_stand_of_an_Empire.mp3", 0.2, true);
   
         // Set default view
-        new MenuController();
+        new BoardController();
     }
     
     // TODO iemand help met if hel?
