@@ -407,13 +407,13 @@ public class BoardView extends View implements IObserver {
                     gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/decay.png"))), decay.x, decay.y, size.x, size.y);
                 }
                 
-                if(city.isRaided()) {
-                	gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/raidedCity.png"))), cityPos.x + r, cityPos.y - r / 2f, r, r/1.35f);
-                }
-                
-                if(city.isInvaded()) {
-                	gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/fire.png"))), cityPos.x + r, cityPos.y + r / 2f, r, r/1.35f);
-                }
+//                if(city.isRaided()) {
+//                	gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/raidedCity.png"))), cityPos.x + r, cityPos.y - r / 2f, r, r/1.35f);
+//                }
+//                
+//                if(city.isInvaded()) {
+//                	gc.drawImage(new Image(String.valueOf(BoardView.class.getResource("/images/fire.png"))), cityPos.x + r, cityPos.y + r / 2f, r, r/1.35f);
+//                }
             }
         }
     }
