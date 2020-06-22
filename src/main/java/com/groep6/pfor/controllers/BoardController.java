@@ -2,14 +2,17 @@ package com.groep6.pfor.controllers;
 
 import com.groep6.pfor.Main;
 import com.groep6.pfor.factories.CityFactory;
+import com.groep6.pfor.factories.FactionFactory;
 import com.groep6.pfor.models.*;
 import com.groep6.pfor.models.cards.Card;
+import com.groep6.pfor.models.cards.CityCard;
 import com.groep6.pfor.models.cards.InvasionCard;
 import com.groep6.pfor.models.factions.Faction;
 import com.groep6.pfor.services.GameService;
 import com.groep6.pfor.util.IObserver;
 import com.groep6.pfor.views.BoardView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -219,15 +222,60 @@ public class BoardController extends Controller {
         game.registerObserver(view);
     }
 
+    /**
+     * Get list of factions that an alliance can be formed with.
+     * @return List of factions
+     */
+    public List<Faction> formableAlliances() {
+        Player player = getLocalPlayer();
+        FactionFactory factionFactory = FactionFactory.getInstance();
+        List<Faction> factions = factionFactory.getFactions();
+        List<Card> cards = player.getHand().getCards();
+        List<Faction> formableAlliances = new ArrayList<>();
+
+        // Loop through all factions
+        for (Faction faction : factions) {
+            // If current city does not have this faction, continue
+            if (!player.getCity().hasFaction(faction)) continue;
+
+            int cardCount = 0;
+
+            // Check if player has required card count to form alliance
+            for (Card card : cards) {
+                if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) {
+                    cardCount++;
+                }
+            }
+            if (cardCount >= faction.getCardCountForAlliance()) formableAlliances.add(faction);
+        }
+        return formableAlliances;
+    }
+
+    /**
+     * Get the cityCards that the local player holds with the type of faction that you give as parameter
+     * @param faction The faction you want the cards from
+     * @return A list of cards
+     */
+    public List<Card> getCitycardsWithFaction(Faction faction) {
+        List<Card> cards = getLocalPlayer().getHand().getCards();
+        List<Card> factionCards = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof CityCard && ((CityCard) card).getFaction().equals(faction)) {
+                factionCards.add(card);
+            }
+        }
+        return factionCards;
+    }
+
     public void formAlliance() {
         Player player = getLocalPlayer();
-        Faction faction = player.formableAlliances().get(0);
+        Faction faction = formableAlliances().get(0);
 
         // Ally this faction
         faction.ally();
 
         // Remove cards
-        List<Card> cardsToDiscard = player.getCitycardsWithFaction(faction);
+        List<Card> cardsToDiscard = getCitycardsWithFaction(faction);
         player.getHand().removeCards(cardsToDiscard.toArray(new Card[0]));
 
         player.decreaseActionsRemaining();
@@ -239,9 +287,7 @@ public class BoardController extends Controller {
     }
 
     public boolean canFormAlliance() {
-        Player player = getLocalPlayer();
-
-        return player.formableAlliances().size() > 0;
+        return formableAlliances().size() > 0;
     }
 
     public List<Faction> getFriendlyFactions() {
